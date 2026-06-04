@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import { useMemo, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { useMemo, useState } from "react";
 
-import SectionReveal from './SectionReveal';
+import SectionReveal from "./SectionReveal";
 
 interface IndustryCard {
   title: string;
   description: string;
   image: string;
-  metrics: string[];
+  metrics: { value: string; label: string }[];
+  tint: string;
 }
 
 interface Industry {
@@ -21,181 +22,338 @@ interface Industry {
 
 const industries: Industry[] = [
   {
-    name: 'Healthcare',
+    name: "Healthcare",
     cards: [
       {
-        title: 'AI Transforming Patient Care',
+        title: "AI Transforming Patient Care And Operational Efficiency",
         description:
-          'Clinical workflow automation that helps teams detect risk, triage faster, and personalize care pathways.',
+          "We deploy intelligent workflows that improve care coordination, accelerate diagnostics support, and reduce operational waste.",
         image:
-          'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80',
-        metrics: ['30% faster triage', '92% model precision', '18% lower cost'],
+          "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+20-30%", label: "Faster Care" },
+          { value: "-18-25%", label: "Lower Costs" },
+          { value: "+25-35%", label: "Better Outcomes" },
+        ],
+        tint: "bg-[#e7ff7d]",
       },
       {
-        title: 'Predictive Hospital Operations',
+        title: "AI Accelerating Research, Insights, And Commercial Growth",
         description:
-          'Forecasting demand, staffing, and resource usage across distributed care facilities.',
+          "We deploy AI-driven research acceleration, predictive supply intelligence, and automated engagement systems.",
         image:
-          'https://images.unsplash.com/photo-1581093458791-9d09a5bdc4d2?auto=format&fit=crop&w=900&q=80',
-        metrics: ['24/7 insights', '41% fewer delays', '12 sites scaled'],
+          "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+15-28%", label: "Faster Discovery" },
+          { value: "-20-35%", label: "Reduced Delays" },
+          { value: "+30-45%", label: "Higher Efficiency" },
+        ],
+        tint: "bg-white",
+      },
+      {
+        title: "AI Optimizing Production, Supply Chains, And Factory Operations",
+        description:
+          "Deploy AI systems that optimize production planning, monitor equipment health in real time, and improve delivery.",
+        image:
+          "https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+18-32%", label: "Higher Output" },
+          { value: "-15-30%", label: "Less Downtime" },
+          { value: "+20-38%", label: "Faster Delivery" },
+        ],
+        tint: "bg-[#c9fbf4]",
       },
     ],
   },
   {
-    name: 'Manufacturing',
+    name: "Pharma",
     cards: [
       {
-        title: 'Autonomous Quality Intelligence',
+        title: "AI Accelerating Drug Discovery And Clinical Operations",
         description:
-          'Computer vision and IoT analytics that identify defects before production loss compounds.',
+          "AI-led research workflows improve evidence discovery, clinical review speed, and submission confidence.",
         image:
-          'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80',
-        metrics: ['67% less rework', '5M events/day', '99.1% uptime'],
+          "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+15-28%", label: "Faster Discovery" },
+          { value: "-20-35%", label: "Reduced Delays" },
+          { value: "+30-45%", label: "Higher Efficiency" },
+        ],
+        tint: "bg-[#e7ff7d]",
       },
       {
-        title: 'Factory Data Fabric',
+        title: "Commercial Intelligence For Medical Affairs",
         description:
-          'Unified production intelligence across plants, machines, suppliers, and operators.',
+          "Connect field insights, claims data, and market signals into governed commercial intelligence.",
         image:
-          'https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=900&q=80',
-        metrics: ['14 plants', '3.2x faster reports', '22% throughput'],
+          "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+18-26%", label: "Better Signals" },
+          { value: "-12-22%", label: "Manual Review" },
+          { value: "+21-34%", label: "Faster Action" },
+        ],
+        tint: "bg-white",
       },
-    ],
-  },
-  {
-    name: 'Finance',
-    cards: [
       {
-        title: 'Risk Intelligence Engine',
+        title: "Predictive Supply For Regulated Pharma",
         description:
-          'Real-time anomaly detection and explainable models for compliance-heavy financial teams.',
+          "Forecast inventory, cold-chain risk, and demand shifts across regulated distribution networks.",
         image:
-          'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
-        metrics: ['48% fraud lift', '8x faster review', '99.9% audit trail'],
-      },
-    ],
-  },
-  {
-    name: 'Retail',
-    cards: [
-      {
-        title: 'Customer Growth Intelligence',
-        description:
-          'Personalized journeys, demand signals, and SKU-level forecasting for modern commerce teams.',
-        image:
-          'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80',
-        metrics: ['21% basket lift', '35% fewer stockouts', '1:1 targeting'],
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+18-32%", label: "Higher Output" },
+          { value: "-15-30%", label: "Less Downtime" },
+          { value: "+20-38%", label: "Faster Delivery" },
+        ],
+        tint: "bg-[#c9fbf4]",
       },
     ],
   },
   {
-    name: 'Logistics',
+    name: "Retail & CPG",
     cards: [
       {
-        title: 'Predictive Fleet Optimization',
+        title: "Personalized Retail Growth With AI Decisioning",
         description:
-          'Route, fleet, warehouse, and carrier optimization with live exception intelligence.',
+          "Forecast demand, personalize engagement, and optimize inventory with real-time data products.",
         image:
-          'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80',
-        metrics: ['19% fuel saved', '27% SLA lift', 'Real-time ETA'],
+          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+18-31%", label: "Sales Lift" },
+          { value: "-14-24%", label: "Churn Risk" },
+          { value: "+25-35%", label: "Repeat Sales" },
+        ],
+        tint: "bg-[#e7ff7d]",
+      },
+      {
+        title: "Supply Intelligence Across Retail Networks",
+        description:
+          "Connect customer, store, SKU, and distribution data into a responsive operating model.",
+        image:
+          "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+21-34%", label: "Faster Planning" },
+          { value: "-18-29%", label: "Stockouts" },
+          { value: "+20-32%", label: "Margin Lift" },
+        ],
+        tint: "bg-white",
+      },
+      {
+        title: "AI For Modern Consumer Operations",
+        description:
+          "Automate demand sensing, category analytics, and campaign performance intelligence.",
+        image:
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+17-29%", label: "Better Forecasts" },
+          { value: "-15-25%", label: "Waste" },
+          { value: "+19-33%", label: "Conversion" },
+        ],
+        tint: "bg-[#c9fbf4]",
+      },
+    ],
+  },
+  {
+    name: "Manufacturing",
+    cards: [
+      {
+        title: "AI Optimizing Production, Supply Chains, And Factory Operations",
+        description:
+          "Deploy AI systems that optimize production planning, monitor equipment health in real time, and improve delivery.",
+        image:
+          "https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+18-32%", label: "Higher Output" },
+          { value: "-15-30%", label: "Less Downtime" },
+          { value: "+20-38%", label: "Faster Delivery" },
+        ],
+        tint: "bg-[#e7ff7d]",
+      },
+      {
+        title: "Predictive Quality Across Production Lines",
+        description:
+          "Computer vision and streaming analytics catch quality drift before production loss compounds.",
+        image:
+          "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+22-36%", label: "QA Speed" },
+          { value: "-20-35%", label: "Rework" },
+          { value: "+19-31%", label: "OEE" },
+        ],
+        tint: "bg-white",
+      },
+      {
+        title: "Factory Data Fabric For Connected Plants",
+        description:
+          "Unify machine, operator, supplier, and quality signals into production intelligence.",
+        image:
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+24-38%", label: "Visibility" },
+          { value: "-16-27%", label: "Delays" },
+          { value: "+20-30%", label: "Throughput" },
+        ],
+        tint: "bg-[#c9fbf4]",
       },
     ],
   },
 ];
 
-export default function IndustryTabs() {
-  const [active, setActive] = useState(industries[0].name);
-  const industry = useMemo(
-    () => industries.find((item) => item.name === active) ?? industries[0],
-    [active],
-  );
+function ArrowButton({
+  direction,
+  onClick,
+}: {
+  direction: "prev" | "next";
+  onClick: () => void;
+}) {
+  const Icon = direction === "prev" ? ArrowLeft : ArrowRight;
 
   return (
-    <section className="bg-black px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
-      <SectionReveal className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold text-cyan-300">Industries</p>
-          <h2 className="mt-3 text-[clamp(2rem,4vw,4.1rem)] font-bold leading-tight tracking-normal">
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={direction === "prev" ? "Previous industry" : "Next industry"}
+      className="grid size-12 place-items-center rounded-full border-1 border-white/80 text-white transition duration-300 hover:-translate-y-1 hover:border-[#5fb0c2] hover:bg-[#5fb0c2] p-0"
+    >
+      <Icon className="size-6" />
+    </button>
+  );
+}
+
+function IndustryFeatureCard({
+  card,
+  placement,
+}: {
+  card: IndustryCard;
+  placement: "left" | "center" | "right";
+}) {
+  const placementClass = {
+    left: "hidden !opacity-[0.6]  xl:block -translate-x-5 rotate-[10deg] scale-[.92] origin-bottom-right",
+    center: "z-20 scale-100",
+    right:
+      "hidden xl:block !opacity-[0.6]  translate-x-5 rotate-[-10deg] scale-[.92] origin-bottom-left",
+  }[placement];
+
+  return (
+    <motion.article
+    initial={{
+  opacity: 0,
+  y: 50,
+  rotate:
+    placement === "left"
+      ? -24 
+      : placement === "center"
+      ? 0
+      : 24,
+}}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -16, rotate: placement === "center" ? 0 : undefined }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.75, ease: "easeOut" }}
+      className={`relative  w-[400px] h-[500px] shrink-0 rounded-[32px] pt-8 pb-5 px-5 text-black shadow-2xl shadow-black/40 ${card.tint} ${placementClass}`}
+    >
+      <div className="flex gap-2">
+        <span className="mt-1 h-12 w-1 shrink-0 bg-[#5fb0c2]" />
+        <h3 className="!text-[20px] font-light  tracking-normal">
+          {card.title}
+        </h3>
+      </div>
+      <p className="mt-3 !text-[16px] line-clamp-2 text-black/80">
+        {card.description}
+      </p>
+      <div className="mt-6 grid grid-cols-3 gap-6">
+        {card.metrics.map((metric) => (
+          <div key={metric.label}>
+            <strong className="block text-[18px] font-semibold leading-none">
+              {metric.value}
+            </strong>
+            <span className="mt-3 block text-[13px] leading-snug">
+              {metric.label}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="absolute inset-x-8 bottom-5 h-[200px] overflow-hidden rounded-[24px]">
+        <Image
+          src={card.image}
+          alt={card.title}
+          fill
+          sizes="520px"
+          className="object-cover transition duration-700 group-hover:scale-105"
+        />
+      </div>
+      <button
+        type="button"
+        aria-label={`Open ${card.title}`}
+        className="absolute right-2 bottom-2 z-10 grid size-20 place-items-center rounded-full w-17 h-17 border-[14px] border-white bg-[#5fb0c2] text-white transition duration-300 rotate-45 hover:bg-black"
+      >
+        <ArrowUpRight className="size-7" />
+      </button>
+    </motion.article>
+  );
+}
+
+export default function IndustryTabs() {
+  const [active, setActive] = useState(0);
+  const industry = industries[active];
+  const cards = useMemo(() => {
+    const ordered = industry.cards;
+    return [ordered[2], ordered[0], ordered[1]];
+  }, [industry]);
+
+  const move = (direction: number) => {
+    setActive((value) => (value + direction + industries.length) % industries.length);
+  };
+
+  return (
+    <section className="relative overflow-hidden bg-black px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-32">
+      <SectionReveal className="mx-auto max-w-[1920px]">
+        <div className="mx-auto max-w-6xl text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 34 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[clamp(2.6rem,5vw,5.2rem)] font-bold leading-tight tracking-normal"
+          >
             Transforming Industries with AI & Data
-          </h2>
-          <p className="mt-5 text-sm leading-7 text-white/60 sm:text-base">
-            Enabling predictive decisions, operational intelligence, and automation across
-            mission-critical enterprise workflows.
+          </motion.h2>
+          <p className="mx-auto mt-7 max-w-md text-lg  text-white/80">
+            Enabling smarter decisions, operational efficiency, and sustainable
+            growth through intelligent solutions.
           </p>
         </div>
 
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
-          {industries.map((item) => (
+        <div className="mt-20 flex items-center justify-center gap-2  max-lg:flex-wrap">
+          <ArrowButton direction="prev" onClick={() => move(-1)} />
+          {industries.map((item, index) => (
             <button
               key={item.name}
-              onClick={() => setActive(item.name)}
-              className={`rounded-full border px-5 py-2 text-sm font-semibold transition-all duration-300 ${
-                active === item.name
-                  ? 'border-cyan-300 bg-cyan-300 text-slate-950 shadow-[0_0_28px_rgba(103,232,249,.45)]'
-                  : 'border-white/15 bg-white/5 text-white/70 hover:border-cyan-300/70 hover:text-cyan-200'
+              type="button"
+              onClick={() => setActive(index)}
+              className={` rounded-full border-1 px-6 py-3 text-xs font-light uppercase tracking-normal transition duration-300 ${
+                index === active
+                  ? "border-[#5fb0c2] bg-[#5fb0c2] text-white"
+                  : "border-white bg-transparent text-white hover:border-[#5fb0c2]"
               }`}
             >
               {item.name}
             </button>
           ))}
+          <ArrowButton direction="next" onClick={() => move(1)} />
         </div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={industry.name}
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            // exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="mt-12"
+            className="mt-20 pb-20 flex gap-2  items-center justify-center gap-0 max-xl:min-h-0 max-xl:flex-col"
           >
-            <Swiper
-              slidesPerView={1.1}
-              centeredSlides
-              spaceBetween={22}
-              breakpoints={{
-                768: { slidesPerView: 2.2 },
-                1180: { slidesPerView: 3, spaceBetween: 34 },
-              }}
-            >
-              {[...industry.cards, ...industry.cards].map((card, index) => (
-                <SwiperSlide key={`${card.title}-${index}`} className="py-10">
-                  {({ isActive }) => (
-                    <article
-                      className={`group h-[460px] overflow-hidden rounded-[1.3rem] border border-white/10 bg-slate-100 text-slate-950 transition-all duration-500 ${
-                        isActive
-                          ? 'scale-105 rotate-0 shadow-2xl shadow-cyan-400/20'
-                          : 'scale-95 odd:-rotate-6 even:rotate-6 opacity-70'
-                      }`}
-                    >
-                      <div className="relative h-56 w-full overflow-hidden">
-                        <Image
-                          src={card.image}
-                          alt={card.title}
-                          fill
-                          sizes="(min-width: 1180px) 33vw, (min-width: 768px) 45vw, 90vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-2xl font-bold leading-tight">{card.title}</h3>
-                        <p className="mt-4 text-sm leading-6 text-slate-600">{card.description}</p>
-                        <div className="mt-6 grid grid-cols-3 gap-3">
-                          {card.metrics.map((metric) => (
-                            <div
-                              key={metric}
-                              className="rounded-xl bg-cyan-50 p-3 text-center text-xs font-bold text-slate-900"
-                            >
-                              {metric}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </article>
-                  )}
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <IndustryFeatureCard card={cards[0]} placement="left" />
+            <IndustryFeatureCard card={cards[1]} placement="center" />
+            <IndustryFeatureCard card={cards[2]} placement="right" />
           </motion.div>
         </AnimatePresence>
       </SectionReveal>

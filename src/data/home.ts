@@ -42,5 +42,11 @@ export const servicesSection: ServicesSection = {
             href: "/solutions/data-science",
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85",
         },
+         {
+            title: "UX/UI Design",
+            description: "Create intuitive and engaging user experiences with our expert design services.",
+            href: "/solutions/ux-ui-design",
+            image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85",
+        },
     ],
 }
