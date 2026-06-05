@@ -213,7 +213,7 @@ function ArrowButton({
       type="button"
       onClick={onClick}
       aria-label={direction === "prev" ? "Previous industry" : "Next industry"}
-      className="grid size-12 place-items-center rounded-full border-1 border-white/80 text-white transition duration-300 hover:-translate-y-1 hover:border-[#5fb0c2] hover:bg-[#5fb0c2] p-0"
+      className="grid size-11 place-items-center rounded-full border border-white/80 p-0 text-white transition duration-300 hover:-translate-y-1 hover:border-[#5fb0c2] hover:bg-[#5fb0c2] sm:size-12"
     >
       <Icon className="size-6" />
     </button>
@@ -250,7 +250,7 @@ function IndustryFeatureCard({
       whileHover={{ y: -16, rotate: placement === "center" ? 0 : undefined }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.75, ease: "easeOut" }}
-      className={`relative  w-[400px] h-[500px] shrink-0 rounded-[32px] pt-8 pb-5 px-5 text-black shadow-2xl shadow-black/40 ${card.tint} ${placementClass}`}
+      className={`relative min-h-[500px] w-full max-w-[400px] shrink-0 rounded-[28px] px-5 pt-7 pb-5 text-black shadow-2xl shadow-black/40 sm:rounded-[32px] sm:pt-8 ${card.tint} ${placementClass}`}
     >
       <div className="flex gap-2">
         <span className="mt-1 h-12 w-1 shrink-0 bg-[#5fb0c2]" />
@@ -261,7 +261,7 @@ function IndustryFeatureCard({
       <p className="mt-3 !text-[16px] line-clamp-2 text-black/80">
         {card.description}
       </p>
-      <div className="mt-6 grid grid-cols-3 gap-6">
+      <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6">
         {card.metrics.map((metric) => (
           <div key={metric.label}>
             <strong className="block text-[18px] font-semibold leading-none">
@@ -273,7 +273,7 @@ function IndustryFeatureCard({
           </div>
         ))}
       </div>
-      <div className="absolute inset-x-8 bottom-5 h-[200px] overflow-hidden rounded-[24px]">
+      <div className="absolute inset-x-5 bottom-5 h-[190px] overflow-hidden rounded-[22px] sm:inset-x-8 sm:h-[200px] sm:rounded-[24px]">
         <Image
           src={card.image}
           alt={card.title}
@@ -285,7 +285,7 @@ function IndustryFeatureCard({
       <button
         type="button"
         aria-label={`Open ${card.title}`}
-        className="absolute right-2 bottom-2 z-10 grid size-20 place-items-center rounded-full w-17 h-17 border-[14px] border-white bg-[#5fb0c2] text-white transition duration-300 rotate-45 hover:bg-black"
+        className="absolute right-2 bottom-2 z-10 grid size-16 rotate-45 place-items-center rounded-full border-[10px] border-white bg-[#5fb0c2] text-white transition duration-300 hover:bg-black sm:size-[68px] sm:border-[14px]"
       >
         <ArrowUpRight className="size-7" />
       </button>
@@ -323,14 +323,14 @@ export default function IndustryTabs() {
           </p>
         </div>
 
-        <div className="mt-20 flex items-center justify-center gap-2  max-lg:flex-wrap">
+        <div className="mt-12 flex items-center justify-center gap-2 max-lg:flex-wrap sm:mt-16 lg:mt-20">
           <ArrowButton direction="prev" onClick={() => move(-1)} />
           {industries.map((item, index) => (
             <button
               key={item.name}
               type="button"
               onClick={() => setActive(index)}
-              className={` rounded-full border-1 px-6 py-3 text-xs font-light uppercase tracking-normal transition duration-300 ${
+              className={`rounded-full border px-4 py-3 text-[11px] font-light uppercase tracking-normal transition duration-300 sm:px-6 sm:text-xs ${
                 index === active
                   ? "border-[#5fb0c2] bg-[#5fb0c2] text-white"
                   : "border-white bg-transparent text-white hover:border-[#5fb0c2]"
@@ -349,7 +349,7 @@ export default function IndustryTabs() {
             animate={{ opacity: 1 }}
             // exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="mt-20 pb-20 flex gap-2  items-center justify-center gap-0 max-xl:min-h-0 max-xl:flex-col"
+            className="mt-14 flex w-full items-center justify-center gap-0 pb-10 sm:mt-20 sm:pb-20 max-xl:min-h-0 max-xl:flex-col"
           >
             <IndustryFeatureCard card={cards[0]} placement="left" />
             <IndustryFeatureCard card={cards[1]} placement="center" />

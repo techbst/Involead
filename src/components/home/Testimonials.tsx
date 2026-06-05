@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { Pause, Quote } from 'lucide-react';
-import { Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { BrainCircuit, Globe2, Microscope } from "lucide-react";
+import Image from "next/image";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import SectionReveal from './SectionReveal';
+import SectionReveal from "./SectionReveal";
 
 interface Testimonial {
   review: string;
@@ -15,100 +16,120 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     review:
-      'Their GenAI research assistant has transformed how our teams explore evidence and make decisions across business units.',
-    name: 'Serena Brooks',
-    company: 'Clinical Research Network',
+      "Their AI-driven solutions have accelerated our decision-making process across regulatory submissions. The team's deep understanding of pharma workflows is evident in every feature.",
+    name: "Senior Director - Clinical Research",
+    company: "Fortune 500 Pharma Company",
   },
   {
     review:
-      'The AI-driven analytics platform helped us operationalize forecasting without slowing down compliance or governance.',
-    name: 'Vir Ahuja',
-    company: 'Fintech Operations Group',
+      "Their AI-driven solutions have accelerated our decision-making process across regulatory submissions. The team's deep understanding of pharma workflows is evident in every feature.",
+    name: "VP - Medical Affairs",
+    company: "Fortune 500 Pharma Company",
   },
   {
     review:
-      'We moved from fragmented reporting to an intelligent data layer our leadership teams trust every morning.',
-    name: 'Maya Chen',
-    company: 'Global Retail Enterprise',
-  },
-  {
-    review:
-      'The delivery team understood production constraints and built automation that our operators actually adopted.',
-    name: 'Daniel Ruiz',
-    company: 'Industrial Systems Co.',
+      "The platform helped our leaders unify data, research evidence, and operational signals without slowing down governance.",
+    name: "Head of Digital Operations",
+    company: "Fortune 500 Healthcare Company",
   },
 ];
 
-const logos = ['Nexa', 'Orion', 'Vanta', 'Helio'];
+const proofItems = [
+  { icon: Globe2, label: "Global Reach" },
+  { icon: BrainCircuit, label: "AI-Powered Innovation" },
+  { icon: Microscope, label: "Research Excellence" },
+];
 
 export default function Testimonials() {
   return (
-    <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-      <SectionReveal className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold text-slate-500">Client Feedback</p>
-          <h2 className="mt-3 text-[clamp(2rem,4vw,4.2rem)] font-bold leading-tight tracking-normal text-slate-950">
+    <section className="overflow-hidden bg-white px-5 py-20 text-black sm:px-8 lg:px-12 lg:py-28">
+      <SectionReveal className="mx-auto max-w-[1420px]">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="text-base font-medium text-black">Client Feedback</p>
+          <h2 className="mt-7 text-[clamp(2.4rem,4vw,4.4rem)] font-bold leading-tight tracking-normal">
             Trusted by Global Leaders
           </h2>
-          <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
-            Driving innovation and measurable impact across more than 500 organizations.
+          <p className="mt-6 text-base leading-7 text-black/85 sm:text-lg">
+            Driving innovation and efficiency across the world&apos;s leading
+            Fortune 500 organizations
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
-          <article className="rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_18px_80px_rgba(15,23,42,.08)]">
-            <div className="flex items-end gap-3">
-              <strong className="text-7xl font-bold tracking-normal text-slate-950">100%</strong>
-              <span className="pb-3 text-sm font-bold text-slate-500">Client Satisfaction</span>
-            </div>
-            <div className="mt-8 grid grid-cols-3 gap-3">
-              {['Global', 'AI Experts', 'Secure'].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl bg-cyan-50 p-4 text-center text-xs font-bold text-slate-700"
-                >
-                  {item}
+        <div className="mt-16 grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-center">
+          <aside className="mx-auto w-full max-w-[360px] text-center lg:mx-0">
+            <Image
+              src="/img/badge.svg"
+              alt="100% Client Satisfaction"
+              width={218}
+              height={107}
+              className="mx-auto h-auto w-[218px]"
+            />
+
+            <div className="mt-12 grid grid-cols-3 gap-5">
+              {proofItems.map(({ icon: Icon, label }) => (
+                <div key={label} className="group text-center">
+                  <Icon className="mx-auto size-9 stroke-[1.7] transition duration-300 group-hover:-translate-y-1 group-hover:text-[#5fb0c2]" />
+                  <p className="mt-3 text-sm leading-snug text-black">
+                    {label}
+                  </p>
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex items-center gap-3">
-              <span className="text-4xl font-bold text-slate-950">4.9</span>
-              <span className="text-sm font-semibold text-amber-500">★★★★★</span>
-            </div>
-            <p className="mt-6 text-sm font-semibold text-slate-500">Trusted by Global Leaders</p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {logos.map((logo) => (
-                <span
-                  key={logo}
-                  className="rounded-full border border-slate-200 px-4 py-2 text-xs font-bold text-slate-500"
-                >
-                  {logo}
-                </span>
-              ))}
-            </div>
-          </article>
 
-          <div className="min-w-0">
+            <div className="mt-12 flex items-center justify-center gap-4">
+              <strong className="text-[52px] font-bold leading-none">
+                4.9
+              </strong>
+              <div className="text-left">
+                <p className="text-xl leading-none text-[#ffc21a]">★★★★★</p>
+                <p className="mt-2 text-base text-black">
+                  Operational Excellence
+                </p>
+              </div>
+            </div>
+          </aside>
+
+          <div className="min-w-0 lg:-mr-24">
             <Swiper
               modules={[Autoplay]}
               loop
-              autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
-              speed={4500}
-              slidesPerView={1.05}
-              spaceBetween={20}
-              breakpoints={{ 760: { slidesPerView: 2.05 } }}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              speed={5200}
+              slidesPerView={1.02}
+              spaceBetween={24}
+              breakpoints={{
+                760: { slidesPerView: 1.6, spaceBetween: 28 },
+                1180: { slidesPerView: 2.15, spaceBetween: 32 },
+              }}
             >
               {[...testimonials, ...testimonials].map((testimonial, index) => (
-                <SwiperSlide key={`${testimonial.name}-${index}`} className="py-3">
-                  <article className="min-h-[300px] rounded-2xl border border-white/70 bg-gradient-to-br from-white via-cyan-50/70 to-sky-100/80 p-7 shadow-sm backdrop-blur">
-                    <div className="flex items-center justify-between">
-                      <Quote className="size-9 fill-cyan-200 text-cyan-300" />
-                      <Pause className="size-4 text-slate-300" />
+                <SwiperSlide
+                  key={`${testimonial.name}-${index}`}
+                  className="py-3"
+                >
+                  <article className="group min-h-[360px] rounded-[24px] bg-[url('/img/company.png')] bg-cover bg-center p-3 transition duration-300 hover:-translate-y-2">
+                    <div className="flex min-h-[245px] flex-col rounded-[16px] bg-white p-7 sm:p-9">
+                      <Image
+                        src="/img/quote.svg"
+                        alt=""
+                        width={31}
+                        height={22}
+                        aria-hidden
+                        className="h-auto w-[31px]"
+                      />
+                      <p className="mt-6 text-lg leading-8 text-black sm:text-xl">
+                        {testimonial.review}
+                      </p>
                     </div>
-                    <p className="mt-8 text-base leading-8 text-slate-700">{testimonial.review}</p>
-                    <div className="mt-8">
-                      <h3 className="text-lg font-bold text-slate-950">{testimonial.name}</h3>
-                      <p className="mt-1 text-sm font-semibold text-slate-500">
+                    <div className="p-7 sm:p-9">
+                      <h3 className="text-base font-medium text-black sm:text-lg">
+                        {testimonial.name}
+                      </h3>
+                      <p className="mt-2 text-base text-black/55">
                         {testimonial.company}
                       </p>
                     </div>

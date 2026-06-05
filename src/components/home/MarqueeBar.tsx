@@ -28,7 +28,7 @@ export default function MarqueeBar() {
         {row.map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="inline-flex items-center gap-3 whitespace-nowrap text-[20px] font-Regular text-white"
+            className="inline-flex items-center gap-3 whitespace-nowrap text-base font-normal text-white sm:text-[20px]"
           >
             <Image src="/img/star.svg" alt="Star icon" width={28} height={28} />
             {item}

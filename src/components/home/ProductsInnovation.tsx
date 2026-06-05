@@ -60,7 +60,7 @@ export default function ProductsInnovation() {
 
   return (
     <section
-      className="relative overflow-hidden px-5 py-40 sm:px-8 lg:px-12 lg:py-40"
+      className="products-innovation-shell relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40"
       style={{
         backgroundColor: "#edf8fb",
 
@@ -108,12 +108,12 @@ export default function ProductsInnovation() {
           </div>
         </div>
 
-        <div className="mt-24">
+        <div className="mt-14 sm:mt-20 lg:mt-24">
           <Swiper
             slidesPerView={1.05}
             spaceBetween={32}
             breakpoints={{
-              740: { slidesPerView: 2.15 },
+              740: { slidesPerView: 2.05 },
               1180: { slidesPerView: 3.80, spaceBetween: 36 },
             }}
             onSwiper={setSwiper}
@@ -130,7 +130,7 @@ export default function ProductsInnovation() {
                     duration: 0.6,
                   }}
                   viewport={{ once: true }}
-                  className="relative h-[450px] w-full"
+                  className="relative h-[380px] w-full sm:h-[430px] lg:h-[450px]"
                 >
                   <article
                     className="group relative h-full w-full overflow-hidden"
@@ -142,7 +142,7 @@ export default function ProductsInnovation() {
                       maskImage: "url('/img/shape-card.svg')",
                       maskRepeat: "no-repeat",
                       maskPosition: "center",
-                      maskSize: "auto",
+                      maskSize: "100% 100%",
                       borderRadius: "20px",
                     }}
                   >
@@ -190,24 +190,24 @@ export default function ProductsInnovation() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-16 flex items-center gap-10">
+        <div className="mt-10 flex items-center gap-4 sm:mt-16 sm:gap-10">
           <div className="h-1 flex-1 overflow-hidden bg-[#b9d5f0]">
             <div
               className="h-full bg-[#5fb0c2] transition-all duration-500"
               style={{ width: `${Math.max(progress * 100, 12)}%` }}
             />
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-3 sm:gap-6">
             <button
               onClick={() => swiper?.slidePrev()}
-              className="grid size-14 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black sm:size-14"
               aria-label="Previous product"
             >
               <ArrowLeft className="size-6" />
             </button>
             <button
               onClick={() => swiper?.slideNext()}
-              className="grid size-14 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black sm:size-14"
               aria-label="Next product"
             >
               <ArrowRight className="size-6" />
@@ -215,6 +215,14 @@ export default function ProductsInnovation() {
           </div>
         </div>
       </SectionReveal>
+      <style jsx>{`
+        @media (max-width: 639px) {
+          .products-innovation-shell {
+            -webkit-mask-image: none !important;
+            mask-image: none !important;
+          }
+        }
+      `}</style>
 
     </section>
   );

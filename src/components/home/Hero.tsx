@@ -79,7 +79,7 @@ export default function Hero() {
         pointerX.set(0);
         pointerY.set(0);
       }}
-      className="relative flex min-h-[760px] items-center overflow-hidden bg-[#f8fbff] pt-[135px] pb-16 sm:pt-[155px] lg:pt-[180px]"
+      className="relative flex min-h-[680px] items-center overflow-hidden bg-[#f8fbff] pt-[118px] pb-14 sm:min-h-[720px] sm:pt-[145px] lg:min-h-[760px] lg:pt-[180px] lg:pb-16"
     >
       <motion.img
         src="/img/Feature.png"
@@ -101,7 +101,7 @@ export default function Hero() {
         className="absolute -right-20 z-0 top-28 hidden h-full w-full lg:block"
       />
 
-      <div className="relative z-10 mx-auto grid w-full container items-center gap-12 lg:grid-cols-[1.5fr_1fr]">
+      <div className="relative z-10 mx-auto grid w-full container items-center gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -130,7 +130,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           // style={{ rotateX, rotateY, transformPerspective: 900 }}
-          className="relative mx-auto flex aspect-square w-full max-w-[600px] items-center"
+          className="relative mx-auto flex aspect-square w-full max-w-[360px] items-center sm:max-w-[460px] lg:max-w-[600px]"
         >
           {/* <motion.div
             animate={{ scale: [1, 1.1, 1], rotate: [0, 10, 0] }}
@@ -152,7 +152,7 @@ export default function Hero() {
             transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
             src="/img/shape-1.webp"
             alt="Futuristic abstract AI data object"
-            className="relative mx-auto h-[360px] w-[334px] object-contain mix-blend-multiply drop-shadow-[0_28px_55px_rgba(14,116,144,.28)]"
+            className="relative mx-auto h-[260px] w-[242px] object-contain mix-blend-multiply drop-shadow-[0_28px_55px_rgba(14,116,144,.28)] sm:h-[320px] sm:w-[297px] lg:h-[360px] lg:w-[334px]"
           />
         </motion.div>
       </div>

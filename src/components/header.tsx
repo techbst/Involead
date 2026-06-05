@@ -57,7 +57,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full transition-colors pt-7 pb-7 ${
+      className={`fixed left-0 top-0 z-50 w-full pt-4 pb-4 transition-colors lg:pt-7 lg:pb-7 ${
         scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}
     >
@@ -69,14 +69,14 @@ export default function Header() {
               alt="InvoLead"
               width={200}
               height={60}
-              className="h-auto w-full max-w-[200px] object-contain"
+              className="h-auto w-full max-w-[145px] object-contain sm:max-w-[175px] lg:max-w-[200px]"
               priority
             />
           </div>
         </Link>
 
         <nav className="hidden items-center lg:flex" aria-label="Primary navigation">
-          <div className="flex items-center gap-2 rounded-[50px] border border-[#ddd] bg-white px-4 py-2">
+          <div className="flex items-center gap-2 rounded-[50px] border border-[#ddd] backdrop-blur-sm px-4 py-2">
             {nav.map((item) => (
               <div
                 key={item.label}
@@ -95,7 +95,7 @@ export default function Header() {
                     type="button"
                     aria-expanded={openDropdown === item.label}
                     aria-haspopup="menu"
-                    className="flex items-center gap-2 px-4 py-2 text-md font-medium text-black hover:text-secondary"
+                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-black hover:text-secondary xl:px-4"
                   >
                     {item.label}
                     <ChevronDown className="h-3 w-3 text-slate-500" aria-hidden="true" />
@@ -103,7 +103,7 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="px-4 py-2 text-md font-medium text-black hover:text-secondary"
+                    className="px-3 py-2 text-sm font-medium text-black hover:text-secondary xl:px-4"
                   >
                     {item.label}
                   </Link>
@@ -124,7 +124,7 @@ export default function Header() {
                           key={sub.href}
                           href={sub.href}
                           role="menuitem"
-                          className="block px-4 py-2 text-md text-black hover:bg-secondary hover:text-white"
+                          className="block px-4 py-2 text-sm text-black hover:bg-secondary hover:text-white"
                         >
                           {sub.label}
                         </Link>

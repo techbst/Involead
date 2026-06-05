@@ -17,42 +17,16 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    title: "Sales & Retention Growth - Agentic AI Across 500+ Stores",
+    title: "Sales & Retention Growth - Agentic AI Across 500-2000+ SKUs",
     industry: "Case study",
     description:
       "Retail growth is won by those who act faster and more precisely than the market. We deploy autonomous demand forecasting and churn intelligence, continuously optimizing inventory positioning and personalizing engagement at scale.",
     image:
-      "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1100&q=85",
+      "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1400&q=85",
     metrics: [
       { value: "+15-25%", label: "Revenue Growth" },
       { value: "-15-20%", label: "Churn Reduction" },
       { value: "+25-35%", label: "Faster Cycles" },
-    ],
-  },
-  {
-    title: "Predictive Maintenance Across Global Plants",
-    industry: "Case study",
-    description:
-      "Production leaders need early signals before downtime compounds. Our predictive maintenance fabric connects machine telemetry, operator context, and quality data into prioritized action.",
-    image:
-      "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=900&q=80",
-    metrics: [
-      { value: "41%", label: "Downtime Cut" },
-      { value: "18%", label: "OEE Increase" },
-      { value: "9mo", label: "ROI Window" },
-    ],
-  },
-  {
-    title: "Clinical Intelligence for Faster Care Decisions",
-    industry: "Case study",
-    description:
-      "Care teams move faster when clinical, operational, and patient signals are connected. We built a governed intelligence workspace for consistent review and faster triage.",
-    image:
-      "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80",
-    metrics: [
-      { value: "32%", label: "Faster Review" },
-      { value: "94%", label: "Accuracy" },
-      { value: "24/7", label: "Visibility" },
     ],
   },
 ];
@@ -68,99 +42,149 @@ export default function CaseStudies() {
   };
 
   return (
-    <section className="bg-black px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-36">
-      <SectionReveal className="mx-auto max-w-[1800px]">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="text-[clamp(3rem,5vw,5.6rem)] font-bold leading-[1.12] tracking-normal">
-            Proven Outcomes Across Modern Digital Enterprises
-          </h2>
-          <p className="mx-auto mt-9 max-w-3xl text-[22px] leading-relaxed text-white/80">
+    <section className="bg-black px-4 py-20 text-white sm:px-6 lg:px-12 lg:py-32">
+      <SectionReveal className="mx-auto w-full max-w-[1820px]">
+        <div className="mx-auto max-w-[1020px] text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-[clamp(3.1rem,4.9vw,5.85rem)] font-bold leading-[0.98] tracking-[-0.045em] text-white"
+          >
+            <span className="block">Proven Outcomes Across</span>
+            <span className="block">Modern Digital Enterprises</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08, duration: 0.6, ease: "easeOut" }}
+            className="mx-auto mt-8 max-w-[720px] text-[clamp(1.15rem,1.45vw,1.5rem)] leading-[1.35] text-white/85"
+          >
             From automation to predictive intelligence, our solutions deliver
             measurable results at enterprise scale.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="mt-28 grid gap-8 lg:grid-cols-[.9fr_1.8fr]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.image}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
-              transition={{ duration: 0.4 }}
-              className="group relative min-h-[680px] overflow-hidden rounded-[24px]"
-            >
-              <Image
-                src={current.image}
-                alt={current.title}
-                fill
-                sizes="(min-width: 1024px) 34vw, 100vw"
-                className="object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div className="absolute right-9 bottom-9 flex gap-4">
-                <span className="grid size-16 place-items-center rounded-full border border-white text-2xl">
-                  {String(active + 1).padStart(2, "0")}
-                </span>
-                <span className="grid size-16 place-items-center rounded-full border border-white text-2xl">
-                  {String(caseStudies.length + 1).padStart(2, "0")}
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+        <div className="mt-14 grid gap-5 lg:mt-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.95fr)] lg:items-stretch">
+          <motion.div
+            key={current.image}
+            initial={{ opacity: 0, x: -18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className="relative min-h-[520px] overflow-hidden rounded-[28px] bg-black shadow-[0_20px_45px_rgba(0,0,0,0.25)]"
+          >
+            <Image
+              src={current.image}
+              alt={current.title}
+              fill
+              sizes="(min-width: 1024px) 38vw, 100vw"
+              className="object-cover object-[48%_center]"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/10 to-black/10" />
+            <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/80 to-transparent" />
+            <div className="absolute right-7 bottom-7 flex gap-4 sm:right-8 sm:bottom-8">
+              <span className="grid size-16 place-items-center rounded-full border border-white/70 bg-black/10 text-[1.1rem] font-medium text-white/95 backdrop-blur-[2px]">
+                01
+              </span>
+              <span className="grid size-16 place-items-center rounded-full border border-white/70 bg-black/10 text-[1.1rem] font-medium text-white/95 backdrop-blur-[2px]">
+                04
+              </span>
+            </div>
+          </motion.div>
 
-          <AnimatePresence mode="wait">
-            <motion.article
-              key={current.title}
-              initial={{ opacity: 0, x: 34 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -34 }}
-              transition={{ duration: 0.4 }}
-              className="rounded-[24px] bg-[#79d1e0] p-8 text-slate-950"
-            >
-              <div className="grid min-h-[620px] gap-8 rounded-[20px] bg-white p-12 lg:grid-cols-[1.15fr_.85fr]">
-                <div className="flex flex-col justify-center">
-                  <span className="w-max rounded-full bg-[#e4f8fb] px-7 py-3 text-[22px] font-semibold text-[#5fb0c2]">
+          <motion.article
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="rounded-[22px] bg-[#78d2e0] p-4 text-black shadow-[0_20px_45px_rgba(0,0,0,0.18)] sm:p-5"
+          >
+            <div className="grid min-h-full gap-8 overflow-hidden rounded-[22px] bg-white p-6 sm:p-8 lg:grid-cols-[1.12fr_.88fr] lg:gap-10 lg:p-10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.35 }}
+                  className="flex flex-col justify-center"
+                >
+                  <span className="w-fit rounded-full bg-[#e5f7fb] px-5 py-3 text-[0.95rem] font-medium text-[#5fb0c2]">
                     {current.industry}
                   </span>
-                  <h3 className="mt-12 max-w-3xl text-[42px] font-semibold leading-[1.16] tracking-normal">
-                    {current.title}
+                  <h3
+                    aria-label={current.title}
+                    className="mt-8 max-w-[560px] text-[clamp(2.25rem,2.95vw,3.95rem)] font-medium leading-[1.03] tracking-[-0.04em] text-black"
+                  >
+                    <span className="block">Sales & Retention Growth -</span>
+                    <span className="block">Agentic AI Across 500-</span>
+                    <span className="block">2000+ SKUs</span>
                   </h3>
-                  <p className="mt-10 max-w-2xl text-[24px] leading-relaxed text-black/55">
+                  <p className="mt-8 max-w-[530px] text-[1.15rem] leading-[1.65] text-black/55">
                     {current.description}
                   </p>
-                </div>
-                <div className="case-metrics-cut relative rounded-[24px] bg-[#edf8fb] p-12">
-                  {current.metrics.map((metric) => (
-                    <div key={metric.label} className="border-l-2 border-black/15 pl-10">
-                      <strong className="block text-[46px] font-semibold leading-none">
-                        {metric.value}
-                      </strong>
-                      <span className="mt-5 block text-[22px] text-black/55">
-                        {metric.label}
-                      </span>
-                    </div>
-                  ))}
-                  <div className="absolute right-10 bottom-10 flex gap-6">
-                    <button
+                </motion.div>
+              </AnimatePresence>
+
+              <div className="relative min-h-[360px]">
+                <div
+                  className="case-study-metrics relative h-full w-full bg-[#edf8fb] px-8 py-9 sm:px-10 sm:py-10"
+                  style={{
+                    WebkitMaskImage: "url('/img/cas-study.svg')",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    WebkitMaskSize: "100% 100%",
+                    maskImage: "url('/img/cas-study.svg')",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    maskSize: "100% 100%",
+                  }}
+                >
+                  <div className="grid gap-9 sm:gap-10">
+                    {current.metrics.map((metric) => (
+                      <motion.div
+                        key={metric.label}
+                        whileHover={{ x: 6 }}
+                        className="border-l-[3px] border-black/12 pl-7"
+                      >
+                        <strong className="block text-[clamp(2.45rem,3vw,4rem)] font-medium leading-none tracking-[-0.04em]">
+                          {metric.value}
+                        </strong>
+                        <span className="mt-4 block text-[1.02rem] text-black/52">
+                          {metric.label}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <div className="absolute right-8 bottom-8 flex gap-5">
+                    <motion.button
+                      whileHover={{ y: -4, scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
                       onClick={() => move(-1)}
-                      className="grid size-16 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+                      className="grid size-16 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:bg-[#4da2b5]"
                       aria-label="Previous case study"
                     >
-                      <ArrowLeft className="size-7" />
-                    </button>
-                    <button
+                      <ArrowLeft className="size-6" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ y: -4, scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
                       onClick={() => move(1)}
-                      className="grid size-16 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+                      className="grid size-16 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:bg-[#4da2b5]"
                       aria-label="Next case study"
                     >
-                      <ArrowRight className="size-7" />
-                    </button>
+                      <ArrowRight className="size-6" />
+                    </motion.button>
                   </div>
                 </div>
               </div>
-            </motion.article>
-          </AnimatePresence>
+            </div>
+          </motion.article>
         </div>
       </SectionReveal>
     </section>

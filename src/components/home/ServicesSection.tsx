@@ -34,7 +34,7 @@ export default function ServicesSection() {
 
         <Swiper
           modules={[Autoplay, Pagination]}
-          spaceBetween={24}
+          spaceBetween={18}
           slidesPerView={1}
        
           breakpoints={{
@@ -63,7 +63,7 @@ export default function ServicesSection() {
                   duration: 0.6,
                 }}
                 viewport={{ once: true }}
-                className="relative h-[450px] w-full"
+                className="relative h-[360px] w-full sm:h-[420px] lg:h-[450px]"
               >
                 <article
                   className="group relative h-full w-full overflow-hidden"
@@ -75,7 +75,7 @@ export default function ServicesSection() {
                     maskImage: "url('/img/shape-card.svg')",
                     maskRepeat: "no-repeat",
                     maskPosition: "center",
-                    maskSize: "auto",
+                    maskSize: "100% 100%",
                     borderRadius: "20px",
                   }}
                 >
