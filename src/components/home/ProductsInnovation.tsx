@@ -60,23 +60,24 @@ export default function ProductsInnovation() {
 
   return (
     <section
-      className="products-innovation-shell relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40"
-      style={{
-        backgroundColor: "#edf8fb",
-
-        WebkitMaskImage: "url('/img/container-shape.svg')",
-        WebkitMaskRepeat: "no-repeat",
-        WebkitMaskPosition: "center",
-        WebkitMaskSize: "100%",
-
-        maskImage: "url('/img/container-shape.svg')",
-        maskRepeat: "no-repeat",
-        maskPosition: "center",
-        maskSize: "100%",
-      }}
+      className="products-innovation-shell relative isolate overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40 min-[1920px]:bg-[#edf8fb]"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[#edf8fb] h-full"
+        style={{
+          WebkitMaskImage: "url('/img/container-shape.svg')",
+          WebkitMaskRepeat: "no-repeat",
+          WebkitMaskPosition: "center top",
+          WebkitMaskSize: "cover",
+          maskImage: "url('/img/container-shape.svg')",
+          maskRepeat: "no-repeat",
+          maskPosition: "center top",
+          maskSize: "cover",
+        }}
+      />
 
-      <SectionReveal className="mx-auto container">
+      <SectionReveal className="relative z-10 mx-auto container">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div>
             <p className="text-[17px] font-semibold text-slate-950">
@@ -100,7 +101,7 @@ export default function ProductsInnovation() {
             </button>
             <button
               onClick={() => swiper?.slideNext()}
-              className="grid size-12 place-items-center rounded-full bg-cyan-400 text-slate-950 transition hover:-translate-y-1 hover:bg-cyan-300"
+              className="grid size-12 place-items-center rounded-full bg-[#5FB0C2] text-slate-950 transition hover:-translate-y-1 hover:bg-cyan-300"
               aria-label="Next product"
             >
               <ArrowRight className="size-5" />
@@ -114,7 +115,8 @@ export default function ProductsInnovation() {
             spaceBetween={32}
             breakpoints={{
               740: { slidesPerView: 2.05 },
-              1180: { slidesPerView: 3.80, spaceBetween: 36 },
+              1140: { slidesPerView: 3.05 },
+              1380: { slidesPerView: 3.80, spaceBetween: 36 },
             }}
             onSwiper={setSwiper}
             onProgress={(_, value) => setProgress(value)}
@@ -215,15 +217,6 @@ export default function ProductsInnovation() {
           </div>
         </div>
       </SectionReveal>
-      <style jsx>{`
-        @media (max-width: 639px) {
-          .products-innovation-shell {
-            -webkit-mask-image: none !important;
-            mask-image: none !important;
-          }
-        }
-      `}</style>
-
     </section>
   );
 }

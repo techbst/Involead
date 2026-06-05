@@ -33,17 +33,19 @@ function Counter({ value, suffix }: Pick<Stat, 'value' | 'suffix'>) {
 
 export default function StatsCounter() {
   return (
-    <section className="bg-black px-5 py-16 text-white sm:px-8 lg:px-12">
-      <div className="mx-auto grid max-w-7xl gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="bg-black px-4 py-0 text-white sm:px-6 lg:px-12">
+      <div className="mx-auto grid w-full max-w-[1920px] overflow-hidden bg-black divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
         {stats.map((stat) => (
           <article
             key={stat.label}
-            className="bg-black p-8 transition-all duration-300 hover:bg-cyan-400 hover:text-slate-950"
+            className="flex min-h-[220px] flex-col items-center justify-center px-6 py-14 text-center sm:min-h-[260px] sm:px-8 lg:min-h-[356px] lg:px-10"
           >
-            <strong className="text-5xl font-bold tracking-normal">
+            <strong className="text-[clamp(3.8rem,4.8vw,5.8rem)] font-medium tracking-[-0.05em] leading-none">
               <Counter value={stat.value} suffix={stat.suffix} />
             </strong>
-            <p className="mt-5 text-sm font-semibold opacity-75">{stat.label}</p>
+            <p className="mt-8 text-[clamp(1.25rem,1.8vw,2rem)] font-normal leading-tight text-white/95">
+              {stat.label}
+            </p>
           </article>
         ))}
       </div>

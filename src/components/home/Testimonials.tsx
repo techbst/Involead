@@ -1,6 +1,6 @@
 "use client";
 
-import { BrainCircuit, Globe2, Microscope } from "lucide-react";
+import { BrainCircuit, ChartNoAxesCombined, Globe, Globe2, Microscope } from "lucide-react";
 import Image from "next/image";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -35,9 +35,9 @@ const testimonials: Testimonial[] = [
 ];
 
 const proofItems = [
-  { icon: Globe2, label: "Global Reach" },
+  { icon: Globe, label: "Global Reach" },
   { icon: BrainCircuit, label: "AI-Powered Innovation" },
-  { icon: Microscope, label: "Research Excellence" },
+  { icon: ChartNoAxesCombined, label: "Research Excellence" },
 ];
 
 export default function Testimonials() {
@@ -77,12 +77,12 @@ export default function Testimonials() {
             </div>
 
             <div className="mt-12 flex items-center justify-center gap-4">
-              <strong className="text-[52px] font-bold leading-none">
+              <strong className="text-[52px] font-semibold leading-none">
                 4.9
               </strong>
               <div className="text-left">
-                <p className="text-xl leading-none text-[#ffc21a]">★★★★★</p>
-                <p className="mt-2 text-base text-black">
+                <p className="text-xl leading-none !text-[#ffc21a]">★★★★★</p>
+                <p className="mt-0 text-base text-black">
                   Operational Excellence
                 </p>
               </div>

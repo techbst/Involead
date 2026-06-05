@@ -39,7 +39,7 @@ function FooterLink({ label, href = "#" }: { label: string; href?: string }) {
   return (
     <Link
       href={href}
-      className="text-[22px] leading-relaxed text-white/90 transition hover:text-white sm:text-[26px]"
+      className="text-[16px] leading-relaxed text-white/90 transition hover:text-white sm:text-[18px]"
     >
       {label}
     </Link>
@@ -96,8 +96,8 @@ function SocialIcon({ label }: { label: string }) {
 export default function Footer() {
   return (
     <footer className="bg-[#4f94a1] text-white">
-      <div className="container py-14 sm:py-[72px] lg:py-20">
-        <div className="flex flex-col gap-10 border-b border-white/25 pb-14 lg:flex-row lg:items-start lg:justify-between lg:pb-16">
+      <div className="container py-14 sm:py-30 lg:py-20">
+        <div className="flex pt-10 flex-col gap-10 border-b border-white/25 pb-14 lg:flex-row lg:items-start lg:justify-between lg:pb-16">
           <Link
             href="/"
             aria-label="InvoLead home"
@@ -111,7 +111,7 @@ export default function Footer() {
               className="h-auto w-[220px] object-contain sm:w-[300px] lg:w-[350px]"
             />
           </Link>
-          <h2 className="max-w-5xl text-left text-[clamp(2.2rem,4.2vw,4.8rem)] font-bold leading-[1.2] tracking-normal lg:text-right">
+          <h2 className="max-w-5xl text-left text-4xl font-bold leading-[1.2] tracking-normal lg:text-right">
             Business With Intelligent AI Solutions
             <br className="hidden sm:block" />
             And Digital Innovation.
@@ -120,7 +120,7 @@ export default function Footer() {
 
         <div className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[0.9fr_1fr_0.9fr_1.35fr] lg:gap-16 xl:gap-24">
           <div>
-            <h3 className="text-[28px] font-semibold leading-tight text-white">
+            <h3 className="text-[20px] font-semibold leading-tight text-white">
               Quick Link
             </h3>
             <div className="mt-5 grid gap-1">
@@ -131,7 +131,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[28px] font-semibold leading-tight text-white">
+            <h3 className="text-[20px] font-semibold leading-tight text-white">
               Our Capabilities
             </h3>
             <div className="mt-5 grid gap-1">
@@ -142,7 +142,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[28px] font-semibold leading-tight text-white">
+            <h3 className="text-[20px] font-semibold leading-tight text-white">
               Industries
             </h3>
             <div className="mt-5 grid gap-1">
@@ -153,7 +153,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[28px] font-semibold leading-tight text-white">
+            <h3 className="text-[20px] font-semibold leading-tight text-white">
               Customer Service
             </h3>
             <div className="mt-6 space-y-9">
@@ -162,12 +162,12 @@ export default function Footer() {
                   <PhoneCall className="size-7" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-[20px] leading-snug text-white/90">
+                  <p className="text-[14px] leading-snug text-white/90">
                     Mon - Sat / 10:00AM - 6:00PM
                   </p>
                   <Link
                     href="tel:+919873074893"
-                    className="mt-2 block text-[30px] font-semibold leading-tight tracking-normal text-white"
+                    className="mt-2 block text-[20px] font-semibold leading-tight tracking-normal text-white"
                   >
                     +91 987-307-4893
                   </Link>
@@ -178,12 +178,12 @@ export default function Footer() {
                   <Mail className="size-7" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-[26px] font-semibold leading-tight text-white">
+                  <p className="text-[20px] font-semibold leading-tight text-white">
                     Email Id
                   </p>
                   <Link
                     href="mailto:support@involead.com"
-                    className="mt-3 block text-[20px] leading-snug text-white/90"
+                    className="mt-3 block text-[14px] leading-snug text-white/90"
                   >
                     Support@Involead.Com
                   </Link>
@@ -193,7 +193,7 @@ export default function Footer() {
                 <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4]">
                   <MapPin className="size-7" aria-hidden="true" />
                 </span>
-                <p className="max-w-md text-[19px] leading-relaxed text-white/90">
+                <p className="max-w-md text-[14px] leading-relaxed text-white/90">
                   410A, 4th Floor, D21 Corporate Park, Dwarka Sector 21, New
                   Delhi - 110077
                 </p>
@@ -202,7 +202,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 border-t border-white/25 pt-10 sm:pt-12 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex !pb-10 flex-col gap-8 border-t border-white/25 pt-10 sm:pt-12 lg:flex-row lg:items-center lg:justify-between">
           <p className="text-[20px] leading-relaxed text-white/90">
             © 2026 Involead. All Rights Reserved.
           </p>
