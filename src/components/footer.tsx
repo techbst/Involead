@@ -39,7 +39,7 @@ function FooterLink({ label, href = "#" }: { label: string; href?: string }) {
   return (
     <Link
       href={href}
-      className="text-[16px] leading-relaxed text-white/90 transition hover:text-white sm:text-[18px]"
+      className="text-[15px] leading-6 text-white/90 transition hover:text-white sm:text-[16px]"
     >
       {label}
     </Link>
@@ -96,8 +96,8 @@ function SocialIcon({ label }: { label: string }) {
 export default function Footer() {
   return (
     <footer className="bg-[#4f94a1] text-white">
-      <div className="container py-14 sm:py-30 lg:py-20">
-        <div className="flex pt-10 flex-col gap-10 border-b border-white/25 pb-14 lg:flex-row lg:items-start lg:justify-between lg:pb-16">
+      <div className="container py-10 sm:py-12 lg:py-14">
+        <div className="flex flex-col gap-8 border-b border-white/25 pb-8 pt-6 sm:gap-10 sm:pb-10 sm:pt-8 lg:flex-row lg:items-start lg:justify-between lg:pb-12 lg:pt-10">
           <Link
             href="/"
             aria-label="InvoLead home"
@@ -108,22 +108,22 @@ export default function Footer() {
               alt="InvoLead"
               width={350}
               height={105}
-              className="h-auto w-[220px] object-contain sm:w-[300px] lg:w-[350px]"
+              className="h-auto w-[180px] object-contain sm:w-[240px] lg:w-[300px]"
             />
           </Link>
-          <h2 className="max-w-5xl text-left text-4xl font-bold leading-[1.2] tracking-normal lg:text-right">
+          <h2 className="max-w-3xl text-left text-[clamp(1.9rem,4vw,3.5rem)] font-bold leading-[1.08] tracking-normal lg:text-right">
             Business With Intelligent AI Solutions
             <br className="hidden sm:block" />
             And Digital Innovation.
           </h2>
         </div>
 
-        <div className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[0.9fr_1fr_0.9fr_1.35fr] lg:gap-16 xl:gap-24">
+        <div className="grid gap-10 py-10 sm:gap-12 sm:py-12 lg:grid-cols-[0.95fr_1fr_0.9fr_1.2fr] lg:gap-12 xl:gap-16">
           <div>
-            <h3 className="text-[20px] font-semibold leading-tight text-white">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
               Quick Link
             </h3>
-            <div className="mt-5 grid gap-1">
+            <div className="mt-4 grid gap-2 sm:mt-5">
               {quickLinks.map((item) => (
                 <FooterLink key={item} label={item} />
               ))}
@@ -131,10 +131,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[20px] font-semibold leading-tight text-white">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
               Our Capabilities
             </h3>
-            <div className="mt-5 grid gap-1">
+            <div className="mt-4 grid gap-2 sm:mt-5">
               {capabilities.map((item) => (
                 <FooterLink key={item} label={item} />
               ))}
@@ -142,10 +142,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[20px] font-semibold leading-tight text-white">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
               Industries
             </h3>
-            <div className="mt-5 grid gap-1">
+            <div className="mt-4 grid gap-2 sm:mt-5">
               {industries.map((item) => (
                 <FooterLink key={item} label={item} />
               ))}
@@ -153,47 +153,47 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[20px] font-semibold leading-tight text-white">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
               Customer Service
             </h3>
-            <div className="mt-6 space-y-9">
-              <div className="flex gap-5">
-                <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4]">
-                  <PhoneCall className="size-7" aria-hidden="true" />
+            <div className="mt-5 space-y-6 sm:mt-6 sm:space-y-7">
+              <div className="flex gap-4 sm:gap-5">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-12">
+                  <PhoneCall className="size-5 sm:size-6" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-[14px] leading-snug text-white/90">
+                  <p className="text-[13px] leading-snug text-white/90 sm:text-[14px]">
                     Mon - Sat / 10:00AM - 6:00PM
                   </p>
                   <Link
                     href="tel:+919873074893"
-                    className="mt-2 block text-[20px] font-semibold leading-tight tracking-normal text-white"
+                    className="mt-1.5 block text-[17px] font-semibold leading-tight tracking-normal text-white sm:mt-2 sm:text-[20px]"
                   >
                     +91 987-307-4893
                   </Link>
                 </div>
               </div>
-              <div className="flex gap-5">
-                <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4]">
-                  <Mail className="size-7" aria-hidden="true" />
+              <div className="flex gap-4 sm:gap-5">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-12">
+                  <Mail className="size-5 sm:size-6" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-[20px] font-semibold leading-tight text-white">
+                  <p className="text-[17px] font-semibold leading-tight text-white sm:text-[20px]">
                     Email Id
                   </p>
                   <Link
                     href="mailto:support@involead.com"
-                    className="mt-3 block text-[14px] leading-snug text-white/90"
+                    className="mt-1.5 block text-[13px] leading-snug text-white/90 sm:mt-2 sm:text-[14px]"
                   >
                     Support@Involead.Com
                   </Link>
                 </div>
               </div>
-              <div className="flex gap-5">
-                <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4]">
-                  <MapPin className="size-7" aria-hidden="true" />
+              <div className="flex gap-4 sm:gap-5">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-12">
+                  <MapPin className="size-5 sm:size-6" aria-hidden="true" />
                 </span>
-                <p className="max-w-md text-[14px] leading-relaxed text-white/90">
+                <p className="max-w-md text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
                   410A, 4th Floor, D21 Corporate Park, Dwarka Sector 21, New
                   Delhi - 110077
                 </p>
@@ -202,17 +202,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex !pb-10 flex-col gap-8 border-t border-white/25 pt-10 sm:pt-12 lg:flex-row lg:items-center lg:justify-between">
-          <p className="text-[20px] leading-relaxed text-white/90">
+        <div className="flex flex-col gap-6 border-t border-white/25 pt-8 sm:pt-10 lg:flex-row lg:items-center lg:justify-between">
+          <p className="text-sm leading-relaxed text-white/90 sm:text-base">
             © 2026 Involead. All Rights Reserved.
           </p>
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
             {socialLinks.map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
                 aria-label={label}
-                className="flex size-14 items-center justify-center rounded-full bg-[#6ec4d4] transition hover:bg-white hover:text-[#4f94a1]"
+                className="flex size-11 items-center justify-center rounded-full bg-[#6ec4d4] transition hover:bg-white hover:text-[#4f94a1] sm:size-12"
               >
                 <SocialIcon label={label} />
               </Link>

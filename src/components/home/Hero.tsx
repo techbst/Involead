@@ -79,29 +79,27 @@ export default function Hero() {
         pointerX.set(0);
         pointerY.set(0);
       }}
-      className="relative flex min-h-[680px] items-center overflow-hidden bg-[#f8fbff] pt-[118px] pb-14 sm:min-h-[720px] sm:pt-[145px] lg:min-h-[760px] lg:pt-[180px] lg:pb-16"
+      className="relative flex items-center overflow-hidden bg-[#f8fbff] pt-26 pb-26 md:pt-40 md:pb-24"
     >
-      <motion.img
+          <img
+        src="/img/List.svg"
+        alt=""
+        aria-hidden
+        className="absolute right-0 z-2 top-28 hidden h-full w-fit lg:block"
+      />
+      <img
         src="/img/Feature.png"
         alt=""
         aria-hidden
-        animate={{ scale: [1, 1.04, 1], x: [0, 18, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 h-full w-full object-cover opacity-55 mix-blend-multiply"
+      
+        className="absolute inset-0 h-full w-full object-cover opacity-55 mix-blend-multiply right-0 top-0"
       />
      
       
      
-      <motion.img
-        animate={{ y: [0, -18, 0], rotate: [0, 10, 0] }}
-        transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
-        src="/img/List.svg"
-        alt=""
-        aria-hidden
-        className="absolute -right-20 z-0 top-28 hidden h-full w-full lg:block"
-      />
+  
 
-      <div className="relative z-10 mx-auto grid w-full container items-center gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
+      <div className="relative z-10 mx-auto grid w-full container items-center gap-10 lg:grid-cols-[2fr_1fr] lg:gap-12">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -130,7 +128,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           // style={{ rotateX, rotateY, transformPerspective: 900 }}
-          className="relative mx-auto flex aspect-square w-full max-w-[360px] items-center sm:max-w-[460px] lg:max-w-[600px]"
+          className="relative mx-auto h-[260px] w-[242px]  flex  sm:h-[320px] sm:w-[297px] lg:h-[360px] lg:w-[334px] items-center"
         >
           {/* <motion.div
             animate={{ scale: [1, 1.1, 1], rotate: [0, 10, 0] }}
@@ -152,7 +150,7 @@ export default function Hero() {
             transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
             src="/img/shape-1.webp"
             alt="Futuristic abstract AI data object"
-            className="relative mx-auto h-[260px] w-[242px] object-contain mix-blend-multiply drop-shadow-[0_28px_55px_rgba(14,116,144,.28)] sm:h-[320px] sm:w-[297px] lg:h-[360px] lg:w-[334px]"
+            className="relative mx-auto object-contain mix-blend-multiply drop-shadow-[0_28px_55px_rgba(14,116,144,.28)] "
           />
         </motion.div>
       </div>

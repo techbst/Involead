@@ -67,9 +67,9 @@ export default function Header() {
             <Image
               src="/img/logo.png"
               alt="InvoLead"
-              width={200}
-              height={60}
-              className="h-auto w-full max-w-[145px] object-contain sm:max-w-[175px] lg:max-w-[200px]"
+              width={164}
+              height={46}
+              className="h-auto w-full max-w-[164px] object-contain"
               priority
             />
           </div>

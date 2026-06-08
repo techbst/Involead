@@ -75,8 +75,8 @@ body {
 
 .container {
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  margin-inline: auto;
+  padding: 0 48px;
 }
 
 @theme inline {
@@ -171,13 +171,13 @@ body {
 }
 
 h1 {
-  font-size: 3.375rem;
-  line-height: 1.4;
+  font-size: clamp(2.5rem, 5vw, 3.375rem);
+  line-height: 1.12;
 }
 
 h2 {
-  font-size: 2.875rem;
-  line-height: 1.4;
+  font-size: clamp(2rem, 4vw, 2.875rem);
+  line-height: 1.15;
 }
 
 h3 {
@@ -359,4 +359,9 @@ p {
   line-height: 2;
   font-weight: 400;
   color: var(--text-primary);
+}
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
 }

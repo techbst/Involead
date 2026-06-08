@@ -16,10 +16,10 @@ import SectionReveal from "./SectionReveal";
 
 export default function ServicesSection() {
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 ">
       <SectionReveal className="container mx-auto px-5 sm:px-8 lg:px-12">
         <div className="max-w-5xl">
-          <p className="text-sm font-semibold text-slate-500">
+          <p className="!text-[16px] font-semibold text-slate-500">
             {servicesSection.eyebrow}
           </p>
 
