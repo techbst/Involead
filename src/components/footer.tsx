@@ -102,7 +102,7 @@ export default function Footer() {
             href="/"
             aria-label="InvoLead home"
             className="inline-flex w-fit"
-          >
+          > 
             <Image
               src="/img/logo.png"
               alt="InvoLead"
