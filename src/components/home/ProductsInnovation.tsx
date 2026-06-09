@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
 import SectionReveal from "./SectionReveal";
+import ClipCard from "../ui/clip-card";
+// import ClipCard from "../ui/clip-card";
 
 
 interface ProductCard {
@@ -60,30 +62,23 @@ export default function ProductsInnovation() {
 
   return (
     <section
-      className="products-innovation-shell relative isolate overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40 min-[1920px]:bg-[#edf8fb]"
+      className="products-innovation-shell relative isolate overflow-hidden py-20 "
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[#edf8fb] h-full"
         style={{
-          WebkitMaskImage: "url('/img/container-shape.svg')",
-          WebkitMaskRepeat: "no-repeat",
-          WebkitMaskPosition: "center top",
-          WebkitMaskSize: "cover",
-          maskImage: "url('/img/container-shape.svg')",
-          maskRepeat: "no-repeat",
-          maskPosition: "center top",
-          maskSize: "cover",
+          clipPath: "polygon(0.01% 0%, 0.04% 0.26%, 0.11% 0.65%, 0.22% 1.12%, 0.39% 1.65%, 0.63% 2.19%, 0.94% 2.71%, 1.34% 3.18%, 1.84% 3.56%, 2.45% 3.82%, 3.18% 3.91%, 13.70% 3.91%, 13.75% 3.91%, 13.90% 3.93%, 14.14% 3.97%, 14.44% 4.05%, 14.79% 4.19%, 15.17% 4.40%, 15.58% 4.68%, 16.01% 5.05%, 16.47% 5.54%, 16.79% 6.15%, 16.83% 6.21%, 16.92% 6.37%, 17.10% 6.62%, 17.31% 6.94%, 17.59% 7.32%, 17.89% 7.75%, 18.22% 8.20%, 18.54% 8.66%, 18.88% 9.11%, 19.18% 9.54%, 19.54% 9.84%, 19.87% 10.07%, 20.14% 10.24%, 20.44% 10.36%, 20.76% 10.43%, 21.06% 10.47%, 21.36% 10.49%, 21.66% 10.49%, 21.96% 10.48%, 22.26% 10.47%, 100% 10.47%, 100% 100%, 22.26% 100%, 21.96% 100.01%, 21.66% 100.01%, 21.36% 100.01%, 21.04% 100%, 20.76% 99.96%, 20.44% 99.89%, 20.14% 99.77%, 19.87% 99.60%, 19.54% 99.37%, 19.22% 99.07%, 18.89% 98.65%, 18.55% 98.19%, 18.21% 97.74%, 17.89% 97.29%, 17.59% 96.86%, 17.33% 96.48%, 17.10% 96.16%, 16.93% 95.90%, 16.83% 95.74%, 16.80% 95.68%, 16.40% 95.07%, 16.01% 94.59%, 15.58% 94.22%, 15.17% 93.92%, 14.79% 93.72%, 14.44% 93.60%, 14.14% 93.51%, 13.90% 93.47%, 13.75% 93.45%, 13.70% 93.45%, 3.18% 93.45%, 2.38% 93.35%, 1.73% 93.05%, 1.20% 92.58%, 0.80% 92.02%, 0.50% 91.42%, 0.28% 90.82%, 0.14% 90.29%, 0.05% 89.84%, 0.01% 89.51%, 0% 89.41%, 0% 0%)",
         }}
       />
 
-      <SectionReveal className="relative z-10 mx-auto container">
+      <SectionReveal className="relative z-10 mx-auto container mt-30 mb-20">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div>
             <p className="text-[17px] font-semibold text-slate-950">
               Products & Innovations
             </p>
-            <h2 className="mt-8 max-w-5xl text-[clamp(2.4rem,4.7vw,5rem)] font-bold leading-tight tracking-normal text-slate-950">
+            <h2 className="mt-3 max-w-5xl text-[clamp(2.4rem,4.7vw,5rem)] font-bold leading-tight tracking-normal text-slate-950">
               Powering with Custom Solutions and Intelligent AI Products.
             </h2>
             <p className="mt-8 text-xl text-slate-900">
@@ -134,59 +129,15 @@ export default function ProductsInnovation() {
                   viewport={{ once: true }}
                   className="relative h-[380px] w-full sm:h-[430px] lg:h-[450px]"
                 >
-                  <article
-                    className="group relative h-full w-full overflow-hidden"
-                    style={{
-                      WebkitMaskImage: "url('/img/shape-card.svg')",
-                      WebkitMaskRepeat: "no-repeat",
-                      WebkitMaskPosition: "center",
-                      WebkitMaskSize: "100% 100%",
-                      maskImage: "url('/img/shape-card.svg')",
-                      maskRepeat: "no-repeat",
-                      maskPosition: "center",
-                      maskSize: "100% 100%",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      fill
-                      sizes="(max-width:768px) 100vw, 20vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-
-                    {/* Base Overlay */}
-                    <div className="absolute inset-0 bg-black/30" />
-
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-black via-black/95 to-transparent transition-all duration-500 h-[58%]" />
-
-                    {/* Title */}
-                    <div className="absolute left-5 top-8 z-20 flex items-center gap-3">
-                      <span className="mt-0 h-7 w-1 bg-[#5fb0c2]" />
-
-                      <h3 className="max-w-[220px] !text-[20px] !font-light leading-tight text-white">
-                        {product.title}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <div className="absolute bottom-24 left-5 right-5 z-20 ">
-                      <p className="text-sm leading-6 !text-white">
-                        {product.description}
-                      </p>
-                    </div>
-
-                    {/* CTA */}
-                    <button
-                      type="button"
-                      aria-label={`Open ${product.title}`}
-                      className="absolute right-7 bottom-7 z-20 grid size-14 place-items-center rounded-full bg-[#5fb0c2] text-white transition duration-300 group-hover:rotate-45 group-hover:bg-white group-hover:text-[#5fb0c2]"
-                    >
-                      <ArrowRight className="size-7" />
-                    </button>
-                  </article>
+                  <ClipCard 
+                    image={product.image}
+                    title={product.title}
+                    description={product.description}
+                    href="#"
+                    className="h-full w-full"
+                    showDescriptionOnHover={false}
+                  />
+                
                 </motion.div>
               </SwiperSlide>
             ))}

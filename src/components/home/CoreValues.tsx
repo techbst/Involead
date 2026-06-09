@@ -53,8 +53,8 @@ const values = [
 
 export default function CoreValues() {
   return (
-    <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-      <SectionReveal className="mx-auto max-w-7xl">
+    <section className="bg-white  py-20 ">
+      <SectionReveal className="mx-auto container">
         <p className="text-sm font-semibold text-slate-500">Our Core Values</p>
         <h2 className="mt-3 max-w-4xl text-[clamp(2rem,4vw,4.4rem)] font-bold leading-tight tracking-normal text-slate-950">
           End-to-end AI solutions designed for measurable outcomes.

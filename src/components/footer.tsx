@@ -95,7 +95,7 @@ function SocialIcon({ label }: { label: string }) {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#4f94a1] text-white">
+    <footer className="bg-[#4f94a1] text-white pb-10">
       <div className="container py-10 sm:py-12 lg:py-14">
         <div className="flex flex-col gap-8 border-b border-white/25 pb-8 pt-6 sm:gap-10 sm:pb-10 sm:pt-8 lg:flex-row lg:items-start lg:justify-between lg:pb-12 lg:pt-10">
           <Link
@@ -111,7 +111,7 @@ export default function Footer() {
               className="h-auto w-[180px] object-contain sm:w-[240px] lg:w-[300px]"
             />
           </Link>
-          <h2 className="max-w-3xl text-left text-[clamp(1.9rem,4vw,3.5rem)] font-bold leading-[1.08] tracking-normal lg:text-right">
+          <h2 className="max-w-3xl text-left !text-[40px] font-bold leading-[1.08] tracking-normal lg:text-right">
             Business With Intelligent AI Solutions
             <br className="hidden sm:block" />
             And Digital Innovation.

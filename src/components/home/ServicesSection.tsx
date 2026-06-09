@@ -1,10 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -13,6 +9,7 @@ import "swiper/css/pagination";
 
 import { servicesSection } from "@/data/home";
 import SectionReveal from "./SectionReveal";
+import ClipCard from "@/components/ui/clip-card";
 
 export default function ServicesSection() {
   return (
@@ -41,10 +38,10 @@ export default function ServicesSection() {
             640: {
               slidesPerView: 2,
             },
-            1024: {
-              slidesPerView: 4,
+            1200: {
+              slidesPerView: 3,
             },
-            1440: {
+            1340: {
               slidesPerView: 4,
             },
             1700: {
@@ -65,59 +62,14 @@ export default function ServicesSection() {
                 viewport={{ once: true }}
                 className="relative h-[360px] w-full sm:h-[420px] lg:h-[450px]"
               >
-                <article
-                  className="group relative h-full w-full overflow-hidden"
-                  style={{
-                    WebkitMaskImage: "url('/img/shape-card.svg')",
-                    WebkitMaskRepeat: "no-repeat",
-                    WebkitMaskPosition: "center",
-                    WebkitMaskSize: "100% 100%",
-                    maskImage: "url('/img/shape-card.svg')",
-                    maskRepeat: "no-repeat",
-                    maskPosition: "center",
-                    maskSize: "100% 100%",
-                    borderRadius: "20px",
-                  }}
-                >
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width:768px) 100vw, 20vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                <ClipCard
+                  image={card.image}
+                  title={card.title}
+                  description={card.description}
+                  href={card.href}
+                    showDescriptionOnHover={true}
 
-                  {/* Base Overlay */}
-                  <div className="absolute inset-0 bg-black/30" />
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-black via-black/95 to-transparent transition-all duration-500 group-hover:h-[58%]" />
-
-                  {/* Title */}
-                  <div className="absolute left-5 top-8 z-20 flex items-center gap-3">
-                    <span className="mt-0 h-7 w-1 bg-[#5fb0c2]" />
-
-                    <h3 className="max-w-[220px] !text-[20px] !font-light leading-tight text-white">
-                      {card.title}
-                    </h3>
-                  </div>
-
-                  {/* Description */}
-                  <div className="absolute bottom-24 left-5 right-5 z-20 translate-y-10 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                    <p className="text-sm leading-6 !text-white">
-                      {card.description}
-                    </p>
-                  </div>
-
-                  {/* CTA */}
-                  <Link
-                    href={card.href}
-                    aria-label={`Open ${card.title}`}
-                    className="absolute bottom-6 right-5 z-30 grid size-14 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2   hover:text-white hover:bg-black"
-                  >
-                    <ArrowRight className="size-7" />
-                  </Link>
-                </article>
+                />
               </motion.div>
             </SwiperSlide>
           ))}
