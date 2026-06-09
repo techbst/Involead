@@ -33,17 +33,17 @@ function Counter({ value, suffix }: Pick<Stat, 'value' | 'suffix'>) {
 
 export default function StatsCounter() {
   return (
-    <section className="bg-black px-4 py-0 text-white sm:px-6 lg:px-12">
-      <div className="mx-auto grid w-full max-w-[1920px] overflow-hidden bg-black divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
+    <section className="bg-black px-0 py-0 text-white sm:px-6 lg:px-12">
+      <div className="mx-auto grid w-full  overflow-hidden bg-black divide-y divide-white/10 grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
         {stats.map((stat) => (
           <article
             key={stat.label}
-            className="flex min-h-[220px] flex-col items-center justify-center px-6 py-14 text-center sm:min-h-[260px] sm:px-8 lg:min-h-[356px] lg:px-10"
+            className="flex flex-col items-center justify-center max-md:border max-md:border-white/10 px-4 py-4 text-center md:py-10 sm:px-8 lg:px-10"
           >
-            <strong className="text-[clamp(3.8rem,4.8vw,5.8rem)] font-medium tracking-[-0.05em] leading-none">
+            <h2 className="text-2xl !font-light !md:text-[48px] leading-none">
               <Counter value={stat.value} suffix={stat.suffix} />
-            </strong>
-            <p className="mt-8 text-[clamp(1.25rem,1.8vw,2rem)] font-normal leading-tight text-white/95">
+            </h2>
+            <p className="mt-3  !text-sm !md:text-[28px] font-normal leading-tight text-white/95">
               {stat.label}
             </p>
           </article>

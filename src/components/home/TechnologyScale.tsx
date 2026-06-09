@@ -87,7 +87,7 @@ export default function TechnologyScale() {
           ))}
           <motion.article
             whileHover={{ y: -10, scale: 1.02 }}
-            className=" overflow-hidden rounded-[24px] bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[380px] lg:row-span-2"
+            className=" overflow-hidden rounded-[24px] bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[360px] lg:row-span-2"
           >
             <div className="px-4">
               <strong className="block text-2xl md:text-[30px] font-[500] leading-none text-black">

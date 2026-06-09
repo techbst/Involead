@@ -42,20 +42,20 @@ const proofItems = [
 
 export default function Testimonials() {
   return (
-    <section className="overflow-hidden bg-white px-5 py-20 text-black sm:px-8 lg:px-12 lg:py-28">
-      <SectionReveal className="mx-auto max-w-[1420px]">
+    <section className="overflow-hidden bg-white py-15 ">
+      <SectionReveal className="mx-auto container">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-base font-medium text-black">Client Feedback</p>
-          <h2 className="mt-7 text-[clamp(2.4rem,4vw,4.4rem)] font-bold leading-tight tracking-normal">
+          <h2 className="mt-2 text-[clamp(2.4rem,4vw,4.4rem)] font-bold leading-tight tracking-normal">
             Trusted by Global Leaders
           </h2>
-          <p className="mt-6 text-base leading-7 text-black/85 sm:text-lg">
+          <p className="mt-4 text-base leading-7 text-black/85 sm:text-lg">
             Driving innovation and efficiency across the world&apos;s leading
             Fortune 500 organizations
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-center">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-center">
           <aside className="mx-auto w-full max-w-[360px] text-center lg:mx-0">
             <Image
               src="/img/badge.svg"
@@ -111,8 +111,8 @@ export default function Testimonials() {
                   key={`${testimonial.name}-${index}`}
                   className="py-3"
                 >
-                  <article className="group min-h-[360px] rounded-[24px] bg-[url('/img/company.png')] bg-cover bg-center p-3 transition duration-300 hover:-translate-y-2">
-                    <div className="flex min-h-[245px] flex-col rounded-[16px] bg-white p-7 sm:p-9">
+                  <article className="group min-h-[340px] rounded-[24px] bg-[url('/img/company.png')] bg-cover bg-center p-3 transition duration-300 hover:-translate-y-2">
+                    <div className="flex min-h-[245px] flex-col rounded-[16px] bg-white p-4 sm:p-6">
                       <Image
                         src="/img/quote.svg"
                         alt=""
@@ -125,11 +125,11 @@ export default function Testimonials() {
                         {testimonial.review}
                       </p>
                     </div>
-                    <div className="p-7 sm:p-9">
-                      <h3 className="text-base font-medium text-black sm:text-lg">
+                    <div className="p-4 sm:p-6">
+                      <h3 className="!text-base font-medium text-black sm:text-lg">
                         {testimonial.name}
                       </h3>
-                      <p className="mt-2 text-base text-black/55">
+                      <p className="mt-2 !text-sm text-black/55">
                         {testimonial.company}
                       </p>
                     </div>

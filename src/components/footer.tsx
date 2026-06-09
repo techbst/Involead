@@ -111,7 +111,7 @@ export default function Footer() {
               className="h-auto w-[180px] object-contain sm:w-[240px] lg:w-[300px]"
             />
           </Link>
-          <h2 className="max-w-3xl text-left !text-[40px] font-bold leading-[1.08] tracking-normal lg:text-right">
+          <h2 className="max-w-3xl text-left md:!text-[40px] font-bold leading-[1.08] tracking-normal lg:text-right">
             Business With Intelligent AI Solutions
             <br className="hidden sm:block" />
             And Digital Innovation.

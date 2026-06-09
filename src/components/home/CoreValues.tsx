@@ -64,7 +64,7 @@ export default function CoreValues() {
              <motion.article
     key={title}
     whileHover={{ y: -8 }}
-    className={`group bg-white p-7 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/25
+    className={`group bg-white p-7 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/25 max-md:border
    ${index < 3 ? "border-b" : ""}
   ${(index + 1) % 3 !== 0 ? "border-r" : ""}
 `}

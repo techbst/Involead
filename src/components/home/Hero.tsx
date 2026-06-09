@@ -26,7 +26,7 @@ function AnimatedHeadline() {
   return (
     <motion.h1
       variants={fadeUp}
-      className="max-w-4xl !text-[54px] font-bold !leading-[115%] tracking-normal text-slate-950"
+      className="max-w-4xl text-[36px] md:!text-[54px] font-bold !leading-[115%] tracking-normal text-slate-950"
       aria-label="Engineering Products with Intelligent AI & Data Solutions"
     >
       {headlineWords.map((word, wordIndex) => (

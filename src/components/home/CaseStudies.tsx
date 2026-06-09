@@ -116,44 +116,49 @@ export default function CaseStudies() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -34 }}
               transition={{ duration: 0.4 }}
-              className="rounded-[24px] bg-gradient-to-b from-[#68C1D5] to-white p-8 text-slate-950"
+              className="rounded-[24px] bg-gradient-to-b from-[#68C1D5] to-white p-4 md:p-8 text-slate-950"
             >
-              <div className="grid min-h-[500px] gap-8 rounded-[20px] bg-white p-6 lg:grid-cols-[1fr_1fr]">
+              <div className="grid  gap-8 rounded-[20px] bg-white p-2 md:p-3 lg:grid-cols-[1fr_1fr]">
                 <div className="flex flex-col items-start gap-3 justify-center">
                   <span className="w-max rounded-full bg-[#e4f8fb] px-7 py-3 text-[16px] font-medium text-[#5fb0c2]">
                     {current.industry}
                   </span>
-                  <h3 className="mt-6 max-w-2xl text-[28px] font-medium leading-[1.16] tracking-normal">
+                  <h3 className="mt-6  md:max-w-2xl text-[28px] font-medium leading-[1.16] tracking-normal">
                     {current.title}
                   </h3>
-                  <p className="mt-4 max-w-2xl text-[16px] leading-2 text-black/55">
+                  <p className="mt-4  md:max-w-2xl text-[16px] leading-2 text-black/55">
                     {current.description}
                   </p>
                 </div>
-                <div className="case-metrics-cut relative overflow-hidden rounded-[24px] bg-[#edf8fb] p-0">
-                  <div
-                    className="absolute -right-[5px] inset-x-0 -bottom-[5px] h-full bg-white"
-                    style={{
-                      WebkitMaskImage: "url('/img/cas-study.svg')",
-                      WebkitMaskRepeat: "no-repeat",
-                      WebkitMaskPosition: "right bottom",
-                      // WebkitMaskSize: "",
-                      maskImage: "url('/img/cas-study.svg')",
-                      maskRepeat: "no-repeat",
-                      maskPosition: "right bottom",
-                      // maskSize: "100% 100%",
-                    }}
-                  />
-                  <div className="relative z-10 flex h-full flex-col gap-8 p-8">
+             <div className="case-metrics-cut relative overflow-hidden rounded-[24px] bg-[#edf8fb] p-0">
+  <svg width="0" height="0" className="absolute">
+    <defs>
+      <clipPath id="caseStudyClip" clipPathUnits="objectBoundingBox">
+        <path
+          transform="scale(0.0034965 0.0088496)"
+          d="M286 0V1.68885V3.3777L285.95 5.06655L285.9 6.7554L285.75 9.0072L285.6 11.259L285.3 13.5108L285 15.7626L284.4 18.5774L283.8 21.3921L282.8 23.8691L281.8 26.4587L280.2 28.7104L278.5 30.9622L276.3 32.8763L274 34.9029L271 36.254L268 37.7177L264 38.6184L260 39.5191L255 39.9132L250 40.3072L243 40.4761L236 40.645L226 40.6675L216 40.7013H204H191H150L147.5 40.7069L145 40.7125L142.5 40.7576L140 40.8139L137.5 40.9265L135 41.0391L132.5 41.2305L130 41.4331L127.5 41.7709L125 42.1087L122.5 42.6153L120 43.122L117.5 43.7975L115 44.473L112.5 45.2612L110 46.1619L107.5 47.2878L105 48.4137L102.5 49.7648L100 51.2285L97.5 52.9173L95 54.6062L92.5 56.5202L90 58.5468L87.5 60.7986L85 63.0504L82.5 65.5274L80 68.117L77.5 70.9317L75 73.7465L72.5 76.7864L70 79.9389L67.5 82.9788L65 86.1313L62.5 88.9461L60 91.7608L57.5 94.2378L55 96.8274L52.5 98.7414L50 100.768L47.5 102.457L45 104.146L42.5 105.497L40 106.961L37.5 108.086L35 109.212L32.5 110L30 110.901L27.5 111.352L25 111.802L22.5 112.083L20 112.365L17.5 112.477L15 112.59H0H286V0Z"
+        />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <div
+    className="max-md:hidden absolute -right-[5px] inset-x-0 -bottom-[45%] h-full bg-white"
+    style={{
+      clipPath: "url(#caseStudyClip)",
+    }}
+  />
+
+                  <div className="relative z-10 flex h-full flex-col gap-8 p-4 md:p-6 pb-15 md:pb-8">
                     {current.metrics.map((metric) => (
                       <div
                         key={metric.label}
                         className="border-l-2 border-black/15 pl-4"
                       >
-                        <strong className="block text-[36px] font-light leading-none">
+                        <strong className="block text-[30px] font-light leading-none">
                           {metric.value}
                         </strong>
-                        <span className="mt-5 block text-[16px] text-black/55">
+                        <span className="mt-1 block text-[14px] text-black/55">
                           {metric.label}
                         </span>
                       </div>
