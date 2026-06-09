@@ -49,27 +49,27 @@ const partnerLogos = [
 
 export default function TechnologyScale() {
   return (
-    <section className="bg-white px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+    <section className="bg-white py-15 ">
       <SectionReveal className="mx-auto container">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-[24px] font-semibold text-slate-950">
             Technology at Scale
           </p>
-          <h2 className="mt-6 text-[clamp(2.4rem,5vw,5.8rem)] font-bold leading-[1.14] tracking-normal text-slate-950 sm:mt-9">
+          <h2 className="mt-2 max-w-3xl mx-auto text-black">
             Enterprise Infrastructure Powered by AI, Data & Automation
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:mt-20 sm:gap-7 lg:mt-24 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
+        <div className="grid grid-cols-1 gap-5 mt-15 sm:gapx-4 py-6 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
           {stats.slice(0, 2).map(({ value, label, icon }, index) => (
             <motion.article
               key={label}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`group relative min-h-[230px] rounded-[28px] bg-[#eef8fb] p-7 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40 sm:min-h-[280px] sm:rounded-[32px] sm:p-9 ${index === 1 ? "lg:col-span-2" : ""
+              className={`group relative  rounded-[24px] bg-[#eef8fb] px-4 py-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between ${index === 1 ? "lg:col-span-2" : ""
                 }`}
             >
               <div className="flex items-center justify-between">
-                <strong className="text-2xl md:text-[36px] font-[500] leading-none text-black">
+                <strong className="text-2xl md:text-[30px] font-[500] leading-none text-black">
                   {value}
                 </strong>
                 <Image
@@ -80,22 +80,24 @@ export default function TechnologyScale() {
                   aria-hidden
                   className=""
                 /> </div>
-              <p className="absolute bottom-7 left-7 max-w-[300px] text-[22px] font-medium leading-snug text-black/65 sm:bottom-10 sm:left-9 sm:text-[26px]">
+              <p className=" bottom-7 left-7 max-w-[300px] text-[22px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">
                 {label}
               </p>
             </motion.article>
           ))}
           <motion.article
             whileHover={{ y: -10, scale: 1.02 }}
-            className="relative min-h-[560px] overflow-hidden rounded-[28px] bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center p-7 sm:min-h-[640px] sm:rounded-[32px] sm:p-9 lg:row-span-2"
+            className=" overflow-hidden rounded-[24px] bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[380px] lg:row-span-2"
           >
-            <strong className="block text-2xl md:text-[36px] font-[500] leading-none text-black">
-              {stats[2].value}
-            </strong>
-            <p className="mt-10 max-w-[285px] text-[29px] font-medium leading-snug text-black/70">
-              {stats[2].label}
-            </p>
-            <div className="absolute inset-x-0 bottom-[52px] h-[86px] overflow-hidden bg-white">
+            <div className="px-4">
+              <strong className="block text-2xl md:text-[30px] font-[500] leading-none text-black">
+                {stats[2].value}
+              </strong>
+              <p className="mt-3 !text-[20px] font-medium leading-snug !text-black/70">
+                {stats[2].label}
+              </p>
+            </div>
+            <div className="  inset-x-0  overflow-hidden bg-white">
               <div className="tech-logo-track flex h-full w-max items-center gap-12 px-8">
                 {[...partnerLogos, ...partnerLogos].map((partner, index) => (
                   <span
@@ -113,16 +115,16 @@ export default function TechnologyScale() {
                 ))}
               </div>
             </div>
-            <div className="absolute inset-x-0 bottom-0 h-[52px] bg-[#eef8fb]" />
+            <div className="absolute inset-x-0 bottom-0  bg-[#eef8fb]" />
           </motion.article>
           {stats.slice(3).map(({ value, label, icon }) => (
             <motion.article
               key={label}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative min-h-[230px] rounded-[28px] bg-[#eef8fb] p-7 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40 sm:min-h-[280px] sm:rounded-[32px] sm:p-9"
+              className="group relative  rounded-[24px] bg-[#eef8fb] px-4 py-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between"
             >
               <div className="flex items-center justify-between">
-                <strong className="text-2xl md:text-[36px] font-[500] leading-none text-black">
+                <strong className="text-2xl md:text-[30px] font-[500] leading-none text-black">
                   {value}
                 </strong>
                 <Image
@@ -132,7 +134,7 @@ export default function TechnologyScale() {
                   height={60}
                   aria-hidden
                 />  </div>
-              <p className="absolute bottom-7 left-7 max-w-[320px] text-[22px] font-medium leading-snug text-black/65 sm:bottom-10 sm:left-9 sm:text-[26px]">
+              <p className=" bottom-7 left-7 max-w-[320px] text-[22px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">
                 {label}
               </p>
             </motion.article>

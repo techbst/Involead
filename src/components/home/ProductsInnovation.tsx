@@ -62,7 +62,7 @@ export default function ProductsInnovation() {
 
   return (
     <section
-      className="products-innovation-shell relative isolate overflow-hidden py-20 "
+      className="products-innovation-shell relative isolate overflow-hidden pt-5 pb-5 "
     >
       <div
         aria-hidden
@@ -72,16 +72,16 @@ export default function ProductsInnovation() {
         }}
       />
 
-      <SectionReveal className="relative z-10 mx-auto container mt-30 mb-20">
+      <SectionReveal className="relative z-10 mx-auto container mt-40 mb-20">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div>
-            <p className="text-[17px] font-semibold text-slate-950">
+            <p className=" font-semibold text-slate-950">
               Products & Innovations
             </p>
-            <h2 className="mt-3 max-w-5xl text-[clamp(2.4rem,4.7vw,5rem)] font-bold leading-tight tracking-normal text-slate-950">
+            <h2 className="mt-2 max-w-5xl  font-bold leading-tight tracking-normal text-black">
               Powering with Custom Solutions and Intelligent AI Products.
             </h2>
-            <p className="mt-8 text-xl text-slate-900">
+            <p className="mt-5 text-xl text-slate-900">
               From ideas to real-world solutions, built to scale with business
               needs.
             </p>
@@ -104,14 +104,14 @@ export default function ProductsInnovation() {
           </div>
         </div>
 
-        <div className="mt-14 sm:mt-20 lg:mt-24">
+        <div className="mt-12">
           <Swiper
             slidesPerView={1.05}
             spaceBetween={32}
             breakpoints={{
-              740: { slidesPerView: 2.05 },
-              1140: { slidesPerView: 3.05 },
-              1380: { slidesPerView: 3.80, spaceBetween: 36 },
+              740: { slidesPerView: 2 },
+              1140: { slidesPerView: 3 },
+              1380: { slidesPerView: 4, spaceBetween: 36 },
             }}
             onSwiper={setSwiper}
             onProgress={(_, value) => setProgress(value)}
@@ -143,7 +143,7 @@ export default function ProductsInnovation() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-10 flex items-center gap-4 sm:mt-16 sm:gap-10">
+        <div className="mt-5 flex items-center gap-4 sm:gap-10">
           <div className="h-1 flex-1 overflow-hidden bg-[#b9d5f0]">
             <div
               className="h-full bg-[#5fb0c2] transition-all duration-500"

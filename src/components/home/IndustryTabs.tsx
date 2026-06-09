@@ -254,11 +254,11 @@ function IndustryFeatureCard({
     >
       <div className="flex gap-2">
         <span className="mt-1 h-12 w-1 shrink-0 bg-[#5fb0c2]" />
-        <h3 className="!text-[20px] font-light  tracking-normal">
+        <h3 className="!text-[20px] font-light   !leading-[130%] tracking-normal">
           {card.title}
         </h3>
       </div>
-      <p className="mt-3 !text-[16px] line-clamp-2 text-black/80">
+      <p className="mt-4 !text-[16px] !leading-[160%] line-clamp-2 text-black/80">
         {card.description}
       </p>
       <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6">
@@ -267,7 +267,7 @@ function IndustryFeatureCard({
             <strong className="block text-[18px] font-semibold leading-none">
               {metric.value}
             </strong>
-            <span className="mt-3 block text-[13px] leading-snug">
+            <span className="mt-2 block text-[13px] leading-snug">
               {metric.label}
             </span>
           </div>
@@ -306,9 +306,9 @@ export default function IndustryTabs() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-black  py-20 text-white ">
+    <section className="relative overflow-hidden bg-black  py-15 text-white ">
       <SectionReveal className="mx-auto container">
-        <div className="mx-auto max-w-6xl text-center">
+        <div className=" text-center">
           <motion.h2
             initial={{ opacity: 0, y: 34 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -317,13 +317,13 @@ export default function IndustryTabs() {
           >
             Transforming Industries with AI & Data
           </motion.h2>
-          <p className="mx-auto mt-7 max-w-md text-lg  text-white/80">
+          <p className="mx-auto mt-7 max-w-md !leading-[130%] text-lg  text-white/80">
             Enabling smarter decisions, operational efficiency, and sustainable
             growth through intelligent solutions.
           </p>
         </div>
 
-        <div className="mt-12 flex items-center justify-center gap-2 max-lg:flex-wrap sm:mt-16 lg:mt-20">
+        <div className="mt-12 flex items-center justify-center gap-2 max-lg:flex-wrap ">
           <ArrowButton direction="prev" onClick={() => move(-1)} />
           {industries.map((item, index) => (
             <button
@@ -343,18 +343,13 @@ export default function IndustryTabs() {
         </div>
 
         <AnimatePresence mode="wait">
-          <motion.div
-            key={industry.name}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            // exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-            className="mt-14 flex w-full items-center justify-center gap-0 pb-10 sm:mt-20 sm:pb-20 max-xl:min-h-0 max-xl:flex-col"
+          <div
+            className="mt-4 flex w-full items-center justify-center gap-0 pb-10 sm:mt-10 sm:pb-20 "
           >
             <IndustryFeatureCard card={cards[0]} placement="left" />
             <IndustryFeatureCard card={cards[1]} placement="center" />
             <IndustryFeatureCard card={cards[2]} placement="right" />
-          </motion.div>
+          </div>
         </AnimatePresence>
       </SectionReveal>
     </section>

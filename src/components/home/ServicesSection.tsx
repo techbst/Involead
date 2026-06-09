@@ -13,18 +13,18 @@ import ClipCard from "@/components/ui/clip-card";
 
 export default function ServicesSection() {
   return (
-    <section className="bg-white py-20 ">
-      <SectionReveal className="container mx-auto px-5 sm:px-8 lg:px-12">
+    <section className="bg-white py-15 ">
+      <SectionReveal className="container mx-auto ">
         <div className="max-w-5xl">
           <p className="!text-[16px] font-semibold text-slate-500">
             {servicesSection.eyebrow}
           </p>
 
-          <h2 className="mt-3 max-w-4xl text-[clamp(2rem,4vw,4.35rem)] font-bold leading-tight text-slate-950">
+          <h2 className="mt-2 max-w-2xl text-2xl md:text-[46px] font-bold leading-tight text-slate-950 ">
             {servicesSection.title}
           </h2>
 
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+          <p className="mt-4 max-w-2xl !text-[16px] !leading-[130%] text-black sm:text-base">
             {servicesSection.description}
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function ServicesSection() {
               slidesPerView: 4,
             },
           }}
-          className="mt-14"
+          className="mt-12"
         >
           {servicesSection.cards.map((card, index) => (
             <SwiperSlide key={card.title}>
