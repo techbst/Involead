@@ -69,7 +69,7 @@ export default function Testimonials() {
               {proofItems.map(({ icon: Icon, label }) => (
                 <div key={label} className="group text-center">
                   <Icon className="mx-auto size-9 stroke-[1.7] transition duration-300 group-hover:-translate-y-1 group-hover:text-[#5fb0c2]" />
-                  <p className="mt-3 text-sm leading-snug text-black">
+                  <p className="mt-2 text-sm leading-snug text-black">
                     {label}
                   </p>
                 </div>

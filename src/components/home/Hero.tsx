@@ -26,7 +26,7 @@ function AnimatedHeadline() {
   return (
     <motion.h1
       variants={fadeUp}
-      className="max-w-4xl !text-[54px] font-bold !leading-[1.2] tracking-normal text-slate-950"
+      className="max-w-4xl !text-[54px] font-bold !leading-[115%] tracking-normal text-slate-950"
       aria-label="Engineering Products with Intelligent AI & Data Solutions"
     >
       {headlineWords.map((word, wordIndex) => (
@@ -107,7 +107,7 @@ export default function Hero() {
           className="max-w-4xl"
         >
           <AnimatedHeadline />
-          <motion.p variants={fadeUp} className="mt-4 max-w-2xl !leading-[130%]">
+          <motion.p variants={fadeUp} className="mt-4 max-w-2xl ">
             We help enterprises leverage AI, analytics, and intelligent
             automation to streamline operations, accelerate decision-making, and
             build scalable digital solutions that drive measurable business

@@ -357,7 +357,7 @@ a {
 
 p {
   font-size: 16px;
-  line-height: 130%;
+  line-height: 1.6;
   font-weight: 400;
   color: var(--text-primary);
 }

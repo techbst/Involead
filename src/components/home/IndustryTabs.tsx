@@ -254,11 +254,11 @@ function IndustryFeatureCard({
     >
       <div className="flex gap-2">
         <span className="mt-1 h-12 w-1 shrink-0 bg-[#5fb0c2]" />
-        <h3 className="!text-[20px] font-light   !leading-[130%] tracking-normal">
+        <h3 className="!text-[20px] font-light   tracking-normal">
           {card.title}
         </h3>
       </div>
-      <p className="mt-4 !text-[16px] !leading-[160%] line-clamp-2 text-black/80">
+      <p className="mt-4 !text-[16px]  line-clamp-2 text-black/80">
         {card.description}
       </p>
       <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6">
@@ -317,7 +317,7 @@ export default function IndustryTabs() {
           >
             Transforming Industries with AI & Data
           </motion.h2>
-          <p className="mx-auto mt-7 max-w-md !leading-[130%] text-lg  text-white/80">
+          <p className="mx-auto mt-7 max-w-md text-lg  text-white/80">
             Enabling smarter decisions, operational efficiency, and sustainable
             growth through intelligent solutions.
           </p>

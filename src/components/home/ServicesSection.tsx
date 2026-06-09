@@ -24,7 +24,7 @@ export default function ServicesSection() {
             {servicesSection.title}
           </h2>
 
-          <p className="mt-4 max-w-2xl !text-[16px] !leading-[130%] text-black sm:text-base">
+          <p className="mt-4 max-w-2xl !text-[16px]  text-black sm:text-base">
             {servicesSection.description}
           </p>
         </div>

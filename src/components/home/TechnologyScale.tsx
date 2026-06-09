@@ -75,8 +75,8 @@ export default function TechnologyScale() {
                 <Image
                   src={icon}
                   alt=""
-                  width={60}
-                  height={60}
+                  width={50}
+                  height={50}
                   aria-hidden
                   className=""
                 /> </div>
@@ -130,8 +130,8 @@ export default function TechnologyScale() {
                 <Image
                   src={icon}
                   alt=""
-                  width={60}
-                  height={60}
+                  width={50}
+                  height={50}
                   aria-hidden
                 />  </div>
               <p className=" bottom-7 left-7 max-w-[320px] text-[22px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">

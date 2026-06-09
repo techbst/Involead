@@ -68,19 +68,19 @@ export default function CaseStudies() {
   };
 
   return (
-    <section className="bg-black px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-36">
+    <section className="bg-black  py-15 text-white ">
       <SectionReveal className="mx-auto container">
         <div className="mx-auto max-w-5xl text-center">
-          <h2 className="text-[clamp(3rem,5vw,5.6rem)] font-bold leading-[1.12] tracking-normal">
+          <h2 className=" font-bold max-w-2xl mx-auto tracking-normal">
             Proven Outcomes Across Modern Digital Enterprises
           </h2>
-          <p className="mx-auto mt-9 max-w-3xl text-[22px] leading-relaxed text-white/80">
+          <p className="mx-auto mt-4 max-w-md  text-white/80">
             From automation to predictive intelligence, our solutions deliver
             measurable results at enterprise scale.
           </p>
         </div>
 
-        <div className="mt-28 grid gap-8 lg:grid-cols-[.9fr_1.8fr]">
+        <div className="mt-12 grid gap-8 lg:grid-cols-[.9fr_1.5fr]">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.image}

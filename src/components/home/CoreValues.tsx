@@ -56,7 +56,7 @@ export default function CoreValues() {
     <section className="bg-white  py-15 ">
       <SectionReveal className="mx-auto container">
         <p className="text-sm font-semibold text-black">Our Core Values</p>
-        <h2 className="mt-3 max-w-3xl   leading-tight tracking-normal text-black">
+        <h2 className="mt-2 max-w-3xl   leading-tight tracking-normal text-black">
           End-to-end AI solutions designed for measurable outcomes.
         </h2>
         <div className="mt-10 grid gap-px overflow-hidden  bg-slate-200 md:grid-cols-2 lg:grid-cols-3">
@@ -64,9 +64,10 @@ export default function CoreValues() {
              <motion.article
     key={title}
     whileHover={{ y: -8 }}
-    className={`group border-b bg-white p-7 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/25 ${
-      (index + 1) % 3 !== 0 ? "border-r" : ""
-    }`}
+    className={`group bg-white p-7 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/25
+   ${index < 3 ? "border-b" : ""}
+  ${(index + 1) % 3 !== 0 ? "border-r" : ""}
+`}
   >
               <Icon className="size-8 stroke-[1.5] text-[#5FB0C2]" />
               <h3 className="mt-6 text-xl font-bold text-slate-950">{title}</h3>
