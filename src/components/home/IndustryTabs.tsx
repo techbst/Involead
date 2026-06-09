@@ -306,8 +306,8 @@ export default function IndustryTabs() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-black px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-32">
-      <SectionReveal className="mx-auto max-w-[1920px]">
+    <section className="relative overflow-hidden bg-black px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-32">
+      <SectionReveal className="mx-auto container">
         <div className="mx-auto max-w-6xl text-center">
           <motion.h2
             initial={{ opacity: 0, y: 34 }}
