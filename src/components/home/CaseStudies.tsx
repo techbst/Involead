@@ -103,7 +103,7 @@ export default function CaseStudies() {
                   {String(active + 1).padStart(2, "0")}
                 </span>
                 <span className="grid size-16 place-items-center rounded-full border border-white text-2xl">
-                  {String(caseStudies.length + 1).padStart(2, "0")}
+                  {String(caseStudies.length ).padStart(2, "0")}
                 </span>
               </div>
             </motion.div>

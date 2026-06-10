@@ -1,9 +1,9 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import SectionReveal from "./SectionReveal";
 
@@ -24,6 +24,45 @@ const industries: Industry[] = [
   {
     name: "Healthcare",
     cards: [
+      {
+        title: "AI Transforming Patient Care And Operational Efficiency",
+        description:
+          "We deploy intelligent workflows that improve care coordination, accelerate diagnostics support, and reduce operational waste.",
+        image:
+          "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+20-30%", label: "Faster Care" },
+          { value: "-18-25%", label: "Lower Costs" },
+          { value: "+25-35%", label: "Better Outcomes" },
+        ],
+        tint: "bg-[#e7ff7d]",
+      },
+      {
+        title: "AI Transforming Patient Care And Operational Efficiency",
+        description:
+          "We deploy intelligent workflows that improve care coordination, accelerate diagnostics support, and reduce operational waste.",
+        image:
+          "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+20-30%", label: "Faster Care" },
+          { value: "-18-25%", label: "Lower Costs" },
+          { value: "+25-35%", label: "Better Outcomes" },
+        ],
+        tint: "bg-[#e7ff7d]",
+      },
+      {
+        title: "AI Transforming Patient Care And Operational Efficiency",
+        description:
+          "We deploy intelligent workflows that improve care coordination, accelerate diagnostics support, and reduce operational waste.",
+        image:
+          "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85",
+        metrics: [
+          { value: "+20-30%", label: "Faster Care" },
+          { value: "-18-25%", label: "Lower Costs" },
+          { value: "+25-35%", label: "Better Outcomes" },
+        ],
+        tint: "bg-[#e7ff7d]",
+      },
       {
         title: "AI Transforming Patient Care And Operational Efficiency",
         description:
@@ -199,6 +238,9 @@ const industries: Industry[] = [
   },
 ];
 
+// Card width matches original max-w-[400px]
+const CARD_W = 400;
+
 function ArrowButton({
   direction,
   onClick,
@@ -207,7 +249,6 @@ function ArrowButton({
   onClick: () => void;
 }) {
   const Icon = direction === "prev" ? ArrowLeft : ArrowRight;
-
   return (
     <button
       type="button"
@@ -220,95 +261,114 @@ function ArrowButton({
   );
 }
 
-function IndustryFeatureCard({
-  card,
-  placement,
-}: {
-  card: IndustryCard;
-  placement: "left" | "center" | "right";
-}) {
-  const placementClass = {
-    left: "hidden !opacity-[0.6]  xl:block -translate-x-5 rotate-[10deg] scale-[.92] origin-bottom-right",
-    center: "z-20 scale-100",
-    right:
-      "hidden xl:block !opacity-[0.6]  translate-x-5 rotate-[-10deg] scale-[.92] origin-bottom-left",
-  }[placement];
-
-  return (
-    <motion.article
-    initial={{
-  opacity: 0,
-  y: 50,
-  rotate:
-    placement === "left"
-      ? -24 
-      : placement === "center"
-      ? 0
-      : 24,
-}}
-      whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -16, rotate: placement === "center" ? 0 : undefined }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.75, ease: "easeOut" }}
-      className={`relative min-h-[500px] w-full max-w-[400px] shrink-0 rounded-[28px] px-5 pt-7 pb-5 text-black shadow-2xl shadow-black/40 sm:rounded-[32px] sm:pt-8 ${card.tint} ${placementClass}`}
-    >
-      <div className="flex gap-2">
-        <span className="mt-1 h-12 w-1 shrink-0 bg-[#5fb0c2]" />
-        <h3 className="!text-[20px] font-light   tracking-normal">
-          {card.title}
-        </h3>
-      </div>
-      <p className="mt-4 !text-[16px]  line-clamp-2 text-black/80">
-        {card.description}
-      </p>
-      <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6">
-        {card.metrics.map((metric) => (
-          <div key={metric.label}>
-            <strong className="block text-[18px] font-semibold leading-none">
-              {metric.value}
-            </strong>
-            <span className="mt-2 block text-[13px] leading-snug">
-              {metric.label}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="absolute inset-x-5 bottom-5 h-[190px] overflow-hidden rounded-[22px] sm:inset-x-8 sm:h-[200px] sm:rounded-[24px]">
-        <Image
-          src={card.image}
-          alt={card.title}
-          fill
-          sizes="520px"
-          className="object-cover transition duration-700 group-hover:scale-105"
-        />
-      </div>
-      <button
-        type="button"
-        aria-label={`Open ${card.title}`}
-        className="absolute right-2 bottom-2 z-10 grid size-16 rotate-45 place-items-center rounded-full border-[10px] border-white bg-[#5fb0c2] text-white transition duration-300 hover:bg-black sm:size-[68px] sm:border-[14px]"
-      >
-        <ArrowUpRight className="size-7" />
-      </button>
-    </motion.article>
-  );
-}
-
 export default function IndustryTabs() {
-  const [active, setActive] = useState(0);
-  const industry = industries[active];
-  const cards = useMemo(() => {
-    const ordered = industry.cards;
-    return [ordered[2], ordered[0], ordered[1]];
-  }, [industry]);
+  const [activeIndustry, setActiveIndustry] = useState(0);
 
-  const move = (direction: number) => {
-    setActive((value) => (value + direction + industries.length) % industries.length);
+  // activeCard is the index of the card currently in center
+  const activeCardRef = useRef(0);
+  const busyRef = useRef(false);
+  const gsapRef = useRef<any>(null);
+  // 3 refs, one per card slot
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const stageRef = useRef<HTMLDivElement>(null);
+
+  // Load GSAP once
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const init = () => {
+      gsapRef.current = (window as any).gsap;
+      applyLayout(false);
+    };
+    if ((window as any).gsap) { init(); return; }
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+    s.async = true;
+    s.onload = init;
+    document.head.appendChild(s);
+  }, []);
+
+  useEffect(() => {
+    const handler = () => applyLayout(false);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
+  // When industry changes reset to card 0 and re-layout
+  useEffect(() => {
+    activeCardRef.current = 0;
+    busyRef.current = false;
+    const t = setTimeout(() => applyLayout(false), 20);
+    return () => clearTimeout(t);
+  }, [activeIndustry]);
+
+const applyLayout = (animate: boolean) => {
+  const gsap = gsapRef.current;
+  if (!gsap) return;
+
+  const stageW = stageRef.current?.offsetWidth ?? 1000;
+  const cx = stageW / 2 - CARD_W / 2;
+  const spread = CARD_W * 1;
+
+  const curr = activeCardRef.current;
+  const N = cardRefs.current.length;
+
+  cardRefs.current.forEach((el, i) => {
+    if (!el) return;
+
+    let offset = i - curr;
+    if (offset > N / 2)  offset -= N;
+    if (offset < -N / 2) offset += N;
+
+    const isCenter = offset === 0;
+    const isLeft   = offset < 0;
+    const isRight  = offset > 0;
+
+    const x        = cx + offset * spread;
+    const y        = isCenter ? 0 : 40;
+    const rotation = isCenter ? 0 : isLeft ? -20 : 20;
+    const scale    = isCenter ? 1 : 0.92;
+    const opacity  = Math.abs(offset) > 1 ? 0 : isCenter ? 1 : 0.6;
+    const zIndex   = 10 - Math.abs(offset);
+
+    const props = {
+      x, y, rotation, scale, opacity, zIndex,
+      transformOrigin: "bottom center",
+    };
+
+    if (animate) {
+      gsap.to(el, {
+        ...props,
+        duration: 0.65,
+        ease: "power3.out",
+        overwrite: true,
+        onComplete: isCenter ? () => { busyRef.current = false; } : undefined,
+      });
+    } else {
+      gsap.set(el, props);
+    }
+  });
+};
+
+  const goToCard = (direction: 1 | -1) => {
+    if (busyRef.current) return;
+    const N = industries[activeIndustry].cards.length;
+    activeCardRef.current = ((activeCardRef.current + direction) % N + N) % N;
+    busyRef.current = true;
+    applyLayout(true);
   };
 
+  const switchIndustry = (idx: number) => {
+    setActiveIndustry(idx);
+    // reset handled in useEffect above
+  };
+
+  const cards = industries[activeIndustry].cards;
+
   return (
-    <section className="relative overflow-hidden bg-black  py-15 text-white ">
+    <section className="relative overflow-hidden bg-black py-15 text-white">
       <SectionReveal className="mx-auto container">
-        <div className=" text-center">
+
+        <div className="text-center">
           <motion.h2
             initial={{ opacity: 0, y: 34 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -317,21 +377,22 @@ export default function IndustryTabs() {
           >
             Transforming Industries with AI & Data
           </motion.h2>
-          <p className="mx-auto mt-7 max-w-md text-lg  text-white/80">
+          <p className="mx-auto mt-7 max-w-md text-lg text-white/80">
             Enabling smarter decisions, operational efficiency, and sustainable
             growth through intelligent solutions.
           </p>
         </div>
 
-        <div className="mt-12 flex items-center justify-center gap-2 max-lg:flex-wrap ">
-          <ArrowButton direction="prev" onClick={() => move(-1)} />
+        {/* Tab row — arrows slide cards, tabs switch industry */}
+        <div className="mt-12 flex items-center justify-center gap-2 max-lg:flex-wrap">
+          <ArrowButton direction="prev" onClick={() => goToCard(-1)} />
           {industries.map((item, index) => (
             <button
               key={item.name}
               type="button"
-              onClick={() => setActive(index)}
+              onClick={() => switchIndustry(index)}
               className={`rounded-full border px-4 py-3 text-[11px] font-light uppercase tracking-normal transition duration-300 sm:px-6 sm:text-xs ${
-                index === active
+                index === activeIndustry
                   ? "border-[#5fb0c2] bg-[#5fb0c2] text-white"
                   : "border-white bg-transparent text-white hover:border-[#5fb0c2]"
               }`}
@@ -339,18 +400,67 @@ export default function IndustryTabs() {
               {item.name}
             </button>
           ))}
-          <ArrowButton direction="next" onClick={() => move(1)} />
+          <ArrowButton direction="next" onClick={() => goToCard(1)} />
         </div>
 
-        <AnimatePresence mode="wait">
-          <div
-            className="mt-4 flex w-full items-center justify-center gap-0 pb-10 sm:mt-10 sm:pb-20 "
-          >
-            <IndustryFeatureCard card={cards[0]} placement="left" />
-            <IndustryFeatureCard card={cards[1]} placement="center" />
-            <IndustryFeatureCard card={cards[2]} placement="right" />
-          </div>
-        </AnimatePresence>
+        {/* Stage: overflow-hidden clips side cards, height matches min-h-[500px] + padding */}
+        <div
+          ref={stageRef}
+          className="relative mt-10 mb-10 h-[540px] w-full overflow-visible sm:mb-20"
+        >
+          {cards.map((card, i) => (
+            <div
+              key={`${activeIndustry}-${i}`}
+              ref={(el) => { cardRefs.current[i] = el; }}
+              className={`absolute top-0`}
+              style={{ width: CARD_W, willChange: "transform" }}
+            >
+              {/* ── Exact original card markup, zero changes ── */}
+              <article
+                className={`relative min-h-[500px] w-full max-w-[400px] shrink-0 rounded-[28px] px-5 pt-7 pb-5 text-black shadow-2xl shadow-black/40 sm:rounded-[32px] sm:pt-8 ${card.tint}`}
+              >
+                <div className="flex gap-2">
+                  <span className="mt-1 h-12 w-1 shrink-0 bg-[#5fb0c2]" />
+                  <h3 className="!text-[20px] font-light tracking-normal">
+                    {card.title}
+                  </h3>
+                </div>
+                <p className="mt-4 !text-[16px] line-clamp-2 text-black/80">
+                  {card.description}
+                </p>
+                <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6">
+                  {card.metrics.map((metric) => (
+                    <div key={metric.label}>
+                      <strong className="block text-[18px] font-semibold leading-none">
+                        {metric.value}
+                      </strong>
+                      <span className="mt-2 block text-[13px] leading-snug">
+                        {metric.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute inset-x-5 bottom-5 h-[190px] overflow-hidden rounded-[22px] sm:inset-x-8 sm:h-[200px] sm:rounded-[24px]">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="520px"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <button
+                  type="button"
+                  aria-label={`Open ${card.title}`}
+                  className="absolute right-2 bottom-2 z-10 grid size-16 rotate-45 place-items-center rounded-full border-[10px] border-white bg-[#5fb0c2] text-white transition duration-300 hover:bg-black sm:size-[68px] sm:border-[14px]"
+                >
+                  <ArrowUpRight className="size-7" />
+                </button>
+              </article>
+            </div>
+          ))}
+        </div>
+
       </SectionReveal>
     </section>
   );

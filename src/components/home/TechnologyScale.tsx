@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 import SectionReveal from "./SectionReveal";
+import AnimatedNumber from "../ui/animated-number";
 
 const stats: { value: string; label: string; icon: string }[] = [
   {
@@ -65,12 +66,12 @@ export default function TechnologyScale() {
             <motion.article
               key={label}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`group relative  rounded-[24px] bg-[#eef8fb] px-4 py-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between ${index === 1 ? "lg:col-span-2" : ""
+              className={`group relative  rounded-[24px] bg-[#eef8fb] px-4 py-6 bg-[linear-gradient(90.13deg,_#bfddef_0.12%,_#eaeaea_98.69%)] transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between  ${index === 1 ? "lg:col-span-2" : ""
                 }`}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex  items-center justify-between">
                 <strong className="text-2xl md:text-[30px] font-[500] leading-none text-black">
-                  {value}
+                  <AnimatedNumber value={value} />
                 </strong>
                 <Image
                   src={icon}
@@ -87,11 +88,12 @@ export default function TechnologyScale() {
           ))}
           <motion.article
             whileHover={{ y: -10, scale: 1.02 }}
-            className=" overflow-hidden rounded-[24px] bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[360px] lg:row-span-2"
+            className=" overflow-hidden rounded-[24px]  bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[360px] lg:row-span-2"
           >
             <div className="px-4">
-              <strong className="block text-2xl md:text-[30px] font-[500] leading-none text-black">
-                {stats[2].value}
+
+              <strong className="text-2xl md:text-[30px] font-[500] leading-none text-black">
+                <AnimatedNumber value={stats[2].value} />
               </strong>
               <p className="mt-3 !text-[20px] font-medium leading-snug !text-black/70">
                 {stats[2].label}
@@ -121,12 +123,13 @@ export default function TechnologyScale() {
             <motion.article
               key={label}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative  rounded-[24px] bg-[#eef8fb] px-4 py-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between"
+              className="group relative  rounded-[24px] bg-[linear-gradient(90.13deg,_#bfddef_0.12%,_#eaeaea_98.69%)] px-4 py-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between"
             >
               <div className="flex items-center justify-between">
                 <strong className="text-2xl md:text-[30px] font-[500] leading-none text-black">
-                  {value}
+                  <AnimatedNumber value={value} />
                 </strong>
+
                 <Image
                   src={icon}
                   alt=""

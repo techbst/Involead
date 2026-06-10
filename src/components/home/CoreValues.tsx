@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   Combine,
   ShieldCog,
@@ -9,6 +9,7 @@ import {
   Grid2x2Check,
   CodeXml,
 } from "lucide-react";
+import { useRef } from "react";
 
 import SectionReveal from "./SectionReveal";
 
@@ -51,32 +52,206 @@ const values = [
   },
 ];
 
-export default function CoreValues() {
+// Stagger container — triggers children sequentially when section enters view
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+// Each card slides up + fades in from below
+const cardVariants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+};
+
+// Icon morphs on card hover — subtle scale + rotation
+const iconVariants = {
+  rest: { scale: 1, rotate: 0 },
+  hover: {
+    scale: 1.18,
+    rotate: -8,
+    transition: { type: "spring", stiffness: 320, damping: 18 },
+  },
+};
+
+// Accent line grows from left on hover
+const lineVariants = {
+  rest: { scaleX: 0, originX: 0 },
+  hover: {
+    scaleX: 1,
+    originX: 0,
+    transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+// Title shifts right slightly on hover
+const titleVariants = {
+  rest: { x: 0 },
+  hover: { x: 6, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
+// Description fades up slightly on hover
+const descVariants = {
+  rest: { opacity: 0.75, y: 0 },
+  hover: { opacity: 1, y: -2, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
+interface ValueCardProps {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  index: number;
+}
+
+function ValueCard({ icon: Icon, title, description, index }: ValueCardProps) {
+  const col = index % 3;
+  const row = Math.floor(index / 3);
+
   return (
-    <section className="bg-white  py-15 ">
+    <motion.article
+      key={title}
+      variants={cardVariants}
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+      className={`group relative overflow-hidden bg-white p-7 transition-colors duration-300 hover:bg-cyan-50/30 max-md:border
+        ${row === 0 ? "border-b border-slate-200" : ""}
+        ${col !== 2 ? "border-r border-slate-200" : ""}
+      `}
+    >
+      {/* Radial glow — expands from card center on hover */}
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        style={{
+          background:
+            "radial-gradient(circle at 30% 40%, rgba(95,176,194,0.10) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Icon container with spring bounce */}
+      <motion.div
+        variants={iconVariants}
+        className="relative inline-flex size-12 items-center justify-center rounded-xl bg-cyan-50 ring-1 ring-cyan-100"
+      >
+        <Icon className="size-6 stroke-[1.5] text-[#5FB0C2]" />
+        {/* Ping ring — appears on hover */}
+        <motion.span
+          className="absolute inset-0 rounded-xl ring-2 ring-[#5FB0C2]/40"
+          initial={{ scale: 1, opacity: 0 }}
+          whileHover={{ scale: 1.5, opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        />
+      </motion.div>
+
+      {/* Title with subtle slide */}
+      <motion.h3
+        variants={titleVariants}
+        className="mt-6 text-xl font-bold text-slate-950"
+      >
+        {title}
+      </motion.h3>
+
+      {/* Animated accent line under title */}
+      <motion.div
+        variants={lineVariants}
+        className="mt-1.5 h-[2px] w-10 rounded-full bg-[#5FB0C2]"
+      />
+
+      {/* Description */}
+      <motion.p
+        variants={descVariants}
+        className="mt-4 text-sm leading-7 text-slate-600"
+      >
+        {description}
+      </motion.p>
+
+      {/* Corner arrow — slides in on hover */}
+      <motion.div
+        className="absolute right-5 bottom-5 text-[#5FB0C2]"
+        initial={{ opacity: 0, x: 6, y: 6 }}
+        whileHover={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M7 17L17 7M7 7h10v10" />
+        </svg>
+      </motion.div>
+    </motion.article>
+  );
+}
+
+export default function CoreValues() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(gridRef, { once: true, margin: "-80px" });
+
+  return (
+    <section className="bg-white py-15">
       <SectionReveal className="mx-auto container">
-        <p className="text-sm font-semibold text-black">Our Core Values</p>
-        <h2 className="mt-2 max-w-3xl   leading-tight tracking-normal text-black">
+
+        {/* ── Section header ── */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="text-sm font-semibold text-[#5FB0C2] uppercase tracking-widest"
+        >
+          Our Core Values
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
+          className="mt-2 max-w-3xl leading-tight tracking-normal text-black"
+        >
           End-to-end AI solutions designed for measurable outcomes.
-        </h2>
-        <div className="mt-10 grid gap-px overflow-hidden  bg-slate-200 md:grid-cols-2 lg:grid-cols-3">
-          {values.map(({ icon: Icon, title, description },index) => (
-             <motion.article
-    key={title}
-    whileHover={{ y: -8 }}
-    className={`group bg-white p-7 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-50/25 max-md:border
-   ${index < 3 ? "border-b" : ""}
-  ${(index + 1) % 3 !== 0 ? "border-r" : ""}
-`}
-  >
-              <Icon className="size-8 stroke-[1.5] text-[#5FB0C2]" />
-              <h3 className="mt-6 text-xl font-bold text-slate-950">{title}</h3>
-              <p className="mt-4 text-sm leading-7 text-slate-600">
-                {description}
-              </p>
-            </motion.article>
+        </motion.h2>
+
+        {/* ── Grid ── */}
+        <motion.div
+          ref={gridRef}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="mt-10 grid gap-px overflow-hidden bg-slate-200 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {values.map(({ icon, title, description }, index) => (
+            <ValueCard
+              key={title}
+              icon={icon}
+              title={title}
+              description={description}
+              index={index}
+            />
           ))}
-        </div>
+        </motion.div>
+
       </SectionReveal>
     </section>
   );

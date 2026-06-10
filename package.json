@@ -31,6 +31,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "latest",
+    "react-intersection-observer": "^10.0.3",
     "shadcn": "^4.7.0",
     "swiper": "^12.1.4",
     "tailwind-merge": "^3.6.0",
