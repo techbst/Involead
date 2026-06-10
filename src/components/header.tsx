@@ -57,11 +57,17 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full pt-4 pb-4 transition-colors lg:pt-7 lg:pb-7 ${
-        scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
+      className={` fixed left-0 right-0 top-5 z-[100] flex justify-center container bg-white/10 ${
+        scrolled ? '!bg-white !top-0 shadow-xl shadow-black/5 transition-all duration-300' : 'bg-transparent transition-all duration-300'
       }`}
     >
-      <div className="container flex items-center justify-between gap-4 py-3">
+     <div
+  className={`relative max-w-[88rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${
+    scrolled
+      ? " !shadow-none rounded-none transition-all duration-300 "
+      : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] transition-all duration-300"
+  }`}
+>
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center justify-center">
             <Image
@@ -76,7 +82,7 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center lg:flex" aria-label="Primary navigation">
-          <div className="flex items-center gap-2 rounded-[50px] border border-[#ddd] backdrop-blur-sm px-4 py-2">
+          <div className="flex items-center gap-2 rounded-[50px]  border-[#ddd] backdrop-blur-sm px-4 py-2">
             {nav.map((item) => (
               <div
                 key={item.label}
