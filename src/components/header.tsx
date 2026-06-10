@@ -57,12 +57,12 @@ export default function Header() {
 
   return (
     <header
-      className={` fixed left-0 right-0 top-5 z-[100] flex justify-center container bg-white/10 ${
+      className={` fixed left-0 right-0 top-5 z-[100] flex justify-center xl:px-12 px-5 bg-white/10 ${
         scrolled ? '!bg-white !top-0 shadow-xl shadow-black/5 transition-all duration-300' : 'bg-transparent transition-all duration-300'
       }`}
     >
      <div
-  className={`relative max-w-[88rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${
+  className={`relative max-w-[84rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${
     scrolled
       ? " !shadow-none rounded-none transition-all duration-300 "
       : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] transition-all duration-300"

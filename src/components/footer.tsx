@@ -178,8 +178,8 @@ export default function Footer() {
                   <Mail className="size-5 sm:size-6" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-[17px] font-semibold leading-tight text-white sm:text-[20px]">
-                    Email Id
+                  <p className="!text-[17px] !font-bold leading-tight text-white sm:text-[20px]">
+                    Email ID
                   </p>
                   <Link
                     href="mailto:support@involead.com"

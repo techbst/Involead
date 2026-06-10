@@ -91,9 +91,9 @@ export default function ClipCard({
       <Link
         href={href}
         aria-label={`Open ${title}`}
-        className="absolute bottom-6 right-5 z-30 grid size-14 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
+        className="absolute bottom-6 right-5 z-30 grid size-10 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
       >
-        <ArrowRight className="size-7" />
+        <ArrowRight className="size-4" />
       </Link>
 
       {/* Optional children for custom content */}
