@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import {
   Combine,
   ShieldCog,
@@ -64,7 +64,7 @@ const containerVariants = {
 };
 
 // Each card slides up + fades in from below
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 36 },
   visible: {
     opacity: 1,
@@ -77,7 +77,7 @@ const cardVariants = {
 };
 
 // Icon morphs on card hover — subtle scale + rotation
-const iconVariants = {
+const iconVariants: Variants = {
   rest: { scale: 1, rotate: 0 },
   hover: {
     scale: 1.18,
@@ -87,7 +87,7 @@ const iconVariants = {
 };
 
 // Accent line grows from left on hover
-const lineVariants = {
+const lineVariants: Variants = {
   rest: { scaleX: 0, originX: 0 },
   hover: {
     scaleX: 1,
@@ -97,15 +97,30 @@ const lineVariants = {
 };
 
 // Title shifts right slightly on hover
-const titleVariants = {
+const titleVariants: Variants = {
   rest: { x: 0 },
-  hover: { x: 6, transition: { duration: 0.3, ease: "easeOut" } },
+  hover: {
+    x: 6,
+    transition: {
+      duration: 0.3,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
-// Description fades up slightly on hover
-const descVariants = {
-  rest: { opacity: 0.75, y: 0 },
-  hover: { opacity: 1, y: -2, transition: { duration: 0.3, ease: "easeOut" } },
+const descVariants: Variants = {
+  rest: {
+    opacity: 0.75,
+    y: 0,
+  },
+  hover: {
+    opacity: 1,
+    y: -2,
+    transition: {
+      duration: 0.3,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
 interface ValueCardProps {
@@ -154,7 +169,7 @@ function ValueCard({ icon: Icon, title, description, index }: ValueCardProps) {
           className="absolute inset-0 rounded-xl ring-2 ring-[#5FB0C2]/40"
           initial={{ scale: 1, opacity: 0 }}
           whileHover={{ scale: 1.5, opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         />
       </motion.div>
 
@@ -185,7 +200,7 @@ function ValueCard({ icon: Icon, title, description, index }: ValueCardProps) {
         className="absolute right-5 bottom-5 text-[#5FB0C2]"
         initial={{ opacity: 0, x: 6, y: 6 }}
         whileHover={{ opacity: 1, x: 0, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       >
         <svg
           width="18"
@@ -217,7 +232,7 @@ export default function CoreValues() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="text-sm font-semibold text-[#5FB0C2] uppercase tracking-widest"
         >
           Our Core Values
@@ -227,7 +242,7 @@ export default function CoreValues() {
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
           className="mt-2 max-w-3xl leading-tight tracking-normal text-black"
         >
           End-to-end AI solutions designed for measurable outcomes.
