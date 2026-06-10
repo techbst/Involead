@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
 import SectionReveal from "./SectionReveal";
-import ClipCard from "../ui/clip-card";
+import ClipCard from "@/components/ui/product-card";
 // import ClipCard from "../ui/clip-card";
 
 
@@ -86,17 +86,17 @@ export default function ProductsInnovation() {
               needs.
             </p>
           </div>
-          <div className="hidden gap-3 lg:self-end">
+          <div className="flex gap-3 sm:gap-4">
             <button
               onClick={() => swiper?.slidePrev()}
-              className="grid size-12 place-items-center rounded-full border border-slate-300 bg-white text-slate-900 transition hover:-translate-y-1 hover:border-cyan-300"
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Previous product"
             >
               <ArrowLeft className="size-5" />
             </button>
             <button
               onClick={() => swiper?.slideNext()}
-              className="grid size-12 place-items-center rounded-full bg-[#5FB0C2] text-slate-950 transition hover:-translate-y-1 hover:bg-cyan-300"
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Next product"
             >
               <ArrowRight className="size-5" />
@@ -143,30 +143,7 @@ export default function ProductsInnovation() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-5 flex items-center gap-4 sm:gap-10">
-          <div className="h-1 flex-1 overflow-hidden bg-[#b9d5f0]">
-            <div
-              className="h-full bg-[#5fb0c2] transition-all duration-500"
-              style={{ width: `${Math.max(progress * 100, 12)}%` }}
-            />
-          </div>
-          <div className="flex gap-3 sm:gap-6">
-            <button
-              onClick={() => swiper?.slidePrev()}
-              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black sm:size-14"
-              aria-label="Previous product"
-            >
-              <ArrowLeft className="size-6" />
-            </button>
-            <button
-              onClick={() => swiper?.slideNext()}
-              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black sm:size-14"
-              aria-label="Next product"
-            >
-              <ArrowRight className="size-6" />
-            </button>
-          </div>
-        </div>
+       
       </SectionReveal>
     </section>
   );
