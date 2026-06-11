@@ -224,7 +224,7 @@ export default function CoreValues() {
   const isInView = useInView(gridRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="bg-white py-15">
+    <section className="bg-white pt-15 pb-0">
       <SectionReveal className="mx-auto container">
 
         {/* ── Section header ── */}

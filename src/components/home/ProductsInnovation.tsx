@@ -62,7 +62,7 @@ export default function ProductsInnovation() {
 
   return (
     <section
-      className="products-innovation-shell relative isolate overflow-hidden pt-5 pb-5 "
+      className="products-innovation-shell relative isolate overflow-hidden pt-0 pb-5 "
     >
       <div
         aria-hidden
