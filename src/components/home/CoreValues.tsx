@@ -233,7 +233,7 @@ export default function CoreValues() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="text-sm font-semibold text-[#5FB0C2] uppercase tracking-widest"
+          className=" font-semibold text-slate-950"
         >
           Our Core Values
         </motion.p>
