@@ -112,9 +112,7 @@ export default function Footer() {
             />
           </Link>
           <h2 className="max-w-3xl text-left md:!text-[40px] font-bold leading-[1.08] tracking-normal lg:text-right">
-            Business With Intelligent AI Solutions
-            <br className="hidden sm:block" />
-            And Digital Innovation.
+            Business With Intelligent AI Solutions And Digital Innovation.
           </h2>
         </div>
 

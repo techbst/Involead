@@ -106,7 +106,7 @@ export default function ProductsInnovation() {
 
         <div className="mt-12">
           <Swiper
-            slidesPerView={1.05}
+            slidesPerView={1}
             spaceBetween={32}
             breakpoints={{
               740: { slidesPerView: 2 },

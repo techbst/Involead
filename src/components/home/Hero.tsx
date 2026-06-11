@@ -146,7 +146,7 @@ export default function Hero() {
             className="absolute inset-20 rounded-full border border-sky-100 border-r-sky-400/70"
           /> */}
           <motion.img
-            animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+            animate={{ y: [0, -30, 0], rotate: [0, 60, 0] }}
             transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
             src="/img/shape-1.webp"
             alt="Futuristic abstract AI data object"
