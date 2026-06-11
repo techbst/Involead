@@ -13,13 +13,24 @@ const items = [
   'AI Agents',
   'NLP',
   'Computer Vision',
-];
+];type MarqueeBarProps = {
+  bgColor?: string;
+};
 
-export default function MarqueeBar() {
-  const row = [...items, ...items, ...items];
-
+export default function MarqueeBar({
+  bgColor = "#5fb0c2",
+}: MarqueeBarProps) {
+   const row = [...items, ...items, ...items];
   return (
-    <section className="relative z-20 -mt-1 bg-secondary py-4">
+    <section
+      className="relative z-20 -mt-1 py-4"
+      style={{
+        backgroundColor:
+          bgColor === "secondary"
+            ? "#5fb0c2"
+            : bgColor,
+      }}
+    >
       <motion.div
         className="flex w-max gap-[22px] hover:[animation-play-state:paused]"
         animate={{ x: ['0%', '-33.333%'] }}

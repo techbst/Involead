@@ -22,11 +22,18 @@ const headlineWords = [
   "Solutions",
 ];
 
-function AnimatedHeadline() {
+function AnimatedHeadline({
+  titleColor = "#0f172a",
+  highlightColor = "#06b6d4",
+}: {
+  titleColor?: string;
+  highlightColor?: string;
+}) {
   return (
     <motion.h1
       variants={fadeUp}
-      className="max-w-4xl text-[36px] md:!text-[54px] font-bold !leading-[115%] tracking-normal text-slate-950"
+     className="max-w-4xl text-[36px] md:!text-[54px] font-bold !leading-[115%] tracking-normal"
+style={{ color: titleColor }}
       aria-label="Engineering Products with Intelligent AI & Data Solutions"
     >
       {headlineWords.map((word, wordIndex) => (
@@ -40,9 +47,10 @@ function AnimatedHeadline() {
               delay: 0.08 + wordIndex * 0.075,
               ease: [0.2, 0.9, 0.2, 1],
             }}
-            className={`mr-3 inline-block ${
-              wordIndex >= 3 ? "text-secondary" : ""
-            }`}
+            className="mr-3 inline-block"
+style={{
+  color: wordIndex >= 3 ? highlightColor : titleColor,
+}}
           >
             {word}
           </motion.span>
@@ -52,13 +60,22 @@ function AnimatedHeadline() {
         aria-hidden
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
-        className="ml-1 inline-block h-[.9em] w-[3px] translate-y-1 bg-secondary"
+       className="ml-1 inline-block h-[.9em] w-[3px] translate-y-1"
+style={{ backgroundColor: highlightColor }}
       />
     </motion.h1>
   );
 }
 
-export default function Hero() {
+export default function Hero({
+  titleColor = "#0f172a",
+  highlightColor = "#5fb0c2",
+  bgColor = "#f8fbff",
+}: {
+  titleColor?: string;
+  highlightColor?: string;
+  bgColor?: string;
+}) {
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const smoothX = useSpring(pointerX, { stiffness: 90, damping: 18 });
@@ -79,7 +96,8 @@ export default function Hero() {
         pointerX.set(0);
         pointerY.set(0);
       }}
-      className="relative flex items-center overflow-hidden bg-[#f8fbff] pt-26 pb-26 md:pt-40 md:pb-24"
+     className="relative flex items-center overflow-hidden pt-26 pb-26 md:pt-40 md:pb-24"
+style={{ background: bgColor }}
     >
           <img
         src="/img/List.svg"
@@ -106,7 +124,10 @@ export default function Hero() {
           transition={{ staggerChildren: 0.12 }}
           className="max-w-4xl"
         >
-          <AnimatedHeadline />
+          <AnimatedHeadline
+  titleColor={titleColor}
+  highlightColor={highlightColor}
+/>
           <motion.p variants={fadeUp} className="mt-4 max-w-2xl ">
             We help enterprises leverage AI, analytics, and intelligent
             automation to streamline operations, accelerate decision-making, and
