@@ -81,7 +81,7 @@ export default function ClipCard({
         {/* Info Card Body */}
         <div className="flex flex-1 flex-col justify-between p-6">
           <div>
-            <h3 className="font-display text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#2c7787] transition-colors duration-300 sm:text-xl">
+            <h3 className="font-display !text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#2c7787] transition-colors duration-300 sm:!text-xl">
               {title}
             </h3>
 
