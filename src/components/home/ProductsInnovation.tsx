@@ -128,7 +128,7 @@ export default function ProductsInnovation() {
                   }}
                   viewport={{ once: true }}
                   className="relative h-[380px] w-full sm:h-[430px] lg:h-[450px]"
-                >
+                > 
                   <ClipCard 
                     image={product.image}
                     title={product.title}
