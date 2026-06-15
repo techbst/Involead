@@ -25,25 +25,25 @@ const ContactPage = () => {
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-semibold mb-2">First Name</label>
-                                    <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" />
+                                    <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none" />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold mb-2">Last Name</label>
-                                    <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" />
+                                    <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none" />
                                 </div>
                             </div>
 
                             <div>
                                 <label className="block text-sm font-semibold mb-2">Work Email</label>
-                                <input type="email" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" />
+                                <input type="email" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none" />
                             </div>
 
                             <div>
                                 <label className="block text-sm font-semibold mb-2">Message</label>
-                                <textarea rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                                <textarea rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none"></textarea>
                             </div>
 
-                            <button className="w-full py-4 bg-[#4f94a1] text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                            <button className="w-full py-4 bg-[#4f94a1] text-white font-bold rounded-xl hover:bg-[#3a7a85] transition shadow-lg shadow-blue-200">
                                 Send Inquiry
                             </button>
                         </form>
