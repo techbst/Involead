@@ -160,7 +160,7 @@ export default function Footer() {
                   <PhoneCall className="size-5 sm:size-6" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-[13px] leading-snug text-white/90 sm:text-[14px]">
+                   <p className="!text-[17px] !font-bold leading-tight text-white sm:text-[20px]">
                    Contact Us
                   </p>
                   <Link
