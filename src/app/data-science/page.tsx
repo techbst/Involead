@@ -2,6 +2,9 @@ import React from 'react'
 import HeroSection from '@/components/home/Hero';
 import { Sparkles } from 'lucide-react';
 import OurCapabilities from '@/components/data-science/ourCapabiity';
+import StatsCounter from '@/components/home/StatsCounter';
+import CaseStudies from '@/components/home/CaseStudies';
+import Testimonials from '@/components/home/Testimonials';
 function DataScience() {
   return (
     <div>
@@ -72,6 +75,9 @@ function DataScience() {
         labelicon=<Sparkles />
       />
       <OurCapabilities />
+      <CaseStudies />
+      <Testimonials />
+      <StatsCounter />
     </div>
   )
 }
