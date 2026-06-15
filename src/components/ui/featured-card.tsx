@@ -202,7 +202,7 @@ export default function FeatureGridSection({
                                                     key={startIndex}
                                                     className="grid grid-cols-2 gap-6"
                                                 >
-                                                    {item.metrics.slice(startIndex, startIndex + 2).map((metric, i) => (
+                                                    {item.metrics?.slice(startIndex, startIndex + 2).map((metric, i) => (
                                                         <motion.div
                                                             key={startIndex + i}
                                                             initial={{ opacity: 0, y: 12 }}
