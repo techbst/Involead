@@ -10,6 +10,7 @@ import ServicesSection from '@/components/home/ServicesSection';
 import StatsCounter from '@/components/home/StatsCounter';
 import TechnologyScale from '@/components/home/TechnologyScale';
 import Testimonials from '@/components/home/Testimonials';
+import HeroSection from '@/components/home/Hero';
 
 export const metadata: Metadata = {
   title: 'AI & Data Solutions - InvoLead',
@@ -19,11 +20,18 @@ export const metadata: Metadata = {
 export default function HomeSecond() {
   return (
     <div className="overflow-hidden bg-white text-slate-950">
-      <Hero
-  titleColor="#000"
-  highlightColor="#402f5c"
-  bgColor="linear-gradient(45deg, #402f5c9c, transparent)"
-/>
+
+      <HeroSection
+        title="Engineering Products with Intelligent AI & Data Solutions"
+        description="We help enterprises leverage AI, analytics, and intelligent automation to streamline operations, accelerate decision-making, and build scalable digital solutions that drive measurable business growth."
+        ctaText="Explore Services"
+        ctaLink="/about"
+        heroImage="/img/shape-1.webp"
+        bgImage="/img/Feature.png"
+        sideImage="/img/List.svg"
+        highlightColor="#402f5c"
+        bgColor="linear-gradient(45deg, #402f5c9c, transparent)"
+      />
       <MarqueeBar bgColor="#402f5c" />
       <ServicesSection />
       <IndustryTabs />

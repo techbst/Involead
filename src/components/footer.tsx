@@ -161,7 +161,7 @@ export default function Footer() {
                 </span>
                 <div>
                   <p className="text-[13px] leading-snug text-white/90 sm:text-[14px]">
-                    Mon - Sat / 10:00AM - 6:00PM
+                   Contact Us
                   </p>
                   <Link
                     href="tel:+919873074893"
