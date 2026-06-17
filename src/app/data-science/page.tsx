@@ -1,16 +1,14 @@
-import React from 'react'
 import HeroSection from '@/components/home/Hero';
-import { Sparkles } from 'lucide-react';
 import OurCapabilities from '@/components/data-science/ourCapabiity';
 import StatsCounter from '@/components/home/StatsCounter';
 import CaseStudies from '@/components/home/CaseStudies';
 import Testimonials from '@/components/home/Testimonials';
+import IndustryStrength from '@/components/data-science/IndustryStrength';
 function DataScience() {
   return (
     <div>
       <HeroSection
 
-        label="Our Solution"
         title="Data Science"
         description="Predict, analyze, and optimize with AI-driven insights turning your raw data into measurable competitive advantage.
       "
@@ -72,9 +70,10 @@ function DataScience() {
   0% 0%
 ) "
         bgColor="linear-gradient(45deg, #F0F9FB, transparent)"
-        labelicon=<Sparkles />
+       
       />
       <OurCapabilities />
+      <IndustryStrength />
       <CaseStudies />
       <Testimonials />
       <StatsCounter />

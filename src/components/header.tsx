@@ -40,27 +40,49 @@ const nav: NavItem[] = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 10);
+  let lastScrollY = window.scrollY;
+
+  const onScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    setScrolled(currentScrollY > 10);
+
+    if (currentScrollY < 100) {
+      setShowHeader(true);
+    } else {
+      // setShowHeader(currentScrollY < lastScrollY);
+      setShowHeader(currentScrollY > lastScrollY);
     }
 
-    onScroll();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    lastScrollY = currentScrollY;
+  };
+
+  window.addEventListener("scroll", onScroll);
+
+  return () => {
+    window.removeEventListener("scroll", onScroll);
+  };
+}, []);
 
   const closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <header
-      className={` fixed left-0 right-0 top-5 z-[100] flex justify-center xl:px-12 px-5 bg-white/10 ${
-        scrolled ? '!bg-white !top-0 shadow-xl shadow-black/5 transition-all duration-300' : 'bg-transparent transition-all duration-300'
-      }`}
-    >
+  className={`fixed left-0 right-0 z-[100] flex justify-center xl:px-12 px-5 transition-transform duration-300 ${
+    showHeader
+      ? "translate-y-0"
+      : "-translate-y-full"
+  } ${
+    scrolled
+      ? "!bg-white !top-0 shadow-xl shadow-black/5"
+      : "top-5 bg-transparent"
+  }`}
+>
      <div
   className={`relative max-w-[84rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${
     scrolled
