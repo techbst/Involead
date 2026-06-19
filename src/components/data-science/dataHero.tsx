@@ -84,6 +84,21 @@ const itemVariants: Variants = {
   },
 };
 
+const rightColumnVariants: Variants = {
+  hidden: { opacity: 0, x: 20, scale: 0.98 },
+  show: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.14,
+      delayChildren: 0.15,
+    },
+  },
+};
+
 export default function DataScienceHero() {
   const reduceMotion = !!useReducedMotion();
 
@@ -171,24 +186,21 @@ export default function DataScienceHero() {
           </motion.div>
 
           <motion.div
-            initial={
-              reduceMotion ? false : { opacity: 0, scale: 0.94, y: 14 }
-            }
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-              delay: reduceMotion ? 0 : 0.25,
-            }}
+            variants={rightColumnVariants}
+            initial={reduceMotion ? "show" : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, amount: 0.35 }}
             className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            <AnalyticsPanel reduceMotion={reduceMotion} />
+            <motion.div variants={itemVariants}>
+              <AnalyticsPanel reduceMotion={reduceMotion} />
+            </motion.div>
 
             {floatingMetrics.map((metric, index) => (
               <FloatingMetricCard
                 key={metric.label}
                 metric={metric}
-                delay={reduceMotion ? 0 : 0.7 + index * 0.15}
+                delay={reduceMotion ? 0 : 0.55 + index * 0.15}
                 reduceMotion={reduceMotion}
               />
             ))}
@@ -345,8 +357,16 @@ function FloatingMetricCard({
       initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : {
+              y: -6,
+              scale: 1.02,
+            }
+      }
       className={cn(
-        "absolute z-20 flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-[0_16px_40px_rgba(15,23,42,0.12)]",
+        "absolute z-20 flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-[0_16px_40px_rgba(15,23,42,0.12)] transition-shadow duration-300 hover:shadow-[0_22px_56px_rgba(15,23,42,0.16)]",
         metric.corner === "top"
           ? "-right-2 -top-4 md:-right-6 md:-top-6"
           : "-left-2 -bottom-5 md:-left-7 md:-bottom-6"
@@ -354,13 +374,8 @@ function FloatingMetricCard({
     >
       <motion.div
         className="flex items-center gap-3"
-        animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
-        transition={{
-          duration: 3.2,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: delay + 0.6,
-        }}
+        animate={undefined}
+        transition={undefined}
       >
         <div>
           <p className="text-base font-bold leading-none text-slate-950">
