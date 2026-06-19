@@ -58,7 +58,7 @@ export default function MarketingDetailPage({
           >
             <motion.p
               variants={fadeUp}
-              className="mb-4 inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-secondary shadow-sm backdrop-blur"
+              className="mb-4 inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-semibold uppercase text-secondary shadow-sm backdrop-blur"
             >
               {eyebrow}
             </motion.p>

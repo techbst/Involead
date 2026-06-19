@@ -35,7 +35,7 @@ export default function AboutPage() {
         <div className="absolute inset-x-0 top-0 -z-10 h-[26rem] bg-[radial-gradient(circle_at_20%_20%,rgba(95,176,194,0.2),transparent_28%),radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.95),transparent_24%)]" />
         <div className="container mx-auto grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <p className="inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-secondary shadow-sm backdrop-blur">
+            <p className="inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-semibold uppercase text-secondary shadow-sm backdrop-blur">
               About InvoLead
             </p>
             <h1 className="mt-5 max-w-3xl text-[clamp(2.8rem,6vw,5.4rem)] font-semibold leading-[0.95] tracking-tight">

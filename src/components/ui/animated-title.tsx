@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 26 },
-  visible: { opacity: 1, y: 0 },
+  show: { opacity: 1, y: 0 },
 };
 
 interface AnimatedHeadlineProps {
@@ -20,13 +20,15 @@ export default function AnimatedHeadline({
   titleColor = "#0f172a",
   highlightColor = "#06b6d4",
   highlightFromWord = 3,
-  showCursor = true,
+  showCursor = false,
 }: AnimatedHeadlineProps) {
   const words = title.split(" ");
 
   return (
     <motion.h1
       variants={fadeUp}
+      initial="hidden"
+      animate="show"
       className="max-w-4xl text-[36px] md:text-[54px] font-bold leading-[115%]"
       style={{ color: titleColor }}
     >

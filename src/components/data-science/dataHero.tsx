@@ -4,7 +4,7 @@ import { useId } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-
+import AnimatedHeadline from "../ui/animated-title";
 import AnimatedNumber from "@/components/ui/animated-number";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -103,24 +103,9 @@ export default function DataScienceHero() {
   const reduceMotion = !!useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-white !pt-35 py-14 md:py-20">
+    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)] !pt-35 py-14 md:py-20">
     
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-40 size-[28rem] rounded-full bg-[#eaf7fb] blur-3xl" />
-        <div className="absolute -right-24 top-10 size-[24rem] rounded-full bg-[#dceaf9] blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(79,141,154,0.25) 1px, transparent 1px)",
-            backgroundSize: "26px 26px",
-            maskImage:
-              "radial-gradient(ellipse 70% 60% at 50% 30%, black 35%, transparent 80%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 70% 60% at 50% 30%, black 35%, transparent 80%)",
-          }}
-        />
-      </div>
+     
 
       <div className="container relative mx-auto">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
@@ -136,16 +121,13 @@ export default function DataScienceHero() {
               Data Science &amp; AI Consulting
             </motion.span> */}
 
-            <motion.h1
-              variants={itemVariants}
-              className="mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-slate-950 sm:text-5xl md:text-6xl"
-            >
-              <span className="bg-gradient-to-r from-[#4F8D9A] via-[#5fb0c2] to-[#2f6690] bg-clip-text text-transparent">
-                Intelligent Solutions.
-              </span>
-              <br />
-              Impactful Results.
-            </motion.h1>
+            <AnimatedHeadline
+  title="Intelligent Solutions. Impactful Results."
+  highlightFromWord={2}
+  highlightColor="#5fb0c2"
+  titleColor="#0f172a"
+/>
+            
 
             <motion.p
               variants={itemVariants}
@@ -159,27 +141,17 @@ export default function DataScienceHero() {
               variants={itemVariants}
               className="mt-7 flex flex-wrap items-center gap-3"
             >
-              <Button
-                asChild
-                className="rounded-full bg-slate-950 px-6 py-6 text-sm font-semibold text-white hover:bg-slate-800"
-              >
+              <Button asChild variant="default">
                 <Link href="/contact-us">
                   Schedule a Free Consultation
-                  <span className="ml-1 flex size-5 items-center justify-center rounded-full bg-white/15">
-                    <ArrowRight className="size-3.5" />
-                  </span>
+                  <ArrowRight className="size-4" />
                 </Link>
               </Button>
 
-              <Button
-                asChild
-                className="rounded-full bg-slate-100 px-6 py-6 text-sm font-semibold text-slate-700 hover:bg-slate-200"
-              >
+                <Button asChild variant="outline">
                 <Link href="/case-studies">
                   View Case Studies
-                  <span className="ml-1 flex size-5 items-center justify-center rounded-full bg-slate-950/10">
-                    <ArrowUpRight className="size-3.5" />
-                  </span>
+                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
             </motion.div>
@@ -212,7 +184,7 @@ export default function DataScienceHero() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-16 grid grid-cols-2 overflow-hidden rounded-[1.75rem] border border-secondary/25 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:grid-cols-4"
+          className="relative mt-16 grid grid-cols-2 overflow-hidden rounded-[1.75rem] border border-secondary bg-white shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:grid-cols-4"
         >
           {stats.map((stat, index) => (
             <div
@@ -222,7 +194,7 @@ export default function DataScienceHero() {
                 STAT_DIVIDERS[index]
               )}
             >
-              <span className="text-3xl font-bold text-slate-950 md:text-4xl">
+              <span className="text-3xl font-bold text-secondary md:text-3xl">
                 <AnimatedNumber value={stat.value} />
               </span>
               <span className="text-xs font-medium text-slate-500 md:text-sm">
@@ -240,13 +212,13 @@ function AnalyticsPanel({ reduceMotion }: { reduceMotion: boolean }) {
   const gradientId = useId();
 
   return (
-    <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.35)] md:p-7">
+    <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-800 p-4 shadow-[0_30px_80px_rgba(15,23,42,0.35)] md:p-4">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(95,176,194,0.22),transparent_45%)]" />
       <div className="pointer-events-none absolute inset-x-7 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
       <div className="relative z-10 flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] !text-white">
+          <p className="text-xs font-semibold capitalize !text-white">
             Revenue Intelligence
           </p>
           <p className="mt-1 text-sm font-medium !text-white/80">
@@ -264,10 +236,10 @@ function AnalyticsPanel({ reduceMotion }: { reduceMotion: boolean }) {
         </span>
       </div>
 
-      <div className="relative z-10 mt-5">
+      <div className="relative z-10 mt-2">
         <svg
           viewBox="0 0 320 150"
-          className="h-36 w-full overflow-visible md:h-40"
+          className="h-30 w-full overflow-visible md:h-30"
         >
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -312,7 +284,7 @@ function AnalyticsPanel({ reduceMotion }: { reduceMotion: boolean }) {
           />
         </svg>
 
-        <div className="mt-4 flex items-end gap-3 border-t border-white/10 pt-4">
+        <div className="mt-2 flex items-end gap-3 border-t border-white/10 pt-4">
           {quarterBars.map((bar, index) => (
             <div
               key={bar.label}
@@ -354,9 +326,21 @@ function FloatingMetricCard({
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+  initial={{ opacity: 0, scale: 0.92, y: 20 }}
+  animate={{
+    opacity: 1,
+    scale: 1,
+    y: [0, -10, 0],
+  }}
+  transition={{
+    opacity: { duration: 0.5, delay },
+    scale: { duration: 0.5, delay },
+    y: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  }}
       whileHover={
         reduceMotion
           ? undefined

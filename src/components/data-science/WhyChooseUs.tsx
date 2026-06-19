@@ -19,6 +19,7 @@ type WhyChooseItem = {
   icon: LucideIcon;
   title: string;
   description: string;
+  hint: string;
 };
 
 const items: WhyChooseItem[] = [
@@ -27,36 +28,42 @@ const items: WhyChooseItem[] = [
     title: "Outcome-first thinking",
     description:
       "Every roadmap starts with a KPI, a decision point, and the business value the model must improve.",
+    hint: "KPI-led roadmaps with measurable business value.",
   },
   {
     icon: CodeXml,
     title: "Practical explainability",
     description:
       "Models should be easy to trust, inspect, and defend in front of the people who use them.",
+    hint: "Transparent models teams can trust and defend.",
   },
   {
     icon: Combine,
     title: "Built for adoption",
     description:
       "We align delivery with how teams actually work, not how slide decks imagine they should.",
+    hint: "Delivery shaped around real team workflows.",
   },
   {
     icon: Grid2x2Check,
     title: "Fast validation",
     description:
       "Compact experiments and clear checkpoints keep the section light, useful, and easy to act on.",
+    hint: "Quick experiments with clear checkpoints.",
   },
   {
     icon: ShieldCog,
     title: "Governed delivery",
     description:
       "Controls, visibility, and traceability stay built in so the work is enterprise-ready from day one.",
+    hint: "Enterprise-ready delivery with built-in governance.",
   },
   {
     icon: BrainCircuit,
     title: "Scalable thinking",
     description:
       "We design for reuse, resilient workflows, and data science patterns that grow with the business.",
+    hint: "Reusable patterns that scale with the business.",
   },
 ];
 
@@ -79,34 +86,73 @@ const cardVariants: Variants = {
   },
 };
 
-function WhyChooseCard({ icon: Icon, title, description }: WhyChooseItem) {
+const iconVariants: Variants = {
+  rest: { scale: 1, rotate: 0 },
+  hover: {
+    scale: 1.08,
+    rotate: -5,
+    transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const descriptionVariants: Variants = {
+  rest: {
+    opacity: 0,
+    height: 0,
+    y: 6,
+  },
+  hover: {
+    opacity: 1,
+    height: "auto",
+    y: 0,
+    transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+function WhyChooseCard({ icon: Icon, title, description, hint }: WhyChooseItem) {
   return (
-    <motion.article
-      variants={cardVariants}
-      className="group relative overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-    >
-      <div className="absolute inset-0 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="absolute inset-x-0 bottom-0 h-1 bg-secondary/90" />
+    <motion.div variants={cardVariants} className="h-full">
+      <motion.article
+        initial="rest"
+        whileHover="hover"
+        className="group relative h-full overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm transition-colors duration-300"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-x-0 bottom-0 h-1 bg-secondary" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
-      <div className="relative z-10 flex min-h-[11.5rem] flex-col justify-between">
-        <div>
-          <div className="inline-flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white">
-            <Icon className="size-5" />
+        <div className="relative z-10 flex min-h-[11.5rem] flex-col justify-between">
+          <div>
+            <motion.div
+              variants={iconVariants}
+              className="inline-flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white"
+            >
+              <Icon className="size-5" />
+            </motion.div>
+            <h3 className="mt-5 text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 group-hover:text-white">
+              {title}
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-white/85">
+              {hint}
+            </p>
+
+            <motion.div
+              variants={descriptionVariants}
+              className="overflow-hidden"
+            >
+              <p className="mt-3 text-sm leading-7 !text-slate-600 transition-colors duration-300 group-hover:!text-white">
+                {description}
+              </p>
+            </motion.div>
           </div>
-          <h3 className="mt-5 text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 group-hover:text-white">
-            {title}
-          </h3>
-          <p className="mt-3 text-sm leading-7 text-slate-600 transition-all duration-300 group-hover:text-white/85">
-            {description}
-          </p>
-        </div>
 
-        <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary transition-colors duration-300 group-hover:text-white">
-          Hover to reveal
-          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary transition-colors duration-300 group-hover:text-white">
+            Hover to reveal
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </div>
         </div>
-      </div>
-    </motion.article>
+      </motion.article>
+    </motion.div>
   );
 }
 

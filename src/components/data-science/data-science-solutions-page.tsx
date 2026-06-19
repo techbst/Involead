@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -13,10 +12,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import AnimatedNumber from "@/components/ui/animated-number";
 import SectionReveal from "@/components/home/SectionReveal";
 import { Button } from "@/components/ui/button";
-import OurCapabilities from "@/components/data-science/updateCapbilti";
+import Capabilities from "@/components/data-science/capabilities";
 import IndustryStrengthSection from "@/components/data-science/IndustryStrength";
 import WhyChooseUs from "@/components/data-science/WhyChooseUs";
-import HeroSection from "../home/Hero";
 import DataHero from "./dataHero";
 
 type Capability = {
@@ -235,8 +233,7 @@ export default function DataScienceSolutionsPage() {
     <div className="overflow-hidden bg-white text-slate-950">
       <DataHero />
 
-      <OurCapabilities />
-      {/* <OurCapabilities /> */}
+      <Capabilities />
 
       <IndustryStrengthSection
         title="Our Strength Across Industries"
