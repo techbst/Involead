@@ -15,6 +15,7 @@ import SectionReveal from "@/components/home/SectionReveal";
 import { Button } from "@/components/ui/button";
 import OurCapabilities from "@/components/data-science/updateCapbilti";
 import IndustryStrengthSection from "@/components/data-science/IndustryStrength";
+import WhyChooseUs from "@/components/data-science/WhyChooseUs";
 import HeroSection from "../home/Hero";
 import DataHero from "./dataHero";
 
@@ -91,21 +92,6 @@ const strengths = [
   { title: "Hours saved", value: "25-35H", label: "Monthly operations time" },
 ];
 
-const values = [
-  {
-    title: "Outcome-first thinking",
-    body: "Every roadmap starts with a KPI, a decision point, and the business value the model must improve.",
-  },
-  {
-    title: "Practical explainability",
-    body: "Models should be easy to trust, inspect, and defend in front of the people who use them.",
-  },
-  {
-    title: "Built for adoption",
-    body: "We align delivery with how teams actually work, not how slide decks imagine they should.",
-  },
-];
-
 const process = [
   {
     title: "Discover",
@@ -168,8 +154,6 @@ const impactNumbers = [
   { value: 50, suffix: "+", label: "Enterprise workflows" },
   { value: 35, suffix: "H+", label: "Time saved monthly" },
 ];
-
-
 
 function SectionHeading({
   title,
@@ -259,35 +243,7 @@ export default function DataScienceSolutionsPage() {
         subtitle="The same data science rigor is adapted to each business context, with a consistent home-page palette and a compact, readable layout."
       />
 
-      <SectionReveal className="container mx-auto py-12 mt-15 mb-10">
-        <SectionHeading
-          title="Why Choose Us"
-          description="Hover the cards to reveal more detail. The layout stays compact by default and only expands when a user wants to inspect it."
-        />
-
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {values.map((item, index) => (
-            <motion.article
-              key={item.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.35, delay: index * 0.04 }}
-              className="group relative overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="absolute inset-0 bg-[#5fb0c2] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative z-10">
-                <h3 className="text-2xl font-semibold tracking-tight text-slate-950 transition-colors duration-300 group-hover:text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600  transition-all duration-300 group-hover:mt-5 group-hover:text-white ">
-                  {item.body}
-                </p>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </SectionReveal>
+      <WhyChooseUs />
 
       <section className="bg-[linear-gradient(135deg,#f7fbfd_0%,#ffffff_42%,#eff8fb_100%)] py-14">
         <div className="container mx-auto">
