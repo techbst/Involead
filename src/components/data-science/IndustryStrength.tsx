@@ -121,7 +121,7 @@ export default function IndustryStrengthSection({
           ))}
         </div>
 
-        <div className="mt-10 flex justify-start">
+        {/* <div className="mt-10 flex justify-start">
           <Button
             asChild
             className="rounded-full bg-primary px-6 py-6 text-primary-foreground shadow-[0_14px_36px_rgba(15,23,42,0.18)] hover:bg-primary/90"
@@ -131,7 +131,7 @@ export default function IndustryStrengthSection({
               <ArrowRight className="size-4" />
             </Link>
           </Button>
-        </div>
+        </div> */}
       </SectionReveal>
     </section>
   );
