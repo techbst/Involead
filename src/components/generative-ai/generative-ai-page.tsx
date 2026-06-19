@@ -61,7 +61,7 @@ type TimelineStep = {
 type TechItem = {
   name: string;
   body: string;
-  icon: React.ElementType;
+  image: string;
 };
 
 type TechTab = {
@@ -94,12 +94,12 @@ const impactCards: Impact[] = [
   {
     value: "40%",
     label: "Lower Inference Costs",
-    body: "Model Distillation & Quantization: We train cost-efficient SLMs that outperform massive generic models on specific tasks, slashing your token spend.",
+    body: "Model Distillation & Quantization: We train cost-efficient SLMs (Small Language Models) that outperform massive generic models on specific tasks, slashing your token spend.",
   },
   {
     value: "27%",
     label: "Faster Time-to-Value",
-    body: "Programmatic Optimization: Using frameworks like DSPy, we automate prompt tuning and pipeline optimization, eliminating brittle trial-and-error.",
+    body: "Programmatic Optimization: Using frameworks like DSPy, we automate prompt tuning and pipeline optimization, eliminating the brittle trial-and-error of manual prompt engineering.",
   },
 ];
 
@@ -115,22 +115,22 @@ const expertiseCards: Expertise[] = [
       "Semantic Routing",
     ],
     paragraph:
-      "From Chatbots to Autonomous Workers. We deploy Multi-Agent Systems where distinct AI personas collaborate to solve complex problems.",
+      "From Chatbots to Autonomous Workers. We deploy Multi-Agent Systems (MAS) where distinct AI personas (Planner, Coder, Critic, Executor) collaborate to solve complex problems.",
     points: [
       {
         title: "Reasoning Loops (ReAct/CoT)",
         description:
-          "Agents break complex goals into executable steps using Chain-of-Thought reasoning.",
+          "Agents that break down complex goals into executable steps using Chain-of-Thought reasoning.",
       },
       {
         title: "Tool-Use Mastery",
         description:
-          "Agents interface with APIs, SQL databases, and SaaS platforms to perform actions.",
+          "Agents that natively interface with APIs, SQL databases, and SaaS platforms to perform actions, not just output text.",
       },
       {
         title: "Semantic Routing",
         description:
-          "Queries are dispatched to the most efficient model based on task complexity.",
+          "Intelligent routers that dynamically dispatch queries to the most efficient model (e.g., routing simple math to a fast SLM and complex logic to GPT-4o).",
       },
     ],
     outcome: "Streamlined operations and real-time execution at scale.",
@@ -146,175 +146,205 @@ const expertiseCards: Expertise[] = [
       "RAG-Optimized Tuning (RAFT)",
     ],
     paragraph:
-      "Precision-tuned models that align with your enterprise goals and think the way your business needs them to.",
+      "Precision-tuned models that align with your enterprise goals. We go beyond generic fine-tuning to deliver models that think the way your business needs them to.",
     points: [
       {
         title: "Preference-Aligned Precision",
         description:
-          "RLHF and DPO align outputs with human preferences and business-specific quality standards.",
+          "RLHF and DPO techniques that align model outputs with human preferences and business-specific quality standards.",
       },
       {
         title: "Cognitive Distillation",
         description:
-          "Transfer knowledge from frontier models into smaller, faster models without sacrificing domain accuracy.",
+          "Transfer knowledge from large frontier models into smaller, faster models without sacrificing domain accuracy.",
       },
       {
         title: "RAG-Optimized Tuning (RAFT)",
         description:
-          "Models learn to reason over retrieved context for stronger RAG pipeline accuracy.",
+          "Fine-tuning that teaches models to reason over retrieved context, dramatically improving RAG pipeline accuracy.",
       },
     ],
     outcome: "Improved reliability and cost-efficient deployment.",
   },
   {
     icon: Search,
-    title: "Enterprise RAG Systems",
+    title: "AI Governance & Ethical Frameworks",
     backgroundImage:
       "bg-[radial-gradient(circle_at_18%_20%,rgba(181,255,226,0.76),transparent_30%),radial-gradient(circle_at_78%_16%,rgba(95,176,194,0.28),transparent_28%),linear-gradient(135deg,#ffffff_0%,#f1faf7_54%,#eef1f4_100%)]",
     pointerHeadings: [
-      "Hybrid Search Pipelines",
-      "Knowledge Graph Grounding",
-      "Guardrailed Retrieval",
+      "Total Traceability & Auditability",
+      "Safety & Control",
+      "Hallucination Detection",
+      "Transparency Gate Controls",
     ],
     paragraph:
-      "Production-grade retrieval systems that connect LLMs with your private enterprise knowledge.",
+      "Enterprise AI demands accountability. We build governance layers that ensure every AI decision is traceable, explainable, and compliant with regulatory frameworks.",
     points: [
       {
-        title: "Hybrid Search Pipelines",
-        description: "Combine keyword, semantic, and metadata search.",
+        title: "Total Traceability & Auditability",
+        description: "End-to-end logging of every inference, decision path, and data source for full regulatory compliance.",
       },
       {
-        title: "Knowledge Graph Grounding",
-        description: "Improve context accuracy with structured relationships.",
+        title: "Safety & Control",
+        description: "Guardrails, content filters, and policy enforcement layers that prevent harmful or off-brand outputs.",
       },
       {
-        title: "Guardrailed Retrieval",
-        description: "Reduce hallucination with source-aware generation.",
+        title: "Hallucination Detection",
+        description: "Real-time detection systems that flag confabulated facts before they reach end users.",
+      },
+      {
+        title: "Transparency Gate Controls",
+        description: "Configurable checkpoints that require human approval for high-stakes AI decisions.",
       },
     ],
-    outcome: "Accurate answers grounded in enterprise data.",
+    outcome: "Auditable and compliant AI systems.",
   },
   {
     icon: Eye,
-    title: "Multimodal AI Engineering",
+    title: "Hyper-Personalization at Scale",
     backgroundImage:
       "bg-[radial-gradient(circle_at_18%_18%,rgba(239,245,139,0.62),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(255,146,85,0.24),transparent_28%),linear-gradient(135deg,#ffffff_0%,#fbfbef_52%,#eef1f4_100%)]",
     pointerHeadings: [
-      "Document Intelligence",
-      "Vision AI Workflows",
-      "Creative Generation Pipelines",
+      "Real-Time Decisioning",
+      "Predictive Customer Journeys",
+      "Cross-Enterprise Scalability",
+      "Adaptive Learning Loops",
     ],
     paragraph:
       "AI systems that understand and generate across text, image, audio, video, and documents.",
     points: [
       {
-        title: "Document Intelligence",
-        description: "Extract insights from PDFs, forms, reports, and contracts.",
+        title: "Real-Time Decisioning",
+        description: "Sub-second inference pipelines that personalize content, recommendations, and actions as users interact.",
       },
       {
-        title: "Vision AI Workflows",
-        description: "Build image understanding and visual automation systems.",
+        title: "Predictive Customer Journeys",
+        description: "AI models that anticipate user needs and proactively shape the next-best-action across channels.",
       },
       {
-        title: "Creative Generation Pipelines",
-        description: "Generate brand-aligned content at scale.",
+        title: "Cross-Enterprise Scalability",
+        description: "Personalization engines that work across business units, geographies, and product lines from a unified model.",
+      },
+      {
+        title: "Adaptive Learning Loops",
+        description: "Continuous feedback integration that refines personalization accuracy with every interaction.",
       },
     ],
-    outcome: "Richer automation across every content format.",
+    outcome: "Context-aware experiences at enterprise scale.",
   },
   {
     icon: Workflow,
-    title: "AI Workflow Automation",
+    title: "Embodied AI Agents & Hyper-Realistic Avatars",
     backgroundImage:
       "bg-[radial-gradient(circle_at_16%_16%,rgba(255,146,85,0.3),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(181,255,226,0.48),transparent_28%),linear-gradient(135deg,#ffffff_0%,#f7f8f8_52%,#eef1f4_100%)]",
     pointerHeadings: [
-      "Human-in-the-Loop Reviews",
-      "API-Native Execution",
-      "Event-Driven Automation",
+      "Speech-to-Speech & Real-Time",
+      "Multimodal AI Integration",
+      "Custom Brand Avatars",
+      "24/7 Scalable CoPilot",
+      "Immersive Training & Knowledge Transfer",
     ],
     paragraph:
-      "End-to-end automation systems that turn manual business processes into intelligent pipelines.",
+      "Bring AI to life with embodied agents and lifelike digital avatars that see, hear, and respond naturally — transforming customer support, training, and brand engagement.",
     points: [
       {
-        title: "Human-in-the-Loop Reviews",
-        description: "Keep control where judgment matters.",
+        title: "Speech-to-Speech & Real-Time",
+        description: "Ultra-low-latency voice pipelines enabling natural, human-like conversations without perceptible delay.",
       },
       {
-        title: "API-Native Execution",
-        description: "Connect AI with CRMs, ERPs, databases, and internal tools.",
+        title: "Multimodal AI Integration",
+        description: "Agents that process text, voice, images, and video simultaneously for richer contextual understanding.",
       },
       {
-        title: "Event-Driven Automation",
-        description: "Trigger actions based on real-time business events.",
+        title: "Custom Brand Avatars",
+        description: "Photorealistic or stylized digital humans that embody your brand identity and tone of voice.",
+      },
+      {
+        title: "24/7 Scalable CoPilot",
+        description: "Always-on AI assistants that handle thousands of concurrent interactions without quality degradation.",
+      },
+      {
+        title: "Immersive Training & Knowledge Transfer",
+        description: "AI-driven simulations and interactive training modules that accelerate employee onboarding and upskilling.",
       },
     ],
-    outcome: "Faster operations with measurable business efficiency.",
+    outcome: "Higher engagement and consistent interactions.",
   },
   {
     icon: ShieldCheck,
-    title: "AI Governance & Safety",
+    title: "LLMOps, MLOps, & AI System Orchestration",
     backgroundImage:
       "bg-[radial-gradient(circle_at_18%_18%,rgba(95,176,194,0.28),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(232,208,255,0.58),transparent_30%),linear-gradient(135deg,#ffffff_0%,#f5f7fa_52%,#eef1f4_100%)]",
     pointerHeadings: [
-      "Policy-Aware Guardrails",
-      "Evaluation Frameworks",
-      "Observability & Monitoring",
+      "Model Serving & Inference",
+      "Continuous Monitoring & Drift Detection",
+      "Automated CI/CD Pipelines",
+      "Security & Governance Gates",
+      "Scalability-as-a-Service",
     ],
     paragraph:
-      "Secure AI infrastructure designed for enterprise compliance, control, and reliability.",
+      "Production-grade AI infrastructure that scales. We architect end-to-end MLOps and LLMOps pipelines so your models ship fast, stay healthy, and remain governed.",
     points: [
       {
-        title: "Policy-Aware Guardrails",
-        description: "Enforce business rules and safe output boundaries.",
+        title: "Model Serving & Inference",
+        description: "Optimized serving infrastructure with auto-scaling, batching, and GPU orchestration for cost-efficient inference.",
       },
       {
-        title: "Evaluation Frameworks",
-        description: "Continuously test quality, bias, latency, and cost.",
+        title: "Continuous Monitoring & Drift Detection",
+        description: "Real-time dashboards and alerts that catch data drift, model degradation, and anomalous outputs before they impact users.",
       },
       {
-        title: "Observability & Monitoring",
-        description: "Track every prompt, model response, and decision path.",
+        title: "Automated CI/CD Pipelines",
+        description: "End-to-end automation from model training to deployment with versioning, testing, and rollback capabilities.",
+      },
+      {
+        title: "Security & Governance Gates",
+        description: "Built-in security scanning, access controls, and compliance checks at every stage of the ML lifecycle.",
+      },
+      {
+        title: "Scalability-as-a-Service",
+        description: "Elastic infrastructure that scales from prototype to millions of daily inferences without re-architecture.",
       },
     ],
-    outcome: "Reliable AI systems ready for enterprise adoption.",
+    outcome: "Reliable, fast delivery at enterprise scale.",
   },
 ];
 
 const timelineSteps: TimelineStep[] = [
   {
-    step: "Step 01",
-    title: "Discovery & AI Opportunity Mapping",
-    body: "We audit workflows, data sources, operational bottlenecks, and automation opportunities to identify high-impact AI use cases.",
+    step: "Ideation & Problem Definition",
+    title: "Strategic Alignment & Value Mapping",
+    body: "We partner with stakeholders to identify high-impact opportunities, define measurable outcomes, and ensure a clear alignment between AI goals and core business strategy.",
   },
   {
-    step: "Step 02",
-    title: "Data Readiness & Knowledge Architecture",
-    body: "We structure enterprise knowledge, define data pipelines, clean fragmented datasets, and prepare secure AI-ready foundations.",
+    step: "Proof of Concept (POC)",
+    title: "Rapid Prototyping & Feasibility Validation",
+    body: "A rapid, focused prototype validates technical feasibility and demonstrates potential ROI. This quick-win phase builds confidence and secures initial buy-in.",
   },
   {
-    step: "Step 03",
-    title: "Prototype & Cognitive Architecture Design",
-    body: "We design the AI system blueprint including RAG, agent orchestration, model routing, evaluation logic, and integration flow.",
+    step: "Minimum Viable Product (MVP)",
+    title: "Core Capability Deployment & Enterprise Testing",
+    body: "We deliver a functional version with essential, governance-embedded capabilities ready for real-world testing and refinement with a controlled user group.",
   },
   {
-    step: "Step 04",
-    title: "Model Selection, Tuning & Optimization",
-    body: "We select the right LLMs, SLMs, embedding models, and fine-tuning methods for performance, cost, and reliability.",
+    step: "Pilot Testing",
+    title: "Performance Validation & Human-in-the-Loop",
+    body: "The MVP is deployed in a controlled environment to validate results, gather feedback, and ensure performance readiness, with integrated observability and human oversight.",
   },
   {
-    step: "Step 05",
-    title: "Integration & Workflow Automation",
-    body: "We connect AI systems with internal tools, CRMs, databases, SaaS platforms, dashboards, and APIs for real execution.",
+    step: "Scaling & Integration",
+    title: "LLMOps/MLOps & Robust Integration",
+    body: "Validated solutions are scaled across the enterprise, fortified with robust LLMOps, security protocols, and seamless integration into your core Data Infrastructure.",
   },
   {
-    step: "Step 06",
-    title: "Testing, Evaluation & Guardrails",
-    body: "We validate accuracy, latency, cost, safety, hallucination risk, and enterprise policy compliance before launch.",
+    step: "Monitoring & Optimization",
+    title: "Continuous Adaptive Learning & Drift Mitigation",
+    body: "Validated solutions are scaled across the enterprise, fortified with robust LLMOps, security protocols, and seamless integration into your core Data Infrastructure.",
   },
   {
-    step: "Step 07",
-    title: "Deployment, Monitoring & Scale",
-    body: "We deploy production-ready AI systems with analytics, observability, feedback loops, and continuous optimization.",
+    step: "Governance & Compliance",
+    title: "Continuous Adaptive Learning & Drift Mitigation",
+    body: "We continuously track performance, fine-tune accuracy, adapt models to evolving needs, and leverage drift detection to ensure long-term, sustained value.",
   },
 ];
 
@@ -322,45 +352,45 @@ const techTabs: TechTab[] = [
   {
     label: "Programming Languages & Frameworks",
     items: [
-      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", icon: Code2 },
-      { name: "TypeScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", icon: Code2 },
-      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", icon: Layers3 },
-      { name: "FastAPI", body: "High-performance Python APIs for model serving and automation.", icon: Zap },
-      { name: "PyTorch", body: "Deep learning framework for training and experimentation.", icon: Brain },
-      { name: "TensorFlow", body: "Production-ready ML framework for scalable AI workloads.", icon: Cpu },
+      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", image: "/gen-ai/technologies/python.svg", },
+      { name: "JavaScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/next-js.svg", },
+      { name: "React.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/react.svg", },
+      { name: "Node.js", body: "High-performance Python APIs for model serving and automation.", image: "/gen-ai/technologies/nodejs.svg", },
+      { name: "Three.js", body: "Deep learning framework for training and experimentation.", image: "/gen-ai/technologies/python.svg", },
     ],
   },
   {
     label: "LLM Models (Text, Image, Video, etc.)",
     items: [
-      { name: "OpenAI GPT Models", body: "Advanced reasoning, generation, and enterprise AI workflows.", icon: Sparkles },
-      { name: "Claude", body: "Long-context reasoning and business-grade AI assistance.", icon: Bot },
-      { name: "Gemini", body: "Multimodal AI capabilities for text, vision, and complex reasoning.", icon: Orbit },
-      { name: "Llama", body: "Open-weight LLMs for private and customizable deployments.", icon: Brain },
-      { name: "Mistral", body: "Efficient frontier models for fast and cost-effective AI systems.", icon: Zap },
-      { name: "Stable Diffusion", body: "Image generation workflows for creative automation.", icon: Eye },
+      { name: "OpenAI GPT Models", body: "Advanced reasoning, generation, and enterprise AI workflows.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Claude", body: "Long-context reasoning and business-grade AI assistance.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Gemini", body: "Multimodal AI capabilities for text, vision, and complex reasoning.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Llama", body: "Open-weight LLMs for private and customizable deployments.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Mistral", body: "Efficient frontier models for fast and cost-effective AI systems.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Stable Diffusion", body: "Image generation workflows for creative automation.", image: "/gen-ai/technologies/python.svg", },
     ],
   },
   {
     label: "Database & Vector Database",
     items: [
-      { name: "PostgreSQL", body: "Reliable relational database for structured enterprise data.", icon: Database },
-      { name: "MongoDB", body: "Flexible NoSQL database for modern applications.", icon: Database },
-      { name: "Pinecone", body: "Managed vector database for semantic search and RAG.", icon: Search },
-      { name: "Weaviate", body: "Vector search engine for AI-native data retrieval.", icon: Network },
-      { name: "Qdrant", body: "High-performance vector database for scalable similarity search.", icon: Cpu },
-      { name: "Redis", body: "Fast caching and real-time memory layer for AI systems.", icon: Zap },
+      { name: "PostgreSQL", body: "Reliable relational database for structured enterprise data.", image: "/gen-ai/technologies/python.svg", },
+      { name: "MongoDB", body: "Flexible NoSQL database for modern applications.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Pinecone", body: "Managed vector database for semantic search and RAG.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Weaviate", body: "Vector search engine for AI-native data retrieval.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Qdrant", body: "High-performance vector database for scalable similarity search.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Redis", body: "Fast caching and real-time memory layer for AI systems.", image: "/gen-ai/technologies/python.svg", },
     ],
   },
   {
     label: "AI Orchestration & Agent Frameworks",
     items: [
-      { name: "LangChain", body: "Build LLM applications with chains, tools, and agents.", icon: Workflow },
-      { name: "LlamaIndex", body: "Data framework for RAG and enterprise knowledge systems.", icon: Search },
-      { name: "CrewAI", body: "Multi-agent collaboration framework for autonomous workflows.", icon: Network },
-      { name: "AutoGen", body: "Agentic AI framework for multi-agent conversation systems.", icon: Bot },
-      { name: "DSPy", body: "Programmatic prompt and pipeline optimization.", icon: Sparkles },
-      { name: "n8n", body: "Workflow automation for AI-powered business processes.", icon: Workflow },
+      { name: "LangChain", body: "Build LLM applications with chains, tools, and agents.", image: "/gen-ai/technologies/python.svg", },
+      { name: "LlamaIndex", body: "Data framework for RAG and enterprise knowledge systems.", image: "/gen-ai/technologies/python.svg", },
+      { name: "CrewAI", body: "Multi-agent collaboration framework for autonomous workflows.", image: "/gen-ai/technologies/python.svg", },
+      { name: "AutoGen", body: "Agentic AI framework for multi-agent conversation systems.", image: "/gen-ai/technologies/python.svg", },
+      { name: "DSPy", body: "Programmatic prompt and pipeline optimization.", image: "/gen-ai/technologies/python.svg", },
+      { name: "n8n", body: "Workflow automation for AI-powered business processes.", image: "/gen-ai/technologies/python.svg", },
     ],
   },
 ];
@@ -597,7 +627,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="relative h-full min-h-[520px] rounded-[18px]"
+        className="group relative h-full min-h-[520px] rounded-[18px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <article
@@ -610,14 +640,20 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
         >
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" />
           <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]" />
-          <div className="absolute -right-16 -top-16 size-44 rounded-full bg-white/60 blur-3xl transition duration-500 group-hover:bg-white/80" />
+          <div className="absolute left-0 top-0 w-full h-full bg-black group-hover:bg-secondary">
+            <img
+              src="/gen-ai/Agentic-Orchestration-Swarms.webp"
+              alt=""
+              className="h-full w-full object-cover opacity-30 transition duration-500 group-hover:opacity-10"
+            />
+          </div>
 
           <div className="relative z-10 flex h-full flex-col">
-            <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white/70 text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+            <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl">
               <Icon className="size-7" />
             </div>
 
-            <div className="mt-7 text-[20px] font-bold tracking-normal text-slate-950">
+            <div className="mt-7 text-[20px] text-white font-bold">
               {item.title}
             </div>
 
@@ -625,12 +661,12 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
               {item.pointerHeadings.map((pointer, pointerIndex) => (
                 <div
                   key={pointer}
-                  className="flex items-center gap-3 text-sm font-semibold text-slate-800"
+                  className="flex items-center gap-3 text-sm font-medium text-[16px]"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-bold text-white">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
                     {pointerIndex + 1}
                   </span>
-                  <span>{pointer}</span>
+                  <span className="text-white">{pointer}</span>
                 </div>
               ))}
             </div>
@@ -639,7 +675,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
               <button
                 type="button"
                 onClick={() => setIsFlipped(true)}
-                className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#5fb0c2,#9fddea)] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(95,176,194,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(235,94,4,0.36)]"
+                className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#5fb0c2,#9fddea)] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(95,176,194,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(95,176,194,0.46)]"
               >
                 Read More
                 <ArrowRight className="ml-2 size-4" />
@@ -658,25 +694,25 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#eb5e04,#FF9255)]" />
+          <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#5fb0c2,#a7dde9)]" />
           <div className="flex items-start justify-between gap-4">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-orange-50 text-[#eb5e04] shadow-[0_12px_28px_rgba(235,94,4,0.12)]">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-secondary/10 text-secondary ">
               <Icon className="size-6" />
             </div>
             <button
               type="button"
               onClick={() => setIsFlipped(false)}
-              className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-[#FF9255]/60 hover:text-[#eb5e04]"
+              className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-secondary hover:text-secondary"
             >
               Back
             </button>
           </div>
 
           <div className="mt-6 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-2">
-            <h3 className="text-2xl font-bold tracking-normal text-slate-950">
+            <div className="text-[20px] font-bold">
               {item.title}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-slate-600">
+            </div>
+            <p className="mt-4">
               {item.paragraph}
             </p>
 
@@ -686,10 +722,10 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
                   key={point.title}
                   className="rounded-[14px] border border-slate-200 bg-slate-50/80 p-4"
                 >
-                  <h4 className="text-sm font-bold text-slate-950">
+                  <div className="text-[17px] font-semibold">
                     {point.title}
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                  </div>
+                  <p className="mt-2 !text-[14px]">
                     {point.description}
                   </p>
                 </div>
@@ -774,7 +810,7 @@ function TimelineSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-slate-950 py-20 text-white sm:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(85, 167, 255, 0.18),transparent_34%),radial-gradient(circle_at_80%_40%,rgba(95,176,194,0.14),transparent_34%)]" />
+      <div className="absolute inset-0 bg-black" />
       <div className="container relative">
         <SectionHeader
           eyebrow="Our Delivery Framework"
@@ -784,7 +820,7 @@ function TimelineSection() {
         />
         <div className="relative mx-auto mt-16 max-w-6xl">
           <div className="absolute bottom-0 left-4 top-0 w-px bg-white/12 md:left-1/2 md:-translate-x-1/2">
-            <div ref={lineRef} className="h-full w-full bg-[linear-gradient(#eb5e04,#FF9255)]" />
+            <div ref={lineRef} className="h-full w-full bg-[linear-gradient(#5fb0c2,#b0f1ff)]" />
           </div>
           <div className="grid gap-8">
             {timelineSteps.map((item, index) => (
@@ -795,12 +831,12 @@ function TimelineSection() {
                   index % 2 === 0 ? "md:text-right" : "md:[&>article]:col-start-2",
                 )}
               >
-                <span className="absolute left-0 top-6 z-10 flex size-8 items-center justify-center rounded-full border border-[#FF9255]/60 bg-slate-950 shadow-[0_0_28px_rgba(255,146,85,0.45)] md:left-1/2 md:-translate-x-1/2">
-                  <span className="size-2.5 rounded-full bg-[#FF9255]" />
+                <span className="absolute left-0 top-6 z-10 flex size-8 items-center justify-center rounded-full border border-secondary bg-slate-950 shadow-[0_0_28px_rgba(95,176,94,0.75)] md:left-1/2 md:-translate-x-1/2">
+                  <span className="size-2.5 rounded-full bg-secondary" />
                 </span>
                 <article className="rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
-                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#FF9255]">{item.step}</p>
-                  <h3 className="mt-3 text-2xl font-bold tracking-normal text-white">{item.title}</h3>
+                  <p className="font-medium !text-secondary">{item.step}</p>
+                  <div className="mt-3 text-white lg:text-[22px] font-semibold">{item.title}</div>
                   <p className="mt-4 text-sm leading-7 text-white/68">{item.body}</p>
                 </article>
               </div>
@@ -817,7 +853,7 @@ function TechStackTabs() {
   const current = techTabs[active];
 
   return (
-    <section className="bg-[#f8fafc] py-20 sm:py-24">
+    <section className="bg-secondary/20 py-20 sm:py-24">
       <div className="container">
         <SectionHeader
           eyebrow="Tech-Stack"
@@ -825,7 +861,7 @@ function TechStackTabs() {
           description="Enterprise Generative AI solutions designed by our experts with the latest resources."
         />
         <div className="mt-10 overflow-x-auto pb-2">
-          <div className="flex min-w-max gap-3">
+          <div className="flex justify-center min-w-max gap-3">
             {techTabs.map((tab, index) => (
               <button
                 key={tab.label}
@@ -834,8 +870,8 @@ function TechStackTabs() {
                 className={cn(
                   "rounded-full border px-5 py-3 text-sm font-semibold transition",
                   active === index
-                    ? "border-transparent bg-[linear-gradient(135deg,#eb5e04,#FF9255)] text-white shadow-lg shadow-orange-500/20"
-                    : "border-slate-200 bg-white text-slate-700 hover:border-[#FF9255]/50",
+                    ? "border-transparent bg-[linear-gradient(135deg,#5fb0c2,#5fb0c2)] text-white shadow-sm shadow-secondary-500/20"
+                    : "border-slate-200 bg-white hover:border-secodary/50",
                 )}
               >
                 {tab.label}
@@ -851,15 +887,15 @@ function TechStackTabs() {
           className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
         >
           {current.items.map((item) => {
-            const Icon = item.icon;
+            const Icon = item.image;
             return (
               <article key={item.name} className="flex gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)]">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-orange-50 text-[#eb5e04]">
-                  <Icon className="size-5" />
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-[10px] bg-secondary/10 w-[92px] h-full p-3">
+                  <img src={item.image} className="max-w-[60px] max-h-[40px]"/>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-950">{item.name}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+                  <div className="text-[18px] font-bold text-slate-950">{item.name}</div>
+                  <div className="mt-2 text-[14px] leading-5 text-main">{item.body}</div>
                 </div>
               </article>
             );
@@ -952,12 +988,12 @@ export default function GenerativeAIPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-20 sm:py-24 bg-secondary/20">
         <div className="container">
           <SectionHeader
             eyebrow="Our Generative AI Expertise"
             title="Future-Proof AI Architectures"
-            description="We specialize in Cognitive Architectures that redefine scalability. From autonomous agents to Large Language Model fine-tuning, we deploy enterprise-grade systems designed for Zero-Shot efficiency."
+            description="We specialize in Cognitive Architectures that redefine scalability. From autonomous agents to Large Language Model (LLM) fine-tuning, we deploy enterprise-grade systems designed for Zero-Shot efficiency."
           />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {expertiseCards.map((item, index) => (

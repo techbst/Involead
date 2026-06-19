@@ -362,7 +362,7 @@ p {
   color: var(--text-primary);
 }
 .text-main {
-  color: #0f172a;
+  color: #0f172a !important;
 }
 @media (max-width: 1024px) {
   .container {
@@ -379,4 +379,16 @@ p {
     font-size: 28px !important;
     line-height: 1.2 !important;
   }
+}
+::-webkit-scrollbar {
+    height: 5px;
+    width: 8px
+}
+
+::-webkit-scrollbar-track {
+    background: #d8d8d8
+}
+
+::-webkit-scrollbar-thumb {
+    background:var(--secondary);
 }
