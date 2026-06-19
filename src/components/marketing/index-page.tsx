@@ -6,13 +6,13 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 import SectionReveal from "@/components/home/SectionReveal";
-import type { MarketingPage } from "@/content/marketing-pages";
+import type { MarketingIndexCard } from "@/content/marketing-pages";
 
 type IndexPageProps = {
   title: string;
   description: string;
   eyebrow: string;
-  cards: readonly MarketingPage[];
+  cards: readonly MarketingIndexCard[];
   accent: string;
 };
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import MarketingIndexPage from '@/components/marketing/index-page';
-import { sectionIndex } from '@/content/marketing-pages';
+import { sectionIndex, toMarketingIndexCards } from '@/content/marketing-pages';
 
 export const metadata: Metadata = {
   title: 'Our Solutions - InvoLead',
@@ -14,7 +14,7 @@ export default function WhatWeDoPage() {
       eyebrow="Our Solutions"
       title="A focused set of transformation services built for real enterprise adoption"
       description="Each service page keeps the InvoLead theme, but adds stronger motion, a clearer section flow, and content that feels closer to the reference site."
-      cards={sectionIndex.whatWeDo}
+      cards={toMarketingIndexCards(sectionIndex.whatWeDo)}
       accent="#5fb0c2"
     />
   );

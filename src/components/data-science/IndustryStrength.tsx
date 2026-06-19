@@ -59,50 +59,73 @@ export default function IndustryStrengthSection({
   metrics = defaultMetrics,
 }: IndustryStrengthSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-14 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(95,176,194,0.18),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.08),transparent_20%)]" />
+    <section className="relative overflow-hidden bg-[#efeff3] py-14 text-slate-950 md:py-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(95,176,194,0.12),transparent_28%),radial-gradient(circle_at_85%_0%,rgba(95,176,194,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.65),rgba(239,239,243,1))]" />
+      <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
+      <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
 
       <SectionReveal className="container mx-auto relative z-10">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[clamp(2rem,4vw,3.4rem)] font-semibold tracking-tight text-white">
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-4">
+            <span className="h-px w-16 bg-slate-400/80 sm:w-20" />
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+              Industry Impact
+            </p>
+          </div>
+          <h2 className="mt-4 text-balance text-[clamp(2.1rem,4vw,3.6rem)] font-semibold leading-[0.92] tracking-tight text-slate-950">
             {title}
           </h2>
-          <p className="mt-4 text-base leading-7 text-white/70 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             {subtitle}
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {metrics.map((item, index) => (
             <motion.article
               key={item.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
-              whileHover={{ y: -5 }}
-              className="group rounded-[1.5rem] border border-white/10 bg-white p-5 text-slate-950 shadow-[0_16px_40px_rgba(15,23,42,0.08)] transition-all duration-300"
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.22 }}
+              transition={{
+                duration: 0.45,
+                delay: index * 0.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -6 }}
+              className="group relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white p-5 text-slate-950 shadow-[0_14px_36px_rgba(15,23,42,0.08)] transition-all duration-300 "
             >
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="text-base font-semibold tracking-tight text-slate-950">
-                  {item.title}
-                </h3>
-                <span className="rounded-full border border-secondary/10 bg-[#eaf7fb] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-secondary">
-                  KPI
+              <div className="absolute inset-x-0 bottom-0 h-2 bg-[#4F8D9A]" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  
+                  <h3 className="mt-2 text-base font-semibold tracking-tight text-slate-950">
+                    {item.title}
+                  </h3>
+                </div>
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-400 shadow-sm transition-colors duration-300 group-hover:border-primary/20 group-hover:text-primary">
+                  <ArrowRight className="size-4 -rotate-45" />
                 </span>
               </div>
-              <div className="mt-5 text-4xl font-semibold tracking-tight text-slate-950">
+
+              <div className="mt-6 text-5xl font-semibold tracking-tight text-slate-950 sm:text-[3.4rem]">
                 <AnimatedNumber value={item.value} />
               </div>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
+
+              <p className="mt-3 max-w-[20rem] text-sm leading-6 text-slate-600">
                 {item.description}
               </p>
             </motion.article>
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center">
-          <Button asChild className="rounded-full bg-white px-6 py-6 text-slate-950 hover:bg-white/90">
+        <div className="mt-10 flex justify-start">
+          <Button
+            asChild
+            className="rounded-full bg-primary px-6 py-6 text-primary-foreground shadow-[0_14px_36px_rgba(15,23,42,0.18)] hover:bg-primary/90"
+          >
             <Link href="/contact-us">
               Start a project
               <ArrowRight className="size-4" />

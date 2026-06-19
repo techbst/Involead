@@ -45,6 +45,11 @@ export type MarketingPage = {
   }[];
 };
 
+export type MarketingIndexCard = Pick<
+  MarketingPage,
+  'slug' | 'eyebrow' | 'title' | 'description' | 'image' | 'imageAlt'
+>;
+
 const sharedWhatWeDo = {
   stats: [
     { value: '30%', label: 'Faster delivery' },
@@ -449,3 +454,16 @@ export const sectionIndex = {
     marketingPages['products/insight-control-tower'],
   ],
 } as const;
+
+export function toMarketingIndexCards(
+  pages: readonly MarketingPage[]
+): MarketingIndexCard[] {
+  return pages.map(({ slug, eyebrow, title, description, image, imageAlt }) => ({
+    slug,
+    eyebrow,
+    title,
+    description,
+    image,
+    imageAlt,
+  }));
+}
