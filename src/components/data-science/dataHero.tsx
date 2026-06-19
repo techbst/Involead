@@ -103,7 +103,7 @@ export default function DataScienceHero() {
   const reduceMotion = !!useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-white !pt-30 py-14 md:py-20">
+    <section className="relative overflow-hidden bg-white !pt-35 py-14 md:py-20">
     
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 -top-40 size-[28rem] rounded-full bg-[#eaf7fb] blur-3xl" />
