@@ -1,79 +1,117 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import type { Metadata } from 'next';
+import { Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
+import SectionReveal from '@/components/home/SectionReveal';
+import { Button } from '@/components/ui/button';
 
-const ContactPage = () => {
-    return (
-        <div className="min-h-screen bg-white text-gray-900 py-26">
-            {/* Container matching your homepage layout constraints */}
-            <main className="container ">
-
-                {/* Header Section */}
-                <div className="mb-16">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-                        Let's Build the Future <span className="text-[#4f94a1]">Together</span>
-                    </h1>
-                    <p className="mt-6 text-xl text-gray-600 max-w-3xl">
-                        Have questions about our AI and Data solutions? Our team is ready to help you engineer success.
-                    </p>
-                </div>
-
-                <div className="grid lg:grid-cols-2 gap-16 items-start">
-
-                    {/* Left Column: Contact Form */}
-                    <div className="bg-white p-8 md:p-10 border border-gray-100 rounded-3xl shadow-sm">
-                        <form className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-semibold mb-2">First Name</label>
-                                    <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-semibold mb-2">Last Name</label>
-                                    <input type="text" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none" />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-semibold mb-2">Work Email</label>
-                                <input type="email" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none" />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-semibold mb-2">Message</label>
-                                <textarea rows={4} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4f94a1] outline-none"></textarea>
-                            </div>
-
-                            <button className="w-full py-4 bg-[#4f94a1] text-white font-bold rounded-xl hover:bg-[#3a7a85] transition shadow-lg shadow-blue-200">
-                                Send Inquiry
-                            </button>
-                        </form>
-                    </div>
-
-                    {/* Right Column: Info & Details (Matching Homepage Vibe) */}
-                    <div className="space-y-10">
-                        <div className="p-8 bg-blue-50 rounded-3xl">
-                            <h3 className="text-xl font-bold mb-4">Contact Information</h3>
-                            <p className="text-[#4f94a1] mb-6">Reach out directly via email or phone. We respond to all inquiries within 24 hours.</p>
-
-                            <ul className="space-y-4 text-[#4f94a1] font-medium">
-                                <li className="flex items-center gap-1"><Mail /> support@purea.com</li>
-                                <li className="flex items-center gap-1"><Phone /> +1 (555) 000-1234</li>
-                                <li className="flex items-center gap-1"><MapPin /> 123 Tech Park, Innovation City</li>
-                            </ul>
-                        </div>
-
-                        {/* Quick Link box mimicking homepage service cards */}
-                        <div className="p-8 border border-gray-200 rounded-3xl">
-                            <h3 className="text-xl font-bold mb-4">Support & Documentation</h3>
-                            <p className="text-gray-600 mb-6">Need immediate help? Browse our extensive documentation and AI integration guides.</p>
-                            <a href="/docs" className="text-[#4f94a1] font-bold hover:underline">View Documentation →</a>
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-        </div>
-    );
+export const metadata: Metadata = {
+  title: 'Contact - InvoLead',
+  description: 'Contact InvoLead for AI, data, and enterprise transformation projects.',
 };
 
-export default ContactPage;
+export default function ContactPage() {
+  return (
+    <div className="overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-950">
+      <section className="relative pt-28 pb-16">
+        <div className="absolute inset-x-0 top-0 -z-10 h-[24rem] bg-[radial-gradient(circle_at_20%_20%,rgba(95,176,194,0.2),transparent_28%),radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.95),transparent_24%)]" />
+        <div className="container mx-auto max-w-4xl text-center">
+          <p className="inline-flex rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-secondary shadow-sm backdrop-blur">
+            Contact us
+          </p>
+          <h1 className="mt-5 text-[clamp(2.8rem,6vw,5.4rem)] font-semibold leading-[0.95] tracking-tight">
+            Let&apos;s build the next step of your AI and data roadmap
+          </h1>
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
+            Share the challenge, the goal, or the current bottleneck. We&apos;ll respond with a practical path forward rather than a generic pitch.
+          </p>
+        </div>
+      </section>
+
+      <SectionReveal className="container mx-auto pb-20">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <form className="space-y-5">
+              <div className="grid gap-5 md:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-700">First Name</span>
+                  <input
+                    type="text"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-secondary focus:bg-white"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-700">Last Name</span>
+                  <input
+                    type="text"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-secondary focus:bg-white"
+                  />
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">Work Email</span>
+                <input
+                  type="email"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-secondary focus:bg-white"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">What do you want to build?</span>
+                <textarea
+                  rows={5}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-secondary focus:bg-white"
+                />
+              </label>
+
+              <Button className="w-full rounded-full bg-primary py-6">
+                Send inquiry
+                <ArrowRight className="size-4" />
+              </Button>
+            </form>
+          </div>
+
+          <div className="space-y-6">
+            <div className="rounded-[2rem] bg-slate-950 p-8 text-white">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/60">
+                Reach out
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight">
+                We usually respond within one business day
+              </h2>
+              <div className="mt-8 space-y-4">
+                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <Mail className="size-5 text-[#5fb0c2]" />
+                  <span className="text-sm text-white/80">support@purea.com</span>
+                </div>
+                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <Phone className="size-5 text-[#5fb0c2]" />
+                  <span className="text-sm text-white/80">+1 (555) 000-1234</span>
+                </div>
+                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <MapPin className="size-5 text-[#5fb0c2]" />
+                  <span className="text-sm text-white/80">123 Tech Park, Innovation City</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-secondary">
+                Need a quicker start?
+              </p>
+              <p className="mt-4 text-slate-600">
+                Jump straight to the services pages to explore the exact transformation tracks we can support.
+              </p>
+              <div className="mt-6">
+                <Button asChild variant="outline" className="rounded-full px-6 py-6">
+                  <Link href="/our-solutions">Explore services</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </SectionReveal>
+    </div>
+  );
+}

@@ -1,6 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+import SectionReveal from "@/components/home/SectionReveal";
+import AnimatedNumber from "@/components/ui/animated-number";
+import { Button } from "@/components/ui/button";
 
 export interface IndustryMetric {
   title: string;
@@ -49,79 +55,61 @@ const defaultMetrics: IndustryMetric[] = [
 
 export default function IndustryStrengthSection({
   title = "Our Strength Across Industries",
-  subtitle = "From FMCG to Pharma, Retail to Finance, Involead delivers proven AI and data science outcomes across the industries that matter most.",
+  subtitle = "From FMCG to Pharma, Retail to Finance, InvoLead delivers proven AI and data science outcomes across the industries that matter most.",
   metrics = defaultMetrics,
 }: IndustryStrengthSectionProps) {
   return (
-    <section className="relative overflow-hidden py-20 lg:py-24">
-      {/* Background */}
-      <div className="absolute inset-0 bg-black" />
+    <section className="relative overflow-hidden bg-slate-950 py-14 text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(95,176,194,0.18),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.08),transparent_20%)]" />
 
-      <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/20 blur-[180px]" />
-
-      <div className="absolute right-0 top-0 h-full w-[300px] bg-gradient-to-l from-cyan-400/10 to-transparent" />
-
-      <div className="relative z-10 container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto mb-14 max-w-4xl text-center"
-        >
-          <h2 className="mb-5 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+      <SectionReveal className="container mx-auto relative z-10">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-[clamp(2rem,4vw,3.4rem)] font-semibold tracking-tight text-white">
             {title}
           </h2>
-
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
+          <p className="mt-4 text-base leading-7 text-white/70 sm:text-lg">
             {subtitle}
           </p>
-        </motion.div>
+        </div>
 
-        {/* Metrics Grid */}
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {metrics.map((item, index) => (
-            <motion.div
+            <motion.article
               key={item.title}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.08,
-              }}
-              whileHover={{
-                y: -6,
-              }}
-              className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              whileHover={{ y: -5 }}
+              className="group rounded-[1.5rem] border border-white/10 bg-white p-5 text-slate-950 shadow-[0_16px_40px_rgba(15,23,42,0.08)] transition-all duration-300"
             >
-              {/* Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-              <div className="relative z-10">
-                <h3 className="mb-8 text-xl font-semibold text-black lg:text-2xl">
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-base font-semibold tracking-tight text-slate-950">
                   {item.title}
                 </h3>
-
-                <div className="mb-4 text-5xl font-bold tracking-tight text-black lg:text-6xl">
-                  {item.value}
-                </div>
-
-                <p className="text-base leading-relaxed text-neutral-600 lg:text-lg">
-                  {item.description}
-                </p>
+                <span className="rounded-full border border-secondary/10 bg-[#eaf7fb] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-secondary">
+                  KPI
+                </span>
               </div>
-            </motion.div>
+              <div className="mt-5 text-4xl font-semibold tracking-tight text-slate-950">
+                <AnimatedNumber value={item.value} />
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {item.description}
+              </p>
+            </motion.article>
           ))}
         </div>
-      </div>
+
+        <div className="mt-8 flex justify-center">
+          <Button asChild className="rounded-full bg-white px-6 py-6 text-slate-950 hover:bg-white/90">
+            <Link href="/contact-us">
+              Start a project
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+        </div>
+      </SectionReveal>
     </section>
   );
 }

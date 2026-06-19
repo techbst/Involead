@@ -82,3 +82,9 @@ function DataScience() {
 }
 
 export default DataScience
+
+// import { redirect } from 'next/navigation';
+
+// export default function DataScienceLegacyPage() {
+//   redirect('/our-solutions/data-science');
+// }

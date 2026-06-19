@@ -4,20 +4,23 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
-
+import DesktopMegaMenu from '@/components/navigation/desktop-mega-menu';
 import { Button } from '@/components/ui/button';
 
-type NavItem =
+type MobileNavItem =
   | { label: string; href: string; items?: never }
   | { label: string; href?: never; items: { label: string; href: string }[] };
 
-const nav: NavItem[] = [
+const nav: MobileNavItem[] = [
   { label: 'Home', href: '/' },
   {
-    label: 'Our Solution',
+    label: 'Our Solutions',
     items: [
-      { label: 'Generative AI', href: '/solutions/generative-ai' },
-      { label: 'Data Engineering', href: '/solutions/data-engineering' },
+      { label: 'Data Science', href: '/our-solutions/data-science' },
+      { label: 'Generative AI', href: '/our-solutions/generative-ai' },
+      { label: 'Data Engineering', href: '/our-solutions/data-engineering' },
+      { label: 'Cloud Solution', href: '/our-solutions/cloud-solution' },
+      { label: 'Consulting', href: '/our-solutions/consulting' },
     ],
   },
   {
@@ -25,13 +28,15 @@ const nav: NavItem[] = [
     items: [
       { label: 'Retail', href: '/industries/retail' },
       { label: 'Healthcare', href: '/industries/healthcare' },
+      { label: 'Finance', href: '/industries/finance' },
     ],
   },
   {
     label: 'Products',
     items: [
-      { label: 'Product A', href: '/products/a' },
-      { label: 'Product B', href: '/products/b' },
+      { label: 'AI Assistant Studio', href: '/products/ai-assistant-studio' },
+      { label: 'Knowledge Graph Engine', href: '/products/knowledge-graph-engine' },
+      { label: 'Insight Control Tower', href: '/products/insight-control-tower' },
     ],
   },
   { label: 'About Us', href: '/about' },
@@ -42,54 +47,50 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-  let lastScrollY = window.scrollY;
+    let lastScrollY = window.scrollY;
 
-  const onScroll = () => {
-    const currentScrollY = window.scrollY;
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    setScrolled(currentScrollY > 10);
+      setScrolled(currentScrollY > 10);
 
-    if (currentScrollY < 100) {
-      setShowHeader(true);
-    } else {
-      // setShowHeader(currentScrollY < lastScrollY);
-      setShowHeader(currentScrollY > lastScrollY);
-    }
+      if (currentScrollY < 100) {
+        setShowHeader(true);
+      } else {
+        // setShowHeader(currentScrollY < lastScrollY);
+        setShowHeader(currentScrollY > lastScrollY);
+      }
 
-    lastScrollY = currentScrollY;
-  };
+      lastScrollY = currentScrollY;
+    };
 
-  window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll);
 
-  return () => {
-    window.removeEventListener("scroll", onScroll);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <header
-  className={`fixed left-0 right-0 z-[100] flex justify-center xl:px-12 px-5 transition-transform duration-300 ${
-    showHeader
-      ? "translate-y-0"
-      : "-translate-y-full"
-  } ${
-    scrolled
-      ? "!bg-white !top-0 shadow-xl shadow-black/5"
-      : "top-5 bg-transparent"
-  }`}
->
-     <div
-  className={`relative max-w-[84rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${
-    scrolled
-      ? " !shadow-none rounded-none transition-all duration-300 "
-      : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] transition-all duration-300"
-  }`}
->
+      className={`fixed left-0 right-0 z-[100] flex justify-center xl:px-12 px-5 transition-transform duration-300 ${showHeader
+          ? "translate-y-0"
+          : "-translate-y-full"
+        } ${scrolled
+          ? "!bg-white !top-0 shadow-xl shadow-black/5"
+          : "top-5 bg-transparent"
+        }`}
+    >
+      <div
+        className={`relative max-w-[84rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${scrolled
+            ? " !shadow-none rounded-none transition-all duration-300 "
+            : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] transition-all duration-300"
+          }`}
+      >
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center justify-center">
             <Image
@@ -103,72 +104,32 @@ export default function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center lg:flex" aria-label="Primary navigation">
-          <div className="flex items-center gap-2 rounded-[50px]  border-[#ddd] backdrop-blur-sm px-4 py-2">
-            {nav.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => item.items && setOpenDropdown(item.label)}
-                onMouseLeave={() => setOpenDropdown(null)}
-                onFocus={() => item.items && setOpenDropdown(item.label)}
-                onBlur={(event) => {
-                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                    setOpenDropdown(null);
-                  }
-                }}
-              >
-                {item.items ? (
-                  <button
-                    type="button"
-                    aria-expanded={openDropdown === item.label}
-                    aria-haspopup="menu"
-                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-black hover:text-secondary xl:px-4"
-                  >
-                    {item.label}
-                    <ChevronDown className="h-3 w-3 text-slate-500" aria-hidden="true" />
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="px-3 py-2 text-sm font-medium text-black hover:text-secondary xl:px-4"
-                  >
-                    {item.label}
-                  </Link>
-                )}
-
-                {item.items && (
-                  <div
-                    role="menu"
-                    className={`absolute left-0 top-full z-40 w-48 pt-2 transition-opacity ${
-                      openDropdown === item.label
-                        ? 'pointer-events-auto opacity-100'
-                        : 'pointer-events-none opacity-0'
-                    }`}
-                  >
-                    <div className="rounded-md bg-white py-2 shadow-md">
-                      {item.items.map((sub) => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          role="menuitem"
-                          className="block px-4 py-2 text-sm text-black hover:bg-secondary hover:text-white"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        <nav className="hidden items-center gap-3 lg:flex" aria-label="Primary navigation">
+          <Link
+            href="/"
+            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-secondary"
+          >
+            Home
+          </Link>
+          <DesktopMegaMenu />
+          <Link
+            href="/about"
+            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-secondary"
+          >
+            About Us
+          </Link>
+          <Link
+            href="/career"
+            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-secondary"
+          >
+            Career
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:block">
             <Button asChild variant="default">
-              <Link href="/contact">
+              <Link href="/contact-us">
                 Contact Us
                 <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
               </Link>
@@ -253,7 +214,7 @@ export default function Header() {
 
             <div className="mt-6">
               <Button asChild variant="rounded-arrow">
-                <Link href="/contact" onClick={closeMobileMenu}>
+                <Link href="/contact-us" onClick={closeMobileMenu}>
                   Contact Us
                   <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
                 </Link>
