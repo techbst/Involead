@@ -190,14 +190,14 @@ function HeroCopy({
       variants={revealContainer}
       initial="hidden"
       animate="show"
-      className="relative z-10 max-w-3xl"
+      className="relative z-10 max-w-3xl -mt-20"
     >
       <motion.p variants={revealItem} className="text-sm font-semibold uppercase tracking-[0.26em] text-main">
         {eyebrow}
       </motion.p>
       <motion.h1
         variants={revealItem}
-        className="mt-5 text-[clamp(2.7rem,6vw,5.9rem)] font-bold leading-[1.03] tracking-normal text-main"
+        className="mt-5 font-bold text-main !text-[46px] leading-tight sm:text-[42px] sm:leading-[48px]"
       >
         {title}
       </motion.h1>
@@ -434,8 +434,8 @@ export function AutonomousAgentEcosystemHero() {
       <div className="container relative grid min-h-[calc(100vh-8rem)] items-center gap-12 pb-20 lg:grid-cols-[0.9fr_1.1fr]">
         <HeroCopy
           eyebrow="Autonomous Agent Ecosystem"
-          title="Build Self-Operating AI Ecosystems"
-          body="Create intelligent networks of autonomous agents that collaborate, reason, and execute business operations without constant human intervention."
+          title="From Autonomous Agents to Enterprise AI"
+          body="Architecting Sovereign Cognitive Ecosystems for the Modern Enterprise"
           primary="Start Your AI Journey"
           secondary="See Enterprise Results"
         />
