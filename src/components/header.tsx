@@ -98,9 +98,9 @@ export default function Header() {
         }`}
     >
       <div
-        className={`relative max-w-[84rem]  w-full px-5 flex items-center justify-between overflow-visible rounded-full border py-3  border-white/60 backdrop-blur-xl transition-all duration-300 ${scrolled
+        className={`relative max-w-[84rem]  w-full px-4 sm:px-5 flex items-center justify-between overflow-visible rounded-full border py-3 border-white/60 backdrop-blur-xl transition-all duration-300 ${scrolled
             ? " !shadow-none rounded-none transition-all duration-300 "
-            : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] transition-all duration-300"
+            : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] max-lg:bg-white/95 max-lg:shadow-[0_12px_40px_rgba(15,23,42,0.12)] transition-all duration-300"
           }`}
       >
         <Link href="/" className="flex items-center gap-3">
@@ -152,10 +152,10 @@ export default function Header() {
             type="button"
             aria-label="Open menu"
             aria-expanded={mobileOpen}
-            className="inline-flex items-center justify-center rounded-md p-2 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-950 shadow-sm lg:hidden"
             onClick={() => setMobileOpen(true)}
           >
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       </div>

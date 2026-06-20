@@ -44,7 +44,7 @@ export default function HeroSection({
   titleColor = "#0f172a",
   highlightColor = "#5fb0c2",
   bgColor = "#f8fbff",
-  showCursor = true,
+  showCursor = false,
   descmaxWidth = "2xl",
   clipPath = "",
   children,
