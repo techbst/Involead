@@ -41,7 +41,7 @@ export const capabilityData: CapabilityData[] = [
     description:
       "The right price at the right moment turns demand into margin without eroding trust.Our Agentic AI continuously ingests elasticity signals, competitive moves, and inventory positions to recommend and automate price ladders, guardrails, and experiments — so teams move from static rules to adaptive pricing that compounds revenue.",
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85",
+      "/gen-ai/Agentic-Orchestration-Swarms.webp",
     metricBg: "linear-gradient(135deg,#6EB7CC 0%,#4F8D9A 100%)",
     metricTextColor: "#ffffff",
     metrics: [
@@ -56,7 +56,7 @@ export const capabilityData: CapabilityData[] = [
     description:
       "Trade and promo dollars only work when every lever is aligned to the same growth story.Agentic models simulate lift, cannibalization, and retailer behavior in parallel, then orchestrate scenarios across brands and channels — surfacing where to invest, where to cut, and how to negotiate with evidence-backed targets.",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
+      "/img/cap-1.webp",
     metrics: [
       { value: "12", valuecomp: "22%", label: "Trade ROI Uplift" },
       { value: "8", valuecomp: "15%", label: "Wasted Spend Reduction" },
@@ -69,7 +69,7 @@ export const capabilityData: CapabilityData[] = [
     description:
       "Attribution that ignores long arcs and offline effects quietly misallocates millions every quarter.We rebuild MMM on fresh priors, hierarchical media curves, and business constraints — with agents stress-testing assumptions, refreshing coefficients as new data lands, and explaining drivers in language stakeholders actually use.",
     image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+      "/img/cap-3.webp",
     metrics: [
       { value: "3", valuecomp: "7%", label: "Margin Improvement" },
       { value: "5", valuecomp: "12%", label: "Revenue Lift" },
@@ -82,7 +82,7 @@ export const capabilityData: CapabilityData[] = [
     description:
       "RGM breaks when pricing, assortment, and promo strategies are optimized in silos.We connect elasticity, assortment productivity, and trade effectiveness in a single agentic layer that explores coordinated moves — always anchored to P&L guardrails and channel realities — so growth is deliberate, not accidental.",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+      "/img/cap-4.webp",
     metrics: [
       { value: "3", valuecomp: "7%", label: "Margin Improvement" },
       { value: "5", valuecomp: "12%", label: "Revenue Lift" },
@@ -95,7 +95,7 @@ export const capabilityData: CapabilityData[] = [
     description:
       "Relevance at scale demands segmentation that evolves as fast as customers do.Our Agentic AI-driven segmentation creates and continuously refines 10-50+ dynamic cohorts using real-time behavioral and transactional data. Agents adapt segment definitions and orchestrate hyper-personalized engagement strategies ensuring every customer interaction is precisely calibrated.",
     image:
-      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=85",
+      "/img/cap-5.webp",
     metrics: [
       { value: "3", valuecomp: "7%", label: "Margin Improvement" },
       { value: "5", valuecomp: "12%", label: "Revenue Lift" },
@@ -108,7 +108,7 @@ export const capabilityData: CapabilityData[] = [
     description:
       "Forecast error is not a spreadsheet problem — it is a service-level, cash, and credibility problem.Hierarchical models fuse sell-in, sell-through, and external signals while agents monitor drift, inject shocks, and reconcile plans across nodes — giving supply, finance, and commercial teams one aligned number they can defend.",
     image:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=85",
+      "/img/cap-6.webp",
     metrics: [
       { value: "3", valuecomp: "7%", label: "Margin Improvement" },
       { value: "5", valuecomp: "12%", label: "Revenue Lift" },

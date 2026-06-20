@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 import SectionReveal from "@/components/home/SectionReveal";
 import AnimatedNumber from "@/components/ui/animated-number";
+import { cn } from "@/lib/utils";
 
 export interface IndustryMetric {
   title: string;
@@ -51,78 +52,177 @@ const defaultMetrics: IndustryMetric[] = [
   },
 ];
 
+const cardStyles = [
+  {
+    card: "bg-[#69d1aa] text-[#0e1a16]",
+    label: "text-[#0e1a16]/55",
+    description: "text-[#0e1a16]/78",
+    icon: "bg-[#0e1a16] text-white",
+    line: "bg-[#0e1a16]/12",
+  },
+  {
+    card: "bg-[#5fb0c2] text-[#07161b]",
+    label: "text-[#07161b]/55",
+    description: "text-[#07161b]/78",
+    icon: "bg-[#07161b] text-white",
+    line: "bg-[#07161b]/12",
+  },
+  {
+    card: "bg-[#c88cff] text-[#150c22]",
+    label: "text-[#150c22]/55",
+    description: "text-[#150c22]/74",
+    icon: "bg-[#150c22] text-white",
+    line: "bg-[#150c22]/12",
+  },
+  {
+    card: "bg-[#f1f26f] text-[#17140b]",
+    label: "text-[#17140b]/55",
+    description: "text-[#17140b]/74",
+    icon: "bg-[#17140b] text-white",
+    line: "bg-[#17140b]/12",
+  },
+  {
+    card: "bg-[#f6b1cc] text-[#2b1120]",
+    label: "text-[#2b1120]/55",
+    description: "text-[#2b1120]/74",
+    icon: "bg-[#2b1120] text-white",
+    line: "bg-[#2b1120]/12",
+  },
+  {
+    card: "bg-[#8fd8ff] text-[#082433]",
+    label: "text-[#082433]/55",
+    description: "text-[#082433]/74",
+    icon: "bg-[#082433] text-white",
+    line: "bg-[#082433]/12",
+  },
+];
+
 export default function IndustryStrengthSection({
   title = "Our Strength Across Industries",
   subtitle = "From FMCG to Pharma, Retail to Finance, InvoLead delivers proven AI and data science outcomes across the industries that matter most.",
   metrics = defaultMetrics,
 }: IndustryStrengthSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#f4f5f8] py-16 text-slate-950 md:py-20">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_15%,rgba(95,176,194,0.16),transparent_30%),radial-gradient(circle_at_88%_5%,rgba(15,23,42,0.08),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.9),rgba(244,245,248,1))]" />
-      <div className="absolute -left-28 top-16 h-80 w-80 rounded-full bg-white/80 blur-3xl" />
-      <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#5fb0c2]/20 blur-3xl" />
+    <section className="relative overflow-hidden bg-[#050505] py-16 text-white md:py-20">
+      <motion.div
+        aria-hidden
+        className="absolute inset-0"
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%"],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "linear",
+        }}
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 18% 20%, rgba(95,176,194,0.32), transparent 0 22%), radial-gradient(circle at 82% 16%, rgba(200,140,255,0.22), transparent 0 18%), radial-gradient(circle at 70% 84%, rgba(241,242,111,0.12), transparent 0 20%), linear-gradient(180deg, rgba(10,10,10,0.96), rgba(5,5,5,1))",
+          backgroundSize: "140% 140%",
+        }}
+      />
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 opacity-40"
+        animate={{ x: [0, 24, 0], y: [0, -16, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="absolute -left-24 top-12 h-80 w-80 rounded-full bg-[#5fb0c2]/20 blur-3xl" />
+        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-[#c88cff]/20 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#f1f26f]/10 blur-3xl" />
+      </motion.div>
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
       <SectionReveal className="container relative z-10 mx-auto">
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-4">
-            <span className="h-px w-16 bg-slate-400/70 sm:w-20" />
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-              Industry Impact
-            </p>
-          </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/55">
+            Industry Impact
+          </p>
 
-          <h2 className="mt-5 text-balance text-[clamp(2.2rem,4vw,3.75rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-slate-950">
+          <h2 className="mt-4 text-balance text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
             {title}
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/68 sm:text-base">
             {subtitle}
           </p>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {metrics.map((item, index) => (
-            <motion.article
-              key={item.title}
-              initial={{ opacity: 0, y: 24, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.22 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.055,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{ y: -8 }}
-              className="group relative min-h-[250px] overflow-hidden rounded-[1.9rem] border border-white/70 bg-white/85 p-6 text-slate-950 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-[#5fb0c2]/30 hover:shadow-[0_28px_70px_rgba(15,23,42,0.14)]"
+  {metrics.map((item, index) => {
+    const style = cardStyles[index % cardStyles.length];
+
+    return (
+      <motion.article
+        key={item.title}
+        initial={{ opacity: 0, y: 28, scale: 0.96 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.22 }}
+        transition={{
+          duration: 0.55,
+          delay: index * 0.06,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        whileHover={{ y: -8, scale: 1.015 }}
+        className={cn(
+          "group relative  overflow-hidden rounded-2xl border border-white/15 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.35)]",
+          "transition-all duration-300",
+          style.card
+        )}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.35),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.22),transparent_45%)] opacity-70" />
+
+        <motion.div
+          aria-hidden
+          className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/25 blur-3xl"
+          animate={{
+            x: [0, -12, 0],
+            y: [0, 12, 0],
+            opacity: [0.35, 0.75, 0.35],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <div className="relative z-10 flex  flex-col justify-between">
+          <div className="flex items-start justify-between gap-5">
+            <div>
+              <h3 className="mt-0 max-w-[13rem] !text-2xl font-[500] leading-tight tracking-[-0.04em] text-inherit">
+                {item.title}
+              </h3>
+            </div>
+
+            <motion.div
+              whileHover={{ rotate: -35, scale: 1.08 }}
+              className={cn(
+                "flex h-8 w-8 shrink-0 items-center justify-center rounded-full shadow-lg",
+                style.icon
+              )}
             >
-              <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/80 to-transparent" />
+              <ArrowRight size={15} />
+            </motion.div>
+          </div>
 
-              <div className="absolute inset-x-0 bottom-0 h-3 bg-[#4F8D9A] shadow-[0_-16px_42px_rgba(79,141,154,0.55)] transition-all duration-300 group-hover:h-4 group-hover:shadow-[0_-22px_58px_rgba(79,141,154,0.7)]" />
+          <div className="mt-3">
+            <div className={cn("mb-2 h-px w-full", style.line)} />
 
-              <div className="absolute -bottom-10 left-1/2 h-20 w-[80%] -translate-x-1/2 rounded-full bg-[#4F8D9A]/35 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="flex items-end justify-between gap-6">
+              <p className={cn("max-w-[10rem] text-sm leading-6", style.description)}>
+                {item.description}
+              </p>
 
-              <div className="relative z-10 flex h-full flex-col">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-base font-semibold tracking-tight text-slate-950">
-                    {item.title}
-                  </h3>
-
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-400 shadow-sm transition-all duration-300 group-hover:border-[#5fb0c2]/30 group-hover:bg-[#eef9fb] group-hover:text-[#4F8D9A]">
-                    <ArrowRight className="size-4 -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </div>
-
-                <div className="mt-8 text-5xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-[2.8rem]">
-                  <AnimatedNumber value={item.value} />
-                </div>
-
-                <p className="mt-4 max-w-[20rem] text-sm leading-6 text-slate-600">
-                  {item.description}
-                </p>
+              <div className="text-right text-[24px]  tracking-[2px] font-semibold leading-none tracking-[-0.08em] text-inherit">
+                <AnimatedNumber value={item.value} />
               </div>
-            </motion.article>
-          ))}
+            </div>
+          </div>
         </div>
+
+        <div className="absolute inset-x-6 bottom-0 h-px bg-white/35" />
+      </motion.article>
+    );
+  })}
+</div>
       </SectionReveal>
     </section>
   );

@@ -2,18 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  CheckCircle2,
-  ChevronDown,
-} from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import AnimatedNumber from "@/components/ui/animated-number";
 import SectionReveal from "@/components/home/SectionReveal";
 import { Button } from "@/components/ui/button";
 import Capabilities from "@/components/data-science/capabilities";
+import CaseStudyShowcase from "@/components/data-science/CaseStudyShowcase";
 import IndustryStrengthSection from "@/components/data-science/IndustryStrength";
+import ProcessRoadmap from "@/components/data-science/ProcessRoadmap";
 import WhyChooseUs from "@/components/data-science/WhyChooseUs";
 import DataHero from "./dataHero";
 
@@ -90,29 +88,6 @@ const strengths = [
   { title: "Hours saved", value: "25-35H", label: "Monthly operations time" },
 ];
 
-const process = [
-  {
-    title: "Discover",
-    body: "We identify the decision, data sources, and metrics the model needs to influence.",
-  },
-  {
-    title: "Design",
-    body: "A measurable solution blueprint is created with validation and governance baked in.",
-  },
-  {
-    title: "Build",
-    body: "Features, models, and workflows are developed in a production-ready stack.",
-  },
-  {
-    title: "Deploy",
-    body: "Outputs land in dashboards, APIs, and alerts that teams can actually use.",
-  },
-  {
-    title: "Optimize",
-    body: "Feedback loops keep performance healthy as business conditions change.",
-  },
-];
-
 const problems = [
   {
     title: "Poor Data Quality",
@@ -158,18 +133,20 @@ function SectionHeading({
   description,
   className = "",
   titleColor="",
+  descriptionColor = "text-slate-600",
 }: {
   title: string;
   titleColor?: string;
   description: string;
   className?: string;
+  descriptionColor?: string;
 }) {
   return (
     <div className={className}>
       <h2 className={`text-[clamp(2rem,4vw,3.4rem)] font-semibold tracking-tight ${titleColor || "text-slate-950"}`}>
         {title}
       </h2>
-      <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
+      <p className={`mt-4 max-w-3xl text-base leading-7 sm:text-lg ${descriptionColor}`}>
         {description}
       </p>
     </div>
@@ -242,85 +219,10 @@ export default function DataScienceSolutionsPage() {
 
       <WhyChooseUs />
 
-      <section className="bg-[linear-gradient(135deg,#f7fbfd_0%,#ffffff_42%,#eff8fb_100%)] py-14">
-        <div className="container mx-auto">
-          <SectionHeading
-            title="Our Process"
-            description="A connected journey from discovery to optimization, laid out as a horizontal timeline on desktop and a stacked flow on mobile."
-          />
+      <ProcessRoadmap />
+      <CaseStudyShowcase />
 
-          <div className="mt-8 overflow-x-auto pb-2">
-            <div className="relative flex min-w-[900px] gap-4">
-              <div className="absolute left-6 right-6 top-8 h-px bg-gradient-to-r from-[#5fb0c2] via-slate-300 to-slate-300" />
-              {process.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.35, delay: index * 0.04 }}
-                  className="relative min-w-[180px] flex-1 rounded-[1.4rem] border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-[#e8f7fb] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-                      0{index + 1}
-                    </span>
-                    <CheckCircle2 className="size-4 text-secondary" />
-                  </div>
-                  <h3 className="mt-6 text-lg font-semibold tracking-tight text-slate-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.body}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <SectionReveal className="container mx-auto py-12">
-        <SectionHeading
-          title="Business Problems We Solve"
-          description="Expandable problem-solution panels show the pain point and the fix without forcing the user through a long testimonial block."
-        />
-
-        <div className="mt-8">
-          <ProblemAccordion />
-        </div>
-      </SectionReveal>
-
-      <section className="bg-slate-950 py-14 text-white mt-10" >
-        <div className="container mx-auto">
-          <SectionHeading
-            title="Numbers That Reflect Our Impact"
-            titleColor="text-white"
-            description="The metrics below animate as they enter the viewport and act as a clear proof point instead of decorative filler."
-            className="mx-auto max-w-4xl text-center "
-          />
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {impactNumbers.map((item, index) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.35, delay: index * 0.04 }}
-                className="rounded-[1.4rem] border border-white/10 bg-white/5 p-6"
-              >
-                <div className="text-4xl font-semibold tracking-tight text-white">
-                  <AnimatedNumber value={`${item.value}${item.suffix}`} />
-                </div>
-                <p className="mt-3 text-sm leading-6 text-white/75">
-                  {item.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
     
 
