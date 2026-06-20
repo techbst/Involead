@@ -226,25 +226,37 @@ export default function DataScienceSolutionsPage() {
 
     
 
-      <section className="pb-10 mt-10">
-        <div className="container mx-auto">
-          <div className="rounded-[2rem] bg-[linear-gradient(135deg,#0f172a_0%,#0b2530_100%)] px-6 py-10 text-center text-white shadow-[0_24px_70px_rgba(15,23,42,0.25)] md:px-10">
-            <h2 className="mx-auto max-w-3xl text-[clamp(2rem,4vw,3.3rem)] font-semibold tracking-tight">
-              Ready to turn your data into a decision engine?
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/75">
-              Let&apos;s map the right use case, define the success metric, and ship a first version that proves value quickly.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button asChild className="rounded-full bg-white px-6 py-6 text-slate-950 hover:bg-white/90">
-                <Link href="/contact-us">
-                  Start a conversation
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="rounded-full border-white/20 bg-white/5 px-6 py-6 text-white hover:bg-white/10">
-                <Link href="/our-solutions">Explore solutions</Link>
-              </Button>
+      <section className="relative mt-10 overflow-hidden pb-10">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 top-0 h-72 w-[38rem] -translate-x-1/2 rounded-full bg-[#5fb0c2]/12 blur-3xl" />
+          <div className="absolute -left-20 bottom-0 h-56 w-56 rounded-full bg-[#7a9cff]/12 blur-3xl" />
+          <div className="absolute -right-20 top-10 h-56 w-56 rounded-full bg-[#5fb0c2]/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.26),transparent_40%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:72px_72px] opacity-40" />
+        </div>
+
+        <div className="container relative mx-auto">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(135deg,#0f172a_0%,#0b2530_100%)] px-6 py-10 text-center text-white shadow-[0_24px_70px_rgba(15,23,42,0.25)] md:px-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(95,176,194,0.16),transparent_26%),radial-gradient(circle_at_80%_10%,rgba(122,156,255,0.14),transparent_22%),radial-gradient(circle_at_50%_100%,rgba(95,176,194,0.08),transparent_30%)]" />
+            <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+            <div className="relative z-10">
+              <h2 className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight">
+                Ready to turn your data into a decision engine?
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/75">
+                Let&apos;s map the right use case, define the success metric, and ship a first version that proves value quickly.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Button asChild className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+                  <Link href="/contact-us">
+                    Start a conversation
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full border-white/20 bg-white/5  text-white hover:bg-white/10">
+                  <Link href="/our-solutions">Explore solutions</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

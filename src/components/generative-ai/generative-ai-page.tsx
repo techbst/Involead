@@ -733,7 +733,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
             </div>
 
             <div className="mt-6 rounded-[14px] border border-orange-200 bg-orange-50 p-4">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#eb5e04]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-secondary">
                 Outcome
               </p>
               <p className="mt-2 text-sm font-semibold leading-6 text-slate-900">
@@ -922,12 +922,12 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
         <Brain className="absolute bottom-5 right-5 size-16 text-white/70" />
       </div>
       <div className="p-6">
-        <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#eb5e04]">
+        <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
           {post.category}
         </span>
         <h3 className="mt-4 text-2xl font-bold tracking-normal text-slate-950">{post.title}</h3>
         <p className="mt-3 text-sm leading-7 text-slate-600">{post.excerpt}</p>
-        <Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#eb5e04]">
+        <Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary">
           Read more
           <ArrowRight className="size-4" />
         </Link>
