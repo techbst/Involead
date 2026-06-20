@@ -146,7 +146,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
                   variants={statVariants}
                   initial="hidden"
                   animate={isFlipped ? "show" : "hidden"}
-                  className={`rounded-[14px] border border-slate-200 bg-white px-4 py-2 shadow-[0_10px_26px_rgba(15,23,42,0.04)] ${metricIndex % 2 === 0 ? "text-left" : "text-right"
+                  className={`rounded-[14px] border border-slate-200 bg-white px-4 py-2 shadow-[0_10px_26px_rgba(15,23,42,0.04)] ${metricIndex % 2 === 0 ? "text-left" : "text-left md:text-right"
                     } min-w-0`}
                 >
                   <div className="text-[17px] font-semibold text-slate-950">

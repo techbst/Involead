@@ -54,8 +54,15 @@ export default function Header() {
 
     const onScroll = () => {
       const currentScrollY = window.scrollY;
+      const isMobile = window.innerWidth < 1024;
 
       setScrolled(currentScrollY > 10);
+
+      if (isMobile) {
+        setShowHeader(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
 
       if (currentScrollY < 100) {
         setShowHeader(true);
@@ -89,18 +96,18 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 z-[100] flex justify-center xl:px-12 px-5 transition-transform duration-300 ${showHeader
+      className={`fixed left-0 right-0 z-[150] flex justify-center px-0 lg:px-12 transition-transform duration-300 ${showHeader
           ? "translate-y-0"
           : "-translate-y-full"
         } ${scrolled
           ? "!bg-white !top-0 shadow-xl shadow-black/5"
-          : "top-5 bg-transparent"
+          : "top-0 bg-white lg:top-5 lg:bg-transparent"
         }`}
     >
       <div
-        className={`relative max-w-[84rem]  w-full px-4 sm:px-5 flex items-center justify-between overflow-visible rounded-full border py-3 border-white/60 backdrop-blur-xl transition-all duration-300 ${scrolled
-            ? " !shadow-none rounded-none transition-all duration-300 "
-            : "bg-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] max-lg:bg-white/95 max-lg:shadow-[0_12px_40px_rgba(15,23,42,0.12)] transition-all duration-300"
+        className={`relative max-w-[84rem] w-full flex items-center justify-between overflow-visible rounded-none border-x-0 border-y border-slate-200 px-4 py-3 backdrop-blur-xl transition-all duration-300 lg:rounded-full lg:border lg:border-white/60 lg:px-5 ${scrolled
+            ? "shadow-none"
+            : "bg-white shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] lg:bg-white/10 lg:shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] lg:shadow-[0_12px_40px_rgba(15,23,42,0.12)]"
           }`}
       >
         <Link href="/" className="flex items-center gap-3">
