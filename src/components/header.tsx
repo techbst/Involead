@@ -95,7 +95,8 @@ export default function Header() {
   const closeMobileMenu = () => setMobileOpen(false);
 
   return (
-    <header
+    <>
+      <header
       className={`fixed left-0 right-0 z-[150] flex justify-center px-0 lg:px-12 transition-transform duration-300 ${showHeader
           ? "translate-y-0"
           : "-translate-y-full"
@@ -167,8 +168,10 @@ export default function Header() {
         </div>
       </div>
 
+      </header>
+
       {mobileOpen && (
-        <div className="fixed inset-0 z-[220] lg:hidden">
+        <div className="fixed inset-0 z-[260] lg:hidden">
           <button
             type="button"
             aria-label="Close menu"
@@ -176,7 +179,7 @@ export default function Header() {
             onClick={closeMobileMenu}
           />
 
-          <aside className="absolute right-0 top-0 flex h-full w-[min(100vw,26rem)] flex-col overflow-hidden border-l border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.22)]">
+          <aside className="absolute left-0 top-0 flex h-full w-[min(100vw,26rem)] flex-col overflow-hidden border-r border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.22)]">
             <div className="border-b border-slate-200 bg-[linear-gradient(135deg,rgba(95,176,194,0.08),rgba(255,255,255,1))] px-5 py-4">
               <div className="flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3" onClick={closeMobileMenu}>
@@ -278,6 +281,6 @@ export default function Header() {
           </aside>
         </div>
       )}
-    </header>
+    </>
   );
 }
