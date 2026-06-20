@@ -523,7 +523,7 @@ function HeroSection() {
 />
       
       <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_center,#000_1px,transparent_1px)] [background-size:12px_12px]" />
-      <div className="container relative grid min-h-[560px] items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
+      <div className="container relative grid min-h-[560px] items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr]  lg:pb-20">
         <motion.div
           initial="hidden"
           animate="show"

@@ -74,6 +74,17 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [mobileOpen]);
+
   const closeMobileMenu = () => setMobileOpen(false);
 
   return (
@@ -154,67 +165,103 @@ export default function Header() {
           <button
             type="button"
             aria-label="Close menu"
-            className="absolute inset-0 bg-black/40"
+            className="absolute inset-0 bg-slate-950/45 backdrop-blur-[2px]"
             onClick={closeMobileMenu}
           />
-          <aside className="absolute left-0 top-0 flex h-full w-[min(92vw,22rem)] flex-col bg-white p-5 shadow-xl">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" onClick={closeMobileMenu}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                  IL
-                </div>
-                <span className="font-semibold">InvoLead</span>
-              </Link>
-              <button
-                type="button"
-                aria-label="Close menu"
-                onClick={closeMobileMenu}
-                className="p-2"
-              >
-                <X className="h-5 w-5" aria-hidden="true" />
-              </button>
+
+          <aside className="absolute right-0 top-0 flex h-full w-[min(100vw,26rem)] flex-col overflow-hidden border-l border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.22)]">
+            <div className="border-b border-slate-200 bg-[linear-gradient(135deg,rgba(95,176,194,0.08),rgba(255,255,255,1))] px-5 py-4">
+              <div className="flex items-center justify-between">
+                <Link href="/" className="flex items-center gap-3" onClick={closeMobileMenu}>
+                  <Image
+                    src="/img/logo.png"
+                    alt="InvoLead"
+                    width={142}
+                    height={40}
+                    className="h-auto w-[118px] object-contain"
+                    priority
+                  />
+                </Link>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  onClick={closeMobileMenu}
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700"
+                >
+                  <X className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-secondary">
+                  Explore InvoLead
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  AI, data, and software delivery shaped around enterprise outcomes.
+                </p>
+              </div>
             </div>
 
-            <nav className="mt-6 flex-1 space-y-2 overflow-y-auto pr-1 pb-6" aria-label="Mobile navigation">
-              {nav.map((item) => (
-                <div key={item.label}>
-                  {item.items ? (
-                    <details className="group">
-                      <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-3 hover:bg-slate-50">
-                        <span className="font-medium text-slate-950">{item.label}</span>
+            <nav className="flex-1 overflow-y-auto px-4 py-4" aria-label="Mobile navigation">
+              <div className="space-y-2">
+                <Link
+                  href="/"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-950"
+                >
+                  <span>Home</span>
+                  <ArrowRight className="size-4 text-secondary" />
+                </Link>
+
+                {nav.map((item) =>
+                  item.items ? (
+                    <details key={item.label} className="group rounded-2xl border border-slate-200 bg-white">
+                      <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3">
+                        <span className="text-sm font-semibold text-slate-950">{item.label}</span>
                         <ChevronDown
                           className="h-4 w-4 text-slate-500 transition-transform group-open:rotate-180"
                           aria-hidden="true"
                         />
                       </summary>
-                      <div className="mt-2 space-y-1 pl-3">
+                      <div className="grid gap-2 border-t border-slate-100 px-3 py-3">
                         {item.items.map((sub) => (
                           <Link
                             key={sub.href}
                             href={sub.href}
                             onClick={closeMobileMenu}
-                            className="block rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-secondary"
+                            className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-secondary"
                           >
-                            {sub.label}
+                            <span>{sub.label}</span>
+                            <ArrowRight className="size-4 text-slate-400" />
                           </Link>
                         ))}
                       </div>
                     </details>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={closeMobileMenu}
-                      className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-950 hover:bg-slate-50 hover:text-secondary"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
+                  ) : null,
+                )}
+
+                <Link
+                  href="/about"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-950"
+                >
+                  <span>About Us</span>
+                  <ArrowRight className="size-4 text-secondary" />
+                </Link>
+
+                <Link
+                  href="/career"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-950"
+                >
+                  <span>Career</span>
+                  <ArrowRight className="size-4 text-secondary" />
+                </Link>
+              </div>
             </nav>
 
-            <div className="mt-auto pt-4">
-              <Button asChild variant="rounded-arrow">
+            <div className="border-t border-slate-200 p-4">
+              <Button asChild className="w-full rounded-full bg-secondary px-6 py-6 text-white">
                 <Link href="/contact-us" onClick={closeMobileMenu}>
                   Contact Us
                   <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />

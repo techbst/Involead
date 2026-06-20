@@ -276,7 +276,7 @@ export function EnterpriseAICommandCenterHero() {
     <section
       ref={ref}
       onMouseMove={onMouseMove}
-      className="relative isolate min-h-screen overflow-hidden bg-black pt-32 text-white"
+      className="relative isolate min-h-screen overflow-hidden bg-black pt-36 md:pt-32 text-white"
     >
       <AnimatedBackground />
       <div className="container relative grid min-h-[calc(100vh-8rem)] items-center gap-12 pb-20 lg:grid-cols-[0.92fr_1.08fr]">
@@ -355,7 +355,7 @@ export function EnterpriseAICommandCenterHero() {
 
 export function AIOperatingSystemHero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-black pt-32 text-white">
+    <section className="relative isolate min-h-screen overflow-hidden bg-black pt-36 md:pt-32 text-white">
       <AnimatedBackground variant="mesh" />
       <div className="container relative flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center pb-20 text-center">
         <HeroCopy
@@ -429,7 +429,7 @@ export function AIOperatingSystemHero() {
 
 export function AutonomousAgentEcosystemHero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-black pt-32 pb-12 text-white">
+    <section className="relative isolate min-h-screen overflow-hidden bg-black pt-50 md:pt-32 pb-12 text-white">
       <AnimatedBackground variant="grid" />
       <div className="container relative grid min-h-[calc(100vh-8rem)] items-center gap-12 pb-20 lg:grid-cols-[0.9fr_1.1fr]">
         <HeroCopy
@@ -502,7 +502,7 @@ export function AutonomousAgentEcosystemHero() {
 
 export function SovereignAIInfrastructureHero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-black pt-32 text-white">
+    <section className="relative isolate min-h-screen overflow-hidden bg-black pt-36 md:pt-32 text-white">
       <AnimatedBackground variant="aurora" />
       <div className="container relative flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center pb-20 text-center">
         <HeroCopy
