@@ -161,7 +161,7 @@ export default function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[220] lg:hidden">
           <button
             type="button"
             aria-label="Close menu"
