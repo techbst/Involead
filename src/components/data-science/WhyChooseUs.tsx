@@ -150,12 +150,7 @@ function WhyChooseCard({ icon: Icon, title, description, hint }: WhyChooseItem) 
           {description}
         </p>
 
-        <div className="mt-auto pt-3">
-          <div className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 transition-colors duration-300 group-hover:text-[#5fb0c2]">
-            Built to scale
-            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </div>
-        </div>
+        
       </div>
     </motion.article>
   );

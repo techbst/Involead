@@ -917,7 +917,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
       whileHover={{ y: -7 }}
       className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,0.08)]"
     >
-      <div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,#111827_0%,#eb5e04_58%,#FF9255_100%)]">
+      <div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,_#111827_0%,_#60b0c2_58%,_#59a3b4_100%)]">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40" />
         <Brain className="absolute bottom-5 right-5 size-16 text-white/70" />
       </div>
@@ -939,8 +939,8 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
 function CTASection() {
   return (
     <section className="relative isolate overflow-hidden bg-[#0b0b0c] py-20 text-white sm:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(235,94,4,0.28),transparent_32%),radial-gradient(circle_at_72%_48%,rgba(255,146,85,0.22),transparent_28%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:64px_64px] opacity-35" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,FF9255_100,transparent_32%),radial-gradient(circle_at_72%_48%,rgba(255,146,85,0.22),transparent_28%)]" />
+      
       <motion.div
         initial={{ opacity: 0, y: 26 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -955,7 +955,7 @@ function CTASection() {
           Partner with us to transform your enterprise with intelligent, scalable AI solutions
         </p>
         <div className="mt-9">
-          <Button asChild className="bg-[linear-gradient(135deg,#eb5e04,#FF9255)] px-8 py-6 text-white shadow-[0_18px_42px_rgba(235,94,4,0.32)]">
+          <Button asChild className="bg-secondary px-8 py-6 text-white shadow-[0_18px_42px_secondary]">
             <Link href="/our-solutions">
               Explore Solutions
               <ArrowRight className="size-4" />

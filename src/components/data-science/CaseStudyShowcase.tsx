@@ -73,7 +73,7 @@ export default function CaseStudyShowcase() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_12%_8%,rgba(95,176,194,0.18),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(122,156,255,0.16),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(95,176,194,0.1),transparent_35%),linear-gradient(to_bottom_right,#f7fbfd,#eef5f8,#f8fcfd)] py-10 text-slate-950 lg:py-12">
+    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_12%_8%,rgba(95,176,194,0.18),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(122,156,255,0.16),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(95,176,194,0.1),transparent_35%),linear-gradient(to_bottom_right,#f7fbfd,#eef5f8,#f8fcfd)] py-15 text-slate-950 lg:py-15">
      
       <div className="container relative z-10 mx-auto">
         <motion.div
@@ -109,7 +109,8 @@ export default function CaseStudyShowcase() {
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous case study"
-                className="grid size-10 place-items-center rounded-full bg-secondary text-white shadow-[0_12px_28px_rgba(95,176,194,0.18)] transition hover:-translate-y-0.5 hover:brightness-110"
+                 className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+             
               >
                 <ArrowLeft className="size-4" />
               </button>
@@ -117,7 +118,8 @@ export default function CaseStudyShowcase() {
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next case study"
-                className="grid size-10 place-items-center rounded-full bg-secondary text-white shadow-[0_12px_28px_rgba(95,176,194,0.18)] transition hover:-translate-y-0.5 hover:brightness-110"
+                 className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+             
               >
                 <ArrowRight className="size-4" />
               </button>
