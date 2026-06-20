@@ -20,7 +20,7 @@ import {
   Zap,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-
+import Image from "next/image"
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import GenerativeAIHeroSections, { AIOperatingSystemHero, AutonomousAgentEcosystemHero, EnterpriseAICommandCenterHero, SovereignAIInfrastructureHero } from "./hero-sections";
@@ -71,6 +71,7 @@ type TechTab = {
 
 type BlogPost = {
   category: string;
+  featuredimg: string;
   title: string;
   excerpt: string;
 };
@@ -352,61 +353,64 @@ const techTabs: TechTab[] = [
   {
     label: "Programming Languages & Frameworks",
     items: [
-      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", image: "/gen-ai/technologies/python.svg", },
-      { name: "JavaScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/next-js.svg", },
-      { name: "React.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/react.svg", },
-      { name: "Node.js", body: "High-performance Python APIs for model serving and automation.", image: "/gen-ai/technologies/nodejs.svg", },
-      { name: "Three.js", body: "Deep learning framework for training and experimentation.", image: "/gen-ai/technologies/python.svg", },
+      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", image: "/gen-ai/technologies/python.svg" },
+      { name: "JavaScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", image: "/gen-ai/technologies/javascript-logo-svgrepo-com.svg" },
+      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/next-js.svg" },
+      { name: "React.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/react.svg" },
+      { name: "Node.js", body: "High-performance Python APIs for model serving and automation.", image: "/gen-ai/technologies/nodejs.svg" },
+      { name: "Three.js", body: "Deep learning framework for training and experimentation.", image: "/gen-ai/technologies/Three.js.svg" },
     ],
   },
   {
     label: "LLM Models (Text, Image, Video, etc.)",
     items: [
-      { name: "OpenAI GPT Models", body: "Advanced reasoning, generation, and enterprise AI workflows.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Claude", body: "Long-context reasoning and business-grade AI assistance.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Gemini", body: "Multimodal AI capabilities for text, vision, and complex reasoning.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Llama", body: "Open-weight LLMs for private and customizable deployments.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Mistral", body: "Efficient frontier models for fast and cost-effective AI systems.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Stable Diffusion", body: "Image generation workflows for creative automation.", image: "/gen-ai/technologies/python.svg", },
+      { name: "OpenAI GPT Models", body: "Advanced reasoning, generation, and enterprise AI workflows.", image: "/gen-ai/technologies/chatgpt-icon.svg" },
+      { name: "Claude", body: "Long-context reasoning and business-grade AI assistance.", image: "/gen-ai/technologies/claude-ai-icon.svg" },
+      { name: "Gemini", body: "Multimodal AI capabilities for text, vision, and complex reasoning.", image: "/gen-ai/technologies/google-gemini-icon.svg" },
+      { name: "Llama", body: "Open-weight LLMs for private and customizable deployments.", image: "/gen-ai/technologies/apple.svg" },
+      { name: "Mistral", body: "Efficient frontier models for fast and cost-effective AI systems.", image: "/gen-ai/technologies/android.svg" },
+      { name: "Stable Diffusion", body: "Image generation workflows for creative automation.", image: "/gen-ai/technologies/kotlin.svg" },
     ],
   },
   {
     label: "Database & Vector Database",
     items: [
-      { name: "PostgreSQL", body: "Reliable relational database for structured enterprise data.", image: "/gen-ai/technologies/python.svg", },
-      { name: "MongoDB", body: "Flexible NoSQL database for modern applications.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Pinecone", body: "Managed vector database for semantic search and RAG.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Weaviate", body: "Vector search engine for AI-native data retrieval.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Qdrant", body: "High-performance vector database for scalable similarity search.", image: "/gen-ai/technologies/python.svg", },
-      { name: "Redis", body: "Fast caching and real-time memory layer for AI systems.", image: "/gen-ai/technologies/python.svg", },
+      { name: "PostgreSQL", body: "Reliable relational database for structured enterprise data.", image: "/gen-ai/technologies/laravel.svg" },
+      { name: "MongoDB", body: "Flexible NoSQL database for modern applications.", image: "/gen-ai/technologies/mongodb-icon.svg" },
+      { name: "Pinecone", body: "Managed vector database for semantic search and RAG.", image: "/gen-ai/technologies/Pinecone-Icon--Streamline-Svg-Logos.svg" },
+      { name: "Weaviate", body: "Vector search engine for AI-native data retrieval.", image: "/gen-ai/technologies/woocommerce.svg" },
+      { name: "Qdrant", body: "High-performance vector database for scalable similarity search.", image: "/gen-ai/technologies/ionic-1.svg" },
+      { name: "Redis", body: "Fast caching and real-time memory layer for AI systems.", image: "/gen-ai/technologies/phonegap.svg" },
     ],
   },
   {
     label: "AI Orchestration & Agent Frameworks",
     items: [
-      { name: "LangChain", body: "Build LLM applications with chains, tools, and agents.", image: "/gen-ai/technologies/python.svg", },
-      { name: "LlamaIndex", body: "Data framework for RAG and enterprise knowledge systems.", image: "/gen-ai/technologies/python.svg", },
-      { name: "CrewAI", body: "Multi-agent collaboration framework for autonomous workflows.", image: "/gen-ai/technologies/python.svg", },
-      { name: "AutoGen", body: "Agentic AI framework for multi-agent conversation systems.", image: "/gen-ai/technologies/python.svg", },
-      { name: "DSPy", body: "Programmatic prompt and pipeline optimization.", image: "/gen-ai/technologies/python.svg", },
-      { name: "n8n", body: "Workflow automation for AI-powered business processes.", image: "/gen-ai/technologies/python.svg", },
+      { name: "LangChain", body: "Build LLM applications with chains, tools, and agents.", image: "/gen-ai/technologies/Langchain--Streamline-Simple-Icons.svg" },
+      { name: "LlamaIndex", body: "Data framework for RAG and enterprise knowledge systems.", image: "/gen-ai/technologies/next-js.svg" },
+      { name: "CrewAI", body: "Multi-agent collaboration framework for autonomous workflows.", image: "/gen-ai/technologies/react.svg" },
+      { name: "AutoGen", body: "Agentic AI framework for multi-agent conversation systems.", image: "/gen-ai/technologies/nodejs.svg" },
+      { name: "DSPy", body: "Programmatic prompt and pipeline optimization.", image: "/gen-ai/technologies/angular.svg" },
+      { name: "n8n", body: "Workflow automation for AI-powered business processes.", image: "/gen-ai/technologies/vue.svg" },
     ],
   },
 ];
 
 const blogPosts: BlogPost[] = [
   {
+    featuredimg: "/img/cap-1.webp",
     category: "Agentic AI",
     title: "How Agentic AI is Reshaping Enterprise Operations",
     excerpt: "A practical view of autonomous workflows, orchestration, and measurable AI operating leverage.",
   },
   {
+       featuredimg: "/img/cap-2.webp",
     category: "RAG Systems",
     title: "Building Cost-Efficient RAG Systems for Scale",
     excerpt: "How retrieval strategy, model routing, and evaluations help enterprises control quality and cost.",
   },
   {
+       featuredimg: "/img/cap-3.webp",
     category: "Private AI",
     title: "Why Small Language Models Are the Future of Private AI",
     excerpt: "Domain-specific SLMs can outperform generic models when speed, privacy, and unit economics matter.",
@@ -513,13 +517,13 @@ function HeroVisual() {
 
 function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#100b08] pt-25 text-white sm:pt-25 lg:pt-25">
+    <section className="relative isolate overflow-hidden bg-[#100b08] pt-20 text-white sm:pt-24 lg:pt-28">
       <div
   className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]"
 />
       
       <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_center,#000_1px,transparent_1px)] [background-size:12px_12px]" />
-      <div className="container relative grid min-h-[600px] items-center gap-12 pb-20 lg:grid-cols-[1fr_0.9fr]">
+      <div className="container relative grid min-h-[560px] items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
         <motion.div
           initial="hidden"
           animate="show"
@@ -531,14 +535,14 @@ function HeroSection() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="mt-5 max-w-4xl text-[clamp(2.6rem,6vw,5.8rem)] font-bold leading-[1.03] tracking-normal text-main"
+            className="mt-5 max-w-4xl text-[clamp(2.5rem,6vw,5.4rem)] font-bold leading-[1.03] tracking-normal text-main"
           >
             From Autonomous <span className="text-secondary">Agents to Enterprise AI</span>
           </motion.h1>
-          <motion.p variants={fadeUp} className="mt-6 max-w-2xl text-lg leading-8 text-main sm:text-xl">
+          <motion.p variants={fadeUp} className="mt-6 max-w-2xl text-base leading-8 text-main sm:text-lg lg:text-xl">
             Architecting Sovereign Cognitive Ecosystems for the Modern Enterprise
           </motion.p>
-          <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button asChild variant="default">
               <Link href="/contact-us">
                 Schedule a Free Consultation
@@ -853,25 +857,25 @@ function TechStackTabs() {
   const current = techTabs[active];
 
   return (
-    <section className="bg-secondary/20 py-20 sm:py-24">
+    <section className="bg-secondary/20 py-16 sm:py-20 lg:py-24">
       <div className="container">
         <SectionHeader
           eyebrow="Tech-Stack"
           title="Our present-day technologies behind quality AI solutions"
           description="Enterprise Generative AI solutions designed by our experts with the latest resources."
         />
-        <div className="mt-10 overflow-x-auto pb-2">
-          <div className="flex justify-center min-w-max gap-3">
+        <div className="mt-10 pb-2">
+          <div className="flex flex-wrap justify-center gap-3">
             {techTabs.map((tab, index) => (
               <button
                 key={tab.label}
                 type="button"
                 onClick={() => setActive(index)}
                 className={cn(
-                  "rounded-full border px-5 py-3 text-sm font-semibold transition",
+                  "rounded-full border px-4 py-2.5 text-xs font-semibold transition sm:px-5 sm:py-3 sm:text-sm",
                   active === index
                     ? "border-transparent bg-[linear-gradient(135deg,#5fb0c2,#5fb0c2)] text-white shadow-sm shadow-secondary-500/20"
-                    : "border-slate-200 bg-white hover:border-secodary/50",
+                    : "border-slate-200 bg-white hover:border-secondary/50",
                 )}
               >
                 {tab.label}
@@ -884,18 +888,17 @@ function TechStackTabs() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+          className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
         >
           {current.items.map((item) => {
-            const Icon = item.image;
             return (
-              <article key={item.name} className="flex gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)]">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-[10px] bg-secondary/10 w-[92px] h-full p-3">
-                  <img src={item.image} className="max-w-[60px] max-h-[40px]"/>
+              <article key={item.name} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_45px_rgba(15,23,42,0.06)] sm:p-5">
+                <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-secondary/10 bg-secondary/10 p-2 sm:size-14">
+                  <Image src={item.image} alt={item.name} fill sizes="56px" className="object-contain p-2" />
                 </div>
-                <div>
-                  <div className="text-[18px] font-bold text-slate-950">{item.name}</div>
-                  <div className="mt-2 text-[14px] leading-5 text-main">{item.body}</div>
+                <div className="min-w-0">
+                  <div className="text-base font-bold text-slate-950 sm:text-lg">{item.name}</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-600">{item.body}</div>
                 </div>
               </article>
             );
@@ -918,11 +921,18 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
       className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,0.08)]"
     >
       <div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,_#111827_0%,_#60b0c2_58%,_#59a3b4_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40" />
+        <Image 
+        alt={"post image"}
+        src={post.featuredimg}
+        height={400}
+        width={400}
+        className="w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/20 " />
         <Brain className="absolute bottom-5 right-5 size-16 text-white/70" />
       </div>
       <div className="p-6">
-        <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
+        <span className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
           {post.category}
         </span>
         <h3 className="mt-4 text-2xl font-bold tracking-normal text-slate-950">{post.title}</h3>

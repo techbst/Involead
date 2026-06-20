@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChartColumn, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BriefcaseBusiness,
+  ChartColumnIncreasing,
+  Database,
+  LineChart,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -13,6 +22,7 @@ type CaseStudyCard = {
   description: string;
   metrics: { value: string; label: string }[];
   accent: string;
+  icon: LucideIcon;
 };
 
 const caseStudies: CaseStudyCard[] = [
@@ -27,6 +37,7 @@ const caseStudies: CaseStudyCard[] = [
       { value: "2.5x", label: "Decision Speed" },
     ],
     accent: "from-[#0d2230] via-[#11394a] to-[#5fb0c2]",
+    icon: LineChart,
   },
   {
     title: "Operational Intelligence",
@@ -39,6 +50,7 @@ const caseStudies: CaseStudyCard[] = [
       { value: "9 mo", label: "ROI Window" },
     ],
     accent: "from-[#0f1e2f] via-[#14324a] to-[#7a9cff]",
+    icon: Database,
   },
   {
     title: "Technology-Driven Change",
@@ -51,6 +63,7 @@ const caseStudies: CaseStudyCard[] = [
       { value: "3x", label: "Adoption" },
     ],
     accent: "from-[#0b1826] via-[#10273a] to-[#5fb0c2]",
+    icon: ChartColumnIncreasing,
   },
 ];
 
@@ -67,6 +80,7 @@ const panelVariants = {
 export default function CaseStudyShowcase() {
   const [active, setActive] = useState(0);
   const current = caseStudies[active];
+  const ActiveIcon = current.icon;
 
   const go = (direction: number) => {
     setActive((value) => (value + direction + caseStudies.length) % caseStudies.length);
@@ -176,7 +190,7 @@ export default function CaseStudyShowcase() {
               <div className="absolute inset-0 bg-secondary/20" />
               <div className="relative z-10 flex h-full flex-col">
                 <div className="inline-flex size-9 items-center justify-center rounded-full bg-white text-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.22)]">
-                  <ChartColumn className="size-4.5" />
+                  <ActiveIcon className="size-4.5" />
                 </div>
                
                 <h3 className="mt-2.5 max-w-sm text-[1.15rem] font-semibold leading-[1.12] tracking-[-0.04em] !text-white">
@@ -221,9 +235,8 @@ export default function CaseStudyShowcase() {
                     <div className="relative z-10">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex size-9 items-center justify-center rounded-full bg-secondary text-white ">
-                          <ChartColumn className="size-4.5" />
+                          <item.icon className="size-4.5" />
                         </div>
-                        <ArrowRight className="size-4 text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </div>
                       <h3 className="mt-5 text-[0.98rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950">
                         {item.title}

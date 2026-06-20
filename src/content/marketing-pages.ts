@@ -10,6 +10,7 @@ import {
   Layers3,
   Landmark,
   LineChart,
+  LayoutGrid,
   ShieldCheck,
   Sparkles,
   Workflow,
@@ -141,6 +142,71 @@ export const marketingPages: Record<string, MarketingPage> = {
       { title: 'Faster executive action', description: 'Turn raw signals into decisions people can trust quickly.', icon: BrainCircuit },
     ],
     cta: { label: 'Schedule a Data Science call', href: '/contact-us' },
+    related: sharedWhatWeDo.related,
+  },
+  'our-solutions/software-development': {
+    slug: 'our-solutions/software-development',
+    eyebrow: 'What We Do',
+    title: 'Software Development that turns ideas into reliable products',
+    description:
+      'We build modern web applications, internal tools, and product experiences with clean architecture, thoughtful UX, and production-ready delivery.',
+    image: '/img/hero_img.webp',
+    imageAlt: 'Software development product visual',
+    accent: '#5fb0c2',
+    badge: 'Design • Build • Ship',
+    stats: sharedWhatWeDo.stats,
+    highlights: [
+      {
+        title: 'Product engineering',
+        description: 'Ship maintainable apps with a strong front-end and back-end foundation.',
+        icon: Workflow,
+      },
+      {
+        title: 'UI implementation',
+        description: 'Translate design systems into responsive interfaces that feel polished.',
+        icon: LayoutGrid,
+      },
+      {
+        title: 'Scalable delivery',
+        description: 'Use practical architecture and code standards so teams can grow safely.',
+        icon: Building2,
+      },
+    ],
+    steps: [
+      {
+        title: 'Define the product scope',
+        description: 'We align user needs, technical constraints, and delivery goals before building.',
+        icon: BriefcaseBusiness,
+      },
+      {
+        title: 'Design the system',
+        description: 'Component structure, data flow, and integrations are mapped with longevity in mind.',
+        icon: Layers3,
+      },
+      {
+        title: 'Deliver and iterate',
+        description: 'We ship iteratively, validate with real usage, and improve based on feedback.',
+        icon: Sparkles,
+      },
+    ],
+    outcomes: [
+      {
+        title: 'Faster launches',
+        description: 'Bring usable software to market without sacrificing quality.',
+        icon: Sparkles,
+      },
+      {
+        title: 'Cleaner handoff',
+        description: 'Give your team a codebase and UI that are easier to maintain.',
+        icon: ShieldCheck,
+      },
+      {
+        title: 'Better adoption',
+        description: 'Make tools feel intuitive enough that teams actually use them.',
+        icon: Bot,
+      },
+    ],
+    cta: { label: 'Discuss a build', href: '/contact-us' },
     related: sharedWhatWeDo.related,
   },
   'our-solutions/generative-ai': {
@@ -438,6 +504,7 @@ export const marketingPages: Record<string, MarketingPage> = {
 export const sectionIndex = {
   whatWeDo: [
     marketingPages['our-solutions/data-science'],
+    marketingPages['our-solutions/software-development'],
     marketingPages['our-solutions/generative-ai'],
     marketingPages['our-solutions/data-engineering'],
     marketingPages['our-solutions/cloud-solution'],

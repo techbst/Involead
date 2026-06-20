@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import {
+  BadgeDollarSign,
+  Clock3,
+  Target,
+  TimerReset,
+  TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
 
 import SectionReveal from "@/components/home/SectionReveal";
 import AnimatedNumber from "@/components/ui/animated-number";
@@ -11,6 +18,7 @@ export interface IndustryMetric {
   title: string;
   value: string;
   description: string;
+  icon?: LucideIcon;
 }
 
 interface IndustryStrengthSectionProps {
@@ -24,31 +32,37 @@ const defaultMetrics: IndustryMetric[] = [
     title: "Engagement Rate",
     value: "35–45%",
     description: "Increase through AI-led personalization",
+    icon: TrendingUp,
   },
   {
     title: "Planning Cycle",
     value: "30–40%",
     description: "Reduction in time-to-decision",
+    icon: Clock3,
   },
   {
     title: "Revenue Growth",
     value: "5–18%",
     description: "Uplift across client portfolios",
+    icon: TrendingUp,
   },
   {
     title: "Forecast Accuracy",
     value: "20–30%",
     description: "Improved prediction accuracy",
+    icon: Target,
   },
   {
     title: "Marketing ROI",
     value: "15–20%",
     description: "Increase in campaign efficiency",
+    icon: BadgeDollarSign,
   },
   {
     title: "Hours Saved",
     value: "25–35H",
     description: "Operational time savings",
+    icon: TimerReset,
   },
 ];
 
@@ -96,6 +110,15 @@ const cardStyles = [
     line: "bg-[#082433]/12",
   },
 ];
+
+const metricIcons: Record<string, LucideIcon> = {
+  "Engagement Rate": TrendingUp,
+  "Planning Cycle": Clock3,
+  "Revenue Growth": TrendingUp,
+  "Forecast Accuracy": Target,
+  "Marketing ROI": BadgeDollarSign,
+  "Hours Saved": TimerReset,
+};
 
 export default function IndustryStrengthSection({
   title = "Our Strength Across Industries",
@@ -152,6 +175,7 @@ export default function IndustryStrengthSection({
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
   {metrics.map((item, index) => {
     const style = cardStyles[index % cardStyles.length];
+    const Icon = item.icon ?? metricIcons[item.title] ?? TrendingUp;
 
     return (
       <motion.article
@@ -199,7 +223,7 @@ export default function IndustryStrengthSection({
                 style.icon
               )}
             >
-              <ArrowRight size={15} />
+              <Icon size={15} />
             </motion.div>
           </div>
 

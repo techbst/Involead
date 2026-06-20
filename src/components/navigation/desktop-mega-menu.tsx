@@ -38,20 +38,27 @@ type MenuItem = {
 
 type MenuSection = {
   heading: string;
-  featured: MenuItem;
+  featured?: MenuItem | false;
   items: MenuItem[];
 };
 
 const menuSections: Record<MenuKey, MenuSection> = {
   solutions: {
     heading: "OUR SOLUTIONS",
-    featured: {
+    featured: false,
+    items: [
+      {
       title: "Data Science",
       description: "Predictive modeling and decision intelligence built for measurable outcomes.",
       href: "/our-solutions/data-science",
       icon: LineChart,
     },
-    items: [
+      {
+        title: "Software Development",
+        description: "Modern product builds and responsive web experiences.",
+        href: "/our-solutions/software-development",
+        icon: Building2,
+      },
       {
         title: "Generative AI",
         description: "Assistants, copilots, and agentic workflows.",
@@ -218,6 +225,7 @@ export default function DesktopMegaMenu() {
   }, [clearTimer]);
 
   const activeMenu = activeKey ? menuSections[activeKey] : null;
+  const featuredItem = activeMenu && activeMenu.featured ? activeMenu.featured : null;
 
   return (
     <div className="relative hidden lg:flex lg:items-center">
@@ -273,10 +281,23 @@ export default function DesktopMegaMenu() {
                
               </div>
 
-              <div className="relative z-10 grid gap-3 lg:grid-cols-[0.92fr_1.58fr]">
-                <MenuItemCard item={activeMenu.featured} featured />
+              <div
+                className={cn(
+                  "relative z-10 grid gap-3 lg:grid-cols-3"
+                )}
+              >
+                {featuredItem && (
+                  <MenuItemCard item={featuredItem} featured />
+                )}
 
-                <div className="grid gap-2.5 sm:grid-cols-2">
+                <div
+                  className={cn(
+                    "grid gap-2.5",
+                    featuredItem
+                      ? "sm:grid-cols-2 lg:col-span-2"
+                      : "sm:grid-cols-2 lg:col-span-3 lg:grid-cols-3"
+                  )}
+                >
                   {activeMenu.items.map((item) => (
                     <MenuItemCard key={item.href} item={item} />
                   ))}

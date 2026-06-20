@@ -17,6 +17,7 @@ const nav: MobileNavItem[] = [
     label: 'Our Solutions',
     items: [
       { label: 'Data Science', href: '/our-solutions/data-science' },
+      { label: 'Software Development', href: '/our-solutions/software-development' },
       { label: 'Generative AI', href: '/our-solutions/generative-ai' },
       { label: 'Data Engineering', href: '/our-solutions/data-engineering' },
       { label: 'Cloud Solution', href: '/our-solutions/cloud-solution' },
@@ -156,7 +157,7 @@ export default function Header() {
             className="absolute inset-0 bg-black/40"
             onClick={closeMobileMenu}
           />
-          <aside className="absolute left-0 top-0 h-full w-4/5 max-w-xs bg-white p-6 shadow-xl">
+          <aside className="absolute left-0 top-0 flex h-full w-[min(92vw,22rem)] flex-col bg-white p-5 shadow-xl">
             <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3" onClick={closeMobileMenu}>
                 <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-white">
@@ -174,25 +175,25 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="mt-6 space-y-2" aria-label="Mobile navigation">
+            <nav className="mt-6 flex-1 space-y-2 overflow-y-auto pr-1 pb-6" aria-label="Mobile navigation">
               {nav.map((item) => (
                 <div key={item.label}>
                   {item.items ? (
                     <details className="group">
-                      <summary className="flex cursor-pointer list-none items-center justify-between rounded-md px-2 py-3 hover:bg-slate-50">
-                        <span className="font-medium">{item.label}</span>
+                      <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-3 hover:bg-slate-50">
+                        <span className="font-medium text-slate-950">{item.label}</span>
                         <ChevronDown
                           className="h-4 w-4 text-slate-500 transition-transform group-open:rotate-180"
                           aria-hidden="true"
                         />
                       </summary>
-                      <div className="mt-2 space-y-1 pl-4">
+                      <div className="mt-2 space-y-1 pl-3">
                         {item.items.map((sub) => (
                           <Link
                             key={sub.href}
                             href={sub.href}
                             onClick={closeMobileMenu}
-                            className="block px-2 py-2 text-sm text-slate-700"
+                            className="block rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-secondary"
                           >
                             {sub.label}
                           </Link>
@@ -203,7 +204,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       onClick={closeMobileMenu}
-                      className="block rounded-md px-2 py-3 text-sm font-medium hover:bg-slate-50"
+                      className="block rounded-xl px-3 py-3 text-sm font-medium text-slate-950 hover:bg-slate-50 hover:text-secondary"
                     >
                       {item.label}
                     </Link>
@@ -212,7 +213,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="mt-6">
+            <div className="mt-auto pt-4">
               <Button asChild variant="rounded-arrow">
                 <Link href="/contact-us" onClick={closeMobileMenu}>
                   Contact Us
