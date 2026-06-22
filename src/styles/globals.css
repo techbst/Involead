@@ -392,3 +392,17 @@ p {
 ::-webkit-scrollbar-thumb {
     background:var(--secondary);
 }
+.swiper-slide.swiper-slide-active {
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+}
+.swiper-slide.swiper-slide-active {
+    transition: all 0.5s ease;
+}
+.swiper-slide.swiper-slide-active img,
+.swiper-slide:not(.swiper-slide-active) ul {
+  display: none;
+}
+.swiper-wrapper {
+  padding: 25px 0;
+}

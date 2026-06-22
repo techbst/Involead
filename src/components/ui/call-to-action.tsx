@@ -16,7 +16,7 @@ export default function CallToAction() {
                 <div className="container">
                     <div className="relative z-10 grid w-full items-center gap-8 md:grid-cols-[1fr_auto]">
                         <div>
-                            <h3 className="!text-4xl font-extrabold leading-tight text-white md:text-5xl">
+                            <h3 className="!text-4xl font-bold text-white">
                                 Let's Shape the{" "}
                                 <span className="text-secondary">Future of Your Business</span>
                             </h3>

@@ -7,9 +7,9 @@ import { AnimatePresence, motion, useInView, useReducedMotion, Variants } from "
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation } from "swiper/modules";
 import {
-  ArrowRight, BarChart3, Boxes, BrainCircuit, Check, ChevronDown, Cloud,
-  Code2, Database, Gauge, GitBranch, Layers3, LockKeyhole, Network,
-  Quote, Radar, Search, ShieldCheck, Sparkles, Workflow, Zap,
+  ArrowRight, BrainCircuit, Check, ChevronDown, Cloud,
+  Code2, Database,
+  Quote, Radar, Search, ShieldCheck, Sparkles
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,10 @@ import DataEngineeringHero from "@/components/data-engineering/data-engineering-
 import InteractiveNeuralVortex from "../ui/animated-svg-background";
 import CallToAction from "../ui/call-to-action";
 import ValueCard from "../ui/value-card";
+import { SectionHeader } from "../ui/section-header";
+import Stats from "./number";
+import ClipShape from "../ui/clip-shape";
+import ClipCard from "../ui/clip-card";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
@@ -34,9 +38,10 @@ const foundations = [{ title: "Data Infrastructure", text: "Resilient lakehouse 
 function Foundations() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { gsap.from(".foundation-step", { scrollTrigger: { trigger: ref.current, start: "top 72%" }, opacity: 0, y: 60, stagger: .18, duration: .8, ease: "power3.out" }); gsap.fromTo(".foundation-line", { scaleX: 0 }, { scaleX: 1, scrollTrigger: { trigger: ref.current, start: "top 70%" }, duration: 1.5, ease: "power2.inOut" }) }, ref); clean = () => ctx.revert() })(); return () => clean() }, []); 
 return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white sm:py-20">
     <div className="container">
-        <SectionHeading inverse eyebrow="Built for production"
+        <SectionHeader eyebrow="Built for production"
             title="Production-ready data platforms for regulated industries"
-            body="Data engineering is the foundation of modern data-driven organizations. We design the systems that collect, store, process, and transform raw data into meaningful insight." />
+            description="Data engineering is the foundation of modern data-driven organizations. We design the systems that collect, store, process, and transform raw data into meaningful insight."
+            textColor="white" />
         <div className="relative mt-12 grid gap-8 lg:grid-cols-3">
             
             {foundations.map((x, i) => <motion.article key={x.title} whileHover={{ y: -10 }}
@@ -58,7 +63,8 @@ return <section ref={ref} className="relative overflow-hidden bg-black py-20 tex
     </div>
 </section>}
 
-function Testimonial() { return <section className="bg-white py-20 overflow-hidden">
+function Testimonial() { return <section className="bg-white pt-20 pb-8 overflow-hidden relative">
+  
   <div className="container">
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -143,11 +149,12 @@ const lineVariants: Variants = {
     transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
-function Compliance() { return <section className="py-20 sm:py-20 bg-secondary/20">
-    <div className="container">
-        <SectionHeading 
+function Compliance() { return <section className="py-20 sm:py-20 overflow-hidden relative">
+    <ClipShape />
+    <div className="container z-10 mt-26 relative">
+        <SectionHeader 
             eyebrow="Trust by design" title="Standards-Verified Compliance"
-            body="Our data platforms adhere to the highest security standards. We protect your data, simplify audits, and guarantee compliance." 
+            description="Our data platforms adhere to the highest security standards. We protect your data, simplify audits, and guarantee compliance." 
         />
         <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{compliance.map(([a, t, d], i) => <ValueCard
                 key={t}
@@ -176,10 +183,13 @@ const genCards = [
   { title: "Data Discovery & Cataloging", desc: "Automatically discover, catalog, and document data assets, making it easy to find and understand your data landscape.", icon: Search, color: "bg-[#fff0dc]" },
   { title: "Natural Language Interfaces", desc: "Query and manipulate data using plain English, making data engineering accessible to non-technical stakeholders.", icon: Sparkles, image: "/img/data-scie.webp" },
 ];
-function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-slate-50 py-20 sm:py-20">
+function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-20 sm:py-20">
         <div className="container">
-            <SectionHeading eyebrow="Generative intelligence" title="How GenAI Improves Data Engineering"
-                body="We empower life sciences, retail, hospitality, and pharma brands by transforming complex data into intelligent solutions that unlock insights, automate operations, and accelerate business outcomes." />
+            <SectionHeader 
+            eyebrow="Generative intelligence"
+            title="How GenAI Improves Data Engineering"
+            description="We empower life sciences, retail, hospitality, and pharma brands by transforming complex data into intelligent solutions that unlock insights, automate operations, and accelerate business outcomes."
+            maxWidth="5xl" />
             <div className="mt-14 space-y-4">
                 <motion.div layout className="flex flex-col gap-4 lg:flex-row">{genCards.slice(0, 2).map((c, i) =>
                     <GenCard key={c.title} item={c} active={activeRow1===i} muted={activeRow1 !==null && activeRow1
@@ -207,60 +217,155 @@ function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item
 }
 
 const excellence = [
-  ["Data Pipeline Development", ["ETL/ELT Pipelines", "Real-time Processing", "Batch Processing", "Data Transformation"]], ["Cloud Data Architecture", ["Multi-cloud Solutions", "Serverless Architecture", "Data Lakes", "Data Warehouses"]], ["AI-Powered Automation", ["Code Generation", "Data Quality Automation", "Anomaly Detection", "Predictive Maintenance"]], ["Data Quality & Governance", ["Data Validation", "Quality Monitoring", "Governance Frameworks", "Compliance Management"]], ["Data Security & Privacy", ["Code Generation", "Data Quality Automation", "Anomaly Detection", "Predictive Maintenance"]], ["Performance Optimization", ["Query Optimization", "Resource Management", "Caching Strategies", "Cost Optimization"]], ["Data Integration", ["API Integration", "Database Integration", "Streaming Integration", "Legacy System Integration"]], ["Real-time Data Streaming", ["Kafka Integration", "Stream Processing", "Event-driven Architecture", "Real-time Analytics"]]
+  ["Data Pipeline Development", "Build robust, scalable data pipelines that transform raw data into actionable insights.", ["ETL/ELT Pipelines", "Real-time Processing", "Batch Processing", "Data Transformation"]], 
+  ["Cloud Data Architecture", "Design and implement cloud-native data architectures on AWS, Azure, and GCP.", ["Multi-cloud Solutions", "Serverless Architecture", "Data Lakes", "Data Warehouses"]], 
+  ["AI-Powered Automation", "Leverage Generative AI to automate data engineering tasks and improve efficiency.", ["Code Generation", "Data Quality Automation", "Anomaly Detection", "Predictive Maintenance"]], 
+  ["Data Quality & Governance", "Ensure data quality, consistency, and compliance across your entire data ecosystem.", ["Data Validation", "Quality Monitoring", "Governance Frameworks", "Compliance Management"]], 
+  ["Data Security & Privacy", "Leverage Generative AI to automate data engineering tasks and improve efficiency.", ["Code Generation", "Data Quality Automation", "Anomaly Detection", "Predictive Maintenance"]], 
+  ["Performance Optimization", "Optimize data processing performance to reduce costs and improve speed.", ["Query Optimization", "Resource Management", "Caching Strategies", "Cost Optimization"]], 
+  ["Data Integration", "Generate data pipeline code automatically using natural language descriptions, reducing development time by up to 60%.", ["API Integration", "Database Integration", "Streaming Integration", "Legacy System Integration"]], 
+  ["Real-time Data Streaming", "Build real-time data streaming solutions for instant insights and decision-making.", ["Kafka Integration", "Stream Processing", "Event-driven Architecture", "Real-time Analytics"]]
 ];
-function Excellence() { return <section className="overflow-hidden py-24 sm:py-32"><div className="container"><SectionHeading eyebrow="Core capabilities" title="Engineering Excellence for Intelligence" body="We transform complex data into intelligent solutions that unlock insight, automate operations, and accelerate business outcomes." /></div><div className="mx-auto mt-14 w-full px-4">
+function Excellence() { return <section className="overflow-hidden py-20 sm:py-20 bg-secondary/20" ><div className="container">
+  <SectionHeader 
+  eyebrow="Core capabilities"
+  title="Engineering Excellence for Intelligence"
+  description="We transform complex data into intelligent solutions that unlock insight, automate operations, and accelerate business outcomes."
+  maxWidth="5xl"
+  />
+  </div>
+  <div className="mx-auto mt-4 container">
   <Swiper
-  modules={[EffectCoverflow, Navigation]}
-  effect="coverflow"
-  centeredSlides={true}
-  slidesPerView={5}
-  loop={true}
-  loopAdditionalSlides={2}
-  spaceBetween={-40}
-  grabCursor={true}
+  className="py-20"
+  modules={[Navigation]}
+  slidesPerView={3}
+  spaceBetween={30}
+  loop
   navigation
-  watchSlidesProgress
-  coverflowEffect={{
-    rotate: 0,
-    stretch: 0,
-    depth: 120,
-    modifier: 1,
-    slideShadows: false,
+  centeredSlides
+  breakpoints={{
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
   }}
-  className="!overflow-visible !py-10"
 >
-  {excellence.map(([title, items], i) => 
-  <SwiperSlide
-  key={title as string}
-  className="!h-auto !w-[340px]"
->{({ isActive }) => 
-    <motion.article
-  animate={{
-    y: isActive ? -12 : 0,
-  }}
-  transition={{
-    type: "spring",
-    stiffness: 220,
-    damping: 25,
-  }}
-  className={cn(
-    "relative h-full min-h-[420px] overflow-hidden rounded-[24px] border p-6",
-    isActive
-      ? "border-secondary/30 shadow-[0_25px_70px_rgba(95,176,194,.25)]"
-      : "border-slate-200"
-  )}
->
-    <Image src={i % 2 ? "/img/data-scie.webp" : "/service-img/data-eng.png"} fill alt="" className={cn("object-cover transition-opacity")} /><div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" /><div className="relative flex min-h-[350px] flex-col"><span className="text-xs opacity-60">0{i + 1}</span><h3 className="mt-auto text-xl font-bold">{title}</h3><p className="mt-3 text-sm text-white/70">Purpose-built systems for complex enterprise data estates.</p><AnimatePresence>{isActive && <motion.ul initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="mt-6 space-y-3">{(items as string[]).map(x => <li key={x} className="flex gap-2 text-sm"><Check className="size-4 shrink-0" />{x}</li>)}</motion.ul>}</AnimatePresence></div></motion.article>}</SwiperSlide>)}</Swiper></div></section> }
+  {excellence.map(([title, subtitle, items], i) => (
+    <SwiperSlide key={title as string} className="h-auto mt-10">
+      <article className="relative h-full min-h-[420px] overflow-hidden rounded-[24px] border border-slate-200 p-6">
+        <Image
+          src={i % 2 ? "/img/data-scie.webp" : "/service-img/data-eng.png"}
+          fill
+          alt=""
+          className="object-cover"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+
+        <div className="relative flex min-h-[350px] flex-col text-white">
+          <span className="text-xs opacity-60">
+            0{i + 1}
+          </span>
+
+          <h3 className="mt-auto text-xl font-bold">
+            {title}
+          </h3>
+
+          <p className="mt-3 text-white">{subtitle}</p>
+
+          <ul className="mt-6 space-y-3">
+            {(items as string[]).map((x) => (
+              <li key={x} className="flex gap-2 text-sm">
+                <Check className="size-4 shrink-0" />
+                {x}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    </SwiperSlide>
+  ))}
+</Swiper></div></section> }
 
 const reasons = [["Human-Centric Design", "Solutions designed with your team in mind, ensuring adoption and long-term success."], ["Speed to Value", "Rapid deployment and iterative improvement to deliver value from day one."], ["Proven Excellence", "Track record of successful implementations for Fortune 500 companies and startups alike."], ["Strategic Focus", "Align data engineering initiatives with your business objectives and growth strategy."], ["Innovation Leadership", "Stay ahead with cutting-edge technologies and best practices in data engineering."], ["Global Expertise", "Deep domain knowledge across industries and geographies, backed by a global team."]];
-function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 72%", end: "bottom 72%", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 82%", toggleActions: "play none none reverse" } }); }); ScrollTrigger.refresh(); }, ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); return <section ref={ref} className="relative overflow-hidden bg-[#061018] py-24 text-white sm:py-32"><div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]"><div className="lg:sticky lg:top-32"><p className="text-xs font-bold uppercase tracking-[.24em] text-cyan-300">The InvoLead advantage</p><h2 className="mt-4 text-[clamp(2.5rem,5vw,4.6rem)] font-bold leading-none tracking-[-.045em]">Why Partner with InvoLead?</h2><p className="mt-6 max-w-md leading-8 text-slate-400">A delivery model built to turn ambitious data strategy into durable enterprise capability.</p></div><div className="reason-list relative pl-8"><div className="absolute bottom-0 left-0 top-0 w-px bg-white/10"><div className="reason-progress h-full origin-top bg-cyan-300" /></div><div className="space-y-4">{reasons.map(([t, d], i) => <article key={t} className="reason-card rounded-[1.5rem] border border-white/10 bg-white/[.04] p-6 backdrop-blur sm:p-8"><div className="flex gap-5"><span className="font-mono text-xs text-cyan-300">0{i + 1}</span><div><h3 className="text-xl font-bold">{t}</h3><p className="mt-2 leading-7 text-slate-400">{d}</p></div></div></article>)}</div></div></div></section> }
+function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 22%", end: "bottom 22%", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 22%", toggleActions: "play none none reverse" } }); }); ScrollTrigger.refresh(); }, ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white sm:py-20">
+        <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
+            <div className="lg:sticky lg:top-12">
+              <SectionHeader 
+              eyebrow="The InvoLead advantage"
+              title="Why Partner with InvoLead?"
+              description="A delivery model built to turn ambitious data strategy into durable enterprise capability."
+              maxWidth="5xl"
+              textColor="white"
+              align="left"
+              />
+            </div>
+            <div className="reason-list relative pl-8">
+                <div className="absolute bottom-0 left-0 top-0 w-px bg-white/10">
+                    <div className="reason-progress h-full origin-top bg-cyan-300" />
+                </div>
+                <div className="space-y-4">{reasons.map(([t, d], i) => <article key={t}
+                        className="reason-card rounded-[1.5rem] border border-white/10 bg-white/[.04] p-6 backdrop-blur sm:p-8">
+                        <div className="flex gap-5"><span className="font-mono text-xs text-cyan-300">0{i + 1}</span>
+                            <div>
+                                <h3 className="text-xl font-bold">{t}</h3>
+                                <p className="mt-2 leading-7 text-slate-400">{d}</p>
+                            </div>
+                        </div>
+                    </article>)}</div>
+            </div>
+        </div>
+    </section> }
 
-function Counter({ value, suffix = "" }: { value: number; suffix?: string }) { const ref = useRef<HTMLSpanElement>(null); const seen = useInView(ref, { once: true }); const [n, setN] = useState(0); const decimals = Number.isInteger(value) ? 0 : 1; useEffect(() => { if (!seen) return; let start = 0; const duration = 1200, t = performance.now(); const tick = (now: number) => { const p = Math.min((now - t) / duration, 1); setN(Number((value * (1 - Math.pow(1 - p, 3))).toFixed(decimals))); if (p < 1) start = requestAnimationFrame(tick) }; start = requestAnimationFrame(tick); return () => cancelAnimationFrame(start) }, [decimals, seen, value]); return <span ref={ref}>{n.toFixed(decimals)}{suffix}</span> }
-function Stats() { return <section className="relative overflow-hidden bg-slate-950 py-24 text-white"><div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(95,176,194,.2),transparent_42%)]" /><div className="container relative"><div className="grid gap-4 sm:grid-cols-3">{[[500, "+", "Projects Delivered"], [50, "+", "Enterprise Clients"], [99.9, "%", "Client Satisfaction"]].map(([n, s, l]) => <div key={l as string} className="rounded-[1.5rem] border border-white/10 bg-white/[.04] p-8 text-center"><div className="text-5xl font-bold tracking-tight text-cyan-200"><Counter value={Number(n)} suffix={s as string} /></div><p className="mt-3 text-sm text-slate-400">{l}</p></div>)}</div><div className="mt-20 text-center"><h2 className="text-[clamp(2.3rem,5vw,4.5rem)] font-bold tracking-[-.04em]">Ready to transform your data engineering with AI?</h2><Button asChild className="mt-8 rounded-full bg-secondary px-8 py-6 text-white"><Link href="/contact-us">Get Custom Solution Proposal <ArrowRight className="size-4" /></Link></Button></div></div></section> }
 
-const faqTabs = { General: [["What is data engineering?", "Data engineering is the process of designing, building, and maintaining systems that collect, store, and transform raw data into meaningful information. It involves creating data pipelines, data warehouses, and data lakes that enable organizations to make data-driven decisions."], ["How does Generative AI improve data engineering?", "Generative AI accelerates pipeline development, improves data quality checks, and enables natural language interactions for faster analytics and better productivity."]], Clients: [["How quickly can InvoLead deliver a data platform?", "Most scoped implementations are delivered in 90 days with phased rollouts and measurable milestones."]], Business: [["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]] };
-function FAQ() { const [tab, setTab] = useState<keyof typeof faqTabs>("General"); const [open, setOpen] = useState(0); return <section className="bg-slate-50 py-24 sm:py-32"><div className="container"><SectionHeading title="Frequently Asked Questions" body="Get answers to common questions about data engineering and our services." /><div className="mx-auto mt-10 flex w-fit rounded-full border border-slate-200 bg-white p-1">{Object.keys(faqTabs).map(x => <button key={x} onClick={() => { setTab(x as keyof typeof faqTabs); setOpen(0) }} className={cn("rounded-full px-5 py-2 text-sm font-semibold", tab === x ? "bg-slate-950 text-white" : "text-slate-500")}>{x}</button>)}</div><AnimatePresence mode="wait"><motion.div key={tab} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} className="mx-auto mt-10 max-w-3xl space-y-3">{faqTabs[tab].map(([q, a], i) => <button key={q} onClick={() => setOpen(open === i ? -1 : i)} className="w-full rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm"><span className="flex items-center justify-between gap-4 font-bold text-slate-950">{q}<ChevronDown className={cn("size-5 transition", open === i && "rotate-180")} /></span><AnimatePresence>{open === i && <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pt-4 text-sm leading-7 text-slate-600">{a}</motion.p>}</AnimatePresence></button>)}</motion.div></AnimatePresence></div></section> }
+<Stats />
+
+const faqTabs = { 
+  General: [
+    ["What is data engineering?", "Data engineering is the process of designing, building, and maintaining systems that collect, store, and transform raw data into meaningful information. It involves creating data pipelines, data warehouses, and data lakes that enable organizations to make data-driven decisions."], 
+    ["How does Generative AI improve data engineering?", "Generative AI accelerates pipeline development, improves data quality checks, and enables natural language interactions for faster analytics and better productivity."], 
+    ["How quickly can InvoLead deliver a data platform?", "Most scoped implementations are delivered in 90 days with phased rollouts and measurable milestones."], 
+    ["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]
+  ], 
+  Clients: [
+    ["How does Generative AI improve data engineering?", "Generative AI accelerates pipeline development, improves data quality checks, and enables natural language interactions for faster analytics and better productivity."]
+  ], 
+  Business: [
+    ["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]
+  ] 
+};
+function FAQ() { const [tab, setTab] = useState<keyof typeof faqTabs>("General"); const [open, setOpen] = useState(0); return <section className="py-20 sm:py-20 overflow-hidden relative">
+    <ClipShape />
+        <div className="container z-10 mt-20 relative">
+            <SectionHeader 
+            title="Frequently Asked Questions"
+            description="Get answers to common questions about data engineering and our services." 
+            />
+            <div className="mx-auto mt-10 flex w-fit rounded-full border border-slate-200 bg-white p-1">
+                {Object.keys(faqTabs).map(x => <button key={x} onClick={()=> { setTab(x as keyof typeof faqTabs);
+                    setOpen(0) }} className={cn("rounded-full px-5 py-2 text-sm font-semibold", tab === x ?
+                    "bg-slate-950 text-white" : "text-slate-500")}>{x}</button>)}</div>
+            <AnimatePresence mode="wait">
+                <motion.div key={tab} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0,
+                    y: -15 }} className="mx-auto mt-10 max-w-3xl space-y-3">{faqTabs[tab].map(([q, a], i) => <button
+                        key={q} onClick={()=> setOpen(open === i ? -1 : i)} className="w-full rounded-2xl border
+                        border-slate-200 bg-white p-6 text-left shadow-sm"><span
+                            className="flex items-center justify-between gap-4 font-bold text-slate-950">{q}
+                            <ChevronDown className={cn("size-5 transition", open===i && "rotate-180" )} />
+                        </span>
+                        <AnimatePresence>{open === i && <motion.p initial={{ height: 0, opacity: 0 }} animate={{
+                                height: "auto" , opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden pt-4 text-sm leading-7 text-slate-600">{a}</motion.p>}
+                        </AnimatePresence>
+                    </button>)}</motion.div>
+            </AnimatePresence>
+        </div>
+    </section> }
 
 function FinalCTA() { return <section className="relative py-25 overflow-hidden bg-[#02070b] text-white">
         {/* <NeuralCanvas /> */}
@@ -280,9 +385,48 @@ function FinalCTA() { return <section className="relative py-25 overflow-hidden 
         </motion.div>
     </section> }
 
-const blogs = [{ featuredimg: "/img/cap-1.webp", category: "Agentic AI", title: "How Agentic AI is Reshaping Enterprise Operations", excerpt: "A practical view of autonomous workflows, orchestration, and measurable AI operating leverage." }, { featuredimg: "/img/cap-2.webp", category: "RAG Systems", title: "Building Cost-Efficient RAG Systems for Scale", excerpt: "How retrieval strategy, model routing, and evaluations help enterprises control quality and cost." }, { featuredimg: "/img/cap-3.webp", category: "Private AI", title: "Why Small Language Models Are the Future of Private AI", excerpt: "Domain-specific SLMs can outperform generic models when speed, privacy, and unit economics matter." }];
-function BlogCard({ post, index }: { post: typeof blogs[number]; index: number }) { return <motion.article variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }} transition={{ duration: .4, delay: index * .05 }} whileHover={{ y: -7 }} className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.08)]"><div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,#111827_0%,#60b0c2_58%,#59a3b4_100%)]"><Image alt="post image" src={post.featuredimg} height={400} width={400} className="h-full w-full object-cover" /><div className="absolute inset-0 bg-primary/20" /><BrainCircuit className="absolute bottom-5 right-5 size-16 text-white/70" /></div><div className="p-6"><span className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-semibold uppercase tracking-[.16em] text-secondary">{post.category}</span><h3 className="mt-4 text-2xl font-bold text-slate-950">{post.title}</h3><p className="mt-3 text-sm leading-7 text-slate-600">{post.excerpt}</p><Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary">Read more <ArrowRight className="size-4" /></Link></div></motion.article> }
-function Blog() { return <section className="py-20 sm:py-24"><div className="container"><div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><h2 className="text-[clamp(2rem,4.6vw,3.6rem)] font-bold text-slate-950">Success Stories</h2><p className="mt-5 text-lg text-slate-600">Check out our blog for the latest AI trends and insights!</p></div><Button asChild variant="outline" className="w-fit rounded-full px-6 py-5"><Link href="#">View All <ArrowRight className="size-4" /></Link></Button></div><div className="mt-10 grid gap-6 md:grid-cols-3">{blogs.map((p, i) => <BlogCard key={p.title} post={p} index={i} />)}</div></div></section> }
+const blogs = [
+  { featuredimg: "/img/cap-1.webp", category: "Agentic AI", title: "Unified Data Ecosystems: How AI Is Transforming Connected Intelligence", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }, 
+  { featuredimg: "/img/cap-2.webp", category: "RAG Systems", title: "Generative AI in Life Sciences: Accelerating Research & Compliance", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }, 
+  { featuredimg: "/img/cap-3.webp", category: "Private AI", title: "Predictive Analytics for Modern Retail: Building Smarter Customer Journeys", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }
+];
+function BlogCard({ post, index }: { post: typeof blogs[number]; index: number }) { return <motion.article variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }}
+        transition={{ duration: .4, delay: index * .05 }} whileHover={{ y: -7 }}
+        className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.08)]">
+        <div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,#111827_0%,#60b0c2_58%,#59a3b4_100%)]">
+            <Image alt="post image" src={post.featuredimg} height={400} width={400}
+                className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-primary/20" />
+            <BrainCircuit className="absolute bottom-5 right-5 size-16 text-white/70" />
+        </div>
+        <div className="p-6"><span
+                className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-semibold uppercase tracking-[.16em] text-secondary">{post.category}</span>
+            <h3 className="mt-4 text-2xl font-bold text-slate-950">{post.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">{post.excerpt}</p>
+            <Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary">Read more
+            <ArrowRight className="size-4" />
+            </Link>
+        </div>
+    </motion.article> }
+    function Blog() { return <section className="py-20 sm:py-24">
+        <div className="container">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <h2 className="text-[clamp(2rem,4.6vw,3.6rem)] font-bold text-slate-950">Get Insights & Tips from Our Blog</h2>
+                    <p className="mt-5 text-lg text-slate-600">Check out our blog for the latest AI trends and insights!
+                    </p>
+                </div>
+                <Button asChild >
+                    <Link href="#">View All Stories
+                    <ArrowRight className="size-4" />
+                    </Link>
+                </Button>
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">{blogs.map((p, i) =>
+                <BlogCard key={p.title} post={p} index={i} />)}
+            </div>
+        </div>
+    </section> }
 
 export default function DataEngineeringPage() { return <div className="overflow-hidden bg-white text-slate-950">
   <DataEngineeringHero />
