@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import SectionReveal from "@/components/home/SectionReveal";
 import AnimatedNumber from "@/components/ui/animated-number";
+import { CLIP_PATH } from "@/components/ui/clip-card";
 import { cn } from "@/lib/utils";
 
 import {
@@ -50,13 +51,23 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
       >
         <article
           className={cn(
-            "absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/90 p-7 shadow-[0_22px_70px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset]",
+            "absolute inset-0 flex h-full flex-col overflow-hidden border border-slate-200/90 p-7 shadow-[0_22px_70px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset]",
             isFlipped ? "pointer-events-none" : "pointer-events-auto",
           )}
-          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            clipPath: CLIP_PATH,
+          }}
         >
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" />
-          <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]" />
+          <div
+            className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]"
+            style={{ clipPath: CLIP_PATH }}
+          />
+          <div
+            className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]"
+            style={{ clipPath: CLIP_PATH }}
+          />
           <div className="absolute left-0 top-0 h-full w-full bg-black group-hover:bg-secondary">
             <img
               src={item.image}
@@ -66,7 +77,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           </div>
 
           <div className="relative z-10 flex h-full flex-col">
-            <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+            <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl ">
               <Icon className="size-7" />
             </div>
 
@@ -80,7 +91,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
                   key={pointer}
                   className="flex items-center gap-3 text-sm font-medium text-[16px]"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs group-hover:bg-black font-bold text-white">
                     {pointerIndex + 1}
                   </span>
                   <span className="text-white">{pointer}</span>
@@ -95,10 +106,11 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
                   setIsFlipped(true);
                   setFlipToken((value) => value + 1);
                 }}
-                className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#5fb0c2,#9fddea)] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(95,176,194,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(95,176,194,0.46)]"
+               className="absolute -bottom-2 right-0 z-2 grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
+    
               >
-                Read More
-                <ArrowRight className="ml-2 size-4" />
+                
+                <ArrowRight className=" size-5" />
               </button>
             </div>
           </div>

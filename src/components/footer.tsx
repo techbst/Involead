@@ -2,7 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
 
-const quickLinks = [
+type FooterNavItem = {
+  label: string;
+  href?: string;
+};
+
+const quickLinks: FooterNavItem[] = [
   { label: "Services", href: "/our-solutions" },
   { label: "Industries", href: "/industries" },
   { label: "Careers", href: "/career" },
@@ -10,7 +15,7 @@ const quickLinks = [
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact-us" },
 ];
-const capabilities = [
+const capabilities: FooterNavItem[] = [
   { label: "Generative AI", href: "/our-solutions/generative-ai" },
   { label: "Data Science", href: "/our-solutions/data-science" },
   { label: "Business Intelligence" },
@@ -18,7 +23,7 @@ const capabilities = [
   { label: "Cloud Solutions" },
   { label: "Software Engineering" },
 ];
-const industries = [
+const industries: FooterNavItem[] = [
   { label: "Retail" },
   { label: "Pharma" },
   { label: "Telecom" },
@@ -27,7 +32,7 @@ const industries = [
   { label: "Healthcare" },
 ];
 
-const socialLinks = [
+const socialLinks: FooterNavItem[] = [
   { label: "LinkedIn" },
   { label: "Instagram" },
   { label: "Facebook" },
