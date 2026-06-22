@@ -30,18 +30,6 @@ function SectionHeading({ eyebrow, title, body, inverse = false }: { eyebrow?: s
     </motion.div>
   );
 }
-
-function NeuralCanvas() {
-  const mount = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  useEffect(() => {
-    if (!mount.current) return;
-    let disposed = false, frame = 0, renderer: import("three").WebGLRenderer | undefined;
-    (async () => { const THREE = await import("three"); if (disposed || !mount.current) return; const el = mount.current; const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(50, el.clientWidth / el.clientHeight, .1, 100); camera.position.z = 7; renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6)); renderer.setSize(el.clientWidth, el.clientHeight); el.appendChild(renderer.domElement); const count = 75, pos = new Float32Array(count * 3); for (let i = 0; i < count; i++) { pos[i * 3] = (Math.random() - .5) * 8; pos[i * 3 + 1] = (Math.random() - .5) * 5; pos[i * 3 + 2] = (Math.random() - .5) * 4; } const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(pos, 3)); const points = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x7dd3fc, size: .075, transparent: true, opacity: .9 })); scene.add(points); const linePos: number[] = []; for (let i = 0; i < count; i++)for (let j = i + 1; j < count; j++) { const dx = pos[i * 3] - pos[j * 3], dy = pos[i * 3 + 1] - pos[j * 3 + 1], dz = pos[i * 3 + 2] - pos[j * 3 + 2]; if (dx * dx + dy * dy + dz * dz < 1.25) linePos.push(pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2], pos[j * 3], pos[j * 3 + 1], pos[j * 3 + 2]); } const lg = new THREE.BufferGeometry(); lg.setAttribute("position", new THREE.Float32BufferAttribute(linePos, 3)); const lines = new THREE.LineSegments(lg, new THREE.LineBasicMaterial({ color: 0x5fb0c2, transparent: true, opacity: .2 })); scene.add(lines); const tick = () => { if (disposed) return; if (!reduce) { points.rotation.y += .0018; lines.rotation.y += .0018; } renderer!.render(scene, camera); frame = requestAnimationFrame(tick) }; tick(); })(); return () => { disposed = true; cancelAnimationFrame(frame); renderer?.dispose(); if (renderer?.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement) };
-  }, [reduce]);
-  return <div ref={mount} className="absolute inset-0" aria-hidden="true" />;
-}
-
 const foundations = [{ title: "Data Infrastructure", text: "Resilient lakehouse foundations engineered for trusted, governed access.", icon: Database }, { title: "Cloud Solutions", text: "Elastic multi-cloud systems that scale workload, cost, and control together.", icon: Cloud }, { title: "AI-Powered", text: "Intelligent pipelines that generate, validate, monitor, and heal themselves.", icon: BrainCircuit }];
 function Foundations() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { gsap.from(".foundation-step", { scrollTrigger: { trigger: ref.current, start: "top 72%" }, opacity: 0, y: 60, stagger: .18, duration: .8, ease: "power3.out" }); gsap.fromTo(".foundation-line", { scaleX: 0 }, { scaleX: 1, scrollTrigger: { trigger: ref.current, start: "top 70%" }, duration: 1.5, ease: "power2.inOut" }) }, ref); clean = () => ctx.revert() })(); return () => clean() }, []); 
 return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white sm:py-20">

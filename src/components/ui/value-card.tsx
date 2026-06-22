@@ -134,7 +134,7 @@ export default function ValueCard({ icon: Icon, image, title, description, index
       {/* Description */}
       <motion.p
         variants={descVariants}
-        className="mt-4 text-sm leading-7 text-slate-600"
+        className="mt-4 !text-main"
       >
         {description}
       </motion.p>
