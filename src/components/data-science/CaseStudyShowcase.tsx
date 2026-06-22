@@ -172,7 +172,7 @@ export default function CaseStudyShowcase() {
                 </div>
               </div>
 
-              <div className="absolute left-3 top-3 rounded-full border border-primary/10 bg-white/90 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary">
+              <div className="absolute left-3 top-3 rounded-full border border-primary/10 bg-white/90 px-3 py-1 text-[0.65rem] font-semibold  capitalize text-primary">
                 {current.category}
               </div>
             </motion.div>

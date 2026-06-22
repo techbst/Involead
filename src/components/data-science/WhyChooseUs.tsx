@@ -107,11 +107,7 @@ const lineVariants: Variants = {
   },
 };
 
-const bgBlobs = [
-  "from-[#5fb0c2]/40 via-[#5fb0c2]/12 to-transparent",
-  "from-[#c88cff]/35 via-[#c88cff]/10 to-transparent",
-  "from-[#f1f26f]/28 via-[#f1f26f]/8 to-transparent",
-];
+
 
 
 
