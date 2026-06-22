@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion, Variants } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation } from "swiper/modules";
 import {
@@ -14,6 +14,9 @@ import {
 
 import { Button } from "@/components/ui/button";
 import DataEngineeringHero from "@/components/data-engineering/data-engineering-hero";
+import InteractiveNeuralVortex from "../ui/animated-svg-background";
+import CallToAction from "../ui/call-to-action";
+import ValueCard from "../ui/value-card";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
@@ -49,9 +52,9 @@ return <section ref={ref} className="relative overflow-hidden bg-black py-20 tex
         <div className="relative mt-12 grid gap-8 lg:grid-cols-3">
             
             {foundations.map((x, i) => <motion.article key={x.title} whileHover={{ y: -10 }}
-                className="foundation-step group relative rounded-[2rem] border border-white/10 bg-white/[.04] p-8 backdrop-blur">
+                className="foundation-step group relative rounded-[24px] border border-white/10 bg-white/[.04] p-8 backdrop-blur">
                 <div
-                    className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_var(--x,50%)_0%,rgba(95,176,194,.18),transparent_45%)] opacity-0 transition-opacity group-hover:opacity-100" />
+                    className="absolute inset-0 rounded-[24px] bg-[radial-gradient(circle_at_var(--x,50%)_0%,rgba(95,176,194,.18),transparent_45%)] opacity-0 transition-opacity group-hover:opacity-100" />
                 <div
                     className="relative grid size-14 place-items-center rounded-2xl border border-cyan-300/20 bg-secondary text-white">
                     <x.icon />
@@ -67,7 +70,7 @@ return <section ref={ref} className="relative overflow-hidden bg-black py-20 tex
     </div>
 </section>}
 
-function Testimonial() { return <section className="bg-white py-24 overflow-hidden">
+function Testimonial() { return <section className="bg-white py-20 overflow-hidden">
   <div className="container">
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -137,33 +140,44 @@ function Testimonial() { return <section className="bg-white py-24 overflow-hidd
 </section> }
 
 const compliance = [
-  ["GDPR Ready", "Compliant with EU rules for responsible data collection, storage, and deletion."], ["HIPAA Compliant", "Keeps healthcare data safe and private so you can work with US providers and sign BAAs with confidence."], ["FDA 21 CFR Part 11", "Ensures electronic records and e-signatures are reliable, traceable, and acceptable to regulators."], ["GxP Compliant", "Supports Good Practice standards so your processes stay auditable and inspection-ready."], ["ISO 9001 Certified", "Delivers consistent quality through clear processes and ongoing improvement."], ["SOC 2 Type II Certified", "Audited controls keep your data secure, available, and protected from unauthorized access."]
+  ["/de/gdpr-ready.svg", "GDPR Ready", "Compliant with EU rules for responsible data collection, storage, and deletion."], 
+  ["/de/HIPAA-Compliant.svg", "HIPAA Compliant", "Keeps healthcare data safe and private so you can work with US providers and sign BAAs with confidence."], 
+  ["/de/HIPAA-Compliant.svg", "FDA 21 CFR Part 11", "Ensures electronic records and e-signatures are reliable, traceable, and acceptable to regulators."], 
+  ["/de/HIPAA-Compliant.svg", "GxP Compliant", "Supports Good Practice standards so your processes stay auditable and inspection-ready."], 
+  ["/de/ISO-9001-Certified.svg", "ISO 9001 Certified", "Delivers consistent quality through clear processes and ongoing improvement."], 
+  ["/de/ISO-9001-Certified.svg", "SOC 2 Type II Certified", "Audited controls keep your data secure, available, and protected from unauthorized access."]
 ];
+const lineVariants: Variants = {
+  rest: { scaleX: 0, originX: 0 },
+  hover: {
+    scaleX: 1,
+    originX: 0,
+    transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
 function Compliance() { return <section className="py-20 sm:py-20 bg-secondary/20">
     <div className="container">
-        <SectionHeading eyebrow="Trust by design" title="Standards-Verified Compliance"
-            body="Our data platforms adhere to the highest security standards. We protect your data, simplify audits, and guarantee compliance." />
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{compliance.map(([t, d], i) => <motion.article
-                key={t} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{
-                delay: i * .06 }} whileHover={{ y: -7 }}
-                className="group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-[0_12px_45px_rgba(15,23,42,.06)]">
-                <div
-                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 transition group-hover:opacity-100" />
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="inline-flex size-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-[#5fb0c2] shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
-                        <ShieldCheck className="size-6 text-secondary" />
-                      </div>
-                    </div>
-                
-                <h3 className="mt-7 text-xl font-bold text-slate-950">{t}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{d}</p>
-                </motion.article>)}
+        <SectionHeading 
+            eyebrow="Trust by design" title="Standards-Verified Compliance"
+            body="Our data platforms adhere to the highest security standards. We protect your data, simplify audits, and guarantee compliance." 
+        />
+        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{compliance.map(([a, t, d], i) => <ValueCard
+                key={t}
+                 image={a}
+                title={t}
+                description={d}
+                index={i}
+              />
+              
+              )}
             </div>
-        <div className="mt-10 text-center"><Button asChild className="rounded-full px-7 py-6">
+          <div className="mt-10 text-center">
+            <Button asChild>
                 <Link href="/contact-us">Speak to Our Experts
                 <ArrowRight className="size-4" />
                 </Link>
-            </Button></div>
+            </Button>
+          </div>
     </div>
 </section> }
 
@@ -174,8 +188,35 @@ const genCards = [
   { title: "Data Discovery & Cataloging", desc: "Automatically discover, catalog, and document data assets, making it easy to find and understand your data landscape.", icon: Search, color: "bg-[#fff0dc]" },
   { title: "Natural Language Interfaces", desc: "Query and manipulate data using plain English, making data engineering accessible to non-technical stakeholders.", icon: Sparkles, image: "/img/data-scie.webp" },
 ];
-function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-slate-50 py-24 sm:py-32"><div className="container"><SectionHeading eyebrow="Generative intelligence" title="How GenAI Improves Data Engineering" body="We empower life sciences, retail, hospitality, and pharma brands by transforming complex data into intelligent solutions that unlock insights, automate operations, and accelerate business outcomes." /><div className="mt-14 space-y-4"><motion.div layout className="flex flex-col gap-4 lg:flex-row">{genCards.slice(0, 2).map((c, i) => <GenCard key={c.title} item={c} active={activeRow1 === i} muted={activeRow1 !== null && activeRow1 !== i} onHover={() => setActiveRow1(i)} onLeave={() => setActiveRow1(null)} wide={i === 0} />)}</motion.div><motion.div layout className="flex flex-col gap-4 lg:flex-row">{genCards.slice(2).map((c, j) => <GenCard key={c.title} item={c} active={activeRow2 === j} muted={activeRow2 !== null && activeRow2 !== j} onHover={() => setActiveRow2(j)} onLeave={() => setActiveRow2(null)} />)}</motion.div></div></div></section> }
-function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item: typeof genCards[number]; active: boolean; muted: boolean; onHover: () => void; onLeave: () => void; wide?: boolean }) { const baseFlex = wide ? 2 : 1; return <motion.article layout="position" onMouseEnter={onHover} onMouseLeave={onLeave} animate={{ flexGrow: active ? baseFlex + .7 : muted ? Math.max(.65, baseFlex - .5) : baseFlex }} transition={{ type: "spring", stiffness: 220, damping: 30, mass: .8 }} className={cn("group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[2rem] p-7 sm:p-9", item.color || "bg-slate-950 text-white")}>{item.image && <><Image src={item.image} alt="" fill className="object-cover opacity-45 transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-transparent" /></>}<div className="relative flex h-full flex-col"><item.icon className={cn("size-8", item.image ? "text-cyan-300" : "text-slate-800")} /><h3 className={cn("mt-auto pt-20 text-2xl font-bold", item.image ? "text-white" : "text-slate-950")}>{item.title}</h3><p className={cn("mt-3 max-w-xl text-sm leading-7", item.image ? "text-slate-300" : "text-slate-700")}>{item.desc}</p><Button asChild variant={item.image ? "default" : "outline"} className="mt-6 w-fit rounded-full"><Link href="/contact-us">Schedule A Demo <ArrowRight className="size-4" /></Link></Button></div></motion.article> }
+function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-slate-50 py-20 sm:py-20">
+        <div className="container">
+            <SectionHeading eyebrow="Generative intelligence" title="How GenAI Improves Data Engineering"
+                body="We empower life sciences, retail, hospitality, and pharma brands by transforming complex data into intelligent solutions that unlock insights, automate operations, and accelerate business outcomes." />
+            <div className="mt-14 space-y-4">
+                <motion.div layout className="flex flex-col gap-4 lg:flex-row">{genCards.slice(0, 2).map((c, i) =>
+                    <GenCard key={c.title} item={c} active={activeRow1===i} muted={activeRow1 !==null && activeRow1
+                        !==i} onHover={()=> setActiveRow1(i)} onLeave={() => setActiveRow1(null)} wide={i === 0} />)}
+                </motion.div>
+                <motion.div layout className="flex flex-col gap-4 lg:flex-row">{genCards.slice(2).map((c, j) => <GenCard
+                        key={c.title} item={c} active={activeRow2===j} muted={activeRow2 !==null && activeRow2 !==j}
+                        onHover={()=> setActiveRow2(j)} onLeave={() => setActiveRow2(null)} />)}</motion.div>
+            </div>
+        </div>
+    </section> }
+function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item: typeof genCards[number]; active: boolean; muted: boolean; onHover: () => void; onLeave: () => void; wide?: boolean }) { const baseFlex = wide ? 2 : 1; return <motion.article layout="position" animate={{ flexGrow: active ? baseFlex + .7 : muted ? Math.max(.65, baseFlex - .5) : baseFlex }} transition={{ type: "spring", stiffness: 220, damping: 30, mass: .8 }} className={cn("group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[2rem] p-7 sm:p-9", item.color || "bg-slate-950 text-white")}>{item.image && <><Image src={item.image} alt="" fill className="object-cover opacity-45 transition duration-700 group-hover:scale-105" />
+<div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-transparent" /></>}
+<div className="relative flex h-full flex-col">
+  <div className="relative grid size-14 place-items-center rounded-2xl border border-slate-200 bg-white">
+    <item.icon className={cn("size-7", item.image ? "text-secondary" : "text-secondary")} />
+  </div>
+  <h3 className={cn("mt-auto pt-20 text-2xl font-bold", item.image ? "text-white" : "text-slate-950")}>{item.title}</h3>
+  <p className={cn("mt-3 max-w-xl text-sm leading-7", item.image ? "text-slate-300" : "text-slate-700")}>{item.desc}</p>
+  <Button asChild variant={item.image ? "outline" : "outline"} className="mt-6 w-fit rounded-full">
+    <Link href="/contact-us">Schedule A Demo <ArrowRight className="size-4" /></Link>
+  </Button>
+  </div>
+  </motion.article> 
+}
 
 const excellence = [
   ["Data Pipeline Development", ["ETL/ELT Pipelines", "Real-time Processing", "Batch Processing", "Data Transformation"]], ["Cloud Data Architecture", ["Multi-cloud Solutions", "Serverless Architecture", "Data Lakes", "Data Warehouses"]], ["AI-Powered Automation", ["Code Generation", "Data Quality Automation", "Anomaly Detection", "Predictive Maintenance"]], ["Data Quality & Governance", ["Data Validation", "Quality Monitoring", "Governance Frameworks", "Compliance Management"]], ["Data Security & Privacy", ["Code Generation", "Data Quality Automation", "Anomaly Detection", "Predictive Maintenance"]], ["Performance Optimization", ["Query Optimization", "Resource Management", "Caching Strategies", "Cost Optimization"]], ["Data Integration", ["API Integration", "Database Integration", "Streaming Integration", "Legacy System Integration"]], ["Real-time Data Streaming", ["Kafka Integration", "Stream Processing", "Event-driven Architecture", "Real-time Analytics"]]
@@ -216,7 +257,7 @@ function Excellence() { return <section className="overflow-hidden py-24 sm:py-3
     damping: 25,
   }}
   className={cn(
-    "relative h-full min-h-[420px] overflow-hidden rounded-[2rem] border p-6",
+    "relative h-full min-h-[420px] overflow-hidden rounded-[24px] border p-6",
     isActive
       ? "border-secondary/30 shadow-[0_25px_70px_rgba(95,176,194,.25)]"
       : "border-slate-200"
@@ -233,10 +274,38 @@ function Stats() { return <section className="relative overflow-hidden bg-slate-
 const faqTabs = { General: [["What is data engineering?", "Data engineering is the process of designing, building, and maintaining systems that collect, store, and transform raw data into meaningful information. It involves creating data pipelines, data warehouses, and data lakes that enable organizations to make data-driven decisions."], ["How does Generative AI improve data engineering?", "Generative AI accelerates pipeline development, improves data quality checks, and enables natural language interactions for faster analytics and better productivity."]], Clients: [["How quickly can InvoLead deliver a data platform?", "Most scoped implementations are delivered in 90 days with phased rollouts and measurable milestones."]], Business: [["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]] };
 function FAQ() { const [tab, setTab] = useState<keyof typeof faqTabs>("General"); const [open, setOpen] = useState(0); return <section className="bg-slate-50 py-24 sm:py-32"><div className="container"><SectionHeading title="Frequently Asked Questions" body="Get answers to common questions about data engineering and our services." /><div className="mx-auto mt-10 flex w-fit rounded-full border border-slate-200 bg-white p-1">{Object.keys(faqTabs).map(x => <button key={x} onClick={() => { setTab(x as keyof typeof faqTabs); setOpen(0) }} className={cn("rounded-full px-5 py-2 text-sm font-semibold", tab === x ? "bg-slate-950 text-white" : "text-slate-500")}>{x}</button>)}</div><AnimatePresence mode="wait"><motion.div key={tab} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} className="mx-auto mt-10 max-w-3xl space-y-3">{faqTabs[tab].map(([q, a], i) => <button key={q} onClick={() => setOpen(open === i ? -1 : i)} className="w-full rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm"><span className="flex items-center justify-between gap-4 font-bold text-slate-950">{q}<ChevronDown className={cn("size-5 transition", open === i && "rotate-180")} /></span><AnimatePresence>{open === i && <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pt-4 text-sm leading-7 text-slate-600">{a}</motion.p>}</AnimatePresence></button>)}</motion.div></AnimatePresence></div></section> }
 
-function FinalCTA() { return <section className="relative min-h-[650px] overflow-hidden bg-[#02070b] text-white"><NeuralCanvas /><div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(95,176,194,.12),rgba(2,7,11,.8)_60%)]" /><motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="container relative flex min-h-[650px] flex-col items-center justify-center text-center"><Sparkles className="size-10 text-cyan-300" /><h2 className="mt-7 max-w-5xl text-[clamp(2.7rem,6vw,5.7rem)] font-bold leading-none tracking-[-.05em]">Let&apos;s Shape the Future of Your Business</h2><p className="mt-7 max-w-3xl text-lg leading-8 text-slate-300">Partner with InvoLead to transform complexity into clarity through data, AI, and design, creating intelligent solutions that drive sustainable, enterprise-wide growth.</p><Button asChild className="mt-9 rounded-full bg-secondary px-8 py-6"><Link href="/our-solutions">Explore Solutions <ArrowRight className="size-4" /></Link></Button></motion.div></section> }
+function FinalCTA() { return <section className="relative py-25 overflow-hidden bg-[#02070b] text-white">
+        {/* <NeuralCanvas /> */}
+        <InteractiveNeuralVortex />
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="container relative flex flex-col items-center justify-center text-center">
+            <Sparkles className="size-10 text-cyan-300" />
+            <h2 className="mt-7 max-w-5xl text-[clamp(2.7rem,6vw,5.7rem)] font-bold leading-none tracking-[-.05em]">
+                Let&apos;s Shape the Future of Your Business</h2>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-300">Partner with InvoLead to transform complexity
+                into clarity through data, AI, and design, creating intelligent solutions that drive sustainable,
+                enterprise-wide growth.</p><Button asChild className="mt-9 rounded-full bg-secondary px-8 py-6">
+                <Link href="/our-solutions">Explore Solutions
+                <ArrowRight className="size-4" />
+                </Link>
+            </Button>
+        </motion.div>
+    </section> }
 
 const blogs = [{ featuredimg: "/img/cap-1.webp", category: "Agentic AI", title: "How Agentic AI is Reshaping Enterprise Operations", excerpt: "A practical view of autonomous workflows, orchestration, and measurable AI operating leverage." }, { featuredimg: "/img/cap-2.webp", category: "RAG Systems", title: "Building Cost-Efficient RAG Systems for Scale", excerpt: "How retrieval strategy, model routing, and evaluations help enterprises control quality and cost." }, { featuredimg: "/img/cap-3.webp", category: "Private AI", title: "Why Small Language Models Are the Future of Private AI", excerpt: "Domain-specific SLMs can outperform generic models when speed, privacy, and unit economics matter." }];
 function BlogCard({ post, index }: { post: typeof blogs[number]; index: number }) { return <motion.article variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }} transition={{ duration: .4, delay: index * .05 }} whileHover={{ y: -7 }} className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.08)]"><div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,#111827_0%,#60b0c2_58%,#59a3b4_100%)]"><Image alt="post image" src={post.featuredimg} height={400} width={400} className="h-full w-full object-cover" /><div className="absolute inset-0 bg-primary/20" /><BrainCircuit className="absolute bottom-5 right-5 size-16 text-white/70" /></div><div className="p-6"><span className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-semibold uppercase tracking-[.16em] text-secondary">{post.category}</span><h3 className="mt-4 text-2xl font-bold text-slate-950">{post.title}</h3><p className="mt-3 text-sm leading-7 text-slate-600">{post.excerpt}</p><Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary">Read more <ArrowRight className="size-4" /></Link></div></motion.article> }
 function Blog() { return <section className="py-20 sm:py-24"><div className="container"><div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><h2 className="text-[clamp(2rem,4.6vw,3.6rem)] font-bold text-slate-950">Success Stories</h2><p className="mt-5 text-lg text-slate-600">Check out our blog for the latest AI trends and insights!</p></div><Button asChild variant="outline" className="w-fit rounded-full px-6 py-5"><Link href="#">View All <ArrowRight className="size-4" /></Link></Button></div><div className="mt-10 grid gap-6 md:grid-cols-3">{blogs.map((p, i) => <BlogCard key={p.title} post={p} index={i} />)}</div></div></section> }
 
-export default function DataEngineeringPage() { return <div className="overflow-hidden bg-white text-slate-950"><DataEngineeringHero /><Foundations /><Testimonial /><Compliance /><GenAICards /><Excellence /><WhyPartner /><Stats /><FAQ /><FinalCTA /><Blog /></div> }
+export default function DataEngineeringPage() { return <div className="overflow-hidden bg-white text-slate-950">
+  <DataEngineeringHero />
+  <Foundations />
+  <Testimonial />
+  <Compliance />
+  <GenAICards />
+  <Excellence />
+  <WhyPartner />
+  <Stats />
+  <FAQ />
+  <Blog />
+  <CallToAction />
+  </div> }

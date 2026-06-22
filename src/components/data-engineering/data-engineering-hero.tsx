@@ -120,7 +120,7 @@ function InfrastructureVisual() {
 export default function DataEngineeringHero() {
   return (
     <section className="relative isolate overflow-hidden bg-[#f7fafb] pt-15">
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.035)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
+      {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.035)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" /> */}
       <div className="absolute -left-40 top-10 size-[30rem] rounded-full bg-cyan-200/25 blur-3xl" />
       <div className="container relative grid min-h-[680px] items-center gap-8 py-14 lg:grid-cols-[45fr_55fr] lg:gap-4">
         <motion.div variants={{ show: { transition: { staggerChildren: .11 } } }} initial="hidden" animate="show" className="relative z-10">
