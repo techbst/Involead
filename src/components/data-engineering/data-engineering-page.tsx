@@ -36,7 +36,7 @@ function SectionHeading({ eyebrow, title, body, inverse = false }: { eyebrow?: s
 }
 const foundations = [{ title: "Data Infrastructure", text: "Resilient lakehouse foundations engineered for trusted, governed access.", icon: Database }, { title: "Cloud Solutions", text: "Elastic multi-cloud systems that scale workload, cost, and control together.", icon: Cloud }, { title: "AI-Powered", text: "Intelligent pipelines that generate, validate, monitor, and heal themselves.", icon: BrainCircuit }];
 function Foundations() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { gsap.from(".foundation-step", { scrollTrigger: { trigger: ref.current, start: "top 72%" }, opacity: 0, y: 60, stagger: .18, duration: .8, ease: "power3.out" }); gsap.fromTo(".foundation-line", { scaleX: 0 }, { scaleX: 1, scrollTrigger: { trigger: ref.current, start: "top 70%" }, duration: 1.5, ease: "power2.inOut" }) }, ref); clean = () => ctx.revert() })(); return () => clean() }, []); 
-return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white sm:py-20">
+return <section ref={ref} className="relative overflow-hidden bg-black py-15 text-white">
     <div className="container">
         <SectionHeader eyebrow="Built for production"
             title="Production-ready data platforms for regulated industries"
@@ -149,7 +149,7 @@ const lineVariants: Variants = {
     transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
-function Compliance() { return <section className="py-20 sm:py-20 overflow-hidden relative">
+function Compliance() { return <section className="py-15 overflow-hidden relative">
     <ClipShape />
     <div className="container z-10 mt-26 relative">
         <SectionHeader 
@@ -183,7 +183,7 @@ const genCards = [
   { title: "Data Discovery & Cataloging", desc: "Automatically discover, catalog, and document data assets, making it easy to find and understand your data landscape.", icon: Search, color: "bg-[#fff0dc]" },
   { title: "Natural Language Interfaces", desc: "Query and manipulate data using plain English, making data engineering accessible to non-technical stakeholders.", icon: Sparkles, image: "/img/data-scie.webp" },
 ];
-function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-20 sm:py-20">
+function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-15">
         <div className="container">
             <SectionHeader 
             eyebrow="Generative intelligence"
@@ -201,7 +201,7 @@ function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | nu
             </div>
         </div>
     </section> }
-function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item: typeof genCards[number]; active: boolean; muted: boolean; onHover: () => void; onLeave: () => void; wide?: boolean }) { const baseFlex = wide ? 2 : 1; return <motion.article layout="position" animate={{ flexGrow: active ? baseFlex + .7 : muted ? Math.max(.65, baseFlex - .5) : baseFlex }} transition={{ type: "spring", stiffness: 220, damping: 30, mass: .8 }} className={cn("group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[2rem] p-7 sm:p-9", item.color || "bg-slate-950 text-white")}>{item.image && <><Image src={item.image} alt="" fill className="object-cover opacity-45 transition duration-700 group-hover:scale-105" />
+function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item: typeof genCards[number]; active: boolean; muted: boolean; onHover: () => void; onLeave: () => void; wide?: boolean }) { const baseFlex = wide ? 2 : 1; return <motion.article layout="position" animate={{ flexGrow: active ? baseFlex + .7 : muted ? Math.max(.65, baseFlex - .5) : baseFlex }} transition={{ type: "spring", stiffness: 220, damping: 30, mass: .8 }} className={cn("group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[24px] p-7 sm:p-9", item.color || "bg-slate-950 text-white")}>{item.image && <><Image src={item.image} alt="" fill className="object-cover opacity-45 transition duration-700 group-hover:scale-105" />
 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-transparent" /></>}
 <div className="relative flex h-full flex-col">
   <div className="relative grid size-14 place-items-center rounded-2xl border border-slate-200 bg-white">
@@ -226,22 +226,69 @@ const excellence = [
   ["Data Integration", "Generate data pipeline code automatically using natural language descriptions, reducing development time by up to 60%.", ["API Integration", "Database Integration", "Streaming Integration", "Legacy System Integration"]], 
   ["Real-time Data Streaming", "Build real-time data streaming solutions for instant insights and decision-making.", ["Kafka Integration", "Stream Processing", "Event-driven Architecture", "Real-time Analytics"]]
 ];
-function Excellence() { return <section className="overflow-hidden py-20 sm:py-20 bg-secondary/20" ><div className="container">
-  <SectionHeader 
-  eyebrow="Core capabilities"
-  title="Engineering Excellence for Intelligence"
-  description="We transform complex data into intelligent solutions that unlock insight, automate operations, and accelerate business outcomes."
-  maxWidth="5xl"
-  />
+function Excellence() { return <section className="overflow-hidden py-15 bg-secondary/20" >
+<div className="container">
+  <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+    <div className="mb-0 max-w-5xl text-left">
+      <SectionHeader
+      align="left" 
+      eyebrow="Core capabilities"
+      title="Engineering Excellence for Intelligence"
+      description="We transform complex data into intelligent solutions that unlock insight, automate operations, and accelerate business outcomes."
+      maxWidth="5xl"
+      />
+      </div>
+      <div className="flex gap-4">
+    <button className="swiper-prev grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-5"
+      >
+        <path d="m12 19-7-7 7-7" />
+        <path d="M19 12H5" />
+      </svg>
+    </button>
+
+    <button className="swiper-next grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-5 rotate-180"
+      >
+        <path d="m12 19-7-7 7-7" />
+        <path d="M19 12H5" />
+      </svg>
+    </button>
+  </div>
+  </div>
   </div>
   <div className="mx-auto mt-4 container">
+    
   <Swiper
-  className="py-20"
+  className="py-20 custom-swiper-style-1"
   modules={[Navigation]}
+  navigation={{
+    prevEl: ".swiper-prev",
+    nextEl: ".swiper-next",
+  }}
   slidesPerView={3}
   spaceBetween={30}
   loop
-  navigation
   centeredSlides
   breakpoints={{
     0: {
@@ -293,7 +340,7 @@ function Excellence() { return <section className="overflow-hidden py-20 sm:py-2
 </Swiper></div></section> }
 
 const reasons = [["Human-Centric Design", "Solutions designed with your team in mind, ensuring adoption and long-term success."], ["Speed to Value", "Rapid deployment and iterative improvement to deliver value from day one."], ["Proven Excellence", "Track record of successful implementations for Fortune 500 companies and startups alike."], ["Strategic Focus", "Align data engineering initiatives with your business objectives and growth strategy."], ["Innovation Leadership", "Stay ahead with cutting-edge technologies and best practices in data engineering."], ["Global Expertise", "Deep domain knowledge across industries and geographies, backed by a global team."]];
-function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 22%", end: "bottom 22%", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 22%", toggleActions: "play none none reverse" } }); }); ScrollTrigger.refresh(); }, ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white sm:py-20">
+function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 80%", end: "bottom", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" } }); }); ScrollTrigger.refresh(); }, ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); return <section ref={ref} className="relative overflow-hidden bg-black py-15 text-white">
         <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
             <div className="lg:sticky lg:top-12">
               <SectionHeader 
@@ -339,7 +386,7 @@ const faqTabs = {
     ["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]
   ] 
 };
-function FAQ() { const [tab, setTab] = useState<keyof typeof faqTabs>("General"); const [open, setOpen] = useState(0); return <section className="py-20 sm:py-20 overflow-hidden relative">
+function FAQ() { const [tab, setTab] = useState<keyof typeof faqTabs>("General"); const [open, setOpen] = useState(0); return <section className="py-15 overflow-hidden relative">
     <ClipShape />
         <div className="container z-10 mt-20 relative">
             <SectionHeader 
@@ -408,7 +455,7 @@ function BlogCard({ post, index }: { post: typeof blogs[number]; index: number }
             </Link>
         </div>
     </motion.article> }
-    function Blog() { return <section className="py-20 sm:py-24">
+    function Blog() { return <section className="py-15">
         <div className="container">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <div>
