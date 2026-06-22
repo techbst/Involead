@@ -103,7 +103,7 @@ export default function DataScienceHero() {
   const reduceMotion = !!useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)] !pt-35 py-14 md:py-20">
+    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] !pt-35 py-14 md:py-20">
     
      
 

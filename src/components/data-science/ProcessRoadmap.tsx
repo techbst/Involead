@@ -18,6 +18,7 @@ import {
 import { useRef } from "react";
 
 import { cn } from "@/lib/utils";
+import ClipShape from "../ui/clip-shape";
 
 type ProcessStep = {
   title: string;
@@ -171,14 +172,12 @@ export default function ProcessRoadmap() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-secondary/20 py-15 text-slate-900 lg:py-15"
+      className="relative overflow-hidden  py-15 text-slate-900 lg:py-15"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[36rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(95,176,194,0.16),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.035)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,black,transparent)]" />
-      </div>
+      <ClipShape />
 
-      <div className="container relative z-10 mx-auto">
+
+      <div className="container relative mt-26  mb-10 z-10 mx-auto">
         <motion.div
           className="mx-auto max-w-2xl text-center"
           initial={{ opacity: 0, y: 16 }}

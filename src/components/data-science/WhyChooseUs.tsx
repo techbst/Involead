@@ -152,30 +152,8 @@ export default function WhyChooseUs({
   }, []);
 
   return (
-    <SectionReveal className="relative overflow-hidden bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]  py-14 text-white sm:py-16">
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:72px_72px] opacity-15" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(95,176,194,0.12),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(200,140,255,0.1),transparent_26%),radial-gradient(circle_at_30%_90%,rgba(241,242,111,0.08),transparent_28%)]" />
-
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          ref={(el) => {
-            orbRefs.current[0] = el;
-          }}
-          className={`absolute -left-24 top-6 h-72 w-72 rounded-full bg-gradient-to-br ${bgBlobs[0]} blur-3xl`}
-        />
-        <div
-          ref={(el) => {
-            orbRefs.current[1] = el;
-          }}
-          className={`absolute right-0 top-16 h-80 w-80 rounded-full bg-gradient-to-br ${bgBlobs[1]} blur-3xl`}
-        />
-        <div
-          ref={(el) => {
-            orbRefs.current[2] = el;
-          }}
-          className={`absolute bottom-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-gradient-to-br ${bgBlobs[2]} blur-3xl`}
-        />
-      </div>
+    <SectionReveal className="relative overflow-hidden  py-14 text-white sm:py-15">
+     
 
       <div className="container relative z-10 mx-auto">
        

@@ -223,7 +223,7 @@ export default function Capabilities({
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <SectionReveal className="py-15 bg-secondary/20">
+    <SectionReveal className="py-15 ">
       <div className="container mx-auto">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">

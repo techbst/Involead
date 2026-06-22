@@ -41,7 +41,7 @@ const socialLinks: FooterNavItem[] = [
 ];
 
 function FooterLink({ label, href }: { label: string; href?: string }) {
-  const className = "text-[15px] leading-6 text-white/90 transition hover:text-white sm:text-[16px]";
+  const className = "text-[14px] leading-6 text-white/90 transition hover:text-white sm:text-[15px]";
 
   if (!href) {
     return <span className={className}>{label}</span>;
@@ -59,12 +59,12 @@ function FooterLink({ label, href }: { label: string; href?: string }) {
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "LinkedIn") {
-    return <span className="text-[24px] font-bold leading-none">in</span>;
+    return <span className="text-[20px] font-bold leading-none">in</span>;
   }
 
   if (label === "Instagram") {
     return (
-      <svg viewBox="0 0 24 24" className="size-7" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
         <rect
           x="5"
           y="5"
@@ -89,26 +89,26 @@ function SocialIcon({ label }: { label: string }) {
   }
 
   if (label === "Facebook") {
-    return <span className="text-[32px] font-bold leading-none">f</span>;
+    return <span className="text-[24px] font-bold leading-none">f</span>;
   }
 
   if (label === "YouTube") {
     return (
-      <svg viewBox="0 0 24 24" className="size-7" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
         <rect x="3" y="6" width="18" height="12" rx="4" fill="currentColor" />
         <path d="M10 9.25 15 12l-5 2.75z" fill="#6ec4d4" />
       </svg>
     );
   }
 
-  return <span className="text-[28px] font-light leading-none">X</span>;
+  return <span className="text-[20px] font-light leading-none">X</span>;
 }
 
 export default function Footer() {
   return (
     <footer className="bg-[#4f94a1] text-white pb-10">
       <div className="container py-10 sm:py-12 lg:py-14">
-        <div className="flex flex-col gap-8 border-b border-white/25 pb-8 pt-6 sm:gap-10 sm:pb-10 sm:pt-8 lg:flex-row lg:items-start lg:justify-between lg:pb-12 lg:pt-10">
+        <div className="flex flex-col gap-8 border-b border-white/25 pb-8 pt-6 sm:gap-10 sm:pb-10 sm:pt-8 lg:flex-row lg:items-start lg:justify-between lg:pb-6 lg:pt-5">
           <Link
             href="/"
             aria-label="InvoLead home"
@@ -119,17 +119,17 @@ export default function Footer() {
               alt="InvoLead"
               width={350}
               height={105}
-              className="h-auto w-[180px] object-contain sm:w-[240px] lg:w-[300px]"
+              className="h-auto w-[164px] object-contain sm:w-[180px] lg:w-[180px]"
             />
           </Link>
-          <h2 className="max-w-3xl text-left md:!text-[40px] font-bold leading-[1.08] tracking-normal lg:text-right">
+          <h2 className="max-w-xl text-left md:!text-[26px] font-bold leading-[1.08] tracking-normal lg:text-right">
             Business With Intelligent AI Solutions And Digital Innovation.
           </h2>
         </div>
 
         <div className="grid gap-10 py-10 sm:gap-12 sm:py-12 lg:grid-cols-[0.95fr_1fr_0.9fr_1.2fr] lg:gap-12 xl:gap-16">
           <div>
-            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:!text-[20px]">
               Quick Link
             </h3>
             <div className="mt-4 grid gap-2 sm:mt-5">
@@ -140,7 +140,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:!text-[20px]">
               Our Capabilities
             </h3>
             <div className="mt-4 grid gap-2 sm:mt-5">
@@ -151,7 +151,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:!text-[20px]">
               Industries
             </h3>
             <div className="mt-4 grid gap-2 sm:mt-5">
@@ -162,47 +162,47 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
+            <h3 className="text-[18px] font-semibold leading-tight text-white sm:!text-[20px]">
               Customer Service
             </h3>
-            <div className="mt-5 space-y-6 sm:mt-6 sm:space-y-7">
+            <div className="mt-5 space-y-6 sm:mt-6 sm:space-y-5">
               <div className="flex gap-4 sm:gap-5">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-12">
-                  <PhoneCall className="size-5 sm:size-6" aria-hidden="true" />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-8">
+                  <PhoneCall className="size-4 sm:size-4" aria-hidden="true" />
                 </span>
                 <div>
-                   <p className="!text-[17px] !font-bold leading-tight text-white sm:text-[20px]">
+                   <p className="!text-[16px] !font-bold leading-tight text-white sm:!text-[18px]">
                    Contact Us
                   </p>
                   <Link
                     href="tel:+919873074893"
-                    className="mt-1.5 block text-[17px] font-semibold leading-tight tracking-normal text-white sm:mt-2 sm:text-[20px]"
+                    className="mt-1.5 block text-[17px] font-semibold leading-tight tracking-normal text-white sm:mt-2 sm:!text-[18px]"
                   >
                     +91 987-307-4893
                   </Link>
                 </div>
               </div>
               <div className="flex gap-4 sm:gap-5">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-12">
-                  <Mail className="size-5 sm:size-6" aria-hidden="true" />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-8">
+                  <Mail className="size-4 sm:size-4" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="!text-[17px] !font-bold leading-tight text-white sm:text-[20px]">
+                  <p className="!text-[17px] !font-bold leading-tight text-white sm:!text-[18px]">
                     Email ID
                   </p>
                   <Link
                     href="mailto:support@involead.com"
-                    className="mt-1.5 block text-[13px] leading-snug text-white/90 sm:mt-2 sm:text-[14px]"
+                    className="mt-1.5 block text-[16px] leading-snug text-white/90 sm:mt-2 sm:text-[18px]"
                   >
                     Support@Involead.Com
                   </Link>
                 </div>
               </div>
               <div className="flex gap-4 sm:gap-5">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-12">
-                  <MapPin className="size-5 sm:size-6" aria-hidden="true" />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#6ec4d4] sm:size-8">
+                  <MapPin className="size-4 sm:size-4" aria-hidden="true" />
                 </span>
-                <p className="max-w-md text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
+                <p className="max-w-md text-[13px] leading-relaxed text-white/90 sm:!text-[15px]">
                   410A, 4th Floor, D21 Corporate Park, Dwarka Sector 21, New
                   Delhi - 110077
                 </p>
@@ -230,7 +230,7 @@ export default function Footer() {
                 <span
                   key={label}
                   aria-label={label}
-                  className="flex size-11 items-center justify-center rounded-full bg-[#6ec4d4] text-white/85 sm:size-12"
+                  className="flex size-6 items-center justify-center rounded-full bg-[#6ec4d4] text-white/85 sm:size-8"
                 >
                   <SocialIcon label={label} />
                 </span>

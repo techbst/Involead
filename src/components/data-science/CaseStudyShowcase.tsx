@@ -87,7 +87,7 @@ export default function CaseStudyShowcase() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_12%_8%,rgba(95,176,194,0.18),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(122,156,255,0.16),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(95,176,194,0.1),transparent_35%),linear-gradient(to_bottom_right,#f7fbfd,#eef5f8,#f8fcfd)] py-15 text-slate-950 lg:py-15">
+    <section className="relative overflow-hidden  py-15 text-slate-950 lg:py-15">
      
       <div className="container relative z-10 mx-auto">
         <motion.div
@@ -95,11 +95,11 @@ export default function CaseStudyShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mx-auto rounded-[2rem] border border-white/80 bg-white/90 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl md:p-6"
+          className="mx-auto  "
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
-              <p className="text-xs font-medium uppercase tracking-[0.3em]">
+              <p className="text-xs font-medium capitalize">
                 Case Studies
               </p>
 
@@ -160,7 +160,7 @@ export default function CaseStudyShowcase() {
             
               <div className="absolute inset-x-0 bottom-0 p-4">
                 <div className="max-w-[16rem] rounded-[1.25rem] border border-white/20 bg-white/92 p-3.5 backdrop-blur-md">
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-primary">
+                  <p className="text-[0.7rem] font-semibold  text-primary">
                     Featured case
                   </p>
                   <h3 className="mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950">

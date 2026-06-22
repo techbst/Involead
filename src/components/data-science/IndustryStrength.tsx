@@ -68,42 +68,42 @@ const defaultMetrics: IndustryMetric[] = [
 
 const cardStyles = [
   {
-    card: "bg-[#69d1aa] text-[#0e1a16]",
+    card: "bg-[#EAF7EB] text-[#0e1a16]",
     label: "text-[#0e1a16]/55",
     description: "text-[#0e1a16]/78",
     icon: "bg-[#0e1a16] text-white",
     line: "bg-[#0e1a16]/12",
   },
   {
-    card: "bg-[#5fb0c2] text-[#07161b]",
+    card: "bg-[#E7F4FB] text-[#07161b]",
     label: "text-[#07161b]/55",
     description: "text-[#07161b]/78",
     icon: "bg-[#07161b] text-white",
     line: "bg-[#07161b]/12",
   },
   {
-    card: "bg-[#c88cff] text-[#150c22]",
+    card: "bg-[#F2EEF8] text-[#150c22]",
     label: "text-[#150c22]/55",
     description: "text-[#150c22]/74",
     icon: "bg-[#150c22] text-white",
     line: "bg-[#150c22]/12",
   },
   {
-    card: "bg-[#f1f26f] text-[#17140b]",
+    card: "bg-[#FAF7D9] text-[#17140b]",
     label: "text-[#17140b]/55",
     description: "text-[#17140b]/74",
     icon: "bg-[#17140b] text-white",
     line: "bg-[#17140b]/12",
   },
   {
-    card: "bg-[#f6b1cc] text-[#2b1120]",
+    card: "bg-[#ECEEFA] text-[#2b1120]",
     label: "text-[#2b1120]/55",
     description: "text-[#2b1120]/74",
     icon: "bg-[#2b1120] text-white",
     line: "bg-[#2b1120]/12",
   },
   {
-    card: "bg-[#8fd8ff] text-[#082433]",
+    card: "bg-[#FDECEC] text-[#082433]",
     label: "text-[#082433]/55",
     description: "text-[#082433]/74",
     icon: "bg-[#082433] text-white",
