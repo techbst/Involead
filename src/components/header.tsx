@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
@@ -48,35 +48,40 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lastScrollYRef = useRef(0);
+  const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    lastScrollYRef.current = window.scrollY;
 
     const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isMobile = window.innerWidth < 1024;
+      if (frameRef.current !== null) return;
 
-      setScrolled(currentScrollY > 10);
+      frameRef.current = window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        const isMobile = window.innerWidth < 1024;
+        const nextScrolled = currentScrollY > 10;
+        const nextShowHeader =
+          isMobile ||
+          currentScrollY < 100 ||
+          currentScrollY < lastScrollYRef.current;
 
-      if (isMobile) {
-        setShowHeader(true);
-        lastScrollY = currentScrollY;
-        return;
-      }
+        setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+        setShowHeader((prev) =>
+          prev === nextShowHeader ? prev : nextShowHeader,
+        );
 
-      if (currentScrollY < 100) {
-        setShowHeader(true);
-      } else {
-        // setShowHeader(currentScrollY < lastScrollY);
-        setShowHeader(currentScrollY > lastScrollY);
-      }
-
-      lastScrollY = currentScrollY;
+        lastScrollYRef.current = currentScrollY;
+        frameRef.current = null;
+      });
     };
 
     window.addEventListener("scroll", onScroll);
 
     return () => {
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
       window.removeEventListener("scroll", onScroll);
     };
   }, []);

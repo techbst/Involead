@@ -3,14 +3,6 @@ import { Metadata } from 'next'
 import Providers from '@/providers/Providers'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import { Instrument_Sans } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const instrumentSans = Instrument_Sans({
-    subsets: ['latin'],
-    weight: ['400', '500', '700'],
-    variable: '--font-sans',
-});
 
 export const metadata: Metadata = {
     title: 'InvoLead',
@@ -23,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={cn("font-sans", instrumentSans.variable)} suppressHydrationWarning>
+        <html lang="en" className="font-sans" suppressHydrationWarning>
             <body suppressHydrationWarning>
                 <Providers>
                     <Header />

@@ -51,7 +51,7 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <section
-      className="relative flex items-center overflow-hidden pt-30 pb-26 md:pt-40 md:pb-24"
+      className="relative flex items-center overflow-hidden pt-30 pb-26 md:pt-36 md:pb-24"
       style={{ background: bgColor, clipPath }}
     >
       
@@ -107,7 +107,7 @@ export default function HeroSection({
           {ctaText && (
             <div className="mt-8">
               <Link href={ctaLink}>
-                <Button>
+                <Button variant="default">
                   {ctaText}
                   <ArrowRight className="size-4" />
                 </Button>

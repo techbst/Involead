@@ -224,7 +224,7 @@ export default function WhyChooseUs({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.55 }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-3xl text-center hover:bg-cyan-50"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.32em] !text-black">
             Built for trust
@@ -232,6 +232,10 @@ export default function WhyChooseUs({
           <h2 className="mt-4  font-semibold tracking-[-0.04em] text-black">
             {title}
           </h2>
+             <motion.div
+                  variants={lineVariants}
+                  className="mt-1.5 h-[2px] w-10 rounded-full bg-[#5FB0C2]"
+                />
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 !text-black sm:text-base">
             {subtitle}
           </p>

@@ -2,15 +2,17 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   ArrowRight,
   Award,
   Banknote,
   Building2,
+  CheckCircle2,
   CalendarDays,
   Heart,
   LucideIcon,
+  Orbit,
   Sparkles,
   Users2,
   Workflow,
@@ -18,6 +20,7 @@ import {
 
 import SectionReveal from "@/components/home/SectionReveal";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 
 type Stat = {
@@ -102,15 +105,30 @@ const process: ProcessStep[] = [
   { number: "05", title: "Offer", description: "Transparent leveling, market-leading pay, meaningful equity. We aim to close within 10 business days." },
 ];
 
-function SectionTitle({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
-  return (
-    <div className="max-w-3xl">
-      <p className="text-xs font-semibold uppercase tracking-[0.32em] text-secondary">{eyebrow}</p>
-      <h2 className="mt-4 text-[clamp(2.2rem,4vw,3.75rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-slate-950">{title}</h2>
-      <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-600 sm:text-lg">{description}</p>
-    </div>
-  );
-}
+const heroNotes = [
+  "Small teams, high trust, real ownership",
+  "Design, data, and engineering moving together",
+  "Clear standards with meaningful enterprise impact",
+];
+
+const revealContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const revealItem: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 function ValueTile({ item, index }: { item: ValueCard; index: number }) {
   const Icon = item.icon;
@@ -139,6 +157,7 @@ function BenefitTile({ item }: { item: BenefitCard }) {
 }
 
 export default function CareerPageClient() {
+  const reduceMotion = !!useReducedMotion();
   const [activeRoleFilter, setActiveRoleFilter] = useState<(typeof roleFilters)[number]>("All");
   const filteredRoles = useMemo(
     () => (activeRoleFilter === "All" ? roles : roles.filter((role) => role.team === activeRoleFilter)),
@@ -147,75 +166,249 @@ export default function CareerPageClient() {
   const visibleRoles = filteredRoles.length > 0 ? filteredRoles : roles;
 
   return (
-    <div className="overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_40%,#f4f7fb_100%)] text-slate-950">
+    <div className="overflow-hidden bg-[linear-gradient(180deg,#eef5fb_0%,#ffffff_30%,#f7f9fc_64%,#eef6f9_100%)] text-slate-950">
       <section className="relative isolate overflow-hidden pt-28 pb-18 sm:pt-32">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_20%,rgba(95,176,194,0.18),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.95),transparent_25%),radial-gradient(circle_at_50%_80%,rgba(232,208,255,0.14),transparent_28%)]" />
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(135deg,#f8fbff_0%,#eef7fb_34%,#fff7ef_100%)]" />
+        <motion.div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          animate={reduceMotion ? undefined : { backgroundPosition: ["0% 0%", "100% 100%"] }}
+          transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 14% 16%, rgba(95,176,194,0.24), transparent 0 24%), radial-gradient(circle at 84% 10%, rgba(255,255,255,0.95), transparent 0 20%), radial-gradient(circle at 72% 28%, rgba(255,214,170,0.28), transparent 0 18%), radial-gradient(circle at 48% 82%, rgba(182,213,255,0.18), transparent 0 24%)",
+            backgroundSize: "140% 140%",
+          }}
+        />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.35)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:72px_72px] opacity-40" />
         <div className="container mx-auto grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-         
+          <motion.div
+            variants={revealContainer}
+            initial={reduceMotion ? "show" : "hidden"}
+            animate="show"
+          >
             <h1 className="mt-5 max-w-3xl text-[clamp(2.9rem,6vw,5.6rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-slate-950">
               Build what&apos;s next with us
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+            <motion.p variants={revealItem} className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
               We are a team of engineers, scientists, and designers shaping intelligent products for global enterprises. Join us in turning complex problems into elegant, measurable outcomes.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            </motion.p>
+            <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
               <Button asChild className="rounded-full bg-secondary px-6 py-6 text-white">
                 <Link href="#roles">See open roles<ArrowRight className="size-4" /></Link>
               </Button>
-            </div>
-          </div>
-          <div className="rounded-[2rem] border border-white/80 bg-white p-4 shadow-[0_24px_90px_rgba(15,23,42,0.12)]">
-            <div className="rounded-[1.5rem] bg-slate-950 p-7 text-white sm:p-8">
-              <div className="flex items-center gap-3">
-                <Sparkles className="size-5 text-secondary" />
-                <span className="text-sm font-semibold uppercase tracking-[0.26em] text-white/60">Our culture</span>
-              </div>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">
-                We keep the work focused, the standards high, and the feedback honest. Great people do their best work when the context is clear.
-              </p>
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="rounded-2xl bg-white/5 p-4">
-                    <strong className="block text-2xl font-semibold text-white">{stat.value}</strong>
-                    <span className="mt-1 block text-sm text-white/65">{stat.label}</span>
+            </motion.div>
+            <motion.div variants={revealItem} className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
+              {heroNotes.map((note) => (
+                <div
+                  key={note}
+                  className="rounded-[1.35rem] border border-white/80 bg-white/70 px-4 py-4 shadow-[0_14px_44px_rgba(15,23,42,0.07)] backdrop-blur"
+                >
+                  <p className="text-sm leading-6 text-slate-700">{note}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+          <motion.div
+            initial={reduceMotion ? "show" : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: { opacity: 0, x: 28, scale: 0.98 },
+              show: {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.12, delayChildren: 0.12 },
+              },
+            }}
+            className="relative mx-auto w-full max-w-xl lg:max-w-none"
+          >
+            <motion.div
+              aria-hidden
+              animate={reduceMotion ? undefined : { x: [0, 20, -8, 0], y: [0, -16, 12, 0] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-[4%] top-[6%] h-40 w-40 rounded-full bg-secondary/20 blur-3xl"
+            />
+            <motion.div
+              aria-hidden
+              animate={reduceMotion ? undefined : { x: [0, -16, 10, 0], y: [0, 12, -12, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-[8%] right-[6%] h-52 w-52 rounded-full bg-[#ffd6aa]/35 blur-3xl"
+            />
+            <motion.div variants={revealItem} className="relative rounded-[2rem] border border-white/75 bg-white/70 p-4 shadow-[0_28px_90px_rgba(15,23,42,0.14)] backdrop-blur-xl">
+              <div className="rounded-[1.6rem] bg-[linear-gradient(150deg,#07141d_0%,#0d2430_52%,#15384a_100%)] p-7 text-white sm:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/65">
+                      <Orbit className="size-3.5 text-cyan-300" />
+                      Team Operating System
+                    </div>
+                    <p className="mt-5 max-w-md text-lg leading-8 text-white/80">
+                      We keep the work focused, the standards high, and the feedback honest. Great people do their best work when the context is clear.
+                    </p>
                   </div>
-                ))}
+                  <motion.div
+                    animate={reduceMotion ? undefined : { rotate: [0, 10, 0], y: [0, -5, 0] }}
+                    transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                    className="hidden rounded-[1.4rem] border border-cyan-300/25 bg-cyan-300/10 p-4 text-cyan-100 shadow-[0_0_40px_rgba(125,211,252,0.16)] sm:block"
+                  >
+                    <Sparkles className="size-6" />
+                    <div className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100/60">Execution</div>
+                    <div className="mt-1 text-2xl font-semibold">Fast</div>
+                  </motion.div>
+                </div>
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {stats.map((stat, index) => (
+                    <motion.div
+                      key={stat.label}
+                      variants={revealItem}
+                      transition={{ delay: index * 0.04 }}
+                      className="rounded-[1.3rem] border border-white/8 bg-white/6 p-4"
+                    >
+                      <strong className="block text-2xl font-semibold text-white">{stat.value}</strong>
+                      <span className="mt-1 block text-sm text-white/62">{stat.label}</span>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-8 grid gap-3 lg:grid-cols-[1.05fr_0.95fr]">
+                  <motion.div variants={revealItem} className="rounded-[1.4rem] border border-white/8 bg-white/7 p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold text-white">Hiring flow</p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.22em] text-white/45">Structured and respectful</p>
+                      </div>
+                      <div className="rounded-full bg-emerald-400/14 px-3 py-1 text-xs font-semibold text-emerald-200">10 business days</div>
+                    </div>
+                    <div className="mt-5 flex items-end gap-2">
+                      {[32, 54, 68, 86, 100].map((height, index) => (
+                        <motion.div
+                          key={height}
+                          initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                          whileInView={{ height, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.45, delay: 0.25 + index * 0.08 }}
+                          className="flex-1 rounded-t-full bg-[linear-gradient(180deg,rgba(125,211,252,0.95),rgba(34,197,94,0.28))]"
+                        />
+                      ))}
+                    </div>
+                    <div className="mt-3 flex justify-between text-[11px] uppercase tracking-[0.2em] text-white/38">
+                      {process.map((step) => <span key={step.number}>{step.number}</span>)}
+                    </div>
+                  </motion.div>
+                  <motion.div variants={revealItem} className="rounded-[1.4rem] border border-white/8 bg-white/7 p-4">
+                    <p className="text-sm font-semibold text-white">What it feels like here</p>
+                    <div className="mt-4 space-y-3">
+                      {heroNotes.map((note) => (
+                        <div key={note} className="flex items-start gap-3 rounded-2xl bg-white/6 px-3 py-3">
+                          <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-cyan-300" />
+                          <p className="text-sm leading-6 text-white/74">{note}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+            <motion.div
+              variants={revealItem}
+              animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -left-4 top-16 hidden w-44 rounded-[1.4rem] border border-white/80 bg-white/90 p-4 shadow-[0_16px_48px_rgba(15,23,42,0.12)] backdrop-blur lg:block"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Collaboration</p>
+              <p className="mt-3 text-sm font-medium leading-6 text-slate-700">Product, design, and ML working together from day one.</p>
+            </motion.div>
+            <motion.div
+              variants={revealItem}
+              animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
+              transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 0.35 }}
+              className="absolute -right-4 bottom-16 hidden w-48 rounded-[1.4rem] border border-white/80 bg-white/92 p-4 shadow-[0_18px_54px_rgba(15,23,42,0.14)] backdrop-blur lg:block"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Ownership</p>
+              <p className="mt-3 text-sm font-medium leading-6 text-slate-700">Small teams, high trust, measurable outcomes instead of noise.</p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
       <SectionReveal className="container mx-auto pb-20">
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_14px_45px_rgba(15,23,42,0.06)]">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_14px_45px_rgba(15,23,42,0.06)]"
+            >
               <div className="text-3xl font-semibold tracking-[-0.05em] text-slate-950">{stat.value}</div>
               <div className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </SectionReveal>
       <section className="py-20 sm:py-24">
         <div className="container mx-auto">
-          <SectionTitle eyebrow="How we work" title="Principles that shape every product we ship" description="Our values are not posters on a wall. They are the defaults we rely on when the path forward is unclear and the stakes are high." />
+          <SectionHeader
+            eyebrow="How we work"
+            title="Principles that shape every product we ship"
+            description="Our values are not posters on a wall. They are the defaults we rely on when the path forward is unclear and the stakes are high."
+            align="left"
+            maxWidth="3xl"
+            descriptionWidth="2xl"
+          />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {values.map((item, index) => <ValueTile key={item.title} item={item} index={index} />)}
+            {values.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+              >
+                <ValueTile item={item} index={index} />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
       <section className="bg-white py-20 sm:py-24">
         <div className="container mx-auto">
-          <SectionTitle eyebrow="Life at InvoLead" title="Benefits that respect your whole life" description="We invest in our team like we invest in our products, with care, rigor and long-term thinking." />
+          <SectionHeader
+            eyebrow="Life at InvoLead"
+            title="Benefits that respect your whole life"
+            description="We invest in our team like we invest in our products, with care, rigor and long-term thinking."
+            align="left"
+            maxWidth="3xl"
+            descriptionWidth="2xl"
+          />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {benefits.map((item) => <BenefitTile key={item.title} item={item} />)}
+            {benefits.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.42, delay: index * 0.04 }}
+              >
+                <BenefitTile item={item} />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
       <section id="roles" className="relative overflow-hidden py-20 sm:py-24">
         <motion.div aria-hidden className="absolute inset-0" animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }} transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "linear" }} style={{ backgroundImage: "radial-gradient(circle at 14% 18%, rgba(95,176,194,0.16), transparent 0 22%), radial-gradient(circle at 86% 12%, rgba(232,208,255,0.16), transparent 0 20%), radial-gradient(circle at 50% 92%, rgba(255,255,255,0.9), transparent 0 24%)", backgroundSize: "140% 140%" }} />
         <div className="container mx-auto relative z-10">
-          <SectionTitle eyebrow="Open positions" title="Find the role that fits your craft" description="10 roles open across Engineering, Data Science, Design, Product and Business." />
+          <SectionHeader
+            eyebrow="Open positions"
+            title="Find the role that fits your craft"
+            description="10 roles open across Engineering, Data Science, Design, Product and Business."
+            align="left"
+            maxWidth="3xl"
+            descriptionWidth="2xl"
+          />
             <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white/80 p-4 shadow-[0_20px_70px_rgba(15,23,42,0.08)] backdrop-blur">
             <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-sm font-medium text-slate-600">
@@ -257,8 +450,8 @@ export default function CareerPageClient() {
             </div>
           </div>
           <div className="mt-8 grid gap-4">
-            {visibleRoles.map((role) => (
-              <motion.article key={role.title} initial={{ opacity: 0, y: 18, scale: 0.985 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.4 }} className="group rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
+            {visibleRoles.map((role, index) => (
+              <motion.article key={role.title} initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.985 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.42, delay: index * 0.03 }} className="group rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div className="max-w-3xl">
                     <div className="flex flex-wrap items-center gap-2">
@@ -283,14 +476,28 @@ export default function CareerPageClient() {
       </section>
       <section className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] py-20 sm:py-24">
         <div className="container mx-auto">
-          <SectionTitle eyebrow="Hiring process" title="A thoughtful process, not a gauntlet" description="We aim for clarity and respect at every step. Expect structured conversations, practical exercises and quick, honest feedback." />
+          <SectionHeader
+            eyebrow="Hiring process"
+            title="A thoughtful process, not a gauntlet"
+            description="We aim for clarity and respect at every step. Expect structured conversations, practical exercises and quick, honest feedback."
+            align="left"
+            maxWidth="3xl"
+            descriptionWidth="2xl"
+          />
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {process.map((step) => (
-              <div key={step.number} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)]">
+            {process.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.06 }}
+                className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)]"
+              >
                 <div className="text-3xl font-semibold tracking-[-0.06em] text-secondary">{step.number}</div>
                 <h3 className="mt-4 text-lg font-semibold tracking-[-0.03em] text-slate-950">{step.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import SectionReveal from "./SectionReveal";
-
+import { SectionHeader } from "@/components/ui/section-header";
 interface IndustryCard {
   title: string;
   description: string;
@@ -316,87 +316,105 @@ export default function IndustryTabs() {
   // activeCard is the index of the card currently in center
   const activeCardRef = useRef(0);
   const busyRef = useRef(false);
-  const gsapRef = useRef<any>(null);
+  const gsapRef = useRef<typeof import("gsap").gsap | null>(null);
   // 3 refs, one per card slot
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const stageRef = useRef<HTMLDivElement>(null);
 
-  // Load GSAP once
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const init = () => {
-      gsapRef.current = (window as any).gsap;
-      applyLayout(false);
-    };
-    if ((window as any).gsap) { init(); return; }
-    const s = document.createElement("script");
-    s.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
-    s.async = true;
-    s.onload = init;
-    document.head.appendChild(s);
+  const applyLayout = useCallback((animate: boolean) => {
+    const gsap = gsapRef.current;
+    if (!gsap) return;
+
+    const stageW = stageRef.current?.offsetWidth ?? 1000;
+    const cx = stageW / 2 - CARD_W / 2;
+    const spread = CARD_W;
+
+    const curr = activeCardRef.current;
+    const N = cardRefs.current.length;
+
+    cardRefs.current.forEach((el, i) => {
+      if (!el) return;
+
+      let offset = i - curr;
+      if (offset > N / 2) offset -= N;
+      if (offset < -N / 2) offset += N;
+
+      const isCenter = offset === 0;
+      const isLeft = offset < 0;
+      const x = cx + offset * spread;
+      const y = isCenter ? 0 : 40;
+      const rotation = isCenter ? 0 : isLeft ? -20 : 20;
+      const scale = isCenter ? 1 : 0.92;
+      const opacity = Math.abs(offset) > 1 ? 0 : isCenter ? 1 : 0.6;
+      const zIndex = 10 - Math.abs(offset);
+
+      const props = {
+        x,
+        y,
+        rotation,
+        scale,
+        opacity,
+        zIndex,
+        transformOrigin: "bottom center",
+      };
+
+      if (animate) {
+        gsap.to(el, {
+          ...props,
+          duration: 0.65,
+          ease: "power3.out",
+          overwrite: true,
+          onComplete: isCenter
+            ? () => {
+                busyRef.current = false;
+              }
+            : undefined,
+        });
+      } else {
+        gsap.set(el, props);
+      }
+    });
   }, []);
 
   useEffect(() => {
-    const handler = () => applyLayout(false);
+    let cancelled = false;
+
+    const loadGsap = async () => {
+      const { gsap } = await import("gsap");
+      if (cancelled) return;
+      gsapRef.current = gsap;
+      applyLayout(false);
+    };
+
+    void loadGsap();
+
+    return () => {
+      cancelled = true;
+      gsapRef.current = null;
+    };
+  }, [applyLayout]);
+
+  useEffect(() => {
+    let frame = 0;
+    const handler = () => {
+      cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => applyLayout(false));
+    };
+
     window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
-  }, []);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", handler);
+    };
+  }, [applyLayout]);
 
   // When industry changes reset to card 0 and re-layout
   useEffect(() => {
     activeCardRef.current = 0;
     busyRef.current = false;
-    const t = setTimeout(() => applyLayout(false), 20);
-    return () => clearTimeout(t);
-  }, [activeIndustry]);
-
-const applyLayout = (animate: boolean) => {
-  const gsap = gsapRef.current;
-  if (!gsap) return;
-
-  const stageW = stageRef.current?.offsetWidth ?? 1000;
-  const cx = stageW / 2 - CARD_W / 2;
-  const spread = CARD_W * 1;
-
-  const curr = activeCardRef.current;
-  const N = cardRefs.current.length;
-
-  cardRefs.current.forEach((el, i) => {
-    if (!el) return;
-
-    let offset = i - curr;
-    if (offset > N / 2)  offset -= N;
-    if (offset < -N / 2) offset += N;
-
-    const isCenter = offset === 0;
-    const isLeft   = offset < 0;
-    const isRight  = offset > 0;
-
-    const x        = cx + offset * spread;
-    const y        = isCenter ? 0 : 40;
-    const rotation = isCenter ? 0 : isLeft ? -20 : 20;
-    const scale    = isCenter ? 1 : 0.92;
-    const opacity  = Math.abs(offset) > 1 ? 0 : isCenter ? 1 : 0.6;
-    const zIndex   = 10 - Math.abs(offset);
-
-    const props = {
-      x, y, rotation, scale, opacity, zIndex,
-      transformOrigin: "bottom center",
-    };
-
-    if (animate) {
-      gsap.to(el, {
-        ...props,
-        duration: 0.65,
-        ease: "power3.out",
-        overwrite: true,
-        onComplete: isCenter ? () => { busyRef.current = false; } : undefined,
-      });
-    } else {
-      gsap.set(el, props);
-    }
-  });
-};
+    const frame = window.requestAnimationFrame(() => applyLayout(false));
+    return () => window.cancelAnimationFrame(frame);
+  }, [activeIndustry, applyLayout]);
 
   const goToCard = (direction: 1 | -1) => {
     if (busyRef.current) return;
@@ -416,21 +434,29 @@ const applyLayout = (animate: boolean) => {
   return (
     <section className="relative overflow-hidden bg-black py-15 text-white">
       <SectionReveal className="mx-auto container">
-
-        <div className="text-center">
+        
+         <SectionHeader
+                    // eyebrow={"Transforming Industries with AI & Data"}
+                    title="Transforming Industries with AI & Data"
+                    description="  Enabling smarter decisions, operational efficiency, and sustainable
+            growth through intelligent solutions."
+                    align="center"
+                    textColor="white"
+                    maxWidth="4xl"
+                  />
+        {/* <div className="text-center">
           <motion.h2
             initial={{ opacity: 0, y: 34 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-[clamp(2.6rem,5vw,5.2rem)] font-bold leading-tight tracking-normal"
           >
-            Transforming Industries with AI & Data
+            
           </motion.h2>
           <p className="mx-auto mt-7 max-w-md text-lg text-white/80">
-            Enabling smarter decisions, operational efficiency, and sustainable
-            growth through intelligent solutions.
+          
           </p>
-        </div>
+        </div> */}
 
         {/* Tab row — arrows slide cards, tabs switch industry */}
         <div className="mt-12 flex items-center justify-center gap-2 max-lg:flex-wrap">
@@ -459,7 +485,7 @@ const applyLayout = (animate: boolean) => {
         >
           {cards.map((card, i) => (
             <div
-              key={`${activeIndustry}-${i}`}
+              key={card.title}
               ref={(el) => { cardRefs.current[i] = el; }}
               className={`absolute top-0`}
               style={{ width: CARD_W, willChange: "transform" }}

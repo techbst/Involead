@@ -171,7 +171,7 @@ export default function ProcessRoadmap() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-white py-15 text-slate-900 lg:py-15"
+      className="relative overflow-hidden bg-secondary/20 py-15 text-slate-900 lg:py-15"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[36rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(95,176,194,0.16),transparent_60%)]" />

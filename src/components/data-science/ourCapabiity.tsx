@@ -8,7 +8,7 @@ function ourCapabiity() {
                 textColor='black'
                 title="Our Capabilities"
                 description="End-to-end AI solutions designed for measurable outcomes — engineered by domain experts, powered by Agentic AI."
-                descriptionmaxWidth='md'
+                descriptionWidth='md'
             />
             <FeatureGridSection
                 title=""

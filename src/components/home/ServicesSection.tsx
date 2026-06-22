@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, Pagination } from "swiper/modules";
-import { useState } from "react";
+import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -12,36 +12,30 @@ import { servicesSection } from "@/data/home";
 import SectionReveal from "./SectionReveal";
 import ClipCard from "@/components/ui/clip-card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { SectionHeader } from "@/components/ui/section-header";
 
 export default function ServicesSection() {
-    const [swiper, setSwiper] = useState<SwiperType | null>(null);
+    const swiperRef = useRef<SwiperType | null>(null);
   return (
     <section className="bg-white py-15 ">
       <SectionReveal className="container mx-auto ">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div className="max-w-5xl">
-            <p className="!text-[16px] font-semibold text-slate-500">
-              {servicesSection.eyebrow}
-            </p>
-
-            <h2 className="mt-2 max-w-2xl text-2xl md:text-[46px] font-bold leading-tight text-slate-950 ">
-              {servicesSection.title}
-            </h2>
-
-            <p className="mt-4 max-w-2xl !text-[16px]  text-black sm:text-base">
-              {servicesSection.description}
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow={servicesSection.eyebrow}
+            title={servicesSection.title}
+            description={servicesSection.description}
+            align="left"
+          />
           <div className="flex gap-3 sm:gap-4">
             <button
-              onClick={() => swiper?.slidePrev()}
+              onClick={() => swiperRef.current?.slidePrev()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Previous product"
             >
               <ArrowLeft className="size-5" />
             </button>
             <button
-              onClick={() => swiper?.slideNext()}
+              onClick={() => swiperRef.current?.slideNext()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Next product"
             >
@@ -53,7 +47,9 @@ export default function ServicesSection() {
           modules={[Autoplay, Pagination]}
           spaceBetween={18}
           slidesPerView={1}
-  onSwiper={setSwiper}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
           breakpoints={{
             640: {
               slidesPerView: 2,

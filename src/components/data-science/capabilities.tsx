@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { motion, type Variants } from "framer-motion";
 import { ArrowLeft, ArrowRight, type LucideIcon } from "lucide-react";
@@ -208,7 +208,7 @@ export default function Capabilities({
   items = capabilityData,
 }: CapabilitiesProps) {
   const cards = buildCapabilityItems(items);
-  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <SectionReveal className="py-15 bg-secondary/20">
@@ -229,7 +229,7 @@ export default function Capabilities({
           <div className="flex gap-3 sm:gap-4">
             <button
               type="button"
-              onClick={() => swiper?.slidePrev()}
+              onClick={() => swiperRef.current?.slidePrev()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
               aria-label="Previous capability"
             >
@@ -237,7 +237,7 @@ export default function Capabilities({
             </button>
             <button
               type="button"
-              onClick={() => swiper?.slideNext()}
+              onClick={() => swiperRef.current?.slideNext()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
               aria-label="Next capability"
             >
@@ -247,7 +247,9 @@ export default function Capabilities({
         </div>
 
         <Swiper
-          onSwiper={setSwiper}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
           spaceBetween={20}
           slidesPerView={1}
           breakpoints={{

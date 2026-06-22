@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
@@ -57,8 +57,7 @@ const products: ProductCard[] = [
 ];
 
 export default function ProductsInnovation() {
-  const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const [progress, setProgress] = useState(0);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <section
@@ -88,14 +87,14 @@ export default function ProductsInnovation() {
           </div>
           <div className="flex gap-3 sm:gap-4">
             <button
-              onClick={() => swiper?.slidePrev()}
+              onClick={() => swiperRef.current?.slidePrev()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Previous product"
             >
               <ArrowLeft className="size-5" />
             </button>
             <button
-              onClick={() => swiper?.slideNext()}
+              onClick={() => swiperRef.current?.slideNext()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Next product"
             >
@@ -113,9 +112,9 @@ export default function ProductsInnovation() {
               1140: { slidesPerView: 3 },
               1380: { slidesPerView: 4, spaceBetween: 36 },
             }}
-            onSwiper={setSwiper}
-            onProgress={(_, value) => setProgress(value)}
-            onSlideChange={(swiper) => setProgress(swiper.progress)}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
           >
             {products.map((product, index) => (
               <SwiperSlide key={product.title} className="pb-8">

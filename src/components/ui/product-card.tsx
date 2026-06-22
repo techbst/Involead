@@ -1,6 +1,7 @@
+"use client";
+
 import { ArrowUpRight, Cpu, Sparkles, Zap, Database } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import Image from "next/image";
 
 interface ClipCardProps {
   image: string;
@@ -28,7 +29,6 @@ export default function ClipCard({
   className = "",
   showDescriptionOnHover = false,
 }: ClipCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
   const info = getCategoryInfo(title);
   const IconComponent = info.icon;
 
@@ -41,8 +41,6 @@ export default function ClipCard({
     <div
       className={`group relative overflow-hidden rounded-[24px] bg-white p-[1px] transition-all duration-300 ${className}`}
       style={clipPathStyle}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       id={`clip-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
     >
       {/* Outer border glow effect on hover */}
@@ -61,11 +59,12 @@ export default function ClipCard({
           {/* Accent light overlay */}
           <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
           
-          <img
+          <Image
             src={image}
             alt={title}
-            referrerPolicy="no-referrer"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            fill
+            sizes="(min-width: 1380px) 25vw, (min-width: 1140px) 33vw, (min-width: 740px) 50vw, 100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
 
           {/* Floating Category Badge */}

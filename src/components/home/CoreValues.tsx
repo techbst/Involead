@@ -12,6 +12,7 @@ import {
 import { useRef } from "react";
 
 import SectionReveal from "./SectionReveal";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const values = [
   {
@@ -141,9 +142,7 @@ function ValueCard({ icon: Icon, title, description, index }: ValueCardProps) {
       initial="rest"
       whileHover="hover"
       animate="rest"
-      className={`group relative overflow-hidden bg-white p-7 transition-colors duration-300 hover:bg-cyan-50/30 max-md:border
-        ${row === 0 ? "border-b border-slate-200" : ""}
-        ${col !== 2 ? "border-r border-slate-200" : ""}
+      className={`group relative h-full overflow-hidden  border border-white/10 bg-white/92 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1  transition-colors duration-300 hover:bg-cyan-50/30 rounded-[24px] 
       `}
     >
       {/* Radial glow — expands from card center on hover */}
@@ -228,7 +227,7 @@ export default function CoreValues() {
       <SectionReveal className="mx-auto container">
 
         {/* ── Section header ── */}
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -246,15 +245,21 @@ export default function CoreValues() {
           className="mt-2 max-w-3xl leading-tight tracking-normal text-black"
         >
           End-to-end AI solutions designed for measurable outcomes.
-        </motion.h2>
+        </motion.h2> */}
+        <SectionHeader
+        eyebrow="Our Core Values"
+          title="End-to-end AI solutions designed for measurable outcomes."
+          align="left"
+          maxWidth="3xl"
+        />
 
         {/* ── Grid ── */}
         <motion.div
           ref={gridRef}
-          variants={containerVariants}
+          // variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mt-10 grid gap-px overflow-hidden bg-slate-200 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
         >
           {values.map(({ icon, title, description }, index) => (
             <ValueCard

@@ -3,43 +3,49 @@ import Image from "next/image";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
 
 const quickLinks = [
-  "Services",
-  "Industries",
-  "Careers",
-  "Case Studies",
-  "About Us",
-  "Contact",
+  { label: "Services", href: "/our-solutions" },
+  { label: "Industries", href: "/industries" },
+  { label: "Careers", href: "/career" },
+  { label: "Case Studies" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact-us" },
 ];
 const capabilities = [
-  "Generative AI",
-  "Data Science",
-  "Business Intelligence",
-  "Data Engineering",
-  "Cloud Solutions",
-  "Software Engineering",
+  { label: "Generative AI", href: "/our-solutions/generative-ai" },
+  { label: "Data Science", href: "/our-solutions/data-science" },
+  { label: "Business Intelligence" },
+  { label: "Data Engineering", href: "/our-solutions/data-engineering" },
+  { label: "Cloud Solutions" },
+  { label: "Software Engineering" },
 ];
 const industries = [
-  "Retail",
-  "Pharma",
-  "Telecom",
-  "Manufacturing",
-  "CPG",
-  "Healthcare",
+  { label: "Retail" },
+  { label: "Pharma" },
+  { label: "Telecom" },
+  { label: "Manufacturing" },
+  { label: "CPG" },
+  { label: "Healthcare" },
 ];
 
 const socialLinks = [
-  { label: "LinkedIn", href: "#" },
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "X", href: "#" },
-  { label: "YouTube", href: "#" },
+  { label: "LinkedIn" },
+  { label: "Instagram" },
+  { label: "Facebook" },
+  { label: "X" },
+  { label: "YouTube" },
 ];
 
-function FooterLink({ label, href = "#" }: { label: string; href?: string }) {
+function FooterLink({ label, href }: { label: string; href?: string }) {
+  const className = "text-[15px] leading-6 text-white/90 transition hover:text-white sm:text-[16px]";
+
+  if (!href) {
+    return <span className={className}>{label}</span>;
+  }
+
   return (
     <Link
       href={href}
-      className="text-[15px] leading-6 text-white/90 transition hover:text-white sm:text-[16px]"
+      className={className}
     >
       {label}
     </Link>
@@ -123,7 +129,7 @@ export default function Footer() {
             </h3>
             <div className="mt-4 grid gap-2 sm:mt-5">
               {quickLinks.map((item) => (
-                <FooterLink key={item} label={item} />
+                <FooterLink key={item.label} label={item.label} href={item.href} />
               ))}
             </div>
           </div>
@@ -134,7 +140,7 @@ export default function Footer() {
             </h3>
             <div className="mt-4 grid gap-2 sm:mt-5">
               {capabilities.map((item) => (
-                <FooterLink key={item} label={item} />
+                <FooterLink key={item.label} label={item.label} href={item.href} />
               ))}
             </div>
           </div>
@@ -145,7 +151,7 @@ export default function Footer() {
             </h3>
             <div className="mt-4 grid gap-2 sm:mt-5">
               {industries.map((item) => (
-                <FooterLink key={item} label={item} />
+                <FooterLink key={item.label} label={item.label} href={item.href} />
               ))}
             </div>
           </div>
@@ -206,14 +212,24 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             {socialLinks.map(({ label, href }) => (
-              <Link
-                key={label}
-                href={href}
-                aria-label={label}
-                className="flex size-11 items-center justify-center rounded-full bg-[#6ec4d4] transition hover:bg-white hover:text-[#4f94a1] sm:size-12"
-              >
-                <SocialIcon label={label} />
-              </Link>
+              href ? (
+                <Link
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex size-11 items-center justify-center rounded-full bg-[#6ec4d4] transition hover:bg-white hover:text-[#4f94a1] sm:size-12"
+                >
+                  <SocialIcon label={label} />
+                </Link>
+              ) : (
+                <span
+                  key={label}
+                  aria-label={label}
+                  className="flex size-11 items-center justify-center rounded-full bg-[#6ec4d4] text-white/85 sm:size-12"
+                >
+                  <SocialIcon label={label} />
+                </span>
+              )
             ))}
           </div>
         </div>
