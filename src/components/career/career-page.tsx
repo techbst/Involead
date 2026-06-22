@@ -152,9 +152,7 @@ export default function CareerPageClient() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_20%,rgba(95,176,194,0.18),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.95),transparent_25%),radial-gradient(circle_at_50%_80%,rgba(232,208,255,0.14),transparent_28%)]" />
         <div className="container mx-auto grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <p className="inline-flex rounded-full border border-white/80 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-secondary shadow-sm backdrop-blur">
-              Careers at InvoLead
-            </p>
+         
             <h1 className="mt-5 max-w-3xl text-[clamp(2.9rem,6vw,5.6rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-slate-950">
               Build what&apos;s next with us
             </h1>
