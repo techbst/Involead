@@ -112,24 +112,19 @@ function InfrastructureVisual() {
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-emerald-200 bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[.12em] text-emerald-700 shadow-lg backdrop-blur">
-        <span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-70"/><span className="relative size-2 rounded-full bg-emerald-500"/></span>
-        2.8M events processed / min
-      </div>
+      
     </div>
   );
 }
 
 export default function DataEngineeringHero() {
   return (
-    <section className="relative isolate min-h-[800px] overflow-hidden bg-[#f7fafb] pt-28">
+    <section className="relative isolate overflow-hidden bg-[#f7fafb] pt-15">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.035)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
       <div className="absolute -left-40 top-10 size-[30rem] rounded-full bg-cyan-200/25 blur-3xl" />
       <div className="container relative grid min-h-[680px] items-center gap-8 py-14 lg:grid-cols-[45fr_55fr] lg:gap-4">
         <motion.div variants={{ show: { transition: { staggerChildren: .11 } } }} initial="hidden" animate="show" className="relative z-10">
-          <motion.div variants={reveal} className="inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[.16em] text-secondary shadow-sm backdrop-blur">
-            <BrainCircuit className="size-4" /> AI-Powered Data Engineering
-          </motion.div>
+          
           <motion.h1 variants={reveal} className="mt-6 max-w-3xl text-[clamp(2.75rem,5.3vw,5.35rem)] font-bold leading-[.96] tracking-[-.052em] text-slate-950">
             AI-Powered Data Engineering That Delivers <span className="text-secondary">40% Faster Insights</span>
           </motion.h1>
@@ -137,22 +132,20 @@ export default function DataEngineeringHero() {
             HIPAA-Compliant, GxP-Ready data platforms for Life Sciences, Retail and Telecom — built in 90 days, not years.
           </motion.p>
           <motion.div variants={reveal} className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button asChild className="group rounded-full bg-secondary px-7 py-6 text-white shadow-[0_18px_45px_rgba(95,176,194,.28)]">
+            <Button asChild>
               <Link href="/contact-us">Book a Free Data Stack Review <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link>
             </Button>
-            <Button asChild variant="outline" className="group rounded-full border-slate-300 bg-white px-7 py-6 text-slate-950">
+            <Button asChild variant="outline">
               <Link href="/our-solutions">Explore Solutions <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link>
             </Button>
           </motion.div>
-          <motion.div variants={reveal} className="mt-9 flex max-w-2xl flex-wrap gap-x-5 gap-y-3 border-t border-slate-200 pt-6">
-            {trust.map(item => <span key={item} className="flex items-center gap-1.5 text-xs font-semibold text-slate-600"><span className="grid size-5 place-items-center rounded-full bg-emerald-100 text-emerald-700"><Check className="size-3"/></span>{item}</span>)}
-          </motion.div>
+          
         </motion.div>
         <motion.div initial={{ opacity: 0, x: 35, scale: .97 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: .8, delay: .2 }} className="min-w-0">
           <InfrastructureVisual />
         </motion.div>
       </div>
-      <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.8 }} className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-[.25em] text-slate-400">Scroll ↓</motion.div>
+     
     </section>
   );
 }

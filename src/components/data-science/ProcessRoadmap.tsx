@@ -178,7 +178,7 @@ export default function ProcessRoadmap() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.035)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,black,transparent)]" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto">
         <motion.div
           className="mx-auto max-w-2xl text-center"
           initial={{ opacity: 0, y: 16 }}
@@ -187,9 +187,9 @@ export default function ProcessRoadmap() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           
-            <span className=" text-[0.68rem] uppercase tracking-[0.28em] text-primary">
+            <p className="text-xs font-medium uppercase tracking-[0.3em]">
               Autonomous Pipeline
-            </span>
+            </p>
           
           <h2 className="mt-3 font-semibold leading-[1.05] tracking-[-0.03em] text-slate-950">
             Next-gen agentic <br/><span className="text-secondary"> AI data science</span>
@@ -205,7 +205,7 @@ export default function ProcessRoadmap() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="relative mx-auto mt-20 hidden max-w-6xl lg:block"
+          className="relative mx-auto mt-20 hidden lg:block"
         >
           <div className="relative grid grid-cols-5 gap-6">
             <div className="pointer-events-none absolute left-[10%] right-[10%] top-8 h-px overflow-hidden">

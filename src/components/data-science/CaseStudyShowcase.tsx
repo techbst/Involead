@@ -95,13 +95,13 @@ export default function CaseStudyShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-          className="mx-auto max-w-6xl rounded-[2rem] border border-white/80 bg-white/90 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl md:p-6"
+          className="mx-auto rounded-[2rem] border border-white/80 bg-white/90 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl md:p-6"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
-              <span className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-primary">
+              <p className="text-xs font-medium uppercase tracking-[0.3em]">
                 Case Studies
-              </span>
+              </p>
 
               <h2 className="mt-2 max-w-4xl   text-slate-950">
                 Use Cases & 

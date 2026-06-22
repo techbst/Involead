@@ -6,6 +6,10 @@ import ServicesSection from '@/components/home/ServicesSection';
 import TechnologyScale from '@/components/home/TechnologyScale';
 import Testimonials from '@/components/home/Testimonials';
 import HeroSection from '@/components/home/Hero';
+import IndustryTabs from '@/components/home/IndustryTabs';
+import ProductsInnovation from '@/components/home/ProductsInnovation';
+import CaseStudies from '@/components/home/CaseStudies';
+import StatsCounter from '@/components/home/StatsCounter';
 
 export const metadata: Metadata = {
   title: 'AI & Data Solutions - InvoLead',
@@ -28,9 +32,13 @@ export default function Home() {
       />
       <MarqueeBar />
       <ServicesSection />
+      <IndustryTabs />
       <CoreValues />
+      <ProductsInnovation />
       <TechnologyScale />
+      <CaseStudies />
       <Testimonials />
+      <StatsCounter />
     </div>
   );
 }

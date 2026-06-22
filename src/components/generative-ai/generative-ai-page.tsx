@@ -23,7 +23,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image"
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import GenerativeAIHeroSections, { AIOperatingSystemHero, AutonomousAgentEcosystemHero, EnterpriseAICommandCenterHero, SovereignAIInfrastructureHero } from "./hero-sections";
+import { AutonomousAgentEcosystemHero } from "./hero-sections";
+import ShapeHeroBackground from "./call-to-action";
+
 
 type SectionHeaderProps = {
   eyebrow?: string;
@@ -550,7 +552,7 @@ function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="#success-stories">View Case Studies <ArrowRight className="size-4" /></Link>
+              <Link href="/case-studies">View Case Studies <ArrowRight className="size-4" /></Link>
             </Button>
           </motion.div>
         </motion.div>
@@ -814,6 +816,7 @@ function TimelineSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-slate-950 py-20 text-white sm:py-24">
+      
       <div className="absolute inset-0 bg-black" />
       <div className="container relative">
         <SectionHeader
@@ -893,8 +896,8 @@ function TechStackTabs() {
           {current.items.map((item) => {
             return (
               <article key={item.name} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_45px_rgba(15,23,42,0.06)] sm:p-5">
-                <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-secondary/10 bg-secondary/10 p-2 sm:size-14">
-                  <Image src={item.image} alt={item.name} fill sizes="56px" className="object-contain p-2" />
+                <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-secondary/10 bg-secondary/10 p-2 sm:size-22">
+                  <Image src={item.image} alt={item.name} width={50} height={50} />
                 </div>
                 <div className="min-w-0">
                   <div className="text-base font-bold text-slate-950 sm:text-lg">{item.name}</div>
@@ -948,9 +951,9 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
 
 function CTASection() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0b0b0c] py-20 text-white sm:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,FF9255_100,transparent_32%),radial-gradient(circle_at_72%_48%,rgba(255,146,85,0.22),transparent_28%)]" />
-      
+    <section className="relative isolate overflow-hidden bg-secondary py-20 text-white sm:py-24">
+     
+      <ShapeHeroBackground/>
       <motion.div
         initial={{ opacity: 0, y: 26 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -965,7 +968,7 @@ function CTASection() {
           Partner with us to transform your enterprise with intelligent, scalable AI solutions
         </p>
         <div className="mt-9">
-          <Button asChild className="bg-secondary px-8 py-6 text-white shadow-[0_18px_42px_secondary]">
+          <Button asChild variant={"outline"}>
             <Link href="/our-solutions">
               Explore Solutions
               <ArrowRight className="size-4" />

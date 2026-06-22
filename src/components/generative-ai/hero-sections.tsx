@@ -158,7 +158,7 @@ function AnimatedBackground({ variant = "grid" }: { variant?: "grid" | "mesh" | 
             : "bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]",
         )}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.09)_1px,transparent_1px)] bg-[size:72px_72px] opacity-42" />
+      {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.09)_1px,transparent_1px)] bg-[size:72px_72px] opacity-42" /> */}
       <motion.div
         animate={variant === "aurora" ? { x: ["-8%", "8%", "-8%"], y: ["0%", "4%", "0%"] } : undefined}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
@@ -180,7 +180,7 @@ function HeroCopy({
   secondary,
 }: {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   body: string;
   primary: string;
   secondary: string;
@@ -212,7 +212,7 @@ function HeroCopy({
           </Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/our-solutions">
+          <Link href="/case-studies">
             {secondary}
             <ArrowRight className="size-4" />
           </Link>
@@ -430,11 +430,18 @@ export function AIOperatingSystemHero() {
 export function AutonomousAgentEcosystemHero() {
   return (
     <section className="relative isolate min-h-screen overflow-hidden bg-black pt-50 md:pt-32 pb-12 text-white">
-      <AnimatedBackground variant="grid" />
+      <AnimatedBackground  />
       <div className="container relative grid min-h-[calc(100vh-8rem)] items-center gap-12 pb-20 lg:grid-cols-[0.9fr_1.1fr]">
         <HeroCopy
-          eyebrow="Autonomous Agent Ecosystem"
-          title="From Autonomous Agents to Enterprise AI"
+          eyebrow=""
+          title={
+              <>
+                From Autonomous <br />
+                <span className="bg-gradient-to-r from-secondary to-secondary/80 bg-clip-text text-transparent">
+                  Agents to Enterprise AI
+                </span>
+              </>
+          }
           body="Architecting Sovereign Cognitive Ecosystems for the Modern Enterprise"
           primary="Start Your AI Journey"
           secondary="See Enterprise Results"
