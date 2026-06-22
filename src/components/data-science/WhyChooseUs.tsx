@@ -15,7 +15,8 @@ import {
 import gsap from "gsap";
 
 import SectionReveal from "@/components/home/SectionReveal";
-
+import { SectionHeader } from "../ui/section-header";
+import ValueCard from "../ui/value-card"
 type WhyChooseItem = {
   icon: LucideIcon;
   title: string;
@@ -112,49 +113,7 @@ const bgBlobs = [
   "from-[#f1f26f]/28 via-[#f1f26f]/8 to-transparent",
 ];
 
-function WhyChooseCard({ icon: Icon, title, description, hint }: WhyChooseItem) {
-  return (
-    <motion.article
-      variants={cardVariants}
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
-      className="group relative h-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/92 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1"
-    >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(246,247,249,0.72))]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(95,176,194,0.12),transparent_38%),radial-gradient(circle_at_bottom_left,rgba(200,140,255,0.08),transparent_30%)] opacity-100 transition-opacity duration-300 group-hover:opacity-100" />
-     
 
-      <div className="relative z-10 flex h-full  flex-col">
-        <div className="flex items-start justify-between gap-4">
-          <motion.div
-            variants={iconVariants}
-            className="inline-flex size-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-[#5fb0c2] shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-          >
-            <Icon className="size-6" />
-          </motion.div>
-
-          
-        </div>
-
-        <div className="mt-6">
-          <h3 className="text-[1.15rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950 sm:text-[1.3rem]">
-            {title}
-          </h3>
-          <p className="mt-3 text-sm leading-7 !text-slate-500">
-            {hint}
-          </p>
-        </div>
-
-        <p className="mt-3 max-w-[22rem] text-sm leading-7 !text-slate-600">
-          {description}
-        </p>
-
-        
-      </div>
-    </motion.article>
-  );
-}
 
 type WhyChooseUsProps = {
   title?: string;
@@ -219,27 +178,15 @@ export default function WhyChooseUs({
       </div>
 
       <div className="container relative z-10 mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55 }}
-          className="mx-auto max-w-3xl text-center hover:bg-cyan-50"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] !text-black">
-            Built for trust
-          </p>
-          <h2 className="mt-4  font-semibold tracking-[-0.04em] text-black">
-            {title}
-          </h2>
-             <motion.div
-                  variants={lineVariants}
-                  className="mt-1.5 h-[2px] w-10 rounded-full bg-[#5FB0C2]"
-                />
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 !text-black sm:text-base">
-            {subtitle}
-          </p>
-        </motion.div>
+       
+        <SectionHeader 
+        eyebrow="Built for trust"
+        title={title}
+        description={subtitle}
+        align="center"
+         textColor="black"
+         maxWidth="3xl"
+        />
 
         <motion.div
           ref={gridRef}
@@ -248,8 +195,17 @@ export default function WhyChooseUs({
           animate={isInView ? "visible" : "hidden"}
           className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
         >
-          {items.map((item) => (
-            <WhyChooseCard key={item.title} {...item} />
+
+             {items.map(({ icon, title, description }, index) => (
+            // <WhyChooseCard key={item.title} {...item} />
+            // <ValueCard />
+              <ValueCard
+                          key={title}
+                          icon={icon}
+                          title={title}
+                          description={description}
+                          index={index}
+                        />
           ))}
         </motion.div>
       </div>

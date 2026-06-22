@@ -78,6 +78,7 @@ export function SectionHeader({
         <p
           className={cn(
             "text-xs font-medium capitalize",
+             textColor === "black" ? "!text-black" : textColor === "white" ? "!text-white" :colors.title,
             colors.eyebrow,
             eyebrowClassName,
           )}
@@ -101,7 +102,7 @@ export function SectionHeader({
             "mt-3 text-[15px] leading-7 sm:text-lg",
             widthClasses[resolvedDescriptionWidth],
             align === "center" ? "mx-auto" : "",
-            textColor === "black" ? "text-slate-600" : textColor === "white" ? "text-white/75" : colors.description,
+            textColor === "black" ? "!text-slate-800" : textColor === "white" ? "!text-white/75" : colors.description,
             descriptionClassName,
           )}
         >

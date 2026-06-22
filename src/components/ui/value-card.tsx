@@ -43,7 +43,6 @@ const titleVariants: Variants = {
 
 const descVariants: Variants = {
   rest: {
-    opacity: 0.75,
     y: 0,
   },
   hover: {
@@ -134,7 +133,7 @@ export default function ValueCard({ icon: Icon, image, title, description, index
       {/* Description */}
       <motion.p
         variants={descVariants}
-        className="mt-4 !text-main"
+        className="mt-4 text-main"
       >
         {description}
       </motion.p>
