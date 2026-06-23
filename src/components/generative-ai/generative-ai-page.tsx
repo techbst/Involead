@@ -25,6 +25,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AutonomousAgentEcosystemHero } from "./hero-sections";
 import ShapeHeroBackground from "./call-to-action";
+import { SectionHeader } from "../ui/section-header";
+import ClipShape from "../ui/clip-shape";
+import CallToAction from "../ui/call-to-action";
 
 
 type SectionHeaderProps = {
@@ -419,56 +422,6 @@ const blogPosts: BlogPost[] = [
   },
 ];
 
-function SectionHeader({
-  eyebrow,
-  title,
-  description,
-  align = "center",
-  inverse = false,
-}: SectionHeaderProps) {
-  return (
-    <motion.div
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.45 }}
-      className={cn(
-        "max-w-4xl",
-        align === "center" ? "mx-auto text-center" : "text-left",
-      )}
-    >
-      {eyebrow ? (
-        <p
-          className={cn(
-            "text-sm font-semibold uppercase tracking-[0.22em]",
-            inverse ? "!text-[#fff]" : "text-main",
-          )}
-        >
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2
-        className={cn(
-          "mt-3 text-[clamp(2rem,4.6vw,3.6rem)] font-bold tracking-normal",
-          inverse ? "!text-white" : "text-main",
-        )}
-      >
-        {title}
-      </h2>
-      {description ? (
-        <p
-          className={cn(
-            "mt-5 text-base leading-7 sm:text-lg",
-            inverse ? "!text-white" : "text-main",
-          )}
-        >
-          {description}
-        </p>
-      ) : null}
-    </motion.div>
-  );
-}
 
 function HeroVisual() {
   return (
@@ -572,16 +525,7 @@ function ImpactCard({ item, index }: { item: Impact; index: number }) {
       transition={{ duration: 0.42, delay: index * 0.04 }}
       whileHover={{ y: -8 }}
       className={cn(
-        "group relative overflow-hidden rounded-[10px] p-6 px-8 py-8 backdrop-blur-xl",
-        index === 0
-        ? "bg-[#b5ffe2] text-main shadow-[0_22px_70px_rgba(125,217,181,0.25)]"
-        : index === 1
-        ? "bg-[#fff] text-main shadow-[0_22px_70px_rgba(15,23,42,0.12)]"
-        : index === 2
-        ? "bg-[#e8d0ff] text-main shadow-[0_22px_70px_rgba(217,180,255,0.25)]"
-        : index === 3
-        ? "bg-[#eff58b] text-main shadow-[0_22px_70px_rgba(239,245,139,0.25)]"
-        : "bg-white text-main shadow-[0_22px_70px_rgba(15,23,42,0.08)]"
+        "group relative overflow-hidden rounded-[10px] p-6 px-8 py-8 backdrop-blur-xl bg-white text-main border border-secondary/30"
       )}
     >
       <div
@@ -589,7 +533,7 @@ function ImpactCard({ item, index }: { item: Impact; index: number }) {
           "absolute -right-16 -top-16 size-36 rounded-full blur-3xl transition",
           index === 0
             ? "bg-white/20 group-hover:bg-white/30"
-            : "bg-[#FF9255]/20 group-hover:bg-[#5fb0c2]/54"
+            : "bg-secondary/20 group-hover:bg-secondary/54"
         )}
       />
       <p className={cn(
@@ -615,7 +559,7 @@ function ImpactCard({ item, index }: { item: Impact; index: number }) {
     </motion.article>
   );
 }
-
+export const CLIP_PATH = "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
 function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const Icon = item.icon;
@@ -642,10 +586,16 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
             isFlipped ? "pointer-events-none" : "pointer-events-auto",
             item.backgroundImage,
           )}
-          style={{ backfaceVisibility: "hidden" }}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            clipPath: CLIP_PATH,
+          }}
         >
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" />
-          <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" style={{ clipPath: CLIP_PATH }}/>
+
+          <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]" style={{ clipPath: CLIP_PATH }}/>
+
           <div className="absolute left-0 top-0 w-full h-full bg-black group-hover:bg-secondary">
             <img
               src="/gen-ai/Agentic-Orchestration-Swarms.webp"
@@ -669,7 +619,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
                   key={pointer}
                   className="flex items-center gap-3 text-sm font-medium text-[16px]"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white group-hover:bg-black">
                     {pointerIndex + 1}
                   </span>
                   <span className="text-white">{pointer}</span>
@@ -681,10 +631,9 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
               <button
                 type="button"
                 onClick={() => setIsFlipped(true)}
-                className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#5fb0c2,#9fddea)] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(95,176,194,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(95,176,194,0.46)]"
+                className="absolute -bottom-2 right-0 z-2 grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
               >
-                Read More
-                <ArrowRight className="ml-2 size-4" />
+                <ArrowRight className="size-4" />
               </button>
             </div>
           </div>
@@ -815,7 +764,7 @@ function TimelineSection() {
   }, [shouldReduceMotion]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-slate-950 py-20 text-white sm:py-24">
+    <section ref={sectionRef} className="relative overflow-hidden bg-slate-950 py-20 sm:py-20">
       
       <div className="absolute inset-0 bg-black" />
       <div className="container relative">
@@ -823,7 +772,8 @@ function TimelineSection() {
           eyebrow="Our Delivery Framework"
           title="InvoLead AI Impact Framework"
           description="Built to Deliver Real Intelligence, Not Just AI. Our seven-step lifecycle transforms AI vision into measurable results."
-          inverse
+          align="center"
+          textColor="white"
         />
         <div className="relative mx-auto mt-16 max-w-6xl">
           <div className="absolute bottom-0 left-4 top-0 w-px bg-white/12 md:left-1/2 md:-translate-x-1/2">
@@ -844,7 +794,7 @@ function TimelineSection() {
                 <article className="rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
                   <p className="font-medium !text-secondary">{item.step}</p>
                   <div className="mt-3 text-white lg:text-[22px] font-semibold">{item.title}</div>
-                  <p className="mt-4 text-sm leading-7 text-white/68">{item.body}</p>
+                  <p className="mt-4 text-sm leading-7 !text-white/68">{item.body}</p>
                 </article>
               </div>
             ))}
@@ -860,7 +810,7 @@ function TechStackTabs() {
   const current = techTabs[active];
 
   return (
-    <section className="bg-secondary/20 py-16 sm:py-20 lg:py-24">
+    <section className="bg-secondary/20 py-20 sm:py-20 lg:py-20">
       <div className="container">
         <SectionHeader
           eyebrow="Tech-Stack"
@@ -985,13 +935,12 @@ export default function GenerativeAIPage() {
     <div className="overflow-hidden bg-white text-slate-950">
       {/* <HeroSection /> */}
       <AutonomousAgentEcosystemHero />
-      <section className="relative overflow-hidden bg-black py-20 sm:py-24">
+      <section className="relative overflow-hidden bg-white py-20">
         <div className="container">
           <SectionHeader
             eyebrow="Our Impact on Industry"
             title="Reinventing Operational Velocity with Sovereign AI"
             description="From accelerated innovation cycles to autonomous orchestration, InvoLead empowers enterprises to scale with Deterministic AI solutions built for tangible ROI."
-            inverse
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {impactCards.map((item, index) => (
@@ -1001,8 +950,8 @@ export default function GenerativeAIPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 bg-secondary/20">
-        <div className="container">
+      <section className="py-20 overflow-hidden relative bg-secondary/10">
+        <div className="container relative">
           <SectionHeader
             eyebrow="Our Generative AI Expertise"
             title="Future-Proof AI Architectures"
@@ -1019,7 +968,7 @@ export default function GenerativeAIPage() {
       <TimelineSection />
       <TechStackTabs />
 
-      <section id="success-stories" className="py-20 sm:py-24">
+      <section id="success-stories" className="py-20 sm:py-20">
         <div className="container">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeader
@@ -1027,9 +976,9 @@ export default function GenerativeAIPage() {
               title="Success Stories"
               description="Check out our blog for the latest AI trends and insights!"
             />
-            <Button asChild variant="outline" className="w-fit rounded-full border-slate-200 px-6 py-5 text-slate-950 hover:border-[#FF9255]/60">
-              <Link href="#">
-                View All
+            <Button asChild>
+              <Link href="/case-studies">
+                View All Stories
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -1042,7 +991,19 @@ export default function GenerativeAIPage() {
         </div>
       </section>
 
-      <CTASection />
-    </div>
+      <CallToAction
+        title={
+          <>
+            Start building enterprise-grade{" "}
+            <span className="text-secondary">Generative AI systems</span>
+          </>
+        }
+        description="Partner with us to transform your enterprise with intelligent, scalable AI solutions"
+        secondaryButton={{
+          text: "Explore Solutions",
+          href: "/our-solutions",
+        }}
+      />
+        </div>
   );
 }

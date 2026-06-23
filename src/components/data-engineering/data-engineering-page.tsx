@@ -149,7 +149,7 @@ const lineVariants: Variants = {
     transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
-function Compliance() { return <section className="py-15 overflow-hidden relative">
+function Compliance() { return <section className="py-20 overflow-hidden relative">
     <ClipShape />
     <div className="container z-10 mt-26 relative">
         <SectionHeader 
@@ -501,4 +501,5 @@ export default function DataEngineeringPage() { return <div className="overflow-
     href: "/contact-us",
   }}
 />
-  </div> }
+  </div> 
+  }
