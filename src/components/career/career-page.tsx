@@ -219,7 +219,7 @@ export default function CareerPageClient() {
                 <Link href="#culture">Our Culture<ArrowRight className="size-4" /></Link>
               </Button>
             </motion.div>
-            <motion.div variants={revealItem} className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3 hidden lg:block">
+            <motion.div variants={revealItem} className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3 hidden lg:flex">
               {heroNotes.map((note) => (
                 <div
                   key={note}
