@@ -119,7 +119,7 @@ export default function ValueCard({ icon: Icon, image, title, description, index
       {/* Title with subtle slide */}
       <motion.h3
         variants={titleVariants}
-        className="mt-6 text-xl font-bold text-slate-950"
+        className="mt-6 font-semibold lg:!text-[21px] sm:!text-[18px] sm:!text-[16px]"
       >
         {title}
       </motion.h3>

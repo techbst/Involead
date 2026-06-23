@@ -312,7 +312,7 @@ function Excellence() { return <section className="overflow-hidden py-15 bg-seco
           className="object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent hideonactive" />
 
         <div className="relative flex min-h-[350px] flex-col text-white">
           <span className="text-xs opacity-60">
@@ -327,8 +327,8 @@ function Excellence() { return <section className="overflow-hidden py-15 bg-seco
 
           <ul className="mt-6 space-y-3">
             {(items as string[]).map((x) => (
-              <li key={x} className="flex gap-2 text-sm">
-                <Check className="size-4 shrink-0" />
+              <li key={x} className="flex gap-2 text-sm items-center">
+                <Check className="size-4 shrink-0 pt-1" />
                 {x}
               </li>
             ))}
@@ -486,5 +486,19 @@ export default function DataEngineeringPage() { return <div className="overflow-
   <Stats />
   <FAQ />
   <Blog />
-  <CallToAction />
+  <CallToAction
+  title={
+    <>
+      Let's Shape the{" "}
+      <span className="text-secondary">
+        Future of Your Business
+      </span>
+    </>
+  }
+  description="Partner with InvoLead to transform complexity into clarity through data, AI, and design, creating intelligent solutions that drive sustainable, enterprise-wide growth."
+  primaryButton={{
+    text: "Speak to Our Experts",
+    href: "/contact-us",
+  }}
+/>
   </div> }

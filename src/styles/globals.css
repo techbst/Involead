@@ -401,7 +401,8 @@ p {
     transition: all 0.5s ease;
 }
 .custom-swiper-style-1 .swiper-slide.swiper-slide-active img,
-.custom-swiper-style-1 .swiper-slide:not(.swiper-slide-active) ul {
+.custom-swiper-style-1 .swiper-slide:not(.swiper-slide-active) ul,
+.custom-swiper-style-1 .swiper-slide-active .hideonactive {
   display: none;
 }
 .custom-swiper-style-1 .swiper-slide.swiper-slide-active article {

@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 import {
   ArrowRight,
   Award,
@@ -16,12 +16,19 @@ import {
   Sparkles,
   Users2,
   Workflow,
+  Send, MessageCircle, ClipboardCheck, Users, BadgeCheck
 } from "lucide-react";
 
 import SectionReveal from "@/components/home/SectionReveal";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
+import ValueCard from "../ui/value-card";
+import ClipShape from "../ui/clip-shape";
+import CallToAction from "../ui/call-to-action";
+import StepNode from "../ui/step";
+
+
 
 type Stat = {
   value: string;
@@ -52,7 +59,9 @@ type Role = {
 type ProcessStep = {
   number: string;
   title: string;
+  shortTitle?: string;
   description: string;
+  icon: LucideIcon;
 };
 
 const roleFilters = ["All", "Engineering", "Data Science", "Design", "Product", "Business"] as const;
@@ -98,11 +107,11 @@ const roles: Role[] = [
 ];
 
 const process: ProcessStep[] = [
-  { number: "01", title: "Apply", description: "Send us your resume and a short note on why this role excites you. We read every application." },
-  { number: "02", title: "Intro chat", description: "A 30-minute conversation with our talent team to align on context, motivations and expectations." },
-  { number: "03", title: "Craft interview", description: "A practical, take-home-style exercise followed by a working session with your future teammates." },
-  { number: "04", title: "Team fit", description: "Meet the people you'll work with daily. Ask us anything: we believe interviews go both ways." },
-  { number: "05", title: "Offer", description: "Transparent leveling, market-leading pay, meaningful equity. We aim to close within 10 business days." },
+  { number: "01", icon: Send, title: "Apply", description: "Send us your resume and a short note on why this role excites you. We read every application." },
+  { number: "02", icon: MessageCircle, title: "Intro chat", description: "A 30-minute conversation with our talent team to align on context, motivations and expectations." },
+  { number: "03", icon: ClipboardCheck, title: "Craft interview", description: "A practical, take-home-style exercise followed by a working session with your future teammates." },
+  { number: "04", icon: Users, title: "Team fit", description: "Meet the people you'll work with daily. Ask us anything: we believe interviews go both ways." },
+  { number: "05", icon: BadgeCheck, title: "Offer", description: "Transparent leveling, market-leading pay, meaningful equity. We aim to close within 10 business days." },
 ];
 
 const heroNotes = [
@@ -129,7 +138,16 @@ const revealItem: Variants = {
     transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
+const nodeVariants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
 function ValueTile({ item, index }: { item: ValueCard; index: number }) {
   const Icon = item.icon;
   return (
@@ -157,6 +175,18 @@ function BenefitTile({ item }: { item: BenefitCard }) {
 }
 
 export default function CareerPageClient() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 95%", "end 80%"],
+  });
+
+  const lineProgress = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", "100%"]
+  );
   const reduceMotion = !!useReducedMotion();
   const [activeRoleFilter, setActiveRoleFilter] = useState<(typeof roleFilters)[number]>("All");
   const filteredRoles = useMemo(
@@ -166,39 +196,30 @@ export default function CareerPageClient() {
   const visibleRoles = filteredRoles.length > 0 ? filteredRoles : roles;
 
   return (
-    <div className="overflow-hidden bg-[linear-gradient(180deg,#eef5fb_0%,#ffffff_30%,#f7f9fc_64%,#eef6f9_100%)] text-slate-950">
-      <section className="relative isolate overflow-hidden pt-28 pb-18 sm:pt-32">
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(135deg,#f8fbff_0%,#eef7fb_34%,#fff7ef_100%)]" />
-        <motion.div
-          aria-hidden
-          className="absolute inset-0 -z-10"
-          animate={reduceMotion ? undefined : { backgroundPosition: ["0% 0%", "100% 100%"] }}
-          transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 14% 16%, rgba(95,176,194,0.24), transparent 0 24%), radial-gradient(circle at 84% 10%, rgba(255,255,255,0.95), transparent 0 20%), radial-gradient(circle at 72% 28%, rgba(255,214,170,0.28), transparent 0 18%), radial-gradient(circle at 48% 82%, rgba(182,213,255,0.18), transparent 0 24%)",
-            backgroundSize: "140% 140%",
-          }}
-        />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.35)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:72px_72px] opacity-40" />
+    <div className="overflow-hidden text-slate-950">
+      <section className="relative isolate overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-28 pb-18 sm:pt-32">
+        
         <div className="container mx-auto grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
             variants={revealContainer}
             initial={reduceMotion ? "show" : "hidden"}
             animate="show"
           >
-            <h1 className="mt-5 max-w-3xl text-[clamp(2.9rem,6vw,5.6rem)] font-semibold leading-[0.94] tracking-[-0.05em] text-slate-950">
+            <h1 className="mt-5 max-w-3xl font-bold leading-[0.94] tracking-[-0.05em] text-slate-950">
               Build what&apos;s next with us
             </h1>
             <motion.p variants={revealItem} className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
               We are a team of engineers, scientists, and designers shaping intelligent products for global enterprises. Join us in turning complex problems into elegant, measurable outcomes.
             </motion.p>
             <motion.div variants={revealItem} className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="rounded-full bg-secondary px-6 py-6 text-white">
-                <Link href="#roles">See open roles<ArrowRight className="size-4" /></Link>
+              <Button asChild >
+                <Link href="#roles">See Open Roles<ArrowRight className="size-4" /></Link>
+              </Button>
+              <Button asChild variant={"outline"}>
+                <Link href="#culture">Our Culture<ArrowRight className="size-4" /></Link>
               </Button>
             </motion.div>
-            <motion.div variants={revealItem} className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
+            <motion.div variants={revealItem} className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3 hidden lg:block">
               {heroNotes.map((note) => (
                 <div
                   key={note}
@@ -240,7 +261,7 @@ export default function CareerPageClient() {
               <div className="rounded-[1.6rem] bg-[linear-gradient(150deg,#07141d_0%,#0d2430_52%,#15384a_100%)] p-7 text-white sm:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/65">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 text-[11px] font-semibold text-white/85">
                       <Orbit className="size-3.5 text-cyan-300" />
                       Team Operating System
                     </div>
@@ -271,7 +292,7 @@ export default function CareerPageClient() {
                     </motion.div>
                   ))}
                 </div>
-                <div className="mt-8 grid gap-3 lg:grid-cols-[1.05fr_0.95fr]">
+                {/* <div className="mt-8 grid gap-3 lg:grid-cols-[1.05fr_0.95fr]">
                   <motion.div variants={revealItem} className="rounded-[1.4rem] border border-white/8 bg-white/7 p-4">
                     <div className="flex items-center justify-between gap-3">
                       <div>
@@ -307,106 +328,73 @@ export default function CareerPageClient() {
                       ))}
                     </div>
                   </motion.div>
-                </div>
+                </div> */}
               </div>
             </motion.div>
-            <motion.div
-              variants={revealItem}
-              animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 top-16 hidden w-44 rounded-[1.4rem] border border-white/80 bg-white/90 p-4 shadow-[0_16px_48px_rgba(15,23,42,0.12)] backdrop-blur lg:block"
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Collaboration</p>
-              <p className="mt-3 text-sm font-medium leading-6 text-slate-700">Product, design, and ML working together from day one.</p>
-            </motion.div>
-            <motion.div
-              variants={revealItem}
-              animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
-              transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 0.35 }}
-              className="absolute -right-4 bottom-16 hidden w-48 rounded-[1.4rem] border border-white/80 bg-white/92 p-4 shadow-[0_18px_54px_rgba(15,23,42,0.14)] backdrop-blur lg:block"
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Ownership</p>
-              <p className="mt-3 text-sm font-medium leading-6 text-slate-700">Small teams, high trust, measurable outcomes instead of noise.</p>
-            </motion.div>
+            
+            
           </motion.div>
         </div>
       </section>
-      <SectionReveal className="container mx-auto pb-20">
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-[0_14px_45px_rgba(15,23,42,0.06)]"
-            >
-              <div className="text-3xl font-semibold tracking-[-0.05em] text-slate-950">{stat.value}</div>
-              <div className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </SectionReveal>
-      <section className="py-20 sm:py-24">
+      
+      <section className="pt-20 pb-8" id="culture">
         <div className="container mx-auto">
           <SectionHeader
             eyebrow="How we work"
             title="Principles that shape every product we ship"
             description="Our values are not posters on a wall. They are the defaults we rely on when the path forward is unclear and the stakes are high."
-            align="left"
-            maxWidth="3xl"
+            align="center"
+            maxWidth="5xl"
             descriptionWidth="2xl"
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {values.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.45, delay: index * 0.05 }}
-              >
-                <ValueTile item={item} index={index} />
-              </motion.div>
+              
+              <ValueCard
+                  key={item.title}
+                  icon={item.icon}
+                  title={item.title}
+
+                  description={item.description}
+                  index={index}
+                />
             ))}
           </div>
         </div>
       </section>
-      <section className="bg-white py-20 sm:py-24">
-        <div className="container mx-auto">
+      <section className="bg-white overflow-hidden relative py-20 sm:py-20">
+        <ClipShape />
+        <div className="container relative z-10 mt-24 mx-auto">
           <SectionHeader
             eyebrow="Life at InvoLead"
             title="Benefits that respect your whole life"
             description="We invest in our team like we invest in our products, with care, rigor and long-term thinking."
-            align="left"
-            maxWidth="3xl"
+            align="center"
+            maxWidth="5xl"
             descriptionWidth="2xl"
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {benefits.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.42, delay: index * 0.04 }}
-              >
-                <BenefitTile item={item} />
-              </motion.div>
+              <ValueCard
+                  key={item.title}
+                  icon={item.icon}
+                  title={item.title}                  
+                  description={item.description}
+                  index={index}
+                />
             ))}
           </div>
         </div>
       </section>
-      <section id="roles" className="relative overflow-hidden py-20 sm:py-24">
+      <section id="roles" className="relative overflow-hidden py-20 sm:py-20">
         <motion.div aria-hidden className="absolute inset-0" animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }} transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "linear" }} style={{ backgroundImage: "radial-gradient(circle at 14% 18%, rgba(95,176,194,0.16), transparent 0 22%), radial-gradient(circle at 86% 12%, rgba(232,208,255,0.16), transparent 0 20%), radial-gradient(circle at 50% 92%, rgba(255,255,255,0.9), transparent 0 24%)", backgroundSize: "140% 140%" }} />
         <div className="container mx-auto relative z-10">
           <SectionHeader
             eyebrow="Open positions"
             title="Find the role that fits your craft"
             description="10 roles open across Engineering, Data Science, Design, Product and Business."
-            align="left"
-            maxWidth="3xl"
+            align="center"
+            maxWidth="5xl"
             descriptionWidth="2xl"
           />
             <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white/80 p-4 shadow-[0_20px_70px_rgba(15,23,42,0.08)] backdrop-blur">
@@ -414,9 +402,7 @@ export default function CareerPageClient() {
               <p className="text-sm font-medium text-slate-600">
                 Showing <span className="font-semibold text-slate-950">{visibleRoles.length}</span> roles
               </p>
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
-                Filter by team
-              </p>
+              
             </div>
             <div className="flex flex-wrap gap-2">
               {roleFilters.map((chip) => {
@@ -455,16 +441,16 @@ export default function CareerPageClient() {
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div className="max-w-3xl">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-[#eef9fb] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-secondary">{role.team}</span>
-                      <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{role.level}</span>
+                      <span className="rounded-full bg-[#eef9fb] px-3 py-1 text-xs font-semibold text-secondary">{role.team}</span>
+                      <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-500">{role.level}</span>
                     </div>
                     <h3 className="mt-4 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[1.4rem]">{role.title}</h3>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">{role.description}</p>
                   </div>
-                  <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-3 lg:justify-end md:justify-end sm:justify-start">
                     <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-700">{role.location}</div>
                     <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-700">{role.type}</div>
-                    <Button asChild variant="outline" className="rounded-full px-5 py-5">
+                    <Button asChild>
                       <Link href="/contact-us">Apply<ArrowRight className="size-4" /></Link>
                     </Button>
                   </div>
@@ -474,35 +460,39 @@ export default function CareerPageClient() {
           </div>
         </div>
       </section>
-      <section className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] py-20 sm:py-24">
-        <div className="container mx-auto">
+      <section className="py-20 bg-secondary/10 overflow-hidden relative" ref={sectionRef}>
+        <div className="container z-10 mx-auto">
           <SectionHeader
             eyebrow="Hiring process"
             title="A thoughtful process, not a gauntlet"
             description="We aim for clarity and respect at every step. Expect structured conversations, practical exercises and quick, honest feedback."
-            align="left"
-            maxWidth="3xl"
+            align="center"
+            maxWidth="5xl"
             descriptionWidth="2xl"
           />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          
+          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5 relative">
+            <div className="pointer-events-none absolute left-[10%] right-[10%] top-8 h-px overflow-hidden">
+          <div className="absolute inset-0 from-primary/0 via-primary/25 to-primary/0" />
+
+          <motion.div
+            className="absolute inset-y-0 left-0 bg-secondary from-primary to-secondary hidden lg:block"
+            style={{ width: lineProgress }}
+          />
+        </div>
             {process.map((step, index) => (
-              <motion.div
+              <StepNode
                 key={step.number}
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-[0_14px_45px_rgba(15,23,42,0.06)]"
-              >
-                <div className="text-3xl font-semibold tracking-[-0.06em] text-secondary">{step.number}</div>
-                <h3 className="mt-4 text-lg font-semibold tracking-[-0.03em] text-slate-950">{step.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
-              </motion.div>
+                step={step}
+                index={index}
+                total={process.length}
+                variants={nodeVariants}
+              />
             ))}
           </div>
         </div>
       </section>
-      <section className="pb-20">
+      {/* <section className="pb-20">
         <div className="container mx-auto">
           <div className="rounded-[2rem] bg-[linear-gradient(135deg,#0f172a_0%,#0b2530_100%)] px-6 py-10 text-center text-white shadow-[0_24px_70px_rgba(15,23,42,0.25)] md:px-10">
             <h2 className="mx-auto max-w-3xl text-[clamp(2rem,4vw,3.3rem)] font-semibold tracking-tight">Don&apos;t see the right role yet?</h2>
@@ -518,7 +508,24 @@ export default function CareerPageClient() {
             <p className="mt-6 text-sm text-white/60">Or email us directly at <Link href="mailto:careers@involead.com" className="font-semibold text-white underline-offset-4 hover:underline">careers@involead.com</Link></p>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <CallToAction
+        title={
+          <>
+            Don't see the right role yet?
+          </>
+        }
+        description="We're always hiring for exceptional people. Tell us about yourself and the kind of work you want to do next, we'll reach out when there's a match."
+        primaryButton={{
+          text: "Introduce Yourself",
+          href: "/contact-us",
+        }}
+        secondaryButton={{
+          text: "Browse open roles",
+          href: "#roles",
+        }}
+      />
     </div>
   );
 }
