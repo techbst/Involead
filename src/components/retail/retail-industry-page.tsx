@@ -6,6 +6,13 @@ import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+
 import {
   ArrowRight,
   BrainCircuit,
@@ -24,6 +31,8 @@ import { Button } from '@/components/ui/button';
 import { SectionHeader } from '@/components/ui/section-header';
 import { cn } from '@/lib/utils';
 import { blogs, caseStudies, faqs, metrics, solutionCards, timelineItems } from './retail-data';
+import SystemicArchitectureSection from './SystemicArchitectureSection';
+import ValueCard from '../ui/value-card';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -109,16 +118,52 @@ function ResultsSection() {
 
 function SolutionsSection() {
   return (
-    <section className="bg-white py-20">
-      <div className="container mx-auto">
+    <section className="overflow-hidden bg-white py-20">
+      <div className="container-fluid mx-auto">
         <SectionHeader
-        eyebrow="What we solve"
-        title="Empowering Your Business with Data-Driven Insights and Strategies" description="Purpose-built intelligence for the decisions that determine retail growth, margin, and customer loyalty." 
-        maxWidth='5xl'
+          eyebrow="What we solve"
+          title="Empowering Your Business with Data-Driven Insights and Strategies"
+          description="Purpose-built intelligence for the decisions that determine retail growth, margin, and customer loyalty."
+          maxWidth="5xl"
         />
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: .08 }} variants={{ show: { transition: { staggerChildren: .04 } } }} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {solutionCards.map((item, index) => <motion.article variants={fadeUp} whileHover={{ y: -6 }} key={item.title} className="group flex min-h-64 flex-col rounded-[1.5rem] border border-slate-200 bg-[#f9fbfb] p-6 transition-shadow hover:shadow-[0_24px_65px_rgba(15,23,42,.09)]"><div className="flex items-start justify-between"><span className="grid size-11 place-items-center rounded-xl bg-[#5fb0c2]/12 text-[#37899b] transition group-hover:bg-[#5fb0c2] group-hover:text-white"><item.icon className="size-5" /></span><span className="font-mono text-xs text-slate-300">{String(index + 1).padStart(2, '0')}</span></div><h3 className="mt-7 !text-xl font-semibold tracking-tight text-slate-950">{item.title}</h3><p className="mt-3 !text-sm !leading-6 !text-slate-500">{item.description}</p></motion.article>)}
-        </motion.div>
+
+        <div className="mt-8 space-y-5">
+          {/* Row 1 - Left */}
+          <div className="marquee-row">
+            <div className="marquee-track marquee-left">
+              {[...solutionCards.slice(0, 7), ...solutionCards.slice(0, 7)].map(
+                (item, index) => (
+                  <div key={`${item.title}-${index}`} className="w-[320px] shrink-0">
+                    <ValueCard
+                      icon={item.icon}
+                      title={item.title}
+                      description={item.description}
+                      index={index}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Row 2 - Right */}
+          <div className="marquee-row">
+            <div className="marquee-track marquee-right">
+              {[...solutionCards.slice(7, 14), ...solutionCards.slice(7, 14)].map(
+                (item, index) => (
+                  <div key={`${item.title}-${index}`} className="w-[320px] shrink-0">
+                    <ValueCard
+                      icon={item.icon}
+                      title={item.title}
+                      description={item.description}
+                      index={index + 7}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -127,41 +172,166 @@ function SolutionsSection() {
 function GrowthTimeline() {
   const sectionRef = useRef<HTMLElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
-  const [active, setActive] = useState(0);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!sectionRef.current || !pathRef.current) return;
+
     gsap.registerPlugin(ScrollTrigger);
-    const path = pathRef.current;
-    const length = path.getTotalLength();
-    gsap.set(path, { strokeDasharray: length, strokeDashoffset: reduceMotion ? 0 : length });
-    if (reduceMotion) return;
     const context = gsap.context(() => {
-      gsap.to(path, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: sectionRef.current, start: 'top 58%', end: 'bottom 55%', scrub: .5 } });
-      gsap.fromTo('[data-mobile-progress]', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: sectionRef.current, start: 'top 58%', end: 'bottom 55%', scrub: .5 } });
-      gsap.utils.toArray<HTMLElement>('[data-timeline-card]').forEach((card, index) => {
-        ScrollTrigger.create({ trigger: card, start: 'top 63%', end: 'bottom 40%', onEnter: () => setActive(index), onEnterBack: () => setActive(index) });
+      const path = pathRef.current!;
+      const length = path.getTotalLength();
+      const cards = gsap.utils.toArray<HTMLElement>('[data-timeline-card]');
+
+      gsap.set(path, {
+        strokeDasharray: length,
+        strokeDashoffset: reduceMotion ? 0 : length,
+      });
+
+      if (reduceMotion) {
+        gsap.set('[data-mobile-progress]', { scaleY: 1 });
+        gsap.set('[data-timeline-arrow]', { opacity: 1 });
+        return;
+      }
+
+      const progress = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 15%',
+          end: 'bottom 55%',
+          scrub: 0.6,
+        },
+      });
+
+      progress.to(path, { strokeDashoffset: 0, duration: 1, ease: 'none' }, 0);
+
+      const arrowStops = [0.134, 0.301, 0.467, 0.634, 0.801, 0.968];
+      gsap.utils.toArray<SVGPathElement>('[data-timeline-arrow]').forEach((arrow, index) => {
+        progress.to(arrow, { opacity: 1, duration: 0.02, ease: 'none' }, arrowStops[index]);
+      });
+
+      gsap.fromTo(
+        '[data-mobile-progress]',
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'bottom 55%',
+            scrub: 0.6,
+          },
+        }
+      );
+
+      const media = gsap.matchMedia();
+      media.add('(min-width: 1024px)', () => {
+        cards.forEach((card, index) => {
+          gsap.from(card, {
+            x: index % 2 === 0 ? -80 : 80,
+            opacity: 0,
+            duration: 0.75,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              once: true,
+            },
+          });
+        });
+      });
+      media.add('(max-width: 1023px)', () => {
+        cards.forEach((card) => {
+          gsap.from(card, {
+            y: 32,
+            opacity: 0,
+            duration: 0.65,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              once: true,
+            },
+          });
+        });
       });
     }, sectionRef);
+
     return () => context.revert();
   }, [reduceMotion]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[linear-gradient(145deg,#eaf8f2_0%,#dde8ff_100%)] py-20 sm:py-28">
+    <section ref={sectionRef} className="relative overflow-hidden bg-secondary/20 py-20">
       <div className="container mx-auto">
-        <SectionHeader eyebrow="The intelligence journey" title="Unlocking CPG Growth: From Legacy Limits to AI-Driven Wins" description="In a market shaped by tight margins and changing consumer behavior, InvoLead turns fragmented signals into precise, real-time action." />
+        <SectionHeader
+          eyebrow="The intelligence journey"
+          title="Unlocking CPG Growth: From Legacy Limits to AI-Driven Wins"
+          description="In a market shaped by tight margins and changing consumer behavior, InvoLead turns fragmented signals into precise, real-time action."
+        />
         <div className="relative mx-auto mt-16 max-w-6xl">
-          <svg aria-hidden viewBox="0 0 1000 1540" preserveAspectRatio="none" className="absolute left-1/2 top-0 hidden h-full w-[72%] -translate-x-1/2 lg:block">
-            <path d="M170 20 C170 130 830 105 830 235 C830 360 170 325 170 455 C170 580 830 545 830 675 C830 800 170 765 170 895 C170 1020 830 985 830 1115 C830 1245 170 1205 170 1335 C170 1430 500 1450 500 1520" fill="none" stroke="rgba(79,111,255,.15)" strokeWidth="6" strokeLinecap="round" />
-            <path ref={pathRef} d="M170 20 C170 130 830 105 830 235 C830 360 170 325 170 455 C170 580 830 545 830 675 C830 800 170 765 170 895 C170 1020 830 985 830 1115 C830 1245 170 1205 170 1335 C170 1430 500 1450 500 1520" fill="none" stroke="#4F6FFF" strokeWidth="7" strokeLinecap="round" />
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 1000 1400"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-0 left-1/2 z-0 hidden h-full w-[90%] -translate-x-1/2 lg:block"
+          >
+            <path
+              d="M433 73 H500 V282 H567 H500 V491 H433 H500 V700 H567 H500 V909 H433 H500 V1118 H567 H500 V1327 H433"
+              fill="none"
+              stroke="rgba(95,176,194,.18)"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              ref={pathRef}
+              d="M433 73 H500 V282 H567 H500 V491 H433 H500 V700 H567 H500 V909 H433 H500 V1118 H567 H500 V1327 H433"
+              fill="none"
+              stroke="#5fb0c2"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {[180, 384, 593, 802, 1010, 1220].map((y) => (
+              <path
+                data-timeline-arrow
+                key={y}
+                d={`M490 ${y - 10} L500 ${y} L510 ${y - 10}`}
+                fill="none"
+                stroke="#5fb0c2"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0"
+              />
+            ))}
           </svg>
-          <div className="absolute bottom-0 left-5 top-0 w-1 rounded-full bg-[#4F6FFF]/15 lg:hidden"><div data-mobile-progress className="h-full w-full origin-top rounded-full bg-[#4F6FFF]" /></div>
+          <div className="absolute bottom-0 left-5 top-0 w-px bg-[#5fb0c2]/20 lg:hidden">
+            <div data-mobile-progress className="h-full w-full origin-top bg-[#5fb0c2]" />
+          </div>
           <div className="relative space-y-10 lg:space-y-16">
-            {timelineItems.map((item, index) => {
-              const isActive = Boolean(reduceMotion) || index <= active;
-              return <motion.article data-timeline-card key={item.title} initial={{ opacity: 0, x: index % 2 ? 80 : -80 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .8, ease: [0.22,1,.36,1] }} animate={{ scale: isActive ? 1.03 : 1, opacity: isActive ? 1 : .62 }} className={cn('relative ml-12 flex overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/70 backdrop-blur-xl transition-shadow lg:ml-0 lg:w-[45%]', index % 2 ? 'lg:ml-auto' : 'lg:mr-auto', isActive && 'shadow-[0_22px_65px_rgba(79,111,255,.22)]')}><div className={cn('grid w-20 shrink-0 place-items-center bg-[#4F6FFF]/10 text-[#4F6FFF] transition sm:w-28', isActive && 'bg-[#4F6FFF] text-white')}><item.icon className="size-7" /></div><div className="p-6 sm:p-7"><span className="text-xs font-semibold tracking-[.18em] text-[#4F6FFF]">0{index + 1}</span><h3 className="mt-2 !text-xl font-semibold text-slate-950">{item.title}</h3><p className="mt-3 !text-sm !leading-6 !text-slate-600">{item.description}</p></div></motion.article>;
-            })}
+            {timelineItems.map((item, index) => (
+              <article
+                data-timeline-card
+                key={item.title}
+                className={cn(
+                  'relative z-10 ml-12 rounded-[24px] border border-secondary/40 bg-white p-5 shadow-[0_18px_55px_rgba(15,23,42,0.08)] lg:ml-0 lg:w-[44%]',
+                  index % 2 === 0 ? 'lg:mr-auto' : 'lg:ml-auto'
+                )}
+              >
+                <div className="flex items-center gap-5">
+                  <div className="grid size-[110px] shrink-0 place-items-center rounded-xl border border-[#d7eef3] bg-secondary">
+                    <item.icon className="size-14 text-white" strokeWidth={1.8} />
+                  </div>
+
+                  <div className="pt-1">
+                    <h3 className="font-bold leading-tight">{item.title}</h3>
+                    <p className="mt-1">{item.description}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>
@@ -171,24 +341,116 @@ function GrowthTimeline() {
 
 function SystemicAI() {
   return (
-    <section className="bg-[#07171d] py-20 text-white sm:py-28">
+    <section className="bg-[#000] py-20 text-white">
       <div className="container mx-auto grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
-        <div><SectionHeader eyebrow="The enterprise advantage" title="New Possibilities with Systemic AI" description="Empower teams with AI-driven intelligence to optimize every lever of growth with Systemic AI." textColor="white" align="left" /><div className="mt-8 space-y-5"><p className="!text-white/60">Agentic AI introduces a powerful paradigm, but its enterprise value depends on how effectively it is integrated.</p><p className="!text-white/60">Systemic AI adds a structured, context-driven approach—delivering scalable, reliable outcomes aligned with business goals.</p><p className="font-medium !text-white">Leaders do not merely use AI. They operationalize it and make it their own.</p></div></div>
-        <motion.div initial={{ opacity: 0, scale: .94 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative mx-auto grid aspect-square w-full max-w-lg place-items-center rounded-full border border-white/10 bg-[radial-gradient(circle,rgba(95,176,194,.22),transparent_60%)]"><div className="absolute inset-[12%] rounded-full border border-[#5fb0c2]/25" /><div className="absolute inset-[27%] rounded-full border border-white/15" /><span className="grid size-28 place-items-center rounded-full bg-[#5fb0c2] text-slate-950 shadow-[0_0_80px_rgba(95,176,194,.4)]"><BrainCircuit className="size-12" /></span>{['Context','Agents','Decisions','Value'].map((text, index) => <span key={text} className={cn('absolute rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs text-white/70 backdrop-blur', ['top-[8%]','right-[2%]','bottom-[8%]','left-[2%]'][index])}>{text}</span>)}</motion.div>
+        <div>
+          <SectionHeader 
+          eyebrow="" 
+          title="New Possibilities with Systemic AI" 
+          description="Empower teams with AI-driven intelligence to optimize every lever of growth with Systemic AI." textColor="white" align="left" /><div className="mt-8 space-y-5">
+            <p className="!text-white/90">Agentic AI introduces a powerful paradigm, but its enterprise value depends on how effectively it is integrated.</p>
+            <p className="!text-white/90">Systemic AI builds on this by offering a structured, context-driven approach to embedding intelligence across the organization-delivering scalable, reliable outcomes aligned with business goals.
+          </p>
+          <p className="font-medium !text-white">With Systemic AI, leaders don’t just use AI-they operationalize it and make it their own.</p>
+            </div></div>
+        
+        <motion.div initial={{ opacity: 0, scale: .94 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative mx-auto grid aspect-square w-full max-w-lg place-items-center rounded-full bg-[radial-gradient(circle,rgba(95,176,194,.22),transparent_60%)]">
+          <motion.div
+            className="absolute inset-[-3%] rounded-full border-2 border-dashed border-secondary/20"
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        <motion.div
+            className="absolute inset-[12%] rounded-full border-2 border-dashed border-[#5fb0c2]/30"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          <motion.div
+            className="absolute inset-[27%] rounded-full border-2 border-dashed border-white/20"
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        <span className="grid size-32 place-items-center rounded-full bg-secondary text-white shadow-[0_0_80px_rgba(95,176,194,.35)]">
+          <div className="text-center">
+            <BrainCircuit className="mx-auto size-10" />
+            <span className="mt-1 block text-sm font-semibold">
+              Systemic AI
+            </span>
+          </div>
+        </span>
+          {['Enterprise Context','Agentic Workflows','Decision Intelligence','Business Outcomes'].map((text, index) => <span key={text} className={cn('absolute rounded-full border border-secondary/10 bg-secondary px-4 py-2 text-xs text-main backdrop-blur', ['top-[8%]','right-[2%]','bottom-[8%]','left-[2%]'][index])}>{text}
+          </span>
+        )}
+        </motion.div>
       </div>
     </section>
   );
 }
 
 const layers = [
-  { label: 'Value', title: 'Application Layer', text: 'Real-world use cases that translate intelligence into measurable business impact.', icon: Sparkles, color: 'bg-[#dff5f4]' },
-  { label: 'Core', title: 'Intelligence Layer', text: 'Orchestrates agents and models into adaptive, enterprise-grade intelligence.', icon: Network, color: 'bg-[#e5e9ff]' },
-  { label: 'Foundation', title: 'Context & Data Integrity', text: 'Reliable data and rich context ensure the integrity and trustworthiness of every AI system.', icon: Database, color: 'bg-[#ebf4df]' },
-  { label: 'Strategy & Governance', title: 'Enterprise Alignment', text: 'Goals, policies, and structures embed AI with integrity and accountability.', icon: ShieldCheck, color: 'bg-[#f5eadf]' },
+  { label: 'Value', title: 'Application Layer', text: 'Real-world use cases that translate intelligence into measurable business impact.', icon: Sparkles, color: 'bg-[#fff]' },
+  { label: 'Core', title: 'Intelligence Layer', text: 'Orchestrates agents and models into adaptive, enterprise-grade intelligence.', icon: Network, color: 'bg-[#fff]' },
+  { label: 'Foundation', title: 'Context & Data Integrity', text: 'Reliable data and rich context ensure the integrity and trustworthiness of every AI system.', icon: Database, color: 'bg-[#fff]' },
+  { label: 'Strategy & Governance', title: 'Enterprise Alignment', text: 'Goals, policies, and structures embed AI with integrity and accountability.', icon: ShieldCheck, color: 'bg-[#fff]' },
 ];
 
 function BuildingBlocks() {
-  return <section className="bg-white py-20 sm:py-28"><div className="container mx-auto"><SectionHeader eyebrow="Systemic architecture" title="Core Building Blocks of Systemic AI" description="A layered framework that connects intelligent technology with enterprise strategy and real-world value." /><div className="mx-auto mt-12 max-w-5xl space-y-3">{layers.map((layer, index) => <motion.article initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }} key={layer.title} className={cn('grid items-center gap-5 rounded-[1.5rem] border border-slate-200 p-5 sm:grid-cols-[180px_1fr_auto] sm:p-7', layer.color)}><div><span className="text-xs font-semibold uppercase tracking-[.15em] text-slate-500">{layer.label}</span><h3 className="mt-2 !text-xl font-semibold text-slate-950">{layer.title}</h3></div><p className="!text-sm !leading-6 !text-slate-600">{layer.text}</p><span className="grid size-12 place-items-center rounded-xl bg-slate-950 text-white"><layer.icon className="size-5" /></span></motion.article>)}</div></div></section>;
+  return <section className="bg-white py-20 sm:py-28">
+        <div className="container mx-auto">
+            <SectionHeader 
+              eyebrow="Systemic architecture" 
+              title="Core Building Blocks of Systemic AI"
+              description="A layered framework that connects intelligent technology with enterprise strategy and real-world value." 
+              maxWidth='5xl'
+            />
+            <div className="mx-auto mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 space-y-3 ">{layers.map((layer, index) => 
+            <motion.article
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+              key={layer.title}
+              className={cn(
+                "group relative h-full overflow-hidden rounded-[24px] border border-white/10 bg-white/92 p-6 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-50/30",
+                layer.color
+              )}
+            >
+              <div className="flex items-start gap-4">
+                <span className="relative inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-[#5fb0c2] ring-1 ring-cyan-100 transition-colors duration-300 group-hover:bg-white">
+                  <layer.icon className="size-5" />
+                </span>
+
+                <div>
+                  <h3 className="!text-xl font-semibold text-slate-950">
+                    {layer.label}
+                  </h3>
+
+                  <p className="mt-0 block">
+                    {layer.title}
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-6">
+                {layer.text}
+              </p>
+            </motion.article>
+              )}</div>
+        </div>
+    </section>;
 }
 
 function CaseStudies() {
@@ -205,5 +467,22 @@ function Blog() {
 }
 
 export default function RetailIndustryPage() {
-  return <main className="overflow-clip bg-white text-slate-950"><RetailHero /><ResultsSection /><SolutionsSection /><GrowthTimeline /><SystemicAI /><BuildingBlocks /><CaseStudies /><FAQ /><Blog /><CallToAction title={<>Turn retail complexity into <span className="text-secondary">commercial advantage.</span></>} description="Bring your highest-value growth challenge. We’ll show you where data and AI can create measurable impact first." primaryButton={{ text: 'Speak to our experts', href: '/contact-us' }} secondaryButton={{ text: 'Explore our solutions', href: '/our-solutions' }} /></main>;
+  return <main className="overflow-clip bg-white text-slate-950">
+    <RetailHero />
+    <ResultsSection />
+    <SolutionsSection />
+    <GrowthTimeline />
+    <SystemicAI />
+    <BuildingBlocks />
+    <SystemicArchitectureSection />
+    <CaseStudies />
+    <FAQ />
+    <Blog />
+    <CallToAction 
+    title={<>Turn retail complexity into <span className="text-secondary">commercial advantage.</span></>} 
+    description="Bring your highest-value growth challenge. We’ll show you where data and AI can create measurable impact first." 
+    primaryButton={{ text: 'Speak to our experts', href: '/contact-us' }} 
+    secondaryButton={{ text: 'Explore our solutions', href: '/our-solutions' }} />
+    </main>;
 }
+
