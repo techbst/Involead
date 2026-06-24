@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
 import {
   ArrowRight,
   Award,
@@ -140,7 +140,7 @@ const revealItem: Variants = {
 };
 const nodeVariants = {
   hidden: { opacity: 0, y: 24 },
-  show: {
+  visible: {
     opacity: 1,
     y: 0,
     transition: {
@@ -175,25 +175,45 @@ function BenefitTile({ item }: { item: BenefitCard }) {
 }
 
 export default function CareerPageClient() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 95%", "end 80%"],
-  });
-
-  const lineProgress = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", "100%"]
-  );
+  const sectionRef = useRef<HTMLElement>(null);
+  const isHiringProcessInView = useInView(sectionRef, { amount: 0.25 });
   const reduceMotion = !!useReducedMotion();
   const [activeRoleFilter, setActiveRoleFilter] = useState<(typeof roleFilters)[number]>("All");
+  const [activeHiringStep, setActiveHiringStep] = useState(-1);
   const filteredRoles = useMemo(
     () => (activeRoleFilter === "All" ? roles : roles.filter((role) => role.team === activeRoleFilter)),
     [activeRoleFilter],
   );
   const visibleRoles = filteredRoles.length > 0 ? filteredRoles : roles;
+  const revealedHiringStep = Math.max(activeHiringStep, 0);
+  const desktopHiringLineProgress = `${(revealedHiringStep / (process.length - 1)) * 100}%`;
+
+  useEffect(() => {
+    if (!isHiringProcessInView) {
+      const resetTimer = window.setTimeout(() => {
+        setActiveHiringStep(-1);
+      }, 0);
+
+      return () => {
+        window.clearTimeout(resetTimer);
+      };
+    }
+
+    const timers = [
+      window.setTimeout(() => {
+        setActiveHiringStep(0);
+      }, 40),
+      ...process.slice(1).map((_, index) =>
+        window.setTimeout(() => {
+          setActiveHiringStep(index + 1);
+        }, 700 + index * 420)
+      ),
+    ];
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [isHiringProcessInView]);
 
   return (
     <div className="overflow-hidden text-slate-950">
@@ -473,11 +493,13 @@ export default function CareerPageClient() {
           
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5 relative">
             <div className="pointer-events-none absolute left-[10%] right-[10%] top-8 h-px overflow-hidden">
-          <div className="absolute inset-0 from-primary/0 via-primary/25 to-primary/0" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/25 to-primary/0" />
 
           <motion.div
-            className="absolute inset-y-0 left-0 bg-secondary from-primary to-secondary hidden lg:block"
-            style={{ width: lineProgress }}
+            className="absolute inset-y-0 left-0 hidden bg-gradient-to-r from-primary to-secondary lg:block"
+            initial={{ width: "0%" }}
+            animate={{ width: desktopHiringLineProgress }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           />
         </div>
             {process.map((step, index) => (
@@ -487,6 +509,7 @@ export default function CareerPageClient() {
                 index={index}
                 total={process.length}
                 variants={nodeVariants}
+                isVisible={index <= activeHiringStep}
               />
             ))}
           </div>
@@ -513,7 +536,7 @@ export default function CareerPageClient() {
       <CallToAction
         title={
           <>
-            Don't see the right role yet?
+            Don&apos;t see the right role yet?
           </>
         }
         description="We're always hiring for exceptional people. Tell us about yourself and the kind of work you want to do next, we'll reach out when there's a match."

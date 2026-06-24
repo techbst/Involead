@@ -6,6 +6,7 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import SectionReveal from "./SectionReveal";
+import { SectionHeader } from "../ui/section-header";
 
 interface Testimonial {
   review: string;
@@ -44,16 +45,15 @@ export default function Testimonials() {
   return (
     <section className="overflow-hidden bg-white py-15 ">
       <SectionReveal className="mx-auto container">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-base font-medium text-black">Client Feedback</p>
-          <h2 className="mt-2 text-[clamp(2.4rem,4vw,4.4rem)] font-bold leading-tight tracking-normal">
-            Trusted by Global Leaders
-          </h2>
-          <p className="mt-4 text-base leading-7 text-black/85 sm:text-lg">
-            Driving innovation and efficiency across the world&apos;s leading
-            Fortune 500 organizations
-          </p>
-        </div>
+        <SectionHeader 
+         eyebrow="Client Feedback"
+         title="Trusted by Global Leaders"
+         description="Driving innovation and efficiency across the world&apos;s leading
+            Fortune 500 organizations"
+          align="center"
+          maxWidth="2xl"
+        />
+        
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-center">
           <aside className="mx-auto w-full max-w-[360px] text-center lg:mx-0">

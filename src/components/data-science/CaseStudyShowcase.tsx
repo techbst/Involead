@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { SectionHeader } from "../ui/section-header";
 
 type CaseStudyCard = {
   title: string;
@@ -98,26 +99,14 @@ export default function CaseStudyShowcase() {
           className="mx-auto  "
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-3xl">
-              <p className="text-xs font-medium capitalize">
-                Case Studies
-              </p>
-
-              <h2 className="mt-2 max-w-4xl   text-slate-950">
-                Use Cases & 
-
-                <span className="ml-1 text-secondary">
-                   Success Stories
-                </span>
-              </h2>
-              <p className="mt-2"
-              >
-                Real impact across industries, driven by data. Every engagement engineered around your most critical KPIs.
-
-
-              </p>
-            </div>
-
+           <SectionHeader 
+           eyebrow="Case Studies"
+           title="Use Cases & Success Stories"
+           description="Real impact across industries, driven by data. Every engagement engineered around your most critical KPIs."
+           align="left"
+           />
+           
+            
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -140,113 +129,120 @@ export default function CaseStudyShowcase() {
             </div>
           </div>
 
-          <div className="my-4 h-px bg-white/10" />
-
-          <div className="grid gap-3 lg:grid-cols-[1.08fr_0.95fr_0.9fr]">
-            <motion.div
-              variants={panelVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.35 }}
-              className="relative overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85"
-                alt="Data science case study visual"
-                fill
-                sizes="(min-width: 1024px) 36vw, 100vw"
-                className="object-cover opacity-80 transition duration-700 hover:scale-105"
-              />
+          <div className="relative mt-6 overflow-hidden rounded-[2rem] border border-slate-200/10 bg-white p-4  shadow-[0_10px_30px_rgba(0,0,0,0.18)]  sm:p-5 lg:p-6">
+           
+         
             
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <div className="max-w-[16rem] rounded-[1.25rem] border border-white/20 bg-white/92 p-3.5 backdrop-blur-md">
-                  <p className="text-[0.7rem] font-semibold  text-primary">
-                    Featured case
-                  </p>
-                  <h3 className="mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950">
-                    {current.title}
-                  </h3>
-                  <p className="mt-1.5 text-xs leading-5 text-slate-600">
-                    {current.description}
-                  </p>
-                </div>
-              </div>
 
-              <div className="absolute left-3 top-3 rounded-full border border-primary/10 bg-white/90 px-3 py-1 text-[0.65rem] font-semibold  capitalize text-primary">
-                {current.category}
-              </div>
-            </motion.div>
+            <div className="relative rounded-[1.7rem] border border-white/75 bg-white/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-md">
+            
 
-            <motion.div
-              key={current.title}
-              variants={panelVariants}
-              initial="hidden"
-              animate="show"
-              className={cn(
-                "relative overflow-hidden rounded-[1.5rem] p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)]",
-                `bg-secondary`,
-              )}
-            >
-              <div className="absolute inset-0 bg-secondary/20" />
-              <div className="relative z-10 flex h-full flex-col">
-                <div className="inline-flex size-9 items-center justify-center rounded-full bg-white text-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.22)]">
-                  <ActiveIcon className="size-4.5" />
-                </div>
-               
-                <h3 className="mt-2.5 max-w-sm text-[1.15rem] font-semibold leading-[1.12] tracking-[-0.04em] !text-white">
-                  {current.title}
-                </h3>
-                <p className="mt-2.5 max-w-sm text-xs leading-5 !text-white">
-                  {current.description}
-                </p>
-
-                <div className="mt-auto grid grid-cols-3 gap-2 pt-5">
-                  {current.metrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="rounded-[1rem] border border-white/16 bg-white/16 p-2.5 backdrop-blur-sm"
-                    >
-                      <div className="text-sm font-semibold text-white">
-                        {metric.value}
-                      </div>
-                      <div className="mt-1 text-[0.65rem] leading-4 text-white/80">
-                        {metric.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="grid gap-4">
-              {caseStudies
-                .filter((_, index) => index !== active)
-                .slice(0, 2)
-                .map((item, index) => (
-                  <motion.article
-                    key={item.title}
-                    variants={panelVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.35 }}
-                    className="group relative overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition hover:-translate-y-0.5"
-                  >
-                   
-                    <div className="relative z-10">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex size-9 items-center justify-center rounded-full bg-secondary text-white ">
-                          <item.icon className="size-4.5" />
-                        </div>
-                      </div>
-                      <h3 className="mt-5 text-[0.98rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950">
-                        {item.title}
+              <div className="grid gap-3 lg:grid-cols-[1.08fr_0.95fr_0.9fr]">
+                <motion.div
+                  variants={panelVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.35 }}
+                  className="relative overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white shadow-[0_18px_48px_rgba(15,23,42,0.06)]"
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85"
+                    alt="Data science case study visual"
+                    fill
+                    sizes="(min-width: 1024px) 36vw, 100vw"
+                    className="object-cover opacity-80 transition duration-700 hover:scale-105"
+                  />
+                
+                  <div className="absolute inset-x-0 bottom-0 p-4">
+                    <div className="max-w-[16rem] rounded-[1.25rem] border border-white/20 bg-white/92 p-3.5 backdrop-blur-md">
+                      <p className="text-[0.7rem] font-semibold text-primary">
+                        Featured case
+                      </p>
+                      <h3 className="mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950">
+                        {current.title}
                       </h3>
-                      <p className="mt-2 text-xs leading-5 text-slate-600">
-                        {item.description}
+                      <p className="mt-1.5 text-xs leading-5 text-slate-600">
+                        {current.description}
                       </p>
                     </div>
-                  </motion.article>
-                ))}
+                  </div>
+
+                  <div className="absolute left-3 top-3 rounded-full border border-primary/10 bg-white/90 px-3 py-1 text-[0.65rem] font-semibold capitalize text-primary">
+                    {current.category}
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  key={current.title}
+                  variants={panelVariants}
+                  initial="hidden"
+                  animate="show"
+                  className={cn(
+                    "relative overflow-hidden rounded-[1.5rem] p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)]",
+                    "bg-secondary",
+                  )}
+                >
+                  <div className="absolute inset-0 bg-secondary/20" />
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="inline-flex size-9 items-center justify-center rounded-full bg-white text-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.22)]">
+                      <ActiveIcon className="size-4.5" />
+                    </div>
+                  
+                    <h3 className="mt-2.5 max-w-sm text-[1.15rem] font-semibold leading-[1.12] tracking-[-0.04em] !text-white">
+                      {current.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-sm text-xs leading-5 !text-white">
+                      {current.description}
+                    </p>
+
+                    <div className="mt-auto grid grid-cols-3 gap-2 pt-5">
+                      {current.metrics.map((metric) => (
+                        <div
+                          key={metric.label}
+                          className="rounded-[1rem] border border-white/16 bg-white/16 p-2.5 backdrop-blur-sm"
+                        >
+                          <div className="text-sm font-semibold text-white">
+                            {metric.value}
+                          </div>
+                          <div className="mt-1 text-[0.65rem] leading-4 text-white/80">
+                            {metric.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                <div className="grid gap-4">
+                  {caseStudies
+                    .filter((_, index) => index !== active)
+                    .slice(0, 2)
+                    .map((item) => (
+                      <motion.article
+                        key={item.title}
+                        variants={panelVariants}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.35 }}
+                        className="group relative overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition hover:-translate-y-0.5"
+                      >
+                        <div className="relative z-10">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex size-9 items-center justify-center rounded-full bg-secondary text-white">
+                              <item.icon className="size-4.5" />
+                            </div>
+                          </div>
+                          <h3 className="mt-5 text-[0.98rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 text-xs leading-5 text-slate-600">
+                            {item.description}
+                          </p>
+                        </div>
+                      </motion.article>
+                    ))}
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
