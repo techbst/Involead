@@ -9,6 +9,7 @@ import type { Swiper as SwiperType } from "swiper";
 
 import SectionReveal from "./SectionReveal";
 import ClipCard from "@/components/ui/product-card";
+import { SectionHeader } from "../ui/section-header";
 // import ClipCard from "../ui/clip-card";
 
 
@@ -73,18 +74,16 @@ export default function ProductsInnovation() {
 
       <SectionReveal className="relative z-10 mx-auto container mt-40 mb-20">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <div>
-            <p className=" font-semibold text-slate-950">
-              Products & Innovations
-            </p>
-            <h2 className="mt-2 max-w-5xl  font-bold leading-tight tracking-normal text-black">
-              Powering with Custom Solutions and Intelligent AI Products.
-            </h2>
-            <p className="mt-5 text-xl text-slate-900">
-              From ideas to real-world solutions, built to scale with business
-              needs.
-            </p>
-          </div>
+         <SectionHeader
+                    eyebrow={" Products & Innovations"}
+                    title="Powering with Custom Solutions and Intelligent AI Products."
+                    description="From ideas to real-world solutions, built to scale with business
+              needs."
+                    align="left"
+                    textColor="black"
+                    maxWidth="4xl"
+                  />
+          
           <div className="flex gap-3 sm:gap-4">
             <button
               onClick={() => swiperRef.current?.slidePrev()}

@@ -77,7 +77,7 @@ export function SectionHeader({
       {eyebrow ? (
         <p
           className={cn(
-            "text-xs font-medium capitalize",
+            "text-xs font-medium uppercase",
              textColor === "black" ? "!text-black" : textColor === "white" ? "!text-white" :colors.title,
             colors.eyebrow,
             eyebrowClassName,

@@ -18,6 +18,7 @@ import {
   type CapabilityData,
   type CapabilityItem,
 } from "./capabilities-data";
+import { SectionHeader } from "../ui/section-header";
 
 const statVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
@@ -68,7 +69,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
             className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]"
             style={{ clipPath: CLIP_PATH }}
           />
-          <div className="absolute left-0 top-0 h-full w-full bg-black group-hover:bg-secondary">
+          <div className="absolute left-0 top-0 h-full w-full bg-black/50 group-hover:bg-secondary">
             <img
               src={item.image}
               alt=""
@@ -215,7 +216,7 @@ function buildCapabilityItems(items: CapabilityData[]): CapabilityItem[] {
 }
 
 export default function Capabilities({
-  title = "Our Capabilities",
+  title = "Where Strategy Meets Intelligence",
   subtitle = "A compact, premium grid of services with front-and-back content so the most important stats stay one hover away.",
   items = capabilityData,
 }: CapabilitiesProps) {
@@ -226,17 +227,14 @@ export default function Capabilities({
     <SectionReveal className="py-15 ">
       <div className="container mx-auto">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="text-xs  font-semibold uppercase tracking-[0.22em] text-secondary">
-              Capability Stack
-            </p>
-            <h2 className="mt-2 font-semibold tracking-tight text-slate-950">
-              {title}
-            </h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-              {subtitle}
-            </p>
-          </div>
+          
+            <SectionHeader 
+                   eyebrow="Our Capabilities"
+                   title={title}
+                   description={subtitle}
+                    align="left"
+                    maxWidth="2xl"
+                  />
 
           <div className="flex gap-3 sm:gap-4">
             <button

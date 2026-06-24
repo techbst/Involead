@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import SectionReveal from "./SectionReveal";
 import AnimatedNumber from "../ui/animated-number";
+import { SectionHeader } from "../ui/section-header";
 
 const stats: { value: string; label: string; icon: string }[] = [
   {
@@ -52,14 +53,16 @@ export default function TechnologyScale() {
   return (
     <section className="bg-white py-15 ">
       <SectionReveal className="mx-auto container">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-[24px] font-semibold text-slate-950">
-            Technology at Scale
-          </p>
-          <h2 className="mt-2 max-w-3xl mx-auto text-black">
-            Enterprise Infrastructure Powered by AI, Data & Automation
-          </h2>
-        </div>
+        <SectionHeader 
+         eyebrow={"Technology at Scale"}
+                    title="Enterprise Infrastructure Powered by AI, Data & Automation"
+                    
+                    align="center"
+                    textColor="black"
+                    maxWidth="4xl"
+        
+        />
+        
 
         <div className="grid grid-cols-1 gap-5 mt-15 sm:gapx-4 py-6 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
           {stats.slice(0, 2).map(({ value, label, icon }, index) => (

@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   motion,
-  useScroll,
-  useTransform,
+  useInView,
   type Variants,
 } from "framer-motion";
 import {
@@ -17,8 +16,8 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 
-import { cn } from "@/lib/utils";
 import ClipShape from "../ui/clip-shape";
+import { SectionHeader } from "../ui/section-header";
 
 type ProcessStep = {
   title: string;
@@ -61,23 +60,26 @@ const steps: ProcessStep[] = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
-
 const nodeVariants: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
+  hidden: { opacity: 0, y: 28, scale: 0.96 },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    scale: 1,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
-function TravelingSignal({ delay = 0 }: { delay?: number }) {
+const contentVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+function TravelingSignal({ delay = 0, isActive = false }: { delay?: number; isActive?: boolean }) {
   return (
     <motion.div
       aria-hidden
@@ -90,28 +92,46 @@ function TravelingSignal({ delay = 0 }: { delay?: number }) {
       }}
       initial={{ left: "0%", opacity: 0 }}
       animate={{
+        opacity: isActive ? [0, 1, 1, 0] : 0,
         left: ["0%", "100%"],
-        opacity: [0, 1, 1, 0],
       }}
       transition={{
         duration: 3.6,
         delay,
-        repeat: Infinity,
+        repeat: isActive ? Infinity : 0,
         repeatDelay: 1.4,
         ease: "easeInOut",
-        opacity: { times: [0, 0.08, 0.92, 1], duration: 3.6, repeat: Infinity, repeatDelay: 1.4 },
+        opacity: {
+          times: [0, 0.08, 0.92, 1],
+          duration: 3.6,
+          repeat: isActive ? Infinity : 0,
+          repeatDelay: 1.4,
+        },
       }}
     />
   );
 }
 
-function StepNode({ step, index }: { step: ProcessStep; index: number }) {
+function StepNode({
+  step,
+  index,
+  isVisible,
+}: {
+  step: ProcessStep;
+  index: number;
+  isVisible: boolean;
+}) {
   const Icon = step.icon;
   const stepNumber = String(index + 1).padStart(2, "0");
   const glowDelay = (index / (steps.length - 1)) * 3.6;
 
   return (
-    <motion.article variants={nodeVariants} className="relative flex flex-col items-center">
+    <motion.article
+      variants={nodeVariants}
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      className="relative flex flex-col items-center"
+    >
       <div className="relative grid place-items-center">
         <motion.div
           aria-hidden
@@ -120,54 +140,99 @@ function StepNode({ step, index }: { step: ProcessStep; index: number }) {
             background:
               "radial-gradient(circle, rgba(95,176,194,0.35) 0%, rgba(95,176,194,0) 70%)",
           }}
-          animate={{ opacity: [0.2, 0.85, 0.2], scale: [0.85, 1.15, 0.85] }}
+          animate={
+            isVisible
+              ? { opacity: [0.18, 0.85, 0.18], scale: [0.85, 1.15, 0.85] }
+              : { opacity: 0, scale: 0.8 }
+          }
           transition={{
             duration: 3.6,
-            repeat: Infinity,
+            repeat: isVisible ? Infinity : 0,
             repeatDelay: 1.4,
             delay: glowDelay - 0.3,
             ease: "easeInOut",
           }}
         />
         <motion.div
-  animate={{ y: [0, -5, 0] }}
-  transition={{
-    duration: 2.8,
-    repeat: Infinity,
-    ease: "easeInOut",
-    delay: index * 0.18,
-  }}
-  className="relative grid size-16 place-items-center rounded-full border border-primary/15 bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_18px_36px_rgba(15,23,42,0.10)]"
->
-  <div className="absolute inset-0 rounded-full bg-gradient-to-b from-primary/[0.06] to-transparent" />
-  <Icon className="relative size-6 text-secondary" strokeWidth={1.75} />
-</motion.div>
+          initial={{ opacity: 0, scale: 0.82, y: 10 }}
+          animate={
+            isVisible
+              ? { opacity: 1, scale: 1, y: [0, -5, 0] }
+              : { opacity: 0, scale: 0.82, y: 10 }
+          }
+          transition={{
+            opacity: { duration: 0.25 },
+            scale: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+            y: {
+              duration: 2.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: index * 0.18,
+            },
+          }}
+          className="relative grid size-16 place-items-center rounded-full border border-primary/15 bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_18px_36px_rgba(15,23,42,0.10)]"
+        >
+          <div className="absolute inset-0 rounded-full bg-gradient-to-b from-primary/[0.06] to-transparent" />
+          <Icon className="relative size-6 text-secondary" strokeWidth={1.75} />
+        </motion.div>
         <span className="absolute -bottom-2 -right-2 flex size-6 items-center justify-center rounded-full border border-slate-200 bg-white  text-[0.62rem] font-medium tracking-tight text-primary shadow-sm">
           {stepNumber}
         </span>
       </div>
 
-      <div className="mt-6 max-w-[15rem] text-center lg:max-w-[13.5rem]">
+      <motion.div
+        variants={contentVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        className="mt-6 max-w-[15rem] text-center lg:max-w-[13.5rem]"
+      >
         <h3 className="text-[1.02rem] font-[500] leading-tight tracking-[-0.02em] text-slate-900">
           {step.shortTitle ?? step.title}
         </h3>
         <p className="mt-2.5 !text-[0.85rem] leading-6 text-slate-600">
           {step.description}
         </p>
-      </div>
+      </motion.div>
     </motion.article>
   );
 }
 
 export default function ProcessRoadmap() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 80%", "end 100%"],
-  });
-  const lineProgress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { amount: 0.25 });
+  const [activeStep, setActiveStep] = useState(-1);
 
   const signalDelays = useMemo(() => [0, 0.9, 1.8 ,2], []);
+  const revealedStep = Math.max(activeStep, 0);
+  const desktopLineProgress = `${(revealedStep / (steps.length - 1)) * 100}%`;
+  const mobileLineProgress = `${(revealedStep / (steps.length - 1)) * 100}%`;
+
+  useEffect(() => {
+    if (!isInView) {
+      const resetTimer = window.setTimeout(() => {
+        setActiveStep(-1);
+      }, 0);
+
+      return () => {
+        window.clearTimeout(resetTimer);
+      };
+    }
+
+    const timers = [
+      window.setTimeout(() => {
+        setActiveStep(0);
+      }, 40),
+      ...steps.slice(1).map((_, index) =>
+        window.setTimeout(() => {
+          setActiveStep(index + 1);
+        }, 700 + index * 420)
+      ),
+    ];
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [isInView]);
 
   return (
     <section
@@ -178,64 +243,50 @@ export default function ProcessRoadmap() {
 
 
       <div className="container relative mt-26  mb-10 z-10 mx-auto">
-        <motion.div
-          className="mx-auto max-w-2xl text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          
-            <p className="text-xs font-medium uppercase tracking-[0.3em]">
-              Autonomous Pipeline
-            </p>
-          
-          <h2 className="mt-3 font-semibold leading-[1.05] tracking-[-0.03em] text-slate-950">
-            Next-gen agentic <br/><span className="text-secondary"> AI data science</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
-            Five agents, one continuous signal — from raw goal to monitored
-            production model, with no hand-off left to chance.
-          </p>
-        </motion.div>
+        <SectionHeader
+                    eyebrow={"Autonomous Pipeline"}
+                    title={`Next-gen agentic AI data science`}
+                    description={`Five agents, one continuous signal — from raw goal to monitored
+            production model, with no hand-off left to chance.`}
+                    align="center"
+                    maxWidth="2xl"
+                  />
+        
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="relative mx-auto mt-20 hidden lg:block"
-        >
+        <div className="relative mx-auto mt-20 hidden lg:block">
           <div className="relative grid grid-cols-5 gap-6">
             <div className="pointer-events-none absolute left-[10%] right-[10%] top-8 h-px overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/25 to-primary/0" />
               <motion.div
                 className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary to-secondary"
-                style={{ width: lineProgress }}
+                initial={{ width: "0%" }}
+                animate={{ width: desktopLineProgress }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               />
               {signalDelays.map((d) => (
-                <TravelingSignal key={d} delay={d} />
+                <TravelingSignal key={d} delay={d} isActive={activeStep > 0} />
               ))}
             </div>
 
             {steps.map((step, index) => (
-              <StepNode key={step.title} step={step} index={index} />
+              <StepNode
+                key={step.title}
+                step={step}
+                index={index}
+                isVisible={index <= activeStep}
+              />
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="relative mx-auto mt-16 flex max-w-md flex-col gap-10 lg:hidden"
-        >
+        <div className="relative mx-auto mt-16 flex max-w-md flex-col gap-10 lg:hidden">
           <div className="pointer-events-none absolute bottom-8 left-8 top-8 w-px overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/25 to-primary/0" />
             <motion.div
               className="absolute inset-x-0 top-0 bg-gradient-to-b from-primary to-secondary"
-              style={{ height: lineProgress }}
+              initial={{ height: "0%" }}
+              animate={{ height: mobileLineProgress }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             />
           </div>
 
@@ -246,37 +297,53 @@ export default function ProcessRoadmap() {
               <motion.article
                 key={step.title}
                 variants={nodeVariants}
+                initial="hidden"
+                animate={index <= activeStep ? "visible" : "hidden"}
                 className="relative flex gap-5 pl-0"
-                
               >
                 <div className="relative shrink-0">
                   <motion.div
-  animate={{ y: [0, 40, 0] }}
-  transition={{
-    duration: 2.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className="grid size-16 place-items-center rounded-full border border-primary/15 bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_18px_36px_rgba(15,23,42,0.10)]"
->
-  <Icon className="size-6 text-secondary" strokeWidth={1.75} />
-</motion.div>
+                    initial={{ opacity: 0, scale: 0.82, y: 10 }}
+                    animate={
+                      index <= activeStep
+                        ? { opacity: 1, scale: 1, y: [0, -4, 0] }
+                        : { opacity: 0, scale: 0.82, y: 10 }
+                    }
+                    transition={{
+                      opacity: { duration: 0.25 },
+                      scale: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+                      y: {
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: index * 0.16,
+                      },
+                    }}
+                    className="grid size-16 place-items-center rounded-full border border-primary/15 bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_18px_36px_rgba(15,23,42,0.10)]"
+                  >
+                    <Icon className="size-6 text-secondary" strokeWidth={1.75} />
+                  </motion.div>
                   <span className="absolute -bottom-2 -right-2 flex size-6 items-center justify-center rounded-full border border-slate-200 bg-white  text-[0.62rem] font-medium tracking-tight text-primary shadow-sm">
                     {stepNumber}
                   </span>
                 </div>
-                <div className="pt-3">
+                <motion.div
+                  variants={contentVariants}
+                  initial="hidden"
+                  animate={index <= activeStep ? "visible" : "hidden"}
+                  className="pt-3"
+                >
                   <h3 className="text-[1.02rem] font-[500] leading-tight tracking-[-0.02em] text-slate-900">
                     {step.title}
                   </h3>
                   <p className="mt-2 !text-sm leading-6 text-slate-600">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               </motion.article>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

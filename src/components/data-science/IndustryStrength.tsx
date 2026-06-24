@@ -13,6 +13,7 @@ import {
 import SectionReveal from "@/components/home/SectionReveal";
 import AnimatedNumber from "@/components/ui/animated-number";
 import { cn } from "@/lib/utils";
+import { SectionHeader } from "../ui/section-header";
 
 export interface IndustryMetric {
   title: string;
@@ -158,19 +159,15 @@ export default function IndustryStrengthSection({
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
       <SectionReveal className="container relative z-10 mx-auto">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/55">
-            Industry Impact
-          </p>
-
-          <h2 className="mt-4 text-balance text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
-            {title}
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/68 sm:text-base">
-            {subtitle}
-          </p>
-        </div>
+        
+          <SectionHeader 
+                           eyebrow="Industry Impact"
+                           title={title}
+                           description={subtitle}
+                            align="center"
+                            maxWidth="2xl"
+                            textColor="white"
+                          />
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
   {metrics.map((item, index) => {
