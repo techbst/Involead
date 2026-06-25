@@ -33,6 +33,7 @@ import { cn } from '@/lib/utils';
 import { blogs, caseStudies, faqs, metrics, solutionCards, timelineItems } from './retail-data';
 import SystemicArchitectureSection from './SystemicArchitectureSection';
 import ValueCard from '../ui/value-card';
+import CaseStudyShowcase from './case-studies';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -453,9 +454,6 @@ function BuildingBlocks() {
     </section>;
 }
 
-function CaseStudies() {
-  return <section id="casestudies" className="scroll-mt-24 bg-[#f5f8f9] py-20 sm:py-28"><div className="container mx-auto"><div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><SectionHeader eyebrow="Customer outcomes" title="How Our Customers Grow With InvoLead" description="See how teams use InvoLead to unlock insights and accelerate measurable outcomes." align="left" className="mx-0" /><Button asChild variant="outline"><Link href="/industries">See all case studies <ArrowRight className="size-4" /></Link></Button></div><div className="mt-12 grid gap-5 lg:grid-cols-3">{caseStudies.map((study, index) => <motion.article initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .08 }} whileHover={{ y: -7 }} key={study.title} className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.06)]"><div className="relative h-52 overflow-hidden"><Image src={study.image} alt="" fill sizes="(min-width:1024px) 33vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" /><span className="absolute bottom-5 left-5 rounded-full bg-white/15 px-3 py-1 text-xs text-white backdrop-blur">{study.tag}</span></div><div className="p-6"><h3 className="!text-2xl font-semibold tracking-tight text-slate-950">{study.title}</h3><p className="mt-3 !text-sm !leading-6 !text-slate-500">{study.description}</p><div className="mt-6 flex items-end justify-between border-t border-slate-100 pt-5"><div><span className="text-3xl font-semibold text-[#398da0]">{study.metric}</span><span className="mt-1 block text-xs text-slate-500">{study.label}</span></div><ArrowRight className="size-5 text-slate-400 transition group-hover:translate-x-1 group-hover:text-[#398da0]" /></div></div></motion.article>)}</div></div></section>;
-}
 
 function FAQ() {
   const [open, setOpen] = useState(0);
@@ -473,9 +471,9 @@ export default function RetailIndustryPage() {
     <SolutionsSection />
     <GrowthTimeline />
     <SystemicAI />
-    <BuildingBlocks />
+    {/* <BuildingBlocks /> */}
     <SystemicArchitectureSection />
-    <CaseStudies />
+    <CaseStudyShowcase />
     <FAQ />
     <Blog />
     <CallToAction 

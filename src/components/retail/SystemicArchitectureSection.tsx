@@ -5,10 +5,7 @@ import { Database, Network, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { SectionHeader } from '@/components/ui/section-header';
 
-import ArchitectureGraphicVariantFour from './ArchitectureGraphicVariantFour';
-import ArchitectureGraphicVariantOne from './ArchitectureGraphicVariantOne';
-import ArchitectureGraphicVariantThree from './ArchitectureGraphicVariantThree';
-import ArchitectureGraphicVariantTwo from './ArchitectureGraphicVariantTwo';
+import ArchitectureGraphicVariantFive from './ArchitectureGraphicVariantFive';
 
 const systemicArchitectureCards = [
   { title: 'Value', label: 'Application Layer', text: 'Real-world use cases that translate intelligence into measurable business impact.', icon: Sparkles },
@@ -17,16 +14,8 @@ const systemicArchitectureCards = [
   { title: 'Strategy & Governance', label: 'Enterprise Alignment', text: 'Goals, policies, and structures embed AI with integrity and accountability.', icon: ShieldCheck },
 ] as const;
 
-const graphicVariants = {
-  'variant-one': ArchitectureGraphicVariantOne,
-  'variant-two': ArchitectureGraphicVariantTwo,
-  'variant-three': ArchitectureGraphicVariantThree,
-  'variant-four': ArchitectureGraphicVariantFour,
-} as const;
 
-type GraphicVariant = keyof typeof graphicVariants;
 
-export const selectedGraphic: GraphicVariant = 'variant-one';
 
 type ArchitectureCardProps = (typeof systemicArchitectureCards)[number] & { index: number };
 
@@ -46,7 +35,7 @@ function ArchitectureCard({ title, label, text, icon: Icon, index }: Architectur
         </span>
         <div>
           <h3 className="!text-xl font-semibold !leading-tight text-slate-950">{title}</h3>
-          <span className="mt-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#398da0]">{label}</span>
+          <span className="mt-1.5 block text-[13px] font-semibold text-secondary">{label}</span>
         </div>
       </div>
       <p className="mt-6 !text-sm !leading-6 !text-slate-600">{text}</p>
@@ -55,7 +44,7 @@ function ArchitectureCard({ title, label, text, icon: Icon, index }: Architectur
 }
 
 export default function SystemicArchitectureSection() {
-  const SelectedGraphic = graphicVariants[selectedGraphic];
+  
 
   return (
     <section className="relative overflow-hidden bg-white py-20 sm:py-28">
@@ -71,7 +60,7 @@ export default function SystemicArchitectureSection() {
         </motion.div>
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] xl:gap-14">
-          <ArchitectureGraphicVariantThree />
+          <ArchitectureGraphicVariantFive />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             {systemicArchitectureCards.map((card, index) => (
               <ArchitectureCard key={card.title} {...card} index={index} />
