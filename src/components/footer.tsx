@@ -35,7 +35,7 @@ const socialLinks = [
 
 function FooterLink({ label, href }: FooterNavItem) {
   const className =
-    "text-[16px] leading-[1.7] text-white/74 transition-colors hover:text-white sm:text-[17px]";
+    "text-[15px] leading-[1.7] text-white transition-colors hover:text-white sm:text-[15px]";
 
   if (!href) {
     return <span className={className}>{label}</span>;
@@ -57,7 +57,7 @@ function FooterColumn({
 }) {
   return (
     <div className="flex flex-col gap-4 sm:gap-6">
-      <p className="text-[20px] font-medium !text-white sm:!text-[24px]">{title}</p>
+      <p className="!text-[18px] font-medium !text-white sm:!text-[20px]">{title}</p>
       <ul className="flex flex-col gap-3 sm:gap-4">
         {items.map((item) => (
           <li key={item.label}>
@@ -71,22 +71,22 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer id="contact" className="rounded-t-3xl bg-secondary scroll-mt-24 pt-20 sm:pt-24 lg:scroll-mt-28">
+    <footer id="contact" className="rounded-t-3xl bg-secondary scroll-mt-20 pt-15 sm:pt-15 lg:scroll-mt-28">
       <div className="container">
         <div className=" ">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="flex flex-col gap-8 text-center lg:max-w-[28rem] lg:text-left">
-              <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 text-center lg:max-w-[28rem] lg:text-left">
+              <div className="flex flex-col gap-2">
                 <span className="text-[34px] font-semibold tracking-[-0.04em] text-white sm:text-[40px]">
                   InvoLead
                 </span>
-                <p className="!text-[20px] leading-[1.75] !text-white/74 sm:!text-[26px]">
+                <p className="!text-[20px] leading-[1.75] !text-white sm:!text-[24px]">
                   Business With Intelligent AI Solutions And Digital Innovation.
                 </p>
               </div>
 
               <div className="flex flex-col gap-4">
-                <p className="!text-[20px] font-medium !text-white sm:!text-[24px]">
+                <p className="!text-[18px] font-medium !text-white sm:!text-[20px]">
                   Follow Us on
                 </p>
                 <div className="flex items-center justify-center gap-3 lg:justify-start">
@@ -95,9 +95,9 @@ export default function Footer() {
                       key={label}
                       href={href}
                       aria-label={label}
-                      className="flex h-12 w-12 items-center justify-center rounded-full outline outline-1 outline-[#fff] transition hover:bg-[#fff] hover:!text-[#60b0c2]"
+                      className="flex group h-8 w-8 items-center justify-center rounded-full outline outline-1 outline-[#fff] transition hover:bg-[#fff] "
                     >
-                      <span className="text-[20px] font-semibold text-white">{label}</span>
+                      <span className="text-[16px] font-semibold group-hover:!text-[#60b0c2] text-white">{label}</span>
                     </Link>
                   ))}
                 </div>
@@ -116,7 +116,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="tel:+919873074893"
-                      className="text-[16px] text-white transition-colors hover:text-[#5fb0c2] sm:text-[17px]"
+                      className="text-[15px] text-white transition-colors  sm:text-[15px]"
                     >
                       +91 987-307-4893
                     </Link>
@@ -124,12 +124,12 @@ export default function Footer() {
                   <li>
                     <Link
                       href="mailto:support@involead.com"
-                      className="text-[16px] text-white transition-colors hover:text-[#5fb0c2] sm:text-[17px]"
+                      className="text-[15px] text-white transition-colors  sm:text-[15px]"
                     >
                       Support@Involead.Com
                     </Link>
                   </li>
-                  <li className="max-w-[18rem] text-[16px] leading-[1.7] text-white/74 sm:text-[17px]">
+                  <li className="max-w-[18rem] text-[15px] leading-[1.7] text-white sm:text-[15px]">
                     410A, 4th Floor, D21 Corporate Park, Dwarka Sector 21, New
                     Delhi - 110077
                   </li>
@@ -138,14 +138,14 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="relative mt-0 w-full ">
-            <Image src="/img/white-footer.svg" width={1000} height={100} className="h-full w-full" alt="image svg" />
+          <div className="relative mt-10 mb-10 w-full ">
+            <Image src="/img/white-footer-cropped.svg" width={1000} height={100} className="h-full w-full" alt="image svg" />
           </div>
 
-          <div className=" flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <p className="text-center !text-[13px] leading-[1.55] !text-white/45 lg:text-left">
+          <div className=" flex flex-col gap-4  pb-5 lg:flex-row lg:items-center lg:justify-between">
+            <p className="text-center !text-[14px] leading-[1.55] !text-white lg:text-left">
               © 2026 Involead Services Private Limited.
-              <br />
+              
               All rights reserved.
             </p>
 
@@ -154,7 +154,7 @@ export default function Footer() {
                 <Link
                   key={item.label}
                   href={item.href!}
-                  className="text-[13px] text-white/45 transition-colors hover:text-white"
+                  className="text-[14px] text-white transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
