@@ -27,8 +27,8 @@ import { AutonomousAgentEcosystemHero } from "./hero-sections";
 import ShapeHeroBackground from "./call-to-action";
 import { SectionHeader } from "../ui/section-header";
 import ClipShape from "../ui/clip-shape";
-import CallToAction from "../ui/call-to-action";
-
+import CallToAction1, { CTAData } from "@/components/ui/call-to-action-1";
+import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
 
 type SectionHeaderProps = {
   eyebrow?: string;
@@ -74,12 +74,6 @@ type TechTab = {
   items: TechItem[];
 };
 
-type BlogPost = {
-  category: string;
-  featuredimg: string;
-  title: string;
-  excerpt: string;
-};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -862,40 +856,31 @@ function TechStackTabs() {
   );
 }
 
-function BlogCard({ post, index }: { post: BlogPost; index: number }) {
+function BlogSection() {
   return (
-    <motion.article
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      whileHover={{ y: -7 }}
-      className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,0.08)]"
-    >
-      <div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,_#111827_0%,_#60b0c2_58%,_#59a3b4_100%)]">
-        <Image 
-        alt={"post image"}
-        src={post.featuredimg}
-        height={400}
-        width={400}
-        className="w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/20 " />
-        <Brain className="absolute bottom-5 right-5 size-16 text-white/70" />
+    <section className="py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <SectionHeader
+              align="left"
+              title="Success Stories"
+              description="Check out our blog for the latest AI trends and insights!"
+            />
+            <Button asChild>
+              <Link href="/case-studies">
+                View All Stories
+                <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+          </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post, index) => (
+            <BlogCard key={post.title} post={post} index={index} />
+          ))}
+        </div>
       </div>
-      <div className="p-6">
-        <span className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
-          {post.category}
-        </span>
-        <h3 className="mt-4 text-2xl font-bold tracking-normal text-slate-950">{post.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-slate-600">{post.excerpt}</p>
-        <Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary">
-          Read more
-          <ArrowRight className="size-4" />
-        </Link>
-      </div>
-    </motion.article>
+    </section>
   );
 }
 
@@ -929,7 +914,20 @@ function CTASection() {
     </section>
   );
 }
-
+const ctaData: CTAData = {
+    title: "Start building enterprise-grade Generative AI systems",
+    description:
+      "Partner with us to transform your enterprise with intelligent, scalable AI solutions",
+    buttonText: "Explore Solutions",
+    buttonLink: "/our-solutions",
+    video: "/video/bg-1.mp4",
+    members: 100,
+    avatars: [
+      "/img/avatar-1.webp",
+      "/img/avatar-2.webp",
+      "/img/avatar-3.webp",
+    ],
+};
 export default function GenerativeAIPage() {
   return (
     <div className="overflow-hidden bg-white text-slate-950">
@@ -968,42 +966,15 @@ export default function GenerativeAIPage() {
       <TimelineSection />
       <TechStackTabs />
 
-      <section id="success-stories" className="py-20 sm:py-20">
-        <div className="container">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              align="left"
-              title="Success Stories"
-              description="Check out our blog for the latest AI trends and insights!"
-            />
-            <Button asChild>
-              <Link href="/case-studies">
-                View All Stories
-                <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {blogPosts.map((post, index) => (
-              <BlogCard key={post.title} post={post} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
+          <CallToAction1 data={ctaData} />
+  
+      
 
-      <CallToAction
-        title={
-          <>
-            Start building enterprise-grade{" "}
-            <span className="text-secondary">Generative AI systems</span>
-          </>
-        }
-        description="Partner with us to transform your enterprise with intelligent, scalable AI solutions"
-        secondaryButton={{
-          text: "Explore Solutions",
-          href: "/our-solutions",
-        }}
-      />
+      <BlogSection />
+      
+
+      
+
         </div>
   );
 }

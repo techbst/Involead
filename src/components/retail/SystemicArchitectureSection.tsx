@@ -47,7 +47,7 @@ export default function SystemicArchitectureSection() {
   
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-white pt-20 pb-15">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_50%,rgba(95,176,194,0.09),transparent_28%),radial-gradient(circle_at_88%_25%,rgba(95,176,194,0.06),transparent_24%)]" />
       <div className="container relative mx-auto">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7 }}>
@@ -59,7 +59,7 @@ export default function SystemicArchitectureSection() {
           />
         </motion.div>
 
-        <div className="mt-14 grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] xl:gap-14">
+        <div className="mt-10 grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] xl:gap-14">
           <ArchitectureGraphicVariantFive />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             {systemicArchitectureCards.map((card, index) => (
