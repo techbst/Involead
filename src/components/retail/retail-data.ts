@@ -27,11 +27,7 @@ export type RetailCard = {
   icon: LucideIcon;
 };
 
-export type MetricsCard = {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-};
+
 
 export const solutionCards: RetailCard[] = [
   { title: 'Commercial Effectiveness', description: 'Achieved 8–12% uplift in gross margin, 20% faster pricing decisions, and 15% more accurate ROI forecasts.', icon: ChartNoAxesCombined },
@@ -60,28 +56,7 @@ export const timelineItems: RetailCard[] = [
   { title: 'CPG Intelligence', description: 'Give brand leaders a living view of the market so they can act early, learn quickly, and keep an edge.', icon: ShoppingBasket },
 ];
 
-export const metrics: MetricsCard[] = [
-  {
-    title: "85%",
-    description: "of consumer brands report improved decisions with GenAI-powered automation",
-    icon: BrainCircuit,
-  },
-  {
-    title: "40%",
-    description: "faster forecasting and planning cycles",
-    icon: TrendingUp,
-  },
-  {
-    title: "3x",
-    description: "faster ROI on marketing investments",
-    icon: DollarSign,
-  },
-  {
-    title: "5-12%",
-    description: "revenue growth across client portfolios",
-    icon: BarChart3,
-  },
-];
+
 
 export const caseStudies = [
   { tag: 'Revenue growth management', title: 'A unified pricing engine unlocked profitable growth', description: 'Connected price, promotion, and elasticity signals helped commercial teams act with confidence.', metric: '+11%', label: 'Gross margin uplift', image: '/img/cap-1.webp' },
@@ -96,6 +71,8 @@ export const faqs = [
   ['Do your solutions support human decision-making?', 'Absolutely. Our systems are designed to explain recommendations, preserve expert oversight, and make accountability clear—not to create an opaque black box.'],
   ['How do you govern enterprise AI?', 'We embed access controls, quality monitoring, evaluation, auditability, and human approval patterns according to the risk and importance of each use case.'],
 ];
+
+
 
 export const blogs = [
   { category: 'Retail AI', title: 'From dashboards to decisions: the new retail intelligence stack', image: '/img/cap-4.webp' },

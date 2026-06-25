@@ -88,7 +88,7 @@ export function SectionHeader({
       ) : null}
       <h2
         className={cn(
-          "mt-2 capitalize",
+          "capitalize",
           textColor === "black" ? "text-black" : textColor === "white" ? "text-white" : colors.title,
           titleClassName,
         )}

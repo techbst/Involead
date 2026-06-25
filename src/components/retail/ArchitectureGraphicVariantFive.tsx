@@ -22,7 +22,7 @@ const microNodes = [
 
 export default function ArchitectureGraphicVariantFive() {
   return (
-    <div className="relative mx-auto grid min-h-[560px] w-full max-w-[650px] place-items-center overflow-hidden">    
+    <div className="relative mx-auto grid min-h-[540px] w-full max-w-[650px] place-items-center overflow-hidden">    
 
       <motion.div
         className="absolute size-[430px] rounded-full border border-dashed border-[#5fb0c2]/35"
