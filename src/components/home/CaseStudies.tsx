@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -81,8 +81,10 @@ const panelVariants = {
   },
 };
 
-const CASE_STUDY_BOTTOM_CLIP_PATH =
-  "path('M286 0V1.68885V3.3777L285.95 5.06655L285.9 6.7554L285.75 9.0072L285.6 11.259L285.3 13.5108L285 15.7626L284.4 18.5774L283.8 21.3921L282.8 23.8691L281.8 26.4587L280.2 28.7104L278.5 30.9622L276.3 32.8763L274 34.9029L271 36.254L268 37.7177L264 38.6184L260 39.5191L255 39.9132L250 40.3072L243 40.4761L236 40.645L226 40.6675L216 40.7013H204H191H150L147.5 40.7069L145 40.7125L142.5 40.7576L140 40.8139L137.5 40.9265L135 41.0391L132.5 41.2305L130 41.4331L127.5 41.7709L125 42.1087L122.5 42.6153L120 43.122L117.5 43.7975L115 44.473L112.5 45.2612L110 46.1619L107.5 47.2878L105 48.4137L102.5 49.7648L100 51.2285L97.5 52.9173L95 54.6062L92.5 56.5202L90 58.5468L87.5 60.7986L85 63.0504L82.5 65.5274L80 68.117L77.5 70.9317L75 73.7465L72.5 76.7864L70 79.9389L67.5 82.9788L65 86.1313L62.5 88.9461L60 91.7608L57.5 94.2378L55 96.8274L52.5 98.7414L50 100.768L47.5 102.457L45 104.146L42.5 105.497L40 106.961L37.5 108.086L35 109.212L32.5 110L30 110.901L27.5 111.352L25 111.802L22.5 112.083L20 112.365L17.5 112.477L15 112.59H0H286V0Z')";
+const activePanelTransition = {
+  duration: 0.42,
+  ease: [0.22, 1, 0.36, 1] as const,
+};
 
 export default function CaseStudies() {
   const [active, setActive] = useState(0);
@@ -130,85 +132,97 @@ export default function CaseStudies() {
           </div>
         </div>
 
-         <div className="relative mt-6 overflow-hidden rounded-[2rem] border border-slate-200/10 bg-white p-4  shadow-[0_10px_30px_rgba(0,0,0,0.18)]  sm:p-5 lg:p-6">
+         <div className="relative mt-6 overflow-hidden rounded-[2rem] border border-slate-200/10 bg-white p-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)] sm:p-4 lg:p-5">
            
          
             
 
             <div className="relative rounded-[1.7rem] border border-white/75 bg-white/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-md">
             
-            <div className="grid gap-3 lg:grid-cols-[1.08fr_0.95fr_0.9fr]">
-              <motion.div
-                key={current.image}
-                variants={panelVariants}
-                initial="hidden"
-                animate="show"
-                className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5"
-              >
-                <Image
-                  src={current.image}
-                  alt={current.title}
-                  fill
-                  sizes="(min-width: 1024px) 36vw, 100vw"
-                  className="object-cover opacity-85 transition duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <div className="max-w-[16rem] rounded-[1.25rem] border border-white/20 bg-white/92 p-3.5 backdrop-blur-md">
-                    <p className="text-[0.7rem] font-semibold !text-black">
-                      Featured case
-                    </p>
-                    <h3 className="mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950">
-                      {current.title}
-                    </h3>
-                    <p className="mt-1.5 text-xs leading-5 !text-slate-600">
-                      {current.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute left-3 top-3 rounded-full border border-white/20 bg-white/90 px-3 py-1 text-[0.65rem] font-semibold text-primary">
-                  {current.industry}
-                </div>
-              </motion.div>
-
-              <motion.div
-                key={current.title}
-                variants={panelVariants}
-                initial="hidden"
-                animate="show"
-                className="relative overflow-hidden rounded-[1.5rem] bg-secondary p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)]"
-              >
-                <div className="absolute inset-0 bg-secondary/20" />
-                <div className="relative z-10 flex h-full flex-col">
-                  <div className="inline-flex size-9 items-center justify-center rounded-full bg-white text-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.22)]">
-                    <ActiveIcon className="size-4.5" />
-                  </div>
-                  <h3 className="mt-2.5 max-w-sm text-[1.15rem] font-semibold leading-[1.12] tracking-[-0.04em] ">
-                    {current.title}
-                  </h3>
-                  <p className="mt-2.5 max-w-sm text-xs leading-5">
-                    {current.description}
-                  </p>
-
-                  <div className="mt-auto grid grid-cols-3 gap-2 pt-5">
-                    {current.metrics.map((metric) => (
-                      <div
-                        key={metric.label}
-                        className="rounded-[1rem] border border-white/16 bg-white/16 p-2.5 backdrop-blur-sm"
-                      >
-                        <div className="text-sm font-semibold text-white">
-                          {metric.value}
-                        </div>
-                        <div className="mt-1 text-[0.65rem] leading-4 text-white/80">
-                          {metric.label}
-                        </div>
+            <div className="grid gap-3 lg:grid-cols-[1.05fr_0.92fr_0.85fr]">
+              <motion.div className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={current.title}
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.985 }}
+                    transition={activePanelTransition}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={current.image}
+                      alt={current.title}
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 36vw, 100vw"
+                      className="object-cover opacity-85"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-3">
+                      <div className="max-w-[15rem] rounded-[1.1rem] border border-white/20 bg-white/92 p-3 backdrop-blur-md">
+                        <p className="text-[0.7rem] font-semibold !text-black">
+                          Featured case
+                        </p>
+                        <h3 className="mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950">
+                          {current.title}
+                        </h3>
+                        <p className="mt-1.5 text-xs leading-5 !text-slate-600">
+                          {current.description}
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
+                    <div className="absolute left-3 top-3 rounded-full border border-white/20 bg-white/90 px-3 py-1 text-[0.65rem] font-semibold text-primary">
+                      {current.industry}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+                <div className="pointer-events-none pb-[86%] lg:pb-[92%]" />
               </motion.div>
 
-              <div className="grid gap-4">
+              <div className="relative overflow-hidden rounded-[1.5rem] bg-secondary shadow-[0_18px_48px_rgba(15,23,42,0.08)]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={current.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={activePanelTransition}
+                    className="relative h-full p-3.5 lg:p-4"
+                  >
+                    <div className="absolute inset-0 bg-secondary/20" />
+                    <div className="relative z-10 flex h-full flex-col">
+                      <div className="inline-flex size-9 items-center justify-center rounded-full bg-white text-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.22)]">
+                        <ActiveIcon className="size-4.5" />
+                      </div>
+                      <h3 className="mt-2.5 max-w-sm text-[1.05rem] font-semibold leading-[1.12] tracking-[-0.04em] lg:text-[1.1rem]">
+                        {current.title}
+                      </h3>
+                      <p className="mt-2.5 max-w-sm text-xs leading-5">
+                        {current.description}
+                      </p>
+
+                      <div className="mt-auto grid grid-cols-3 gap-2 pt-4">
+                        {current.metrics.map((metric) => (
+                          <div
+                            key={metric.label}
+                            className="rounded-[0.95rem] border border-white/16 bg-white/16 p-2 backdrop-blur-sm"
+                          >
+                            <div className="text-sm font-semibold text-white">
+                              {metric.value}
+                            </div>
+                            <div className="mt-1 text-[0.65rem] leading-4 text-white/80">
+                              {metric.label}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="grid gap-3">
                 {caseStudies
                   .filter((_, index) => index !== active)
                   .slice(0, 2)
@@ -219,7 +233,7 @@ export default function CaseStudies() {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.35 }}
-                      className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition hover:-translate-y-0.5"
+                      className="group relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-white p-3.5 shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition hover:-translate-y-0.5"
                     >
                       <div className="relative z-10">
                         <div className="flex items-start justify-between gap-4">
@@ -227,7 +241,7 @@ export default function CaseStudies() {
                             <item.icon className="size-4.5" />
                           </div>
                         </div>
-                        <h3 className="mt-5 text-[0.98rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950">
+                        <h3 className="mt-4 text-[0.95rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950">
                           {item.title}
                         </h3>
                         <p className="mt-2 text-xs leading-5 !text-slate-600">

@@ -71,16 +71,21 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer id="contact" className="rounded-t-3xl bg-secondary scroll-mt-20 pt-15 sm:pt-15 lg:scroll-mt-28">
+    <footer id="contact" className=" bg-secondary scroll-mt-20 pt-15 sm:pt-15 lg:scroll-mt-28">
       <div className="container">
         <div className=" ">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-6 text-center lg:max-w-[28rem] lg:text-left">
               <div className="flex flex-col gap-2">
-                <span className="text-[34px] font-semibold tracking-[-0.04em] text-white sm:text-[40px]">
-                  InvoLead
-                </span>
-                <p className="!text-[20px] leading-[1.75] !text-white sm:!text-[24px]">
+               <Image
+                           src="/img/logo.png"
+                           alt="InvoLead"
+                           width={164}
+                           height={46}
+                           className="h-auto w-full max-w-[164px] object-contain"
+                           priority
+                         /> 
+                <p className="mt-2 !text-[20px] leading-[1.75] !text-white sm:!text-[24px]">
                   Business With Intelligent AI Solutions And Digital Innovation.
                 </p>
               </div>
