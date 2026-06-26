@@ -23,6 +23,7 @@ import { SectionHeader } from "../ui/section-header";
 import Stats from "./number";
 import ClipShape from "../ui/clip-shape";
 import ClipCard from "../ui/clip-card";
+import CallToAction1 from "../ui/call-to-action-1";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
@@ -485,6 +486,33 @@ const blogs: BlogPost[] = [
         </div>
     </section> }
 
+export interface CTAData {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  video: string;
+  members: number;
+  avatars: string[];
+}
+
+interface Props {
+  data: CTAData;
+}    
+const ctaData: CTAData = {
+    title: "Let's Shape the Future of Your Business",
+    description:
+      "Partner with InvoLead to transform complexity into clarity through data, AI, and design, creating intelligent solutions that drive sustainable, enterprise-wide growth.",
+    buttonText: "Speak to Our Experts",
+    buttonLink: "/contact-us",
+    video: "/video/bg-2.mp4",
+    members: 100,
+    avatars: [
+      "/img/avatar-1.webp",
+      "/img/avatar-2.webp",
+      "/img/avatar-3.webp",
+    ],
+};
 export default function DataEngineeringPage() { return <div className="overflow-hidden bg-white text-slate-950">
   <DataEngineeringHero />
   <Foundations />
@@ -496,20 +524,6 @@ export default function DataEngineeringPage() { return <div className="overflow-
   <Stats />
   <FAQSection />
   <Blog />
-  <CallToAction
-  title={
-    <>
-      Let's Shape the{" "}
-      <span className="text-secondary">
-        Future of Your Business
-      </span>
-    </>
-  }
-  description="Partner with InvoLead to transform complexity into clarity through data, AI, and design, creating intelligent solutions that drive sustainable, enterprise-wide growth."
-  primaryButton={{
-    text: "Speak to Our Experts",
-    href: "/contact-us",
-  }}
-/>
+  <CallToAction1 data={ctaData} />
   </div> 
   }
