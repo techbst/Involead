@@ -35,7 +35,7 @@ export default function FAQ({
     <div className={cn("w-full", className)}>
       {/* Tabs */}
       {categories.length > 1 && (
-        <div className="mx-auto flex w-fit flex-wrap rounded-full border border-slate-200 bg-white p-1">
+        <div className="mx-auto flex w-fit flex-wrap rounded-full border border-secondary bg-white p-1">
           {categories.map((tab, index) => (
             <button
               key={tab.title}
@@ -47,7 +47,7 @@ export default function FAQ({
                 "rounded-full px-5 py-2 text-sm font-semibold transition-all",
                 activeTab === index
                   ? "bg-secondary text-white"
-                  : "text-slate-500 hover:text-slate-900"
+                  : "text-main hover:text-slate-900"
               )}
             >
               {tab.title}
@@ -69,22 +69,35 @@ export default function FAQ({
           {categories[activeTab].items.map((item, index) => (
             <div
               key={item.question}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+              className={cn(
+                "overflow-hidden rounded-[18px] border transition-all duration-300",
+                open === index
+                  ? "border-secondary bg-white shadow-xl shadow-primary/10"
+                  : "border-secondary bg-secondary shadow-2xl shadow-secondary/40"
+              )}
             >
               <button
-                onClick={() =>
-                  setOpen(open === index ? -1 : index)
-                }
-                className="flex w-full items-center justify-between gap-4 p-6 text-left"
+                onClick={() => setOpen(open === index ? -1 : index)}
+                className={cn(
+                  "flex w-full items-center justify-between gap-4 py-4 px-6 text-left transition-colors duration-300",
+                  open === index ? "text-main" : "text-white"
+                )}
               >
-                <span className="font-semibold text-slate-900">
+                <span
+                  className={cn(
+                    "font-semibold transition-colors duration-300",
+                    open === index ? "text-main" : "text-white"
+                  )}
+                >
                   {item.question}
                 </span>
 
                 <ChevronDown
                   className={cn(
-                    "size-5 shrink-0 transition-transform duration-300",
-                    open === index && "rotate-180"
+                    "size-5 shrink-0 transition-all duration-300",
+                    open === index
+                      ? "rotate-180 text-main"
+                      : "text-white"
                   )}
                 />
               </button>
@@ -98,7 +111,12 @@ export default function FAQ({
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="px-6 pb-6 text-sm leading-7 text-slate-600">
+                    <p
+                      className={cn(
+                        "px-6 pb-6 text-sm leading-7 transition-colors duration-300",
+                        open === index ? "text-white/85" : "text-slate-600"
+                      )}
+                    >
                       {item.answer}
                     </p>
                   </motion.div>
