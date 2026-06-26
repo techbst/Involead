@@ -275,9 +275,9 @@ export default function DesktopMegaMenu() {
               <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
               <div className="absolute right-8 top-6 h-20 w-20 rounded-full bg-[#5fb0c2]/10 blur-3xl" />
               <div className="relative z-10 mb-5 flex items-center justify-between">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-700">
+                {/* <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-700">
                   {activeMenu.heading}
-                </p>
+                </p> */}
                
               </div>
 

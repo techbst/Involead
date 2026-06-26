@@ -24,6 +24,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { Button } from "../ui/button";
 import { cn } from "../../lib/utils";
+import AnimatedHeadline from "../ui/animated-title";
 
 type AgentCard = {
   label: string;
@@ -93,12 +94,12 @@ const operatingNodes: CoreNode[] = [
 ];
 
 const ecosystemAgents: CoreNode[] = [
-  { label: "Research Agent", className: "left-[4%] top-[16%]", icon: Brain },
-  { label: "Sales Agent", className: "right-[3%] top-[18%]", icon: BarChart3 },
-  { label: "Marketing Agent", className: "left-[1%] bottom-[20%]", icon: Sparkles },
-  { label: "Finance Agent", className: "right-[2%] bottom-[22%]", icon: BriefcaseBusiness },
-  { label: "Support Agent", className: "left-[38%] bottom-[3%]", icon: MessageSquare },
-  { label: "Operations Agent", className: "right-[34%] top-[4%]", icon: Workflow },
+  { label: "Research Agent", className: "left-[10%] top-[18%]", icon: Brain },
+  { label: "Sales Agent", className: "right-[10%] top-[19%]", icon: BarChart3 },
+  { label: "Marketing Agent", className: "left-[7%] bottom-[22%]", icon: Sparkles },
+  { label: "Finance Agent", className: "right-[7%] bottom-[23%]", icon: BriefcaseBusiness },
+  { label: "Support Agent", className: "left-1/2 bottom-[7%] -translate-x-1/2", icon: MessageSquare },
+  { label: "Operations Agent", className: "left-1/2 top-[6%] -translate-x-1/2", icon: Workflow },
 ];
 
 const blueprintLayers: BlueprintLayer[] = [
@@ -190,17 +191,17 @@ function HeroCopy({
       variants={revealContainer}
       initial="hidden"
       animate="show"
-      className="relative z-10 max-w-3xl -mt-20"
+      className="relative z-10 "
     >
-      <motion.p variants={revealItem} className="text-sm font-semibold uppercase tracking-[0.26em] text-main">
-        {eyebrow}
-      </motion.p>
-      <motion.h1
-        variants={revealItem}
-        className="mt-5 font-bold text-main !text-[46px] leading-tight sm:text-[42px] sm:leading-[48px]"
-      >
-        {title}
-      </motion.h1>
+
+
+      <AnimatedHeadline
+        title="From Autonomous Agents to Enterprise Intelligence"
+        highlightFromWord={4}
+        highlightColor="#5fb0c2"
+        titleColor="#0f172a"
+      />
+
       <motion.p variants={revealItem} className="mt-6 max-w-2xl text-lg leading-8 text-main sm:text-xl">
         {body}
       </motion.p>
@@ -230,7 +231,7 @@ export function EnterpriseAICommandCenterHero() {
   useEffect(() => {
     if (shouldReduceMotion) return;
 
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     async function initGsap() {
       const gsapModule = await import("gsap");
@@ -429,24 +430,24 @@ export function AIOperatingSystemHero() {
 
 export function AutonomousAgentEcosystemHero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-50 md:pt-32 pb-12 text-white">
-      <div className="container relative grid min-h-[calc(100vh-8rem)] items-center gap-12 pb-20 lg:grid-cols-[0.9fr_1.1fr]">
+    <section className="relative isolate min-h-screen overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-50 md:pt-20 pb-12 text-white">
+      <div className="container relative grid  items-center gap-12 pb-20 lg:grid-cols-[1fr_1.1fr]">
         <HeroCopy
           eyebrow=""
           title={
-              <>
-                From Autonomous <br />
-                <span className="bg-gradient-to-r from-secondary to-secondary/80 bg-clip-text text-transparent">
-                  Agents to Enterprise AI
-                </span>
-              </>
+            <>
+              From Autonomous <br />
+              <span className="bg-gradient-to-r from-secondary to-secondary/80 bg-clip-text text-transparent">
+                Agents to Enterprise AI
+              </span>
+            </>
           }
           body="Architecting Sovereign Cognitive Ecosystems for the Modern Enterprise"
           primary="Start Your AI Journey"
           secondary="See Enterprise Results"
         />
 
-        <div className="relative mx-auto aspect-square w-full max-w-[680px]">
+        <div className="relative mx-auto aspect-square w-full max-w-[560px] lg:max-w-[600px]">
           <svg className="absolute inset-0 h-full w-full" viewBox="0 0 680 680" aria-hidden="true">
             {ecosystemAgents.map((_, index) => (
               <motion.path
@@ -466,11 +467,11 @@ export function AutonomousAgentEcosystemHero() {
           <motion.div
             animate={{ boxShadow: ["0 0 50px #c4eedb", "0 0 90px #c4eedb", "0 0 50px #c4eedb"] }}
             transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-1/2 top-1/2 z-20 w-56 -translate-x-1/2 -translate-y-1/2 rounded-lg border border-[#5fb0c2]/42 bg-[#000] p-6 text-center backdrop-blur-2xl"
+            className="absolute left-1/2 top-1/2 z-20 w-48 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#5fb0c2]/42 bg-[#000] p-5 text-center backdrop-blur-2xl sm:w-52"
           >
-            <Orbit className="mx-auto size-9 text-[#5fb0c2]" />
-            <h3 className="mt-4 text-2xl font-bold text-white">CEO Agent</h3>
-            <p className="mt-2 text-sm leading-6 text-white/62">Delegates, reviews, and coordinates enterprise outcomes.</p>
+            <Orbit className="mx-auto size-8 text-[#5fb0c2]" />
+            <h3 className="mt-3 text-xl font-bold text-white sm:text-2xl">CEO Agent</h3>
+            <p className="mt-2 text-xs leading-5 text-white/62 sm:text-sm sm:leading-6">Delegates, reviews, and coordinates enterprise outcomes.</p>
           </motion.div>
 
           {ecosystemAgents.map((agent, index) => {
@@ -481,16 +482,16 @@ export function AutonomousAgentEcosystemHero() {
                 animate={{ y: [0, index % 2 === 0 ? -10 : 10, 0] }}
                 transition={{ duration: 4 + index * 0.25, repeat: Infinity, ease: "easeInOut" }}
                 className={cn(
-                  "absolute z-30 w-44 rounded-lg border border-black/13 bg-white p-4 shadow-2xl backdrop-blur-xl",
+                  "absolute z-30 w-36 rounded-2xl border border-black/10 bg-white/95 p-3 shadow-2xl backdrop-blur-xl sm:w-40",
                   agent.className,
                 )}
               >
                 <div className="flex items-center justify-between">
-                  <Icon className="size-5 text-[#5fb0c2]" />
+                  <Icon className="size-4 text-[#5fb0c2] sm:size-5" />
                   <span className="size-2 rounded-full bg-[#5fb0c2] shadow-[0_0_18px_rgba(110,231,183,0.75)]" />
                 </div>
-                <div className="mt-3 font-semibold text-main text-[16px]">{agent.label}</div>
-                <div className="mt-3 h-1.5 rounded-full bg-white/10">
+                <div className="mt-2.5 text-[14px] font-semibold leading-5 text-main sm:text-[15px]">{agent.label}</div>
+                <div className="mt-2.5 h-1.5 rounded-full bg-slate-100">
                   <motion.div
                     animate={{ width: ["20%", "88%", "20%"] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.12 }}
