@@ -40,6 +40,8 @@ import ResultsSection from './measured-impact';
 import GrowthTimelinePage from './growth-timeline';
 import CallToAction from './cta';
 import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
+import HeroOne from './HeroOne';
+import HeroTwo from './HeroTwo';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -244,7 +246,7 @@ function Blog() {
 
 export default function RetailIndustryPage() {
   return <main className="overflow-clip bg-white text-slate-950">
-    <RetailHero />
+    <HeroTwo />
     <ResultsSection />
     <SolutionsSection />
     <GrowthTimelinePage />
