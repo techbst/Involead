@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 26 },
@@ -12,7 +13,8 @@ interface AnimatedHeadlineProps {
   titleColor?: string;
   highlightColor?: string;
   highlightFromWord?: number;
-    showCursor?: boolean;
+  showCursor?: boolean;
+  className?: string;
 }
 
 export default function AnimatedHeadline({
@@ -21,6 +23,7 @@ export default function AnimatedHeadline({
   highlightColor = "#06b6d4",
   highlightFromWord = 3,
   showCursor = false,
+  className,
 }: AnimatedHeadlineProps) {
   const words = title.split(" ");
 
@@ -29,7 +32,10 @@ export default function AnimatedHeadline({
       variants={fadeUp}
       initial="hidden"
       animate="show"
-      className="max-w-4xl text-[36px] md:text-[54px] font-bold leading-[115%]"
+      className={cn(
+        "max-w-4xl text-[36px] font-bold leading-[115%] md:text-[54px]",
+        className,
+      )}
       style={{ color: titleColor }}
     >
       {words.map((word, index) => (

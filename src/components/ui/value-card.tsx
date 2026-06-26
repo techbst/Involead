@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useInView, Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
+
 interface ValueCardProps {
   icon?: React.ElementType;
   image?: string;
@@ -9,76 +10,76 @@ interface ValueCardProps {
   description: string;
   index: number;
 }
+
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 36 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
+    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
-// Icon morphs on card hover — subtle scale + rotation
+
 const iconVariants: Variants = {
   rest: { scale: 1, rotate: 0 },
   hover: {
-    scale: 1.18,
-    rotate: -8,
+    scale: 1.15,
+    rotate: -6,
     transition: { type: "spring", stiffness: 320, damping: 18 },
   },
 };
-// Title shifts right slightly on hover
+
 const titleVariants: Variants = {
   rest: { x: 0 },
-  hover: {
-    x: 6,
-    transition: {
-      duration: 0.3,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
+  hover: { x: 6, transition: { duration: 0.3 } },
 };
 
 const descVariants: Variants = {
-  rest: {
-    y: 0,
-  },
-  hover: {
-    opacity: 1,
-    y: -2,
-    transition: {
-      duration: 0.3,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
+  rest: { y: 0 },
+  hover: { y: -2, transition: { duration: 0.3 } },
 };
-// Accent line grows from left on hover
+
 const lineVariants: Variants = {
   rest: { scaleX: 0, originX: 0 },
-  hover: {
-    scaleX: 1,
-    originX: 0,
-    transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
+  hover: { scaleX: 1, transition: { duration: 0.35 } },
 };
 
-export default function ValueCard({ icon: Icon, image, title, description, index }: ValueCardProps) {
-  const col = index % 3;
-  const row = Math.floor(index / 3);
-
+export default function ValueCard({
+  icon: Icon,
+  image,
+  title,
+  description,
+}: ValueCardProps) {
   return (
     <motion.article
-      key={title}
       variants={cardVariants}
       initial="rest"
-      whileHover="hover"
       animate="rest"
-      className={`group relative h-full overflow-hidden  border border-white/10 bg-white/92 p-6 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1  transition-colors duration-300 hover:bg-cyan-50/30 rounded-[24px] 
-      `}
+      whileHover="hover"
+      className="group relative h-full overflow-hidden rounded-[28px] border border-cyan-100/70 bg-[linear-gradient(145deg,#ffffff_0%,#f8fdfe_55%,#eefbfd_100%)] p-7 shadow-[0_18px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-[0_28px_80px_rgba(95,176,194,0.18)]"
     >
-      {/* Radial glow — expands from card center on hover */}
+      
+      {/* clipped vector shape - top right */}
+      <div
+        className="pointer-events-none absolute right-0 top-0 h-36 w-44 bg-[linear-gradient(135deg,rgba(95,176,194,0.26),rgba(14,165,233,0.08))] transition-transform duration-500 group-hover:scale-110"
+        style={{
+          clipPath: "polygon(35% 0, 100% 0, 100% 78%, 70% 100%, 42% 74%)",
+        }}
+      />
+
+      {/* clipped vector shape - bottom left */}
+      <div
+        className="pointer-events-none absolute -bottom-8 -left-8 h-36 w-40 bg-[linear-gradient(135deg,rgba(95,176,194,0.18),rgba(255,255,255,0))] blur-[1px] transition-transform duration-500 group-hover:scale-110"
+        style={{
+          clipPath:
+            "polygon(0 20%, 58% 0, 100% 38%, 82% 100%, 18% 90%, 0 58%)",
+        }}
+      />
+      
+
+      {/* subtle inner highlight */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-cyan-50/60 to-transparent" />
+
       <motion.div
         className="pointer-events-none absolute inset-0"
         initial={{ opacity: 0 }}
@@ -86,78 +87,47 @@ export default function ValueCard({ icon: Icon, image, title, description, index
         transition={{ duration: 0.4 }}
         style={{
           background:
-            "radial-gradient(circle at 30% 40%, rgba(95,176,194,0.10) 0%, transparent 70%)",
+            "radial-gradient(circle at 30% 20%, rgba(95,176,194,0.12), transparent 70%)",
         }}
       />
 
-      {/* Icon container with spring bounce */}
       <motion.div
         variants={iconVariants}
-        className="relative inline-flex size-12 items-center justify-center rounded-xl bg-cyan-50 ring-1 ring-cyan-100"
+        className="relative z-10 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#EAFBFD,#FFFFFF)] shadow-[0_12px_28px_rgba(95,176,194,0.18)] ring-1 ring-cyan-100"
       >
         {image ? (
-            <Image
+          <Image
             src={image}
             alt={title}
-            width={24}
-            height={24}
+            width={28}
+            height={28}
             className="object-contain"
-            />
+          />
         ) : (
-            Icon && <Icon className="size-6 stroke-[1.5] text-[#5FB0C2]" />
+          Icon && <Icon className="h-7 w-7 stroke-[1.6] text-[#5FB0C2]" />
         )}
-
-        {/* Ping ring — appears on hover */}
-        <motion.span
-          className="absolute inset-0 rounded-xl ring-2 ring-[#5FB0C2]/40"
-          initial={{ scale: 1, opacity: 0 }}
-          whileHover={{ scale: 1.5, opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        />
       </motion.div>
 
-      {/* Title with subtle slide */}
       <motion.h3
         variants={titleVariants}
-        className="mt-6 font-semibold lg:!text-[21px] sm:!text-[18px] sm:!text-[16px] text-main"
+        className="relative z-10 mt-6 text-[21px] font-semibold text-slate-900"
       >
         {title}
       </motion.h3>
 
-      {/* Animated accent line under title */}
       <motion.div
         variants={lineVariants}
-        className="mt-1.5 h-[2px] w-10 rounded-full bg-[#5FB0C2]"
+        className="relative z-10 mt-3 h-[3px] w-12 rounded-full bg-gradient-to-r from-cyan-500 to-sky-400"
       />
 
-      {/* Description */}
       <motion.p
         variants={descVariants}
-        className="mt-4 text-main"
+        className="relative z-10 mt-5 leading-7 !text-slate-600"
       >
         {description}
       </motion.p>
 
-      {/* Corner arrow — slides in on hover */}
-      <motion.div
-        className="absolute right-5 bottom-5 text-[#5FB0C2]"
-        initial={{ opacity: 0, x: 6, y: 6 }}
-        whileHover={{ opacity: 1, x: 0, y: 0 }}
-        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M7 17L17 7M7 7h10v10" />
-        </svg>
-      </motion.div>
+      <div className="absolute bottom-0 left-0 h-[3px] w-full bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
     </motion.article>
   );
 }
