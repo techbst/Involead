@@ -453,7 +453,7 @@ function HeroVisual() {
           animate={{ y: [0, -12, 0] }}
           transition={{ duration: 4 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
           className={cn(
-            "absolute rounded-full border border-[#402f5b]/18 bg-[#000] px-4 py-3 text-sm font-semibold text-white shadow-2xl backdrop-blur-xl",
+            "absolute rounded-full border border-[#402f5b]/18 bg-[#000] px-4 py-3 text-sm font-semibold !text-white shadow-2xl backdrop-blur-xl",
             pos,
           )}
         >

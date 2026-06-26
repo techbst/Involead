@@ -84,7 +84,7 @@ export default function SystemicAISection() {
             <span
               key={text}
               className={cn(
-                "absolute rounded-full border border-secondary/10 bg-secondary px-4 py-2 text-xs text-main backdrop-blur",
+                "absolute rounded-full border border-secondary/10 bg-secondary px-4 py-2 text-xs text-white backdrop-blur",
                 positions[index],
               )}
             >
