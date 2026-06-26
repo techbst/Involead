@@ -968,13 +968,13 @@ export default function GenerativeAIPage() {
       <TimelineSection />
       <TechStackTabs />
 
-          <CallToAction1 data={ctaData} />
+          
   
       
 
       <BlogSection />
       
-
+<CallToAction1 data={ctaData} />
       
 
         </div>
