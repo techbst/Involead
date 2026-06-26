@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useInView, useReducedMotion, Variants } from "
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation } from "swiper/modules";
 import {
-  ArrowRight, BrainCircuit, Check, ChevronDown, Cloud,
+  ArrowRight, BrainCircuit, Check, Cloud,
   Code2, Database,
   Quote, Radar, Search, ShieldCheck, Sparkles
 } from "lucide-react";
@@ -16,7 +16,9 @@ import { Button } from "@/components/ui/button";
 import DataEngineeringHero from "@/components/data-engineering/data-engineering-hero";
 import InteractiveNeuralVortex from "../ui/animated-svg-background";
 import CallToAction from "../ui/call-to-action";
+import FAQ, { FAQCategory } from "../ui/faq";
 import ValueCard from "../ui/value-card";
+import { BlogCard, type BlogPost } from "../ui/blog-card";
 import { SectionHeader } from "../ui/section-header";
 import Stats from "./number";
 import ClipShape from "../ui/clip-shape";
@@ -372,45 +374,71 @@ function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => {
 
 <Stats />
 
-const faqTabs = { 
-  General: [
-    ["What is data engineering?", "Data engineering is the process of designing, building, and maintaining systems that collect, store, and transform raw data into meaningful information. It involves creating data pipelines, data warehouses, and data lakes that enable organizations to make data-driven decisions."], 
-    ["How does Generative AI improve data engineering?", "Generative AI accelerates pipeline development, improves data quality checks, and enables natural language interactions for faster analytics and better productivity."], 
-    ["How quickly can InvoLead deliver a data platform?", "Most scoped implementations are delivered in 90 days with phased rollouts and measurable milestones."], 
-    ["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]
-  ], 
-  Clients: [
-    ["How does Generative AI improve data engineering?", "Generative AI accelerates pipeline development, improves data quality checks, and enables natural language interactions for faster analytics and better productivity."]
-  ], 
-  Business: [
-    ["Do you support regulated industries?", "Yes. We support Life Sciences, healthcare, and other regulated sectors with HIPAA, GxP, and audit-ready controls."]
-  ] 
-};
-function FAQ() { const [tab, setTab] = useState<keyof typeof faqTabs>("General"); const [open, setOpen] = useState(0); return <section className="py-15 overflow-hidden relative">
+const faqData: FAQCategory[] = [
+  {
+    title: "General",
+    items: [
+      {
+        question: "What is data engineering?",
+        answer:
+          "Data engineering is the design and operation of the pipelines, platforms, and storage layers that turn raw data into trusted, usable business intelligence.",
+      },
+      {
+        question: "How does Generative AI improve data engineering?",
+        answer:
+          "Generative AI helps teams accelerate pipeline development, automate quality checks, improve documentation, and create more natural ways to interact with complex data systems.",
+      },
+      {
+        question: "How quickly can InvoLead deliver a data platform?",
+        answer:
+          "Most scoped implementations are delivered in phased milestones over roughly 90 days, with earlier wins often shipped well before the full platform rollout.",
+      },
+      {
+        question: "Do you support regulated industries?",
+        answer:
+          "Yes. We work with regulated sectors including life sciences and healthcare, with HIPAA-aware controls, GxP-friendly processes, and audit-ready delivery practices.",
+      },
+    ],
+  },
+  {
+    title: "Clients",
+    items: [
+      {
+        question: "Can you work with our current cloud and warehouse stack?",
+        answer:
+          "Yes. We can extend or modernize existing AWS, Azure, GCP, lakehouse, warehouse, and integration setups instead of forcing a full rebuild where it is not needed.",
+      },
+      {
+        question: "Do you offer fixed-scope and dedicated team models?",
+        answer:
+          "Yes. We support fixed-scope engagements for clearly defined outcomes and flexible delivery squads for ongoing platform evolution.",
+      },
+    ],
+  },
+  {
+    title: "Business",
+    items: [
+      {
+        question: "What business outcomes do data engineering projects usually improve?",
+        answer:
+          "Typical outcomes include faster access to insights, cleaner reporting, lower manual effort, stronger governance, and more reliable analytics for commercial and operational decisions.",
+      },
+      {
+        question: "How do you reduce risk during implementation?",
+        answer:
+          "We reduce delivery risk through phased rollout planning, observability, validation checkpoints, security reviews, and architecture decisions that preserve continuity for business users.",
+      },
+    ],
+  },
+];
+function FAQSection() { return <section className="py-15 overflow-hidden relative">
     <ClipShape />
         <div className="container z-10 mt-20 relative">
             <SectionHeader 
             title="Frequently Asked Questions"
             description="Get answers to common questions about data engineering and our services." 
             />
-            <div className="mx-auto mt-10 flex w-fit rounded-full border border-slate-200 bg-white p-1">
-                {Object.keys(faqTabs).map(x => <button key={x} onClick={()=> { setTab(x as keyof typeof faqTabs);
-                    setOpen(0) }} className={cn("rounded-full px-5 py-2 text-sm font-semibold", tab === x ?
-                    "bg-slate-950 text-white" : "text-slate-500")}>{x}</button>)}</div>
-            <AnimatePresence mode="wait">
-                <motion.div key={tab} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0,
-                    y: -15 }} className="mx-auto mt-10 max-w-3xl space-y-3">{faqTabs[tab].map(([q, a], i) => <button
-                        key={q} onClick={()=> setOpen(open === i ? -1 : i)} className="w-full rounded-2xl border
-                        border-slate-200 bg-white p-6 text-left shadow-sm"><span
-                            className="flex items-center justify-between gap-4 font-bold text-slate-950">{q}
-                            <ChevronDown className={cn("size-5 transition", open===i && "rotate-180" )} />
-                        </span>
-                        <AnimatePresence>{open === i && <motion.p initial={{ height: 0, opacity: 0 }} animate={{
-                                height: "auto" , opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-                                className="overflow-hidden pt-4 text-sm leading-7 text-slate-600">{a}</motion.p>}
-                        </AnimatePresence>
-                    </button>)}</motion.div>
-            </AnimatePresence>
+            <FAQ categories={faqData} className="mt-10" />
         </div>
     </section> }
 
@@ -432,39 +460,21 @@ function FinalCTA() { return <section className="relative py-25 overflow-hidden 
         </motion.div>
     </section> }
 
-const blogs = [
+const blogs: BlogPost[] = [
   { featuredimg: "/img/cap-1.webp", category: "Agentic AI", title: "Unified Data Ecosystems: How AI Is Transforming Connected Intelligence", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }, 
   { featuredimg: "/img/cap-2.webp", category: "RAG Systems", title: "Generative AI in Life Sciences: Accelerating Research & Compliance", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }, 
   { featuredimg: "/img/cap-3.webp", category: "Private AI", title: "Predictive Analytics for Modern Retail: Building Smarter Customer Journeys", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }
 ];
-function BlogCard({ post, index }: { post: typeof blogs[number]; index: number }) { return <motion.article variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }}
-        transition={{ duration: .4, delay: index * .05 }} whileHover={{ y: -7 }}
-        className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,.08)]">
-        <div className="relative h-48 overflow-hidden bg-[linear-gradient(135deg,#111827_0%,#60b0c2_58%,#59a3b4_100%)]">
-            <Image alt="post image" src={post.featuredimg} height={400} width={400}
-                className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-primary/20" />
-            <BrainCircuit className="absolute bottom-5 right-5 size-16 text-white/70" />
-        </div>
-        <div className="p-6"><span
-                className="rounded-full bg-secondary/30 px-3 py-1 text-xs font-semibold uppercase tracking-[.16em] text-secondary">{post.category}</span>
-            <h3 className="mt-4 text-2xl font-bold text-slate-950">{post.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{post.excerpt}</p>
-            <Link href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary">Read more
-            <ArrowRight className="size-4" />
-            </Link>
-        </div>
-    </motion.article> }
     function Blog() { return <section className="py-15">
         <div className="container">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                <div>
-                    <h2 className="text-[clamp(2rem,4.6vw,3.6rem)] font-bold text-slate-950">Get Insights & Tips from Our Blog</h2>
-                    <p className="mt-5 text-lg text-slate-600">Check out our blog for the latest AI trends and insights!
-                    </p>
-                </div>
+                <SectionHeader
+                    align="left"
+                    title="Get Insights & Tips from Our Blog"
+                    description="Check out our blog for the latest AI trends and insights!"
+                />
                 <Button asChild >
-                    <Link href="#">View All Stories
+                    <Link href="/case-studies">View All Stories
                     <ArrowRight className="size-4" />
                     </Link>
                 </Button>
@@ -484,7 +494,7 @@ export default function DataEngineeringPage() { return <div className="overflow-
   <Excellence />
   <WhyPartner />
   <Stats />
-  <FAQ />
+  <FAQSection />
   <Blog />
   <CallToAction
   title={
