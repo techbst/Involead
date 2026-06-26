@@ -71,7 +71,7 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer id="contact" className=" bg-secondary scroll-mt-20 pt-15 sm:pt-15 lg:scroll-mt-28">
+    <footer id="contact" className=" bg-secondary scroll-mt-20 pt-12 sm:pt-12 lg:scroll-mt-28">
       <div className="container">
         <div className=" ">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
@@ -143,8 +143,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="relative mt-10 mb-10 w-full ">
-            <Image src="/img/white-footer-cropped.svg" width={1000} height={100} className="h-full w-full" alt="image svg" />
+          <div className="relative mt-5 mb-5 w-full ">
+            <Image src="/img/white-footer-cropped.svg" width={1000} height={10} className="h-[10%] w-[80%] mx-auto" alt="image svg" />
           </div>
 
           <div className=" flex flex-col gap-4  pb-5 lg:flex-row lg:items-center lg:justify-between">

@@ -69,10 +69,11 @@ export default function GrowthTimelinePage() {
         strokeDasharray: length,
         strokeDashoffset: reduceMotion ? 0 : length,
       });
+      gsap.set('[data-timeline-arrow]', { opacity: reduceMotion ? 1 : 0 });
+      gsap.set('[data-mobile-progress]', { transformOrigin: 'top center' });
 
       if (reduceMotion) {
         gsap.set('[data-mobile-progress]', { scaleY: 1 });
-        gsap.set('[data-timeline-arrow]', { opacity: 1 });
         return;
       }
 
@@ -82,6 +83,7 @@ export default function GrowthTimelinePage() {
           start: 'top 15%',
           end: 'bottom 55%',
           scrub: 0.6,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -141,6 +143,12 @@ export default function GrowthTimelinePage() {
           });
         });
       });
+
+      ScrollTrigger.refresh();
+
+      return () => {
+        media.revert();
+      };
     }, sectionRef);
 
     return () => context.revert();
@@ -154,7 +162,7 @@ export default function GrowthTimelinePage() {
               title="Unlocking CPG Growth: From Legacy Limits to AI-Driven Wins"
               description="In a market shaped by tight margins and changing consumer behavior, InvoLead turns fragmented signals into precise, real-time action."
             />
-            <div className="relative mx-auto mt-16 max-w-6xl">
+            <div className="relative mx-auto mt-12 max-w-6xl">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 1000 1400"
@@ -179,11 +187,11 @@ export default function GrowthTimelinePage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 />
-                {[180, 384, 593, 802, 1010, 1220].map((y) => (
+                {arrowPositions.map((y) => (
                   <path
                     data-timeline-arrow
                     key={y}
-                    d={`M490 ${y - 10} L500 ${y} L510 ${y - 10}`}
+                    d={`M490 ${y - 14} L500 ${y} L510 ${y - 14}`}
                     fill="none"
                     stroke="#5fb0c2"
                     strokeWidth="4"
@@ -196,7 +204,7 @@ export default function GrowthTimelinePage() {
               <div className="absolute bottom-0 left-5 top-0 w-px bg-[#5fb0c2]/20 lg:hidden">
                 <div data-mobile-progress className="h-full w-full origin-top bg-[#5fb0c2]" />
               </div>
-              <div className="relative space-y-10 lg:space-y-16">
+              <div className="relative space-y-3 lg:space-y-3">
                 {timelineItems.map((item, index) => (
                   <article
                     data-timeline-card
@@ -207,13 +215,13 @@ export default function GrowthTimelinePage() {
                     )}
                   >
                     <div className="flex items-center gap-5">
-                      <div className="grid size-[110px] shrink-0 place-items-center rounded-xl border border-[#d7eef3] bg-secondary">
+                      <div className="grid size-[80px] shrink-0 place-items-center rounded-xl border border-[#d7eef3] bg-secondary">
                         <item.icon className="size-14 text-white" strokeWidth={1.8} />
                       </div>
     
                       <div className="pt-1">
-                        <h3 className="font-bold leading-tight">{item.title}</h3>
-                        <p className="mt-1">{item.description}</p>
+                        <h3 className="!text-[20px] font-bold leading-tight">{item.title}</h3>
+                        <p className="!text-sm mt-1">{item.description}</p>
                       </div>
                     </div>
                   </article>
