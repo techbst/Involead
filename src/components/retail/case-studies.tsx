@@ -57,6 +57,7 @@ export default function CaseStudyShowcase() {
       title="Use Cases & Success Stories"
       description="Real impact across industries, driven by data. Every engagement engineered around your most critical KPIs."
       items={caseStudies}
+      showClipshape
     />
   );
 }

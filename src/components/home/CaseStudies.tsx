@@ -64,6 +64,9 @@ export default function CaseStudies() {
       items={caseStudies}
       sectionClassName="bg-black"
       textColor="white"
+      compact
+      readMoreHref="/case-studies"
+      showClipshape={false}
     />
   );
 }

@@ -3,9 +3,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, type LucideIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
+import ClipShape from "./clip-shape";
 import { SectionHeader } from "./section-header";
 
 export type StoryShowcaseItem = {
@@ -39,6 +41,10 @@ type StoryShowcaseProps = {
   items: StoryShowcaseItem[];
   sectionClassName?: string;
   textColor?: "black" | "white";
+  showClipshape?: boolean;
+  compact?: boolean;
+  readMoreHref?: string;
+  readMoreLabel?: string;
 };
 
 export default function StoryShowcase({
@@ -48,11 +54,14 @@ export default function StoryShowcase({
   items,
   sectionClassName,
   textColor,
+  showClipshape = false,
+  compact = false,
+  readMoreHref,
+  readMoreLabel = "Read more",
 }: StoryShowcaseProps) {
   const [active, setActive] = useState(0);
   const current = items[active];
   const ActiveIcon = current.icon;
-
   const go = (direction: number) => {
     setActive((value) => (value + direction + items.length) % items.length);
   };
@@ -64,7 +73,9 @@ export default function StoryShowcase({
         sectionClassName,
       )}
     >
-      <div className="container relative z-10 mx-auto">
+      {showClipshape ? <ClipShape /> : null}
+
+      <div className={` ${showClipshape ? "my-15" : "" } container relative z-10 mx-auto`}>
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -128,12 +139,31 @@ export default function StoryShowcase({
                           <p className="text-[0.7rem] font-semibold text-primary">
                             Featured case
                           </p>
-                          <h3 className="mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950">
+                          <h3
+                            className={cn(
+                              "mt-2 text-[1.05rem] font-semibold tracking-[-0.035em] text-slate-950",
+                              compact && "line-clamp-2",
+                            )}
+                          >
                             {current.title}
                           </h3>
-                          <p className="mt-1.5 text-xs leading-5 text-slate-600">
+                          <p
+                            className={cn(
+                              "mt-1.5 text-xs leading-5 text-slate-600",
+                              compact ? "line-clamp-2" : "line-clamp-3",
+                            )}
+                          >
                             {current.description}
                           </p>
+                          {compact && readMoreHref ? (
+                            <Link
+                              href={readMoreHref}
+                              className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary transition hover:text-secondary"
+                            >
+                              {readMoreLabel}
+                              <ArrowRight className="size-3.5" />
+                            </Link>
+                          ) : null}
                         </div>
                       </div>
 
@@ -142,7 +172,12 @@ export default function StoryShowcase({
                       </div>
                     </motion.div>
                   </AnimatePresence>
-                  <div className="pointer-events-none pb-[86%] lg:pb-[92%]" />
+                  <div
+                    className={cn(
+                      "pointer-events-none pb-[86%] lg:pb-[92%]",
+                      compact && "pb-[68%] lg:pb-[74%]",
+                    )}
+                  />
                 </motion.div>
 
                 <div className="relative overflow-hidden rounded-[1.5rem] bg-secondary shadow-[0_18px_48px_rgba(15,23,42,0.08)]">
@@ -161,12 +196,31 @@ export default function StoryShowcase({
                           <ActiveIcon className="size-4.5" />
                         </div>
 
-                        <h3 className="mt-2.5 max-w-sm text-[1.05rem] font-semibold leading-[1.12] tracking-[-0.04em] !text-white lg:text-[1.1rem]">
+                        <h3
+                          className={cn(
+                            "mt-2.5 max-w-sm text-[1.05rem] font-semibold leading-[1.12] tracking-[-0.04em] !text-white lg:text-[1.1rem]",
+                            compact && "line-clamp-2",
+                          )}
+                        >
                           {current.title}
                         </h3>
-                        <p className="mt-2.5 max-w-sm text-xs leading-5 !text-white">
+                        <p
+                          className={cn(
+                            "mt-2.5 max-w-sm text-xs leading-5 !text-white",
+                            compact ? "line-clamp-3" : "line-clamp-5",
+                          )}
+                        >
                           {current.description}
                         </p>
+                        {compact && readMoreHref ? (
+                          <Link
+                            href={readMoreHref}
+                            className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-white transition hover:text-cyan-100"
+                          >
+                            {readMoreLabel}
+                            <ArrowRight className="size-3.5" />
+                          </Link>
+                        ) : null}
 
                         <div className="mt-auto grid grid-cols-3 gap-2 pt-4">
                           {current.metrics.map((metric) => (
@@ -216,12 +270,31 @@ export default function StoryShowcase({
                               />
                             </div>
                           </div>
-                          <h3 className="mt-4 text-[0.95rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950">
+                          <h3
+                            className={cn(
+                              "mt-4 text-[0.95rem] font-semibold leading-tight tracking-[-0.03em] text-slate-950",
+                              compact && "line-clamp-2",
+                            )}
+                          >
                             {item.title}
                           </h3>
-                          <p className="mt-2 text-xs leading-5 text-slate-600">
+                          <p
+                            className={cn(
+                              "mt-2 text-xs leading-5 text-slate-600",
+                              compact ? "line-clamp-2" : "line-clamp-4",
+                            )}
+                          >
                             {item.description}
                           </p>
+                          {compact && readMoreHref ? (
+                            <Link
+                              href={readMoreHref}
+                              className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-primary transition hover:text-secondary"
+                            >
+                              {readMoreLabel}
+                              <ArrowRight className="size-3.5" />
+                            </Link>
+                          ) : null}
                         </div>
                       </motion.article>
                     ))}
