@@ -39,7 +39,7 @@ function SectionHeading({ eyebrow, title, body, inverse = false }: { eyebrow?: s
 }
 const foundations = [{ title: "Data Infrastructure", text: "Resilient lakehouse foundations engineered for trusted, governed access.", icon: Database }, { title: "Cloud Solutions", text: "Elastic multi-cloud systems that scale workload, cost, and control together.", icon: Cloud }, { title: "AI-Powered", text: "Intelligent pipelines that generate, validate, monitor, and heal themselves.", icon: BrainCircuit }];
 function Foundations() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { gsap.from(".foundation-step", { scrollTrigger: { trigger: ref.current, start: "top 72%" }, opacity: 0, y: 60, stagger: .18, duration: .8, ease: "power3.out" }); gsap.fromTo(".foundation-line", { scaleX: 0 }, { scaleX: 1, scrollTrigger: { trigger: ref.current, start: "top 70%" }, duration: 1.5, ease: "power2.inOut" }) }, ref); clean = () => ctx.revert() })(); return () => clean() }, []); 
-return <section ref={ref} className="relative overflow-hidden bg-black py-15 text-white">
+return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white">
     <div className="container">
         <SectionHeader eyebrow="Built for production"
             title="Production-ready data platforms for regulated industries"
@@ -186,7 +186,7 @@ const genCards = [
   { title: "Data Discovery & Cataloging", desc: "Automatically discover, catalog, and document data assets, making it easy to find and understand your data landscape.", icon: Search, color: "bg-[#fff0dc]" },
   { title: "Natural Language Interfaces", desc: "Query and manipulate data using plain English, making data engineering accessible to non-technical stakeholders.", icon: Sparkles, image: "/img/data-scie.webp" },
 ];
-function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-15">
+function GenAICards() { const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-20">
         <div className="container">
             <SectionHeader 
             eyebrow="Generative intelligence"
@@ -229,7 +229,7 @@ const excellence = [
   ["Data Integration", "Generate data pipeline code automatically using natural language descriptions, reducing development time by up to 60%.", ["API Integration", "Database Integration", "Streaming Integration", "Legacy System Integration"]], 
   ["Real-time Data Streaming", "Build real-time data streaming solutions for instant insights and decision-making.", ["Kafka Integration", "Stream Processing", "Event-driven Architecture", "Real-time Analytics"]]
 ];
-function Excellence() { return <section className="overflow-hidden py-15 bg-secondary/20" >
+function Excellence() { return <section className="overflow-hidden py-20 bg-secondary/20" >
 <div className="container">
   <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
     <div className="mb-0 max-w-5xl text-left">
@@ -343,7 +343,7 @@ function Excellence() { return <section className="overflow-hidden py-15 bg-seco
 </Swiper></div></section> }
 
 const reasons = [["Human-Centric Design", "Solutions designed with your team in mind, ensuring adoption and long-term success."], ["Speed to Value", "Rapid deployment and iterative improvement to deliver value from day one."], ["Proven Excellence", "Track record of successful implementations for Fortune 500 companies and startups alike."], ["Strategic Focus", "Align data engineering initiatives with your business objectives and growth strategy."], ["Innovation Leadership", "Stay ahead with cutting-edge technologies and best practices in data engineering."], ["Global Expertise", "Deep domain knowledge across industries and geographies, backed by a global team."]];
-function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 80%", end: "bottom", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" } }); }); ScrollTrigger.refresh(); }, ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); return <section ref={ref} className="relative overflow-hidden bg-black py-15 text-white">
+function WhyPartner() { const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 80%", end: "bottom", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" } }); }); ScrollTrigger.refresh(); }, ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white">
         <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
             <div className="lg:sticky lg:top-12">
               <SectionHeader 
@@ -432,9 +432,9 @@ const faqData: FAQCategory[] = [
     ],
   },
 ];
-function FAQSection() { return <section className="py-15 overflow-hidden relative">
-    <ClipShape />
-        <div className="container z-10 mt-20 relative">
+function FAQSection() { return <section className="py-20 overflow-hidden relative">
+    
+        <div className="container z-10 relative">
             <SectionHeader 
             title="Frequently Asked Questions"
             description="Get answers to common questions about data engineering and our services." 
@@ -466,8 +466,9 @@ const blogs: BlogPost[] = [
   { featuredimg: "/img/cap-2.webp", category: "RAG Systems", title: "Generative AI in Life Sciences: Accelerating Research & Compliance", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }, 
   { featuredimg: "/img/cap-3.webp", category: "Private AI", title: "Predictive Analytics for Modern Retail: Building Smarter Customer Journeys", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }
 ];
-    function Blog() { return <section className="py-15">
-        <div className="container">
+    function Blog() { return <section className="py-20 relative overflow-hidden">
+      <ClipShape />
+        <div className="container relative mt-26">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <SectionHeader
                     align="left"
@@ -522,8 +523,9 @@ export default function DataEngineeringPage() { return <div className="overflow-
   <Excellence />
   <WhyPartner />
   <Stats />
-  <FAQSection />
+  
   <Blog />
+  <FAQSection />
   <CallToAction1 data={ctaData} />
   </div> 
   }
