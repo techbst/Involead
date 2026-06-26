@@ -10,9 +10,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground [a]:hover:bg-secondary py-[17px] px-[25px] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-500 hover:shadow-xl hover:shadow-cyan-300/30',
+          'bg-primary text-primary-foreground [a]:hover:bg-secondary py-[17px] px-[25px] transition-all duration-300 hover:-translate-y-1 hover:bg-secondary hover:shadow-xl hover:shadow-cyan-300/30',
         outline:
-          'border-border bg-background text-main [a]:hover:bg-secondary py-[17px] px-[25px] transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-500 hover:shadow-xl hover:shadow-cyan-300/30 hover:!text-white',
+          'border-border bg-background text-main [a]:hover:bg-secondary py-[17px] px-[25px] transition-all duration-300 hover:-translate-y-1 hover:bg-secondary hover:shadow-xl hover:shadow-cyan-300/30 hover:!text-white hover:border-secondary',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
         ghost:

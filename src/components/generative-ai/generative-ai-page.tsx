@@ -29,6 +29,7 @@ import { SectionHeader } from "../ui/section-header";
 import ClipShape from "../ui/clip-shape";
 import CallToAction1, { CTAData } from "@/components/ui/call-to-action-1";
 import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
+import ImpactOnIndustry from "./impact-on-industry";
 
 type SectionHeaderProps = {
   eyebrow?: string;
@@ -349,17 +350,7 @@ const timelineSteps: TimelineStep[] = [
 ];
 
 const techTabs: TechTab[] = [
-  {
-    label: "Programming Languages & Frameworks",
-    items: [
-      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", image: "/gen-ai/technologies/python.svg" },
-      { name: "JavaScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", image: "/gen-ai/technologies/javascript-logo-svgrepo-com.svg" },
-      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/next-js.svg" },
-      { name: "React.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/react.svg" },
-      { name: "Node.js", body: "High-performance Python APIs for model serving and automation.", image: "/gen-ai/technologies/nodejs.svg" },
-      { name: "Three.js", body: "Deep learning framework for training and experimentation.", image: "/gen-ai/technologies/Three.js.svg" },
-    ],
-  },
+  
   {
     label: "LLM Models (Text, Image, Video, etc.)",
     items: [
@@ -391,6 +382,17 @@ const techTabs: TechTab[] = [
       { name: "AutoGen", body: "Agentic AI framework for multi-agent conversation systems.", image: "/gen-ai/technologies/nodejs.svg" },
       { name: "DSPy", body: "Programmatic prompt and pipeline optimization.", image: "/gen-ai/technologies/angular.svg" },
       { name: "n8n", body: "Workflow automation for AI-powered business processes.", image: "/gen-ai/technologies/vue.svg" },
+    ],
+  },
+  {
+    label: "Programming Languages & Frameworks",
+    items: [
+      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", image: "/gen-ai/technologies/python.svg" },
+      { name: "JavaScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", image: "/gen-ai/technologies/javascript-logo-svgrepo-com.svg" },
+      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/next-js.svg" },
+      { name: "React.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/react.svg" },
+      { name: "Node.js", body: "High-performance Python APIs for model serving and automation.", image: "/gen-ai/technologies/nodejs.svg" },
+      { name: "Three.js", body: "Deep learning framework for training and experimentation.", image: "/gen-ai/technologies/Three.js.svg" },
     ],
   },
 ];
@@ -566,12 +568,12 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
       viewport={{ once: true, amount: 0.16 }}
       transition={{ duration: 0.45, delay: index * 0.03 }}
       whileHover={{ y: isFlipped ? 0 : -8 }}
-      className="group h-full min-h-[520px] [perspective:1400px]"
+      className="group h-full min-h-[480px] [perspective:1400px]"
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative h-full min-h-[520px] rounded-[18px]"
+        className="group relative h-full min-h-[480px] rounded-[18px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <article
@@ -590,7 +592,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
 
           <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]" style={{ clipPath: CLIP_PATH }}/>
 
-          <div className="absolute left-0 top-0 w-full h-full bg-black group-hover:bg-secondary">
+          <div className="absolute left-0 top-0 w-full h-full bg-black/50 group-hover:bg-secondary">
             <img
               src="/gen-ai/Agentic-Orchestration-Swarms.webp"
               alt=""
@@ -758,7 +760,7 @@ function TimelineSection() {
   }, [shouldReduceMotion]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-slate-950 py-20 sm:py-20">
+    <section ref={sectionRef} className="relative overflow-hidden bg-black py-20 sm:py-20">
       
       <div className="absolute inset-0 bg-black" />
       <div className="container relative">
@@ -773,7 +775,7 @@ function TimelineSection() {
           <div className="absolute bottom-0 left-4 top-0 w-px bg-white/12 md:left-1/2 md:-translate-x-1/2">
             <div ref={lineRef} className="h-full w-full bg-[linear-gradient(#5fb0c2,#b0f1ff)]" />
           </div>
-          <div className="grid gap-8">
+          <div className="grid -gap-5">
             {timelineSteps.map((item, index) => (
               <div
                 key={item.step}
@@ -787,8 +789,8 @@ function TimelineSection() {
                 </span>
                 <article className="rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
                   <p className="font-medium !text-secondary">{item.step}</p>
-                  <div className="mt-3 text-white lg:text-[22px] font-semibold">{item.title}</div>
-                  <p className="mt-4 text-sm leading-7 !text-white/68">{item.body}</p>
+                  <div className="mt-0 text-white lg:text-[22px] font-semibold">{item.title}</div>
+                  <p className="mt-0 text-sm leading-7 !text-white/68">{item.body}</p>
                 </article>
               </div>
             ))}
@@ -933,18 +935,18 @@ export default function GenerativeAIPage() {
     <div className="overflow-hidden bg-white text-slate-950">
       {/* <HeroSection /> */}
       <AutonomousAgentEcosystemHero />
-      <section className="relative overflow-hidden bg-white py-20">
+      <section className="relative overflow-hidden bg-black py-20">
         <div className="container">
           <SectionHeader
             eyebrow="Our Impact on Industry"
             title="Reinventing Operational Velocity with Sovereign AI"
             description="From accelerated innovation cycles to autonomous orchestration, InvoLead empowers enterprises to scale with Deterministic AI solutions built for tangible ROI."
+            textColor="white"
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {impactCards.map((item, index) => (
-              <ImpactCard key={item.label} item={item} index={index} />
-            ))}
-          </div>
+          
+            <ImpactOnIndustry />
+            
+          
         </div>
       </section>
 

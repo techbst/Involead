@@ -41,7 +41,7 @@ export default function CallToAction1({ data }: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="relative mx-auto flex container flex-col overflow-hidden min-h-[550px]"
+        className="relative mx-auto flex container flex-col overflow-hidden min-h-[450px]"
       >
         
 
@@ -64,7 +64,7 @@ export default function CallToAction1({ data }: Props) {
           </div>
 
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-xl text-2xl font-medium leading-relaxed text-white">
+            <div className="max-w-2xl lg:text-[18px] md:text-[16px] sm:text-[14px] font-medium leading-relaxed text-white">
               {data.description}
             </div>
 
