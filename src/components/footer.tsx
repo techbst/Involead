@@ -143,7 +143,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="relative mt-5 mb-5 w-full ">
+          <div className="relative mt-0 mb-5 w-full ">
             <Image src="/img/white-footer-cropped.svg" width={1000} height={100} className="h-full w-full mx-auto" alt="image svg" />
           </div>
 
