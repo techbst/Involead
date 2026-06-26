@@ -228,7 +228,7 @@ export default function HeroTwo() {
         mouseX.set((event.clientX - rect.left) / rect.width - 0.5);
         mouseY.set((event.clientY - rect.top) / rect.height - 0.5);
       }}
-      className="relative isolate overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] px-6 py-24 sm:py-28 lg:min-h-screen lg:px-10"
+      className="relative isolate overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] px-6 pt-28 pb-10 lg:min-h-screen lg:px-10"
     >
       
       <div className="mx-auto grid container items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">

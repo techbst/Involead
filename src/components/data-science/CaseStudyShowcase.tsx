@@ -39,7 +39,7 @@ const caseStudies: CaseStudyCard[] = [
     accent: "from-[#0d2230] via-[#11394a] to-[#5fb0c2]",
     icon: LineChart,
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85",
+      "/data-science/photo-1552664730-d307ca884978.avif",
   },
   {
     title: "Operational Intelligence",
@@ -54,7 +54,7 @@ const caseStudies: CaseStudyCard[] = [
     accent: "from-[#0f1e2f] via-[#14324a] to-[#7a9cff]",
     icon: Database,
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=85",
+      "/data-science/photo-1460925895917-afdab827c52f.jpg",
   },
   {
     title: "Technology-Driven Change",
@@ -69,7 +69,7 @@ const caseStudies: CaseStudyCard[] = [
     accent: "from-[#0b1826] via-[#10273a] to-[#5fb0c2]",
     icon: ChartColumnIncreasing,
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85",
+      "/data-science/photo-1451187580459-43490279c0fa.jpg",
   },
 ];
 
@@ -151,7 +151,7 @@ export default function CaseStudyShowcase() {
                 <motion.div
                   className="relative overflow-hidden rounded-[1.5rem] border border-primary/10 bg-white shadow-[0_18px_48px_rgba(15,23,42,0.06)]"
                 >
-                  <AnimatePresence mode="wait">
+                  <AnimatePresence initial={false}>
                     <motion.div
                       key={current.title}
                       initial={{ opacity: 0, scale: 1.04 }}
