@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { motion, type Variants } from "framer-motion";
-import { ArrowLeft, ArrowRight, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, CircleCheckBig, type LucideIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import SectionReveal from "@/components/home/SectionReveal";
@@ -37,7 +37,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 26, scale: 0.98 }}
+      // initial={{ opacity: 0, y: 26, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.55, delay: index * 0.03, ease: [0.22, 1, 0.36, 1] }}
@@ -47,7 +47,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative h-full min-h-[480px] rounded-[18px]"
+        className="group relative h-full min-h-[480px] rounded-[24px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <article
@@ -69,7 +69,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
             className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]"
             style={{ clipPath: CLIP_PATH }}
           />
-          <div className="absolute left-0 top-0 h-full w-full bg-black/50 group-hover:bg-secondary">
+          <div className="absolute left-0 top-0 h-full w-full bg-black group-hover:bg-secondary">
             <img
               src={item.image}
               alt=""
@@ -92,9 +92,8 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
                   key={pointer}
                   className="flex items-center gap-3 text-sm font-medium text-[16px]"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs group-hover:bg-black font-bold text-white">
-                    {pointerIndex + 1}
-                  </span>
+                  
+                  <CircleCheckBig className="text-secondary" />
                   <span className="text-white">{pointer}</span>
                 </div>
               ))}
@@ -233,7 +232,7 @@ export default function Capabilities({
                    title={title}
                    description={subtitle}
                     align="left"
-                    maxWidth="2xl"
+                    maxWidth="5xl"
                   />
 
           <div className="flex gap-3 sm:gap-4">
@@ -261,13 +260,14 @@ export default function Capabilities({
             swiperRef.current = swiper;
           }}
           spaceBetween={20}
-          slidesPerView={1}
+          slidesPerView={3}
+          loop={false}
           breakpoints={{
             640: { slidesPerView: 1.15 },
             768: { slidesPerView: 2 },
             1200: { slidesPerView: 3 },
           }}
-          className="mt-9 min-w-0"
+          className="mt-9 min-w-0 custom-swiper-style-2"
         >
           {cards.map((item, index) => (
             <SwiperSlide key={item.title} className="h-auto py-2 bg-transparent rounded-xl">

@@ -10,6 +10,7 @@ import type { Swiper as SwiperType } from "swiper";
 import SectionReveal from "./SectionReveal";
 import ClipCard from "@/components/ui/product-card";
 import { SectionHeader } from "../ui/section-header";
+import { Autoplay, Pagination } from "swiper/modules";
 // import ClipCard from "../ui/clip-card";
 
 
@@ -56,7 +57,7 @@ const products: ProductCard[] = [
       "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=900&q=80",
   },
 ];
-
+export const CLIP_PATH = "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
 export default function ProductsInnovation() {
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -104,19 +105,33 @@ export default function ProductsInnovation() {
 
         <div className="mt-12">
           <Swiper
-            slidesPerView={1}
-            spaceBetween={32}
-            breakpoints={{
-              740: { slidesPerView: 2 },
-              1140: { slidesPerView: 3 },
-              1380: { slidesPerView: 4, spaceBetween: 36 },
-            }}
+          modules={[Autoplay, Pagination]}
+          spaceBetween={18}
+          slidesPerView={1}
+          loop={false}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            1200: {
+              slidesPerView: 3,
+            },
+            1340: {
+              slidesPerView: 4,
+            },
+            1700: {
+              slidesPerView: 4,
+            },
+          }}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
+            className="custom-swiper-style-2"
           >
             {products.map((product, index) => (
-              <SwiperSlide key={product.title} className="pb-8">
+              <SwiperSlide 
+              key={product.title} 
+              className="pb-8">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -125,8 +140,21 @@ export default function ProductsInnovation() {
                     duration: 0.6,
                   }}
                   viewport={{ once: true }}
-                  className="relative h-[380px] w-full sm:h-[430px] lg:h-[450px]"
+                  className="relative h-[380px] w-full sm:h-[430px] lg:h-[450px] p-[1px]"
+                  style={{
+                    clipPath: CLIP_PATH,
+                    WebkitClipPath: CLIP_PATH,
+                    background: "#e2e8f0",
+                  }}
                 > 
+                <div
+                    className="h-full w-full"
+                    style={{
+                      clipPath: CLIP_PATH,
+                      WebkitClipPath: CLIP_PATH,
+                      background: "#fff",
+                    }}
+                  >
                   <ClipCard 
                     image={product.image}
                     title={product.title}
@@ -135,7 +163,7 @@ export default function ProductsInnovation() {
                     className="h-full w-full"
                     showDescriptionOnHover={false}
                   />
-                
+                </div>
                 </motion.div>
               </SwiperSlide>
             ))}

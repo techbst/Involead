@@ -1,6 +1,6 @@
 "use client";
-
-import { ArrowUpRight, Cpu, Sparkles, Zap, Database } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Cpu, Sparkles, Zap, Database, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 interface ClipCardProps {
@@ -39,15 +39,12 @@ export default function ClipCard({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-[24px] bg-white p-[1px] transition-all duration-300 ${className}`}
+      className={`group relative overflow-hidden rounded-[24px] bg-white p-[1px] transition-all duration-300  ${className}`}
       style={clipPathStyle}
       id={`clip-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
     >
       {/* Outer border glow effect on hover */}
-      <div 
-        className="absolute inset-0 rounded-[24px] bg-linear-to-br from-cyan-400 via-[#5fb0c2] to-indigo-500 opacity-20 transition-opacity duration-500 group-hover:opacity-100" 
-        style={clipPathStyle}
-      />
+
 
       {/* Main card body */}
       <div
@@ -96,13 +93,15 @@ export default function ClipCard({
           </div>
 
           {/* Interaction action buttons */}
-          <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
-            <span className=" text-xs font-semibold text-[#318697] group-hover:underline">
-             Explore More
-            </span>
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition-all duration-300 group-hover:bg-[#5fb0c2] group-hover:text-white group-hover:rotate-45">
-              <ArrowUpRight className="size-4" />
-            </div>
+          <div className="mt-6 flex items-center justify-end pt-4">
+           <Link
+            href={href}
+            aria-label={`Open ${title}`}
+            className="absolute bottom-6 right-5 z-30 grid size-10 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
+          >
+            <ArrowRight className="size-4" />
+          </Link>
+
           </div>
         </div>
       </div>

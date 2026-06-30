@@ -23,7 +23,7 @@ export default function ClipCard({
   description,
   href,
   children,
-  className = "relative h-[360px] w-full sm:h-[420px] lg:h-[450px]",
+  className = "relative h-[360px] w-full sm:h-380px] lg:h-[400px]",
   showDescriptionOnHover = true,
 }: ClipCardProps) {
   return (
@@ -69,7 +69,7 @@ export default function ClipCard({
       {/* Title */}
       <div className="absolute left-5 top-8 z-20 flex items-center gap-3">
         <span className="mt-0 h-7 w-1 bg-[#5fb0c2]" />
-        <h3 className="max-w-[220px] !text-[20px] !font-light leading-tight text-white">
+        <h3 className="max-w-[220px] !text-[20px] !font-semibold leading-tight text-white">
           {title}
         </h3>
       </div>

@@ -47,6 +47,7 @@ export default function ServicesSection() {
           modules={[Autoplay, Pagination]}
           spaceBetween={18}
           slidesPerView={1}
+          loop={false}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
@@ -64,7 +65,7 @@ export default function ServicesSection() {
               slidesPerView: 4,
             },
           }}
-          className="mt-12"
+          className="mt-12 custom-swiper-style-2"
         >
           {servicesSection.cards.map((card, index) => (
             <SwiperSlide key={card.title}>

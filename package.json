@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "latest",
     "autoprefixer": "latest",
     "class-variance-authority": "^0.7.1",

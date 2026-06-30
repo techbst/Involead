@@ -412,6 +412,9 @@ p {
 .custom-swiper-style-1 .swiper-wrapper {
   padding: 25px 0;
 }
+.custom-swiper-style-2.swiper {
+  overflow: visible !important;
+}
 .marquee-row {
   width: 100%;
   overflow: hidden;
@@ -454,4 +457,18 @@ p {
   to {
     transform: translateX(0);
   }
+}
+.custom-swiper-style-2 .swiper-wrapper {
+  align-items: stretch;
+}
+
+.custom-swiper-style-2 .swiper-slide {
+  height: auto;
+}
+.swiper-pagination {
+    margin-top: 15px;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1 !important;
+    background: var(--secondary) !important;
 }
