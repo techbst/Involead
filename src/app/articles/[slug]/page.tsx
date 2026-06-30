@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CalendarDays, Clock } from "lucide-react";
+import { ArrowRight, CalendarDays, Clock, ListChecks } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { articles, getArticleBySlug } from "@/data/articles";
@@ -81,9 +81,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
 
         <div className="container mx-auto">
           <div className="mx-auto text-center">
-            <span className="inline-flex rounded-full bg-secondary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-secondary">
-              {article.category}
-            </span>
+           
             <h1 className="mx-auto mt-6 font-bold ">
               {article.title}
             </h1>
@@ -104,6 +102,10 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   {article.readTime}
                 </span>
               )}
+              <span className="inline-flex items-center gap-2 text-primary">
+                  <ListChecks className="size-4 text-secondary" />
+                  {article.category}
+              </span>
             </div>
           </div>
 
@@ -161,7 +163,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                         />
                       </div>
                       <div className="min-w-0">
-                        <span className="inline-flex rounded-full bg-secondary/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-secondary">
+                        <span className="rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
                           {item.category}
                         </span>
                         <div className="mt-2 line-clamp-3 text-sm font-semibold leading-5 text-slate-950 transition group-hover:text-secondary">

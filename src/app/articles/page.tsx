@@ -68,7 +68,7 @@ const ctaData: CTAData = {
         </div>
       </section>
 
-      <section className="container mx-auto pb-20">
+      <section className="container mx-auto mb-20">
         <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
           {paginatedArticles.map((article, index) => (
             <BlogCard
