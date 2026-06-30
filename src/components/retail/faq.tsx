@@ -53,7 +53,7 @@ const faqData: FAQCategory[] = [
 
 export default function FAQSection() {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative overflow-hidden py-20 bg-secondary/10">
       <div className="container relative">
         <SectionHeader
           title="Frequently Asked Questions"

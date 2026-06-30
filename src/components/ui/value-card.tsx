@@ -7,7 +7,8 @@ interface ValueCardProps {
   icon?: React.ElementType;
   image?: string;
   title: string;
-  description: string;
+  description?: string;
+  ullist?: string[];
   index: number;
 }
 
@@ -49,6 +50,7 @@ export default function ValueCard({
   image,
   title,
   description,
+  ullist,
 }: ValueCardProps) {
   return (
     <motion.article
@@ -119,13 +121,24 @@ export default function ValueCard({
         variants={lineVariants}
         className="relative z-10 mt-3 h-[3px] w-12 rounded-full bg-gradient-to-r from-cyan-500 to-sky-400"
       />
-
+      {description && (
       <motion.p
         variants={descVariants}
-        className="relative z-10 mt-5 leading-7 !text-slate-600"
+        className="relative z-10 mt-5 leading-7 !text-primary"
       >
         {description}
       </motion.p>
+      )}
+      {ullist && (
+        <motion.ul
+          variants={descVariants}
+          className="relative z-10 mt-5 list-disc space-y-2 pl-5 text-primary"
+        >
+          {ullist.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </motion.ul>
+      )}
 
       <div className="absolute bottom-0 left-0 h-[3px] w-full bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
     </motion.article>

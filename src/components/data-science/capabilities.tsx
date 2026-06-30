@@ -41,7 +41,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.55, delay: index * 0.03, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: isFlipped ? 0 : -8 }}
+      // whileHover={{ y: isFlipped ? 0 : -8 }}
       className="group h-full min-h-[480px] w-full [perspective:1400px]"
     >
       <motion.div
@@ -69,21 +69,29 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
             className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]"
             style={{ clipPath: CLIP_PATH }}
           />
-          <div className="absolute left-0 top-0 h-full w-full bg-black group-hover:bg-secondary">
+          <div
+            className="absolute inset-0 z-10 transition duration-500 bg-black/50 group-hover:bg-black/70"
+            style={{
+              clipPath: CLIP_PATH,
+            }}
+          />
+          <div className="absolute left-0 top-0 h-full w-full ">
+            
             <img
               src={item.image}
               alt=""
-              className="h-full w-full object-cover opacity-30 transition duration-500 group-hover:opacity-10"
+              className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
             />
           </div>
 
           <div className="relative z-10 flex h-full flex-col">
-            <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl ">
+            {/* <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl ">
               <Icon className="size-7" />
-            </div>
+            </div> */}
 
-            <div className="mt-7 text-[20px] font-bold text-white">
-              {item.title}
+            <div className="z-20 flex items-center gap-3">
+              <span className="mt-0 h-7 w-1 bg-[#5fb0c2]"></span>
+              <h3 className="!text-[20px] !font-semibold leading-tight text-white">{item.title}</h3>
             </div>
 
             <div className="mt-7 grid gap-3">
@@ -127,8 +135,11 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
             transform: "rotateY(180deg)",
           }}
         >
-          <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#5fb0c2,#a7dde9)]" />
 
+          {/* <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#5fb0c2,#a7dde9)]" /> */}
+          <div className="absolute -right-1 -top-1 max-w-[200px] opacity-20 -z-1">
+            <img src={'/img/shape-3.webp'} alt="shape" />
+          </div>
           <div className="flex items-start justify-between gap-4">
             <div className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-secondary/10 text-secondary">
               <Icon className="size-6" />
@@ -146,32 +157,42 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
             <div className="text-[20px] font-bold text-slate-950">
               {item.title}
             </div>
-            <p className="mt-4 leading-7 text-slate-700">
+            <p className="mt-4 !text-[15px]">
               {item.summary}
             </p>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 grid grid-rows-2 gap-3 sm:grid-cols-2">
               {item.metrics.map((metric, metricIndex) => (
                 <motion.div
-                  key={metric.label}
-                  custom={metricIndex}
-                  variants={statVariants}
-                  initial="hidden"
-                  animate={isFlipped ? "show" : "hidden"}
-                  className={`rounded-[14px] border border-slate-200 bg-white px-4 py-2 shadow-[0_10px_26px_rgba(15,23,42,0.04)] ${metricIndex % 2 === 0 ? "text-left" : "text-left md:text-right"
-                    } min-w-0`}
-                >
-                  <div className="text-[17px] font-semibold text-slate-950">
-                    <AnimatedNumber
-                      key={`${metric.label}-${flipToken}`}
-                      value={metric.valuecomp}
-                    />
-                  </div>
+                    key={metric.label}
+                    custom={metricIndex}
+                    variants={statVariants}
+                    initial="hidden"
+                    animate={isFlipped ? "show" : "hidden"}
+                    className={`
+                      rounded-[16px]
+                      px-4 py-3
+                      min-w-0
+                      border border-white/30
+                    bg-[radial-gradient(circle_at_top_left,_#6ab8c9_0%,_#4f9fb2_55%,_#2f7f93_100%)]
+                      inset_0_10px_10px_rgba(36,104,119,0.35),inset_0_-12px_14px_rgba(0,0,0,0.08)]
+                      transition-all duration-300
+                      hover:-translate-y-1
+                      hover:shadow-[0_12px_24px_rgba(0,0,0,0.18),0_24px_45px_rgba(95,176,194,0.45),inset_0_1px_1px_rgba(255,255,255,0.45)]
+                      ${metricIndex % 2 === 0 ? "text-left" : "text-left md:text-left"}
+                    `}
+                  >
+                    <div className="text-[17px] font-bold text-white">
+                      <AnimatedNumber
+                        key={`${metric.label}-${flipToken}`}
+                        value={metric.valuecomp}
+                      />
+                    </div>
 
-                  <p className="mt-2 break-words !text-xs font-medium capitalize leading-4 text-secondary">
-                    {metric.label}
-                  </p>
-                </motion.div>
+                    <div className="mt-2 break-words !text-[14px] font-medium capitalize leading-5 !text-white">
+                      {metric.label}
+                    </div>
+                  </motion.div>
               ))}
             </div>
 

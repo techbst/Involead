@@ -98,9 +98,9 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Leverage AI, advanced analytics, & econometric modeling to optimize pricing, promotions, marketing spend, & channel strategies. Drive data-backed decisions across the commercial ecosystem to maximize revenue, profitability, and market impact.",
     metrics: [
-      { value: "+ 18%", label: "Marketing ROI" },
-      { value: "+ 20%", label: "Faster decision across media planning" },
-      { value: "+ 15%", label: "Gross Margin Uplift" },
+      { value: "+18%", label: "Marketing ROI" },
+      { value: "+20%", label: "Faster decision across media planning" },
+      { value: "+15%", label: "Gross Margin Uplift" },
     ],
     href: "/case-studies/commercial-effectiveness",
   },
@@ -110,9 +110,9 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Unify customer, campaign, and transaction data to predict churn, identify growth opportunities, and personalize customer engagement at enterprise scale.",
     metrics: [
-      { value: "- 22%", label: "Churn Reduction" },
-      { value: "+ 31%", label: "Customer Retention" },
-      { value: "+ 26%", label: "Campaign Conversion" },
+      { value: "-22%", label: "Churn Reduction" },
+      { value: "+31%", label: "Customer Retention" },
+      { value: "+26%", label: "Campaign Conversion" },
     ],
     href: "/case-studies/predictive-customer-intelligence",
   },
@@ -122,9 +122,9 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Use AI forecasting, inventory intelligence, and demand sensing to reduce stockouts, improve fulfillment speed, and optimize working capital across locations.",
     metrics: [
-      { value: "- 28%", label: "Inventory Cost" },
-      { value: "+ 34%", label: "Forecast Accuracy" },
-      { value: "- 19%", label: "Stockout Events" },
+      { value: "-28%", label: "Inventory Cost" },
+      { value: "+34%", label: "Forecast Accuracy" },
+      { value: "-19%", label: "Stockout Events" },
     ],
     href: "/case-studies/supply-chain-optimization",
   },

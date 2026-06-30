@@ -33,7 +33,7 @@ export default function CaseStudiesCard({
   return (
     <article
       className={cn(
-        "rounded-[28px] bg-white p-4 shadow-[0_24px_70px_rgba(20,184,220,0.18)]",
+        "rounded-[28px] bg-white p-4 shadow-[0_24px_70px_rgba(0,0,0,0.10)]",
         "md:rounded-[32px] md:p-5",
         className
       )}

@@ -15,7 +15,7 @@ const microNodes = [
   { label: "Data", className: "left-[15%] top-[22%]", icon: Database },
   { label: "Policy", className: "right-[15%] top-[22%]", icon: ShieldCheck },
   { label: "Agents", className: "left-[12%] bottom-[28%]", icon: Workflow },
-  { label: "Decisions", className: "right-[4%] bottom-[28%]", icon: Target },
+  { label: "Decisions", className: "right-[12%] bottom-[28%]", icon: Target },
   { label: "ROI", className: "left-1/2 top-[7%] -translate-x-1/2", icon: CircleDollarSign },
   { label: "Trust", className: "left-1/2 bottom-[8%] -translate-x-1/2", icon: Network },
 ];

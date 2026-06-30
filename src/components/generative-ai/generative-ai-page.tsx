@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
+  ArrowLeft,
   ArrowRight,
   Bot,
   Brain,
+  CircleCheckBig,
   Code2,
   Cpu,
   Database,
@@ -30,7 +32,8 @@ import ClipShape from "../ui/clip-shape";
 import CallToAction1, { CTAData } from "@/components/ui/call-to-action-1";
 import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
 import ImpactOnIndustry from "./impact-on-industry";
-
+import type { Swiper as SwiperType } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 type SectionHeaderProps = {
   eyebrow?: string;
   title: string;
@@ -562,12 +565,12 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
 
   return (
     <motion.div
-      variants={fadeUp}
-      initial="hidden"
+      // variants={fadeUp}
+      // initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.16 }}
-      transition={{ duration: 0.45, delay: index * 0.03 }}
-      whileHover={{ y: isFlipped ? 0 : -8 }}
+      // transition={{ duration: 0.45, delay: index * 0.03 }}
+      // whileHover={{ y: isFlipped ? 0 : -8 }}
       className="group h-full min-h-[480px] [perspective:1400px]"
     >
       <motion.div
@@ -590,23 +593,29 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
         >
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" style={{ clipPath: CLIP_PATH }}/>
 
-          <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(15,23,42,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:34px_34px]" style={{ clipPath: CLIP_PATH }}/>
+          <div
+                      className="absolute inset-0 z-10 transition duration-500 bg-black/50 group-hover:bg-black/70"
+                      style={{
+                        clipPath: CLIP_PATH,
+                      }}
+                    />
 
           <div className="absolute left-0 top-0 w-full h-full bg-black/50 group-hover:bg-secondary">
             <img
               src="/gen-ai/Agentic-Orchestration-Swarms.webp"
               alt=""
-              className="h-full w-full object-cover opacity-30 transition duration-500 group-hover:opacity-10"
+              className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
             />
           </div>
 
           <div className="relative z-10 flex h-full flex-col">
-            <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+            {/* <div className="flex size-14 items-center justify-center rounded-[14px] border border-white/80 bg-white text-[#5fb0c2] shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-xl">
               <Icon className="size-7" />
-            </div>
+            </div> */}
 
-            <div className="mt-7 text-[20px] text-white font-bold">
-              {item.title}
+            <div className="z-20 flex items-center gap-3">
+              <span className="mt-0 h-7 w-1 bg-[#5fb0c2]"></span>
+              <h3 className="!text-[20px] !font-semibold leading-tight text-white">{item.title}</h3>
             </div>
 
             <div className="mt-7 grid gap-3">
@@ -615,9 +624,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
                   key={pointer}
                   className="flex items-center gap-3 text-sm font-medium text-[16px]"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white group-hover:bg-black">
-                    {pointerIndex + 1}
-                  </span>
+                  <CircleCheckBig className="text-secondary" />
                   <span className="text-white">{pointer}</span>
                 </div>
               ))}
@@ -787,7 +794,7 @@ function TimelineSection() {
                 <span className="absolute left-0 top-6 z-10 flex size-8 items-center justify-center rounded-full border border-secondary bg-slate-950 shadow-[0_0_28px_rgba(95,176,94,0.75)] md:left-1/2 md:-translate-x-1/2">
                   <span className="size-2.5 rounded-full bg-secondary" />
                 </span>
-                <article className="rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
+                <article className="rounded-lg border border-white/10 bg-white/[0.10] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
                   <p className="font-medium !text-secondary">{item.step}</p>
                   <div className="mt-0 text-white lg:text-[22px] font-semibold">{item.title}</div>
                   <p className="mt-0 text-sm leading-7 !text-white/68">{item.body}</p>
@@ -861,11 +868,11 @@ function TechStackTabs() {
 function BlogSection() {
   return (
     <section className="py-20">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto container">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeader
               align="left"
-              title="Success Stories"
+              title="Get Insights & Tips from Our Blog"
               description="Check out our blog for the latest AI trends and insights!"
             />
             <Button asChild>
@@ -931,6 +938,7 @@ const ctaData: CTAData = {
     ],
 };
 export default function GenerativeAIPage() {
+  const swiperRef = useRef<SwiperType | null>(null);
   return (
     <div className="overflow-hidden bg-white text-slate-950">
       {/* <HeroSection /> */}
@@ -950,18 +958,58 @@ export default function GenerativeAIPage() {
         </div>
       </section>
 
-      <section className="py-20 overflow-hidden relative bg-secondary/10">
+      <section className="py-20 overflow-hidden relative">
         <div className="container relative">
-          <SectionHeader
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          
+           <SectionHeader
             eyebrow="Our Generative AI Expertise"
             title="Future-Proof AI Architectures"
             description="We specialize in Cognitive Architectures that redefine scalability. From autonomous agents to Large Language Model (LLM) fine-tuning, we deploy enterprise-grade systems designed for Zero-Shot efficiency."
+            align="left"
+            descriptionmaxWidth="5xl"
           />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {expertiseCards.map((item, index) => (
-              <ExpertiseCard key={item.title} item={item} index={index} />
-            ))}
+
+          <div className="flex gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+              aria-label="Previous capability"
+            >
+              <ArrowLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => swiperRef.current?.slideNext()}
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+              aria-label="Next capability"
+            >
+              <ArrowRight className="size-5" />
+            </button>
           </div>
+        </div>
+          
+          <Swiper
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          spaceBetween={20}
+          slidesPerView={3}
+          loop={false}
+          breakpoints={{
+            640: { slidesPerView: 1.15 },
+            768: { slidesPerView: 2 },
+            1200: { slidesPerView: 3 },
+          }}
+          className="mt-9 min-w-0 custom-swiper-style-2"
+        >
+            {expertiseCards.map((item, index) => (
+              <SwiperSlide key={item.title} className="h-auto py-2 bg-transparent rounded-xl">
+                <ExpertiseCard key={item.title} item={item} index={index} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
 

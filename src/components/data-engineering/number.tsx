@@ -22,35 +22,40 @@ export default function Stats() {
             icon: BrainCircuit,
             label: "Projects Delivered",
             body: "",
+            hoverable:false,
         },
         {
             value: "50+",
             icon: TrendingUp,
             label: "Enterprise Clients",
             body: "",
+            hoverable:false,
         },
         {
             value: "99.9%",
             icon: DollarSign,
             label: "Client Satisfaction",
             body: "",
+            hoverable:false,
         },
         {
             value: "10+",
             icon: BarChart3,
             label: "Years of Experience",
             body: "",
+            hoverable:false,
         },
         {
             value: "300%",
             icon: BarChart3,
             label: "ROI Improvement",
             body: "",
+            hoverable:false,
         },
     ] as const;
 
     return (
-        <section className="bg-white pt-20 pb-1">
+        <section className="bg-white pt-20 pb-2">
             <div className="container">
                 <SectionHeader
                     maxWidth="5xl"

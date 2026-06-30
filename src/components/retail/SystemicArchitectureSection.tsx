@@ -47,7 +47,7 @@ export default function SystemicArchitectureSection() {
   
 
   return (
-    <section className="relative overflow-hidden bg-white pt-5 pb-5">
+    <section className="relative overflow-hidden bg-white pt-20 pb-1">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_50%,rgba(95,176,194,0.09),transparent_28%),radial-gradient(circle_at_88%_25%,rgba(95,176,194,0.06),transparent_24%)]" />
       <div className="container relative mx-auto">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7 }}>

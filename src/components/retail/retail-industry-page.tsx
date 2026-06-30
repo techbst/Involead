@@ -17,7 +17,7 @@ export default function RetailIndustryPage() {
       <HeroTwo />
       <ResultsSection />
       <SolutionsSection />
-      <GrowthTimelinePage />
+      {/* <GrowthTimelinePage /> */}
       <SystemicAISection />
       <SystemicArchitectureSection />
       <CaseStudyShowcase />

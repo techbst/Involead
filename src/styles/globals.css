@@ -406,7 +406,14 @@ p {
   display: none;
 }
 .custom-swiper-style-1 .swiper-slide.swiper-slide-active article {
-  background: var(--secondary);
+  background: radial-gradient(
+    circle at top left,
+    #6ab8c9 0%,
+    #4f9fb2 55%,
+    #2f7f93 100%
+  );
+
+
 }
 
 .custom-swiper-style-1 .swiper-wrapper {
@@ -471,4 +478,8 @@ p {
 .swiper-pagination-bullet-active {
     opacity: 1 !important;
     background: var(--secondary) !important;
+}
+.swiper-pagination.swiper-pagination-bullets {
+  position: relative;
+  margin-top: 30px;
 }

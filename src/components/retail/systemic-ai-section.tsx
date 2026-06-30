@@ -5,6 +5,7 @@ import { BrainCircuit } from "lucide-react";
 
 import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
+import ClipShape from "../ui/clip-shape";
 
 const labels = [
   "Enterprise Context",
@@ -17,11 +18,12 @@ const positions = ["top-[8%]", "right-[2%]", "bottom-[8%]", "left-[2%]"] as cons
 
 export default function SystemicAISection() {
   return (
-    <section className="bg-white py-20 text-white border-b-1 border-dashed">
-      <div className="container mx-auto grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
+    <section className="relative py-20 text-white ">
+      <ClipShape />
+      <div className="container relative z-10 mt-20 grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
         <div>
           <SectionHeader
-            eyebrow=""
+            eyebrow="Systemic AI Advantage"
             title="New Possibilities with Systemic AI"
             description="Empower teams with AI-driven intelligence to optimize every lever of growth with Systemic AI."
             textColor="black"
@@ -84,7 +86,7 @@ export default function SystemicAISection() {
             <span
               key={text}
               className={cn(
-                "absolute rounded-full border border-secondary/10 bg-secondary px-4 py-2 text-xs text-white backdrop-blur",
+                "absolute rounded-full border border-secondary/10 bg-secondary px-4 py-2 text-xs text-white",
                 positions[index],
               )}
             >
