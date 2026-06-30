@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "./button";
 
 export type BlogPost = {
@@ -26,6 +26,8 @@ export function BlogCard({
   post: BlogPost;
   index?: number;
 }) {
+  const href = post.href || "#";
+
   return (
     <motion.article
         variants={fadeUp}
@@ -46,6 +48,11 @@ export function BlogCard({
             WebkitBackfaceVisibility: "hidden",
         }}
         >
+      <Link
+        href={href}
+        aria-label={`Read article: ${post.title}`}
+        className="absolute inset-0 z-[120]"
+      />
       <div className="relative z-99 h-48 overflow-hidden bg-[linear-gradient(135deg,_#111827_0%,_#60b0c2_58%,_#59a3b4_100%)]">
         <Image
           alt={post.title}
@@ -63,21 +70,22 @@ export function BlogCard({
           {post.category}
         </span>
 
-        <h3 className="mt-4 text-2xl font-bold tracking-normal text-slate-950">
+        <h3 className="mt-4 font-bold line-clamp-2 text-primary">
           {post.title}
         </h3>
 
-        <p className="mt-3 text-sm leading-7 text-slate-600">
+        <div className="mt-3 text-primary">
           {post.excerpt}
-        </p>
+        </div>
 
         
         <div className="flex justify-end">
             <Button
             type="button"
+            asChild
             className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
             >
-                <Link href={post.href || "#"}>
+                <Link href={href} className="relative z-[130]" aria-label={`Read article: ${post.title}`}>
                     <ArrowRight className="size-4" />
                 </Link>
             </Button>

@@ -652,6 +652,9 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
             transform: "rotateY(180deg)",
           }}
         >
+          <div className="absolute -right-1 -top-1 max-w-[200px] -z-1 opacity-20">
+            <img src={'/img/shape-3.webp'} alt="shape" />
+          </div>
           <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#5fb0c2,#a7dde9)]" />
           <div className="flex items-start justify-between gap-4">
             <div className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-secondary/10 text-secondary ">
@@ -991,19 +994,19 @@ export default function GenerativeAIPage() {
         </div>
           
           <Swiper
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          spaceBetween={20}
-          slidesPerView={3}
-          loop={false}
-          breakpoints={{
-            640: { slidesPerView: 1.15 },
-            768: { slidesPerView: 2 },
-            1200: { slidesPerView: 3 },
-          }}
-          className="mt-9 min-w-0 custom-swiper-style-2"
-        >
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            spaceBetween={20}
+            slidesPerView={3}
+            loop={false}
+            breakpoints={{
+              640: { slidesPerView: 1.15 },
+              768: { slidesPerView: 2 },
+              1200: { slidesPerView: 3 },
+            }}
+            className="mt-9 min-w-0 custom-swiper-style-2"
+          >
             {expertiseCards.map((item, index) => (
               <SwiperSlide key={item.title} className="h-auto py-2 bg-transparent rounded-xl">
                 <ExpertiseCard key={item.title} item={item} index={index} />
