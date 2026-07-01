@@ -13,11 +13,13 @@ import SectionReveal from "./SectionReveal";
 import ClipCard from "@/components/ui/clip-card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
+import CornerShape from "../ui/shape";
 
 export default function ServicesSection() {
     const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section className="bg-white py-15 ">
+    <section className="bg-white py-15 relative">
+      
       <SectionReveal className="container mx-auto ">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
@@ -59,10 +61,10 @@ export default function ServicesSection() {
               slidesPerView: 3,
             },
             1340: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
             1700: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
           }}
           className="mt-12 custom-swiper-style-2"
@@ -92,6 +94,9 @@ export default function ServicesSection() {
           ))}
         </Swiper>
       </SectionReveal>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
+      <CornerShape color="#fff" />
+    </div>
     </section>
   );
 }

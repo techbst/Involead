@@ -11,6 +11,7 @@ import SectionReveal from "./SectionReveal";
 import ClipCard from "@/components/ui/product-card";
 import { SectionHeader } from "../ui/section-header";
 import { Autoplay, Pagination } from "swiper/modules";
+import CornerShape from "../ui/shape";
 // import ClipCard from "../ui/clip-card";
 
 
@@ -63,17 +64,17 @@ export default function ProductsInnovation() {
 
   return (
     <section
-      className="products-innovation-shell relative isolate overflow-hidden pt-0 pb-5 "
+      className="products-innovation-shell relative isolate overflow-hidden py-20 bg-secondary/15"
     >
-      <div
+      {/* <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[#edf8fb] h-full"
         style={{
           clipPath: "polygon(0.01% 0%, 0.04% 0.26%, 0.11% 0.65%, 0.22% 1.12%, 0.39% 1.65%, 0.63% 2.19%, 0.94% 2.71%, 1.34% 3.18%, 1.84% 3.56%, 2.45% 3.82%, 3.18% 3.91%, 13.70% 3.91%, 13.75% 3.91%, 13.90% 3.93%, 14.14% 3.97%, 14.44% 4.05%, 14.79% 4.19%, 15.17% 4.40%, 15.58% 4.68%, 16.01% 5.05%, 16.47% 5.54%, 16.79% 6.15%, 16.83% 6.21%, 16.92% 6.37%, 17.10% 6.62%, 17.31% 6.94%, 17.59% 7.32%, 17.89% 7.75%, 18.22% 8.20%, 18.54% 8.66%, 18.88% 9.11%, 19.18% 9.54%, 19.54% 9.84%, 19.87% 10.07%, 20.14% 10.24%, 20.44% 10.36%, 20.76% 10.43%, 21.06% 10.47%, 21.36% 10.49%, 21.66% 10.49%, 21.96% 10.48%, 22.26% 10.47%, 100% 10.47%, 100% 100%, 22.26% 100%, 21.96% 100.01%, 21.66% 100.01%, 21.36% 100.01%, 21.04% 100%, 20.76% 99.96%, 20.44% 99.89%, 20.14% 99.77%, 19.87% 99.60%, 19.54% 99.37%, 19.22% 99.07%, 18.89% 98.65%, 18.55% 98.19%, 18.21% 97.74%, 17.89% 97.29%, 17.59% 96.86%, 17.33% 96.48%, 17.10% 96.16%, 16.93% 95.90%, 16.83% 95.74%, 16.80% 95.68%, 16.40% 95.07%, 16.01% 94.59%, 15.58% 94.22%, 15.17% 93.92%, 14.79% 93.72%, 14.44% 93.60%, 14.14% 93.51%, 13.90% 93.47%, 13.75% 93.45%, 13.70% 93.45%, 3.18% 93.45%, 2.38% 93.35%, 1.73% 93.05%, 1.20% 92.58%, 0.80% 92.02%, 0.50% 91.42%, 0.28% 90.82%, 0.14% 90.29%, 0.05% 89.84%, 0.01% 89.51%, 0% 89.41%, 0% 0%)",
         }}
-      />
+      /> */}
 
-      <SectionReveal className="relative z-10 mx-auto container mt-40 mb-20">
+      <SectionReveal className="relative container">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
          <SectionHeader
                     eyebrow={" Products & Innovations"}
@@ -117,10 +118,10 @@ export default function ProductsInnovation() {
               slidesPerView: 3,
             },
             1340: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
             1700: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
           }}
             onSwiper={(swiper) => {
@@ -131,7 +132,7 @@ export default function ProductsInnovation() {
             {products.map((product, index) => (
               <SwiperSlide 
               key={product.title} 
-              className="pb-8">
+              className="">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -171,6 +172,9 @@ export default function ProductsInnovation() {
         </div>
        
       </SectionReveal>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-[#fff] ">
+        <CornerShape color="#5fb0c226" />
+      </div>
     </section>
   );
 }

@@ -34,7 +34,7 @@ function Counter({ value, suffix }: Pick<Stat, 'value' | 'suffix'>) {
 export default function StatsCounter() {
   return (
     <section className="bg-black px-0 py-0 text-white sm:px-6 lg:px-12">
-      <div className="mx-auto grid w-full  overflow-hidden bg-black divide-y divide-white/10 grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
+      <div className="mx-auto grid w-full  overflow-hidden bg-black divide-y divide-white/10 grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4 ">
         {stats.map((stat) => (
           <article
             key={stat.label}

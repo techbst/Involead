@@ -23,7 +23,7 @@ export default function ClipCard({
   description,
   href,
   children,
-  className = "relative h-[360px] w-full sm:h-380px] lg:h-[400px]",
+  className = "relative h-[360px] w-full sm:h-380px] lg:h-[460px]",
   showDescriptionOnHover = true,
 }: ClipCardProps) {
   return (

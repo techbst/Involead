@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import SectionReveal from "./SectionReveal";
 import { SectionHeader } from "@/components/ui/section-header";
+import CornerShape from "../ui/shape";
 interface IndustryCard {
   title: string;
   description: string;
@@ -436,7 +437,7 @@ export default function IndustryTabs() {
       <SectionReveal className="mx-auto container">
         
          <SectionHeader
-                    // eyebrow={"Transforming Industries with AI & Data"}
+                    eyebrow={"AI-Driven Innovation"}
                     title="Transforming Industries with AI & Data"
                     description="  Enabling smarter decisions, operational efficiency, and sustainable
             growth through intelligent solutions."
@@ -466,7 +467,7 @@ export default function IndustryTabs() {
               key={item.name}
               type="button"
               onClick={() => switchIndustry(index)}
-              className={`rounded-full border px-4 py-3 text-[11px] font-light uppercase tracking-normal transition duration-300 sm:px-6 sm:text-xs ${
+              className={`rounded-full border px-4 py-3 text-[11px] font-medium tracking-wider uppercase tracking-normal transition duration-300 sm:px-6 sm:text-xs ${
                 index === activeIndustry
                   ? "border-[#5fb0c2] bg-[#5fb0c2] text-white"
                   : "border-white bg-transparent text-white hover:border-[#5fb0c2]"
@@ -492,11 +493,11 @@ export default function IndustryTabs() {
             >
               {/* ── Exact original card markup, zero changes ── */}
               <article
-                className={`relative min-h-[500px] w-full max-w-[400px] shrink-0 rounded-[28px] px-5 pt-7 pb-5 text-black shadow-2xl shadow-black/40 sm:rounded-[32px] sm:pt-8 ${card.tint}`}
+                className={`relative min-h-[500px] w-full max-w-[400px] shrink-0 rounded-[24px] px-5 pt-7 pb-5 text-black shadow-2xl shadow-black/40 sm:pt-8 ${card.tint}`}
               >
                 <div className="flex gap-2">
                   <span className="mt-1  w-1 shrink-0 bg-[#5fb0c2]" />
-                  <h3 className="!text-[20px] font-light tracking-normal">
+                  <h3 className="!text-[20px] font-medium tracking-normal">
                     {card.title}
                   </h3>
                 </div>
@@ -515,7 +516,7 @@ export default function IndustryTabs() {
                     </div>
                   ))}
                 </div>
-                <div className="absolute inset-x-5 bottom-5 h-[190px] overflow-hidden rounded-[22px] sm:inset-x-8 sm:h-[200px] sm:rounded-[24px]">
+                <div className="absolute inset-x-5 bottom-5 h-[190px] overflow-hidden rounded-[24px] sm:inset-x-8 sm:h-[200px]">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -529,7 +530,7 @@ export default function IndustryTabs() {
                   aria-label={`Open ${card.title}`}
                   className="absolute right-2 bottom-2 z-10 grid size-16 rotate-45 place-items-center rounded-full border-[10px] border-white bg-[#5fb0c2] text-white transition duration-300 hover:bg-black sm:size-[68px] sm:border-[14px]"
                 >
-                  <ArrowUpRight className="size-7" />
+                  <ArrowUpRight className="size-4" />
                 </button>
               </article>
             </div>
@@ -537,6 +538,9 @@ export default function IndustryTabs() {
         </div>
 
       </SectionReveal>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-[#fff] ">
+      <CornerShape color="#000" />
+    </div>
     </section>
   );
 }

@@ -82,6 +82,7 @@ import CaseStudiesCard, {
 } from "@/components/ui/case-studies-card";
 import ClipShape from "../ui/clip-shape";
 import { SectionHeader } from "../ui/section-header";
+import CornerShape from "../ui/shape";
 
 type CaseStudyItem = {
   image: string;
@@ -98,9 +99,9 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Leverage AI, advanced analytics, & econometric modeling to optimize pricing, promotions, marketing spend, & channel strategies. Drive data-backed decisions across the commercial ecosystem to maximize revenue, profitability, and market impact.",
     metrics: [
-      { value: "+18%", label: "Marketing ROI" },
-      { value: "+20%", label: "Faster decision across media planning" },
-      { value: "+15%", label: "Gross Margin Uplift" },
+      { value: "+15–25%", label: "Revenue Growth" },
+      { value: "−15–20%", label: "Churn Reduction" },
+      { value: "+25–35%", label: "Faster Cycles" },
     ],
     href: "/case-studies/commercial-effectiveness",
   },
@@ -110,21 +111,21 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Unify customer, campaign, and transaction data to predict churn, identify growth opportunities, and personalize customer engagement at enterprise scale.",
     metrics: [
-      { value: "-22%", label: "Churn Reduction" },
-      { value: "+31%", label: "Customer Retention" },
-      { value: "+26%", label: "Campaign Conversion" },
+      { value: "+15–25%", label: "Revenue Growth" },
+      { value: "−15–20%", label: "Churn Reduction" },
+      { value: "+25–35%", label: "Faster Cycles" },
     ],
     href: "/case-studies/predictive-customer-intelligence",
   },
   {
     image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80",
-    title: "Supply Chain Optimization",
+    title: "Sales & Retention Growth — Agentic AI Across 500–2000+ SKUs",
     description:
-      "Use AI forecasting, inventory intelligence, and demand sensing to reduce stockouts, improve fulfillment speed, and optimize working capital across locations.",
+      "Retail growth is won by those who act faster and more precisely than the market. We deploy autonomous demand forecasting and churn intelligence, continuously optimizing inventory positioning and personalizing engagement at scale.",
     metrics: [
-      { value: "-28%", label: "Inventory Cost" },
-      { value: "+34%", label: "Forecast Accuracy" },
-      { value: "-19%", label: "Stockout Events" },
+      { value: "+15–25%", label: "Revenue Growth" },
+      { value: "−15–20%", label: "Churn Reduction" },
+      { value: "+25–35%", label: "Faster Cycles" },
     ],
     href: "/case-studies/supply-chain-optimization",
   },
@@ -132,13 +133,13 @@ const caseStudies: CaseStudyItem[] = [
 
 export default function CaseStudies() {
   return (
-    <section className="case_studies relative py-16 md:py-24">
-      <ClipShape />
-      <div className="container relative z-10 mt-20">
+    <section className="case_studies relative py-20 bg-black">
+      <div className="container relative">
         <SectionHeader 
           eyebrow="Case Studies"
           title="Proven Outcomes Across Modern Digital Enterprises"
           description="From automation to predictive intelligence, our solutions deliver measurable results at enterprise scale."
+          textColor="white"
         />
         <Swiper
           modules={[Autoplay, Pagination]}
@@ -146,11 +147,12 @@ export default function CaseStudies() {
           spaceBetween={24}
           loop={true}
           speed={800}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
+          // autoplay={{
+          //   delay: 3500,
+          //   disableOnInteraction: false,
+          //   pauseOnMouseEnter: true,
+          // }}
+          autoplay={false}
           pagination={{
             clickable: true,
           }}
@@ -168,6 +170,9 @@ export default function CaseStudies() {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white">
+      <CornerShape color="#000" />
       </div>
     </section>
   );

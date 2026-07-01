@@ -33,7 +33,7 @@ export default function CaseStudiesCard({
   return (
     <article
       className={cn(
-        "rounded-[28px] bg-white p-4 shadow-[0_24px_70px_rgba(0,0,0,0.10)]",
+        "rounded-[28px] bg-[linear-gradient(180deg,_#68C1D5_-15.15%,_#FFFFFF_112.08%)] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.10)]",
         "md:rounded-[32px] md:p-5",
         className
       )}
@@ -50,16 +50,17 @@ export default function CaseStudiesCard({
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/45 to-transparent" />
         </div>
 
-        <div className="flex flex-col py-1 lg:pr-1">
-          <h3 className="text-2xl font-semibold tracking-tight text-slate-800 md:text-[26px]">
+        <div className="flex flex-col bg-white rounded-[24px] px-8 py-8">
+          <span className="rounded-full bg-secondary/10 px-4 py-2 text-xs font-semibold text-secondary max-w-[100] text-center mb-5">Case Study</span>
+          <h3 className="font-semibold tracking-tight">
             {title}
           </h3>
 
-          <p className="mt-5 line-clamp-2">
+          <p className="mt-3 line-clamp-2">
             {description}
           </p>
 
-          <div className="mt-15 grid overflow-hidden rounded-[14px] border border-secondary/24 bg-[#eef6ff] sm:grid-cols-3">
+          <div className="mt-5 grid overflow-hidden rounded-[14px] bg-[#DFF2F6] sm:grid-cols-3">
             {metrics.slice(0, 3).map((metric, index) => (
               <div
                 key={`${metric.value}-${metric.label}`}
@@ -68,10 +69,10 @@ export default function CaseStudiesCard({
                   index !== 0 && "border-t border-secondary/24 sm:border-l sm:border-t-0"
                 )}
               >
-                <div className="text-2xl font-bold text-secondary md:text-[28px]">
+                <div className="font-bold text-black lg:text-[32px] sm:text-[24px] md:text-[20px]">
                   {metric.value}
                 </div>
-                <p className="mt-3 line-clamp-1">
+                <p className="mt-0 line-clamp-1">
                   {metric.label}
                 </p>
               </div>

@@ -14,6 +14,7 @@ import { useRef } from "react";
 import SectionReveal from "./SectionReveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import ValueCard from "../ui/value-card";
+import CornerShape from "../ui/shape";
 
 const values = [
   {
@@ -132,7 +133,7 @@ export default function CoreValues() {
   const isInView = useInView(gridRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="bg-white pt-15 pb-0">
+    <section className="bg-white pt-20 pb-25 relative overflow-hidden">
       <SectionReveal className="mx-auto container">
 
         {/* ── Section header ── */}
@@ -158,8 +159,9 @@ export default function CoreValues() {
         <SectionHeader
         eyebrow="Our Core Values"
           title="End-to-end AI solutions designed for measurable outcomes."
-          align="left"
-          maxWidth="3xl"
+          description="Driven by innovation, integrity, and excellence, we deliver AI solutions that create lasting business impact."
+          align="center"
+          maxWidth="5xl"
         />
 
         {/* ── Grid ── */}
@@ -182,6 +184,9 @@ export default function CoreValues() {
         </motion.div>
 
       </SectionReveal>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-secondary/15">
+      <CornerShape color="#fff" />
+      </div>
     </section>
   );
 }

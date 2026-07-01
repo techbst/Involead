@@ -6,6 +6,7 @@ import Image from "next/image";
 import SectionReveal from "./SectionReveal";
 import AnimatedNumber from "../ui/animated-number";
 import { SectionHeader } from "../ui/section-header";
+import CornerShape from "../ui/shape";
 
 const stats: { value: string; label: string; icon: string }[] = [
   {
@@ -51,12 +52,12 @@ const partnerLogos = [
 
 export default function TechnologyScale() {
   return (
-    <section className="bg-white py-15 ">
+    <section className="bg-white py-15 relative overflow-hidden py-20">
       <SectionReveal className="mx-auto container">
         <SectionHeader 
          eyebrow={"Technology at Scale"}
                     title="Enterprise Infrastructure Powered by AI, Data & Automation"
-                    
+                    description="Build scalable, intelligent infrastructure that powers seamless operations, automation, and business growth."
                     align="center"
                     textColor="black"
                     maxWidth="4xl"
@@ -64,7 +65,7 @@ export default function TechnologyScale() {
         />
         
 
-        <div className="grid grid-cols-1 gap-5 mt-15 sm:gapx-4 py-6 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
+        <div className="grid grid-cols-1 gap-5 mt-12 sm:gapx-4 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
           {stats.slice(0, 2).map(({ value, label, icon }, index) => (
             <motion.article
               key={label}
@@ -161,6 +162,9 @@ export default function TechnologyScale() {
           }
         `}</style>
       </SectionReveal>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black">
+      <CornerShape color="#fff" />
+      </div>
     </section>
   );
 }
