@@ -6,6 +6,7 @@ import { Handshake, Lightbulb, Network, Repeat, Scale, ShieldCheck } from "lucid
 import { SectionHeader } from "@/components/ui/section-header";
 import ClipShape from "../ui/clip-shape";
 import ValueCard from "../ui/value-card";
+import CornerShape from "../ui/shape";
 
 const values = [
   {
@@ -60,9 +61,8 @@ const values = [
 
 export default function CoreValues() {
   return (
-    <section className="relative overflow-hidden py-20">
-      <ClipShape />
-      <div className="container relative mt-22 mx-auto">
+    <section className="relative overflow-hidden py-20 bg-secondary/15">
+      <div className="container relative">
         <SectionHeader
           title="Our Core Values"
           description="End-to-end AI solutions designed for measurable outcomes - engineered by domain experts, powered by Agentic AI."
@@ -86,6 +86,9 @@ export default function CoreValues() {
             />
           ))}
         </motion.div>
+      </div>
+      <div className="absolute -bottom-[6px] left-0 w-[290px] bg-[#fff]">
+        <CornerShape color="#5fb0c226" />
       </div>
     </section>
   );

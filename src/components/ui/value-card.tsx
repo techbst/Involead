@@ -58,7 +58,7 @@ export default function ValueCard({
       initial="rest"
       animate="rest"
       whileHover="hover"
-      className="group relative h-full overflow-hidden rounded-[28px] border border-cyan-100/70 bg-[linear-gradient(145deg,#ffffff_0%,#f8fdfe_55%,#eefbfd_100%)] p-7 shadow-[0_15px_25px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-[0_28px_80px_rgba(95,176,194,0.18)]"
+      className="group relative h-full overflow-hidden rounded-[28px] border border-cyan-100/70 bg-[linear-gradient(145deg,#ffffff_0%,#f8fdfe_55%,#eefbfd_100%)] p-7 shadow-[0_18px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-[0_28px_80px_rgba(95,176,194,0.18)]"
     >
       
       {/* clipped vector shape - top right */}

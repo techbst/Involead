@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { motion, useInView, Variants } from "framer-motion";
 import {
   Combine,
@@ -8,14 +8,61 @@ import {
   BrainCircuit,
   Grid2x2Check,
   CodeXml,
+  HandshakeIcon,
 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import SectionReveal from "./SectionReveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import ValueCard from "../ui/value-card";
 import CornerShape from "../ui/shape";
+import {
+  UserRoundCheck,
+  Code2,
+  PanelsTopLeft,
+  ShieldCheck,
+  Network,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
+const valuess = [
+  {
+    title: "Client First",
+    desc: "We prioritize client success in every decision, delivering solutions that align with their goals while maintaining transparency, trust, and long-term partnership value.",
+    icon: UserStar,
+    image: "/home/client-first.webp",
+  },
+  {
+    title: "Deep Expertise",
+    desc: "Our team combines industry knowledge with innovative thinking to build intelligent, high-impact solutions tailored to complex business challenges.",
+    icon: Code2,
+    image: "/home/client-first.webp",
+  },
+  {
+    title: "Collaboration",
+    desc: "We work closely with clients through transparent communication and co-creation, ensuring every solution drives measurable business outcomes.",
+    icon: HandshakeIcon,
+    image: "/home/client-first.webp",
+  },
+  {
+    title: "Agile",
+    desc: "We adapt quickly to changing business needs with flexible workflows, customizable solutions, and efficient agile delivery practices.",
+    icon: Grid2x2Check,
+    image: "/home/client-first.webp",
+  },
+  {
+    title: "Transparency & Value",
+    desc: "We focus on delivering measurable value through honest communication, customer-centric decisions, and outcome-driven execution.",
+    icon: ShieldCheck,
+    image: "/home/client-first.webp",
+  },
+  {
+    title: "Scalability",
+    desc: "We design scalable, future-ready solutions with modular architectures that support sustainable growth and long-term business success.",
+    icon: BrainCircuit,
+    image: "/home/client-first.webp",
+  },
+];
 const values = [
   {
     icon: UserStar,
@@ -131,7 +178,9 @@ const descVariants: Variants = {
 export default function CoreValues() {
   const gridRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(gridRef, { once: true, margin: "-80px" });
+  const [active, setActive] = useState<number | null>(null);
 
+  const rows = [valuess.slice(0, 3), valuess.slice(3, 6)];
   return (
     <section className="bg-white pt-20 pb-25 relative overflow-hidden">
       <SectionReveal className="mx-auto container">
@@ -157,7 +206,7 @@ export default function CoreValues() {
           End-to-end AI solutions designed for measurable outcomes.
         </motion.h2> */}
         <SectionHeader
-        eyebrow="Our Core Values"
+          eyebrow="Our Core Values"
           title="End-to-end AI solutions designed for measurable outcomes."
           description="Driven by innovation, integrity, and excellence, we deliver AI solutions that create lasting business impact."
           align="center"
@@ -165,7 +214,7 @@ export default function CoreValues() {
         />
 
         {/* ── Grid ── */}
-        <motion.div
+        {/* <motion.div
           ref={gridRef}
           // variants={containerVariants}
           initial="hidden"
@@ -181,11 +230,89 @@ export default function CoreValues() {
               index={index}
             />
           ))}
-        </motion.div>
+        </motion.div> */}
 
+        <div className="mt-12 space-y-4">
+          {rows.map((row, rowIndex) => (
+            <div key={rowIndex} className="flex flex-col gap-4 lg:flex-row">
+              {row.map((item, itemIndex) => {
+                const index = rowIndex * 3 + itemIndex;
+                const Icon = item.icon;
+                const isActive = active === index;
+
+                return (
+                  <motion.div
+                    key={item.title}
+                    onMouseEnter={() => setActive(index)}
+                    onMouseLeave={() => setActive(null)}
+                    style={{ flex: 1 }}
+                    animate={{
+                      flex: active === index ? 1.45 : 1,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className={cn(
+                      "group relative min-h-[230px] w-full min-w-0 overflow-hidden rounded-[16px] p-5",
+                      "border bg-[#f4fbfd] transition-colors duration-500",
+                      isActive ? "border-secondary/50 shadow-[0_10px_15px_rgba(95,176,194,0.22)]" : "border-transparent"
+                    )}
+                  >
+                    <div className="relative z-10 flex h-full gap-5">
+                      <div className="flex min-w-0 flex-1 flex-col">
+                        <div className="mb-7 grid size-[54px] place-items-center rounded-[7px] bg-[#5fb0c2] text-white">
+                          <Icon className="size-7" strokeWidth={1.7} />
+                        </div>
+
+                        <h3 className="relative mb-3 w-fit font-semibold leading-tight text-black">
+                          {item.title}
+
+                          <span
+                            className={cn(
+                              "absolute -bottom-1 left-0 h-[1px] bg-[#5fb0c2] transition-all duration-500",
+                              isActive ? "w-full" : "w-0"
+                            )}
+                          />
+                        </h3>
+
+                        <p className="line-clamp-4 text-sm leading-relaxed text-black/60">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      <motion.div
+                        animate={{
+                          width: isActive ? 160 : 0,
+                          opacity: isActive ? 1 : 0,
+                        }}
+                        transition={{
+                          duration: 0.45,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="relative hidden shrink-0 overflow-hidden rounded-[8px] md:block"
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition duration-700 group-hover:scale-110"
+                        />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </SectionReveal>
+
+
+
+
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-secondary/15">
-      <CornerShape color="#fff" />
+        <CornerShape color="#fff" />
       </div>
     </section>
   );
