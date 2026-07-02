@@ -6,14 +6,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Bot,
+  Briefcase,
   Building2,
   Cloud,
   Database,
   Globe2,
   Landmark,
   LayoutGrid,
+  Lightbulb,
   LineChart,
   Sparkles,
+  Users,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -27,7 +30,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
-type MenuKey = "solutions" | "industries" | "products";
+type MenuKey = "solutions" | "industries" | "products" | "about";
 
 type MenuItem = {
   title: string;
@@ -131,12 +134,36 @@ const menuSections: Record<MenuKey, MenuSection> = {
       },
     ],
   },
+  about: {
+    heading: "ABOUT",
+    items: [
+      {
+        title: "Overview",
+        description: "Discover how we help businesses innovate with AI and digital solutions.",
+        href: "/about",
+        icon: Briefcase,
+      },
+      {
+        title: "Leadership Team",
+        description: "Meet the professional and experienced leaders behind our success.",
+        href: "/about#leadership_team",
+        icon: Users,
+      },
+      {
+        title: "Thought Leadership",
+        description: "AI insights, emerging trends, and proven business strategies.",
+        href: "/thought-leadership",
+        icon: Lightbulb,
+      },
+    ],
+  },
 };
 
 const menuOrder: Array<{ key: MenuKey; label: string }> = [
   { key: "solutions", label: "Our Solutions" },
   { key: "industries", label: "Industries" },
   { key: "products", label: "Products" },
+  { key: "about", label: "About Us" },
 ];
 
 const panelMotion = {
@@ -237,10 +264,10 @@ export default function DesktopMegaMenu() {
             return (
               <NavigationMenuItem key={menu.key}>
                 <NavigationMenuTrigger
-                  className={cn(
-                    "h-9 rounded-full bg-transparent px-3 text-[13px] font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-slate-950 data-[state=open]:bg-slate-100",
-                    isActive && "bg-slate-100"
-                  )}
+                  // className={cn(
+                  //   "h-9 rounded-full bg-transparent px-3 text-[13px] font-medium text-slate-950 transition-colors hover:bg-[#e4fbff] hover:text-slate-950 data-[state=open]:bg-slate-100",
+                  //   isActive && "bg-[#e4fbff]"
+                  // )}
                   onMouseEnter={() => openMenu(menu.key)}
                   onFocus={() => openMenu(menu.key)}
                   onClick={() => openMenu(menu.key)}

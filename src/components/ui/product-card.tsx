@@ -52,7 +52,7 @@ export default function ClipCard({
         style={clipPathStyle}
       >
         {/* Image / Header Media Section */}
-        <div className="relative h-44 overflow-hidden bg-slate-900 sm:h-48 md:h-52">
+        <div className="relative rounded-[24px] h-80 overflow-hidden bg-slate-900">
           {/* Accent light overlay */}
           <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
           
@@ -65,9 +65,9 @@ export default function ClipCard({
           />
 
           {/* Floating Category Badge */}
-          <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-semibold backdrop-blur-md bg-white/90 shadow-sm border border-slate-200/50">
-            <IconComponent className="size-3 text-[#318697]" />
-            <span className="text-slate-800">{info.label}</span>
+          <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-[50px] px-2.5 py-1.5 text-xs font-semibold backdrop-blur-md bg-[#e4fbff] text-[#417f8c]">
+            {/* <IconComponent className="size-3 text-[#318697]" /> */}
+            <span>{info.label}</span>
           </div>
 
           {/* Quick Stats Widget */}

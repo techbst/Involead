@@ -58,12 +58,12 @@ export default function WhatDrives() {
                 className="group h-[360px] [perspective:1200px]"
               >
                 <div
-  className={`relative h-full w-full rounded-[1.75rem] transition-transform duration-700 [transform-style:preserve-3d] ${
-    index === 0
-      ? "[transform:rotateY(180deg)] group-hover:[transform:rotateY(0deg)]"
-      : "group-hover:[transform:rotateY(180deg)]"
-  }`}
->
+                  className={`relative h-full w-full rounded-[1.75rem] transition-transform duration-700 [transform-style:preserve-3d] ${
+                    index === 0
+                      ? "[transform:rotateY(180deg)] group-hover:[transform:rotateY(0deg)]"
+                      : "group-hover:[transform:rotateY(180deg)]"
+                  }`}
+                >
                   
                   {/* Front */}
                   <div className="absolute inset-0 overflow-hidden rounded-[1.75rem] [backface-visibility:hidden]">

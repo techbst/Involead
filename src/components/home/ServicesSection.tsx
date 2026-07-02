@@ -18,7 +18,7 @@ import CornerShape from "../ui/shape";
 export default function ServicesSection() {
     const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section className="bg-white py-15 relative">
+    <section className="bg-white pt-20 pb-30 relative">
       
       <SectionReveal className="container mx-auto ">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">

@@ -35,7 +35,7 @@ metrics: [
 { value: "-18-25%", label: "Lower Costs" },
 { value: "+25-35%", label: "Better Outcomes" },
 ],
-tint: "bg-[#e7ff7d]",
+tint: "bg-[#EAF7EB]",
 },
 {
 title: "AI-Powered Clinical Workflow Automation",
@@ -47,7 +47,7 @@ metrics: [
 { value: "-15-28%", label: "Admin Time" },
 { value: "+20-32%", label: "Patient Access" },
 ],
-tint: "bg-white",
+tint: "bg-[#E7F4FB]",
 },
 {
 title: "Predictive Analytics For Population Health",
@@ -59,7 +59,7 @@ metrics: [
 { value: "-20-25%", label: "Readmissions" },
 { value: "+24-36%", label: "Care Quality" },
 ],
-tint: "bg-[#c9fbf4]",
+tint: "bg-[#F2EEF8]",
 },
 {
 title: "Remote Patient Monitoring Intelligence",
@@ -71,7 +71,7 @@ metrics: [
 { value: "-12-22%", label: "Hospital Visits" },
 { value: "+18-30%", label: "Engagement" },
 ],
-tint: "bg-[#ffe4c4]",
+tint: "bg-[#FAF7D9]",
 },
 {
 title: "Revenue Cycle And Claims Optimization",
@@ -83,7 +83,7 @@ metrics: [
 { value: "-18-30%", label: "Claim Errors" },
 { value: "+25-38%", label: "Processing Speed" },
 ],
-tint: "bg-[#e7ddff]",
+tint: "bg-[#ECEEFA]",
 },
 ],
 },
@@ -101,7 +101,7 @@ metrics: [
 { value: "-20-35%", label: "Reduced Delays" },
 { value: "+30-45%", label: "Higher Efficiency" },
 ],
-tint: "bg-[#e7ff7d]",
+tint: "bg-[#FDECEC]",
 },
 {
 title: "Commercial Intelligence For Medical Affairs",
@@ -113,7 +113,7 @@ metrics: [
 { value: "-12-22%", label: "Manual Review" },
 { value: "+21-34%", label: "Faster Action" },
 ],
-tint: "bg-white",
+tint: "bg-[#0e1a16]",
 },
 {
 title: "Predictive Supply For Regulated Pharma",
@@ -125,7 +125,7 @@ metrics: [
 { value: "-15-30%", label: "Supply Risk" },
 { value: "+20-38%", label: "Delivery Speed" },
 ],
-tint: "bg-[#c9fbf4]",
+tint: "bg-[#E7F4FB]",
 },
 {
 title: "AI-Powered Clinical Trial Optimization",
@@ -137,7 +137,7 @@ metrics: [
 { value: "-18-29%", label: "Trial Delays" },
 { value: "+20-33%", label: "Success Rate" },
 ],
-tint: "bg-[#ffe4c4]",
+tint: "bg-[#F2EEF8]",
 },
 {
 title: "Regulatory Compliance Automation",
@@ -149,7 +149,7 @@ metrics: [
 { value: "-20-30%", label: "Audit Risk" },
 { value: "+18-28%", label: "Accuracy" },
 ],
-tint: "bg-[#e7ddff]",
+tint: "bg-[#FAF7D9]",
 },
 ],
 },
@@ -167,7 +167,7 @@ metrics: [
 { value: "-14-24%", label: "Churn Risk" },
 { value: "+25-35%", label: "Repeat Sales" },
 ],
-tint: "bg-[#e7ff7d]",
+tint: "bg-[#ECEEFA]",
 },
 {
 title: "Supply Intelligence Across Retail Networks",
@@ -179,7 +179,7 @@ metrics: [
 { value: "-18-29%", label: "Stockouts" },
 { value: "+20-32%", label: "Margin Lift" },
 ],
-tint: "bg-white",
+tint: "bg-[#ECEEFA]",
 },
 {
 title: "AI For Modern Consumer Operations",
@@ -191,7 +191,7 @@ metrics: [
 { value: "-15-25%", label: "Waste" },
 { value: "+19-33%", label: "Conversion" },
 ],
-tint: "bg-[#c9fbf4]",
+tint: "bg-[#FDECEC]",
 },
 {
 title: "Customer Journey Analytics",
@@ -203,7 +203,7 @@ metrics: [
 { value: "-12-20%", label: "Drop-offs" },
 { value: "+18-28%", label: "Loyalty" },
 ],
-tint: "bg-[#ffe4c4]",
+tint: "bg-[#EAF7EB]",
 },
 {
 title: "Dynamic Pricing And Promotion Intelligence",
@@ -215,7 +215,7 @@ metrics: [
 { value: "-10-18%", label: "Discount Waste" },
 { value: "+20-29%", label: "Profitability" },
 ],
-tint: "bg-[#e7ddff]",
+tint: "bg-[#E7F4FB]",
 },
 ],
 },
@@ -233,7 +233,7 @@ metrics: [
 { value: "-15-30%", label: "Less Downtime" },
 { value: "+20-38%", label: "Faster Delivery" },
 ],
-tint: "bg-[#e7ff7d]",
+tint: "bg-[#F2EEF8]",
 },
 {
 title: "Predictive Quality Across Production Lines",
@@ -245,7 +245,7 @@ metrics: [
 { value: "-20-35%", label: "Rework" },
 { value: "+19-31%", label: "OEE" },
 ],
-tint: "bg-white",
+tint: "bg-[#EAF7EB]",
 },
 {
 title: "Factory Data Fabric For Connected Plants",
@@ -257,7 +257,7 @@ metrics: [
 { value: "-16-27%", label: "Delays" },
 { value: "+20-30%", label: "Throughput" },
 ],
-tint: "bg-[#c9fbf4]",
+tint: "bg-[#E7F4FB]",
 },
 {
 title: "Computer Vision For Defect Detection",
@@ -269,7 +269,7 @@ metrics: [
 { value: "-22-35%", label: "Defects" },
 { value: "+18-27%", label: "Quality Score" },
 ],
-tint: "bg-[#ffe4c4]",
+tint: "bg-[#F2EEF8]",
 },
 {
 title: "AI-Driven Maintenance Intelligence",
@@ -281,7 +281,7 @@ metrics: [
 { value: "-20-32%", label: "Failures" },
 { value: "+16-28%", label: "Asset Life" },
 ],
-tint: "bg-[#e7ddff]",
+tint: "bg-[#EAF7EB]",
 },
 ],
 },

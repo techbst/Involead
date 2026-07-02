@@ -61,7 +61,7 @@ const values = [
 
 export default function CoreValues() {
   return (
-    <section className="relative overflow-hidden py-20 bg-secondary/15">
+    <section className="relative overflow-hidden pt-20 pb-30 bg-secondary/15">
       <div className="container relative">
         <SectionHeader
           title="Our Core Values"

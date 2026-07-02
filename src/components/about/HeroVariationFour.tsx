@@ -148,7 +148,7 @@ function CommandPanel({
       animate={reduceMotion ? undefined : { y: [0, -10, 0], rotate: [0, 1.2, 0] }}
       transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
     >
-      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-main">
         <Icon className="size-4 text-[#81BFCE]" />
         {label}
       </div>

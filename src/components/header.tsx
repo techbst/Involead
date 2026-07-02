@@ -40,7 +40,14 @@ const nav: MobileNavItem[] = [
       { label: 'Insight Control Tower', href: '/products/insight-control-tower' },
     ],
   },
-  { label: 'About Us', href: '/about' },
+  {
+    label: 'About Us',
+    items: [
+      { label: 'Overview', href: '/about' },
+      { label: 'Leadership Team', href: '/about#leadership_team' },
+      { label: 'Thought Leadership', href: '/thought-leadership' },
+    ],
+  },
   { label: 'Career', href: '/career' },
 ];
 
@@ -101,7 +108,7 @@ export default function Header() {
 
   return (
     <>
-      <header
+      {/* <header
       className={`fixed left-0 right-0 z-[150] flex justify-center px-0 lg:px-12 transition-transform duration-300 ${showHeader
           ? "translate-y-0"
           : "-translate-y-full"
@@ -109,12 +116,19 @@ export default function Header() {
           ? "!bg-white !top-0 shadow-xl shadow-black/5"
           : "top-0 bg-white lg:top-5 lg:bg-transparent"
         }`}
+    > */}
+    <header
+      className={`fixed left-0 right-0 z-[150] flex justify-center py-5 px-0 lg:px-12 transition-transform duration-300 !bg-white !top-0 shadow-xl shadow-black/5 top-0 bg-white lg:top-5 lg:bg-transparent"
+        `}
     >
-      <div
+      {/* <div
         className={`relative max-w-[84rem] w-full flex items-center justify-between overflow-visible rounded-none border-x-0 border-y border-slate-200 px-4 py-3 backdrop-blur-xl transition-all duration-300 lg:rounded-full lg:border lg:border-white/60 lg:px-5 ${scrolled
             ? "shadow-none"
             : "bg-white shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] lg:bg-white/10 lg:shadow-[0_2px_20px_rgba(0,0,0,0.04),0_1px_0_rgba(255,255,255,0.7)_inset] lg:shadow-[0_12px_40px_rgba(15,23,42,0.12)]"
           }`}
+      > */}
+      <div
+        className={`relative container flex items-center justify-between overflow-visible `}
       >
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center justify-center">
@@ -132,20 +146,15 @@ export default function Header() {
         <nav className="hidden items-center gap-3 lg:flex" aria-label="Primary navigation">
           <Link
             href="/"
-            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-secondary"
+            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-primary transition-colors hover:bg-[#eaf7fb] hover:text-[#417f8c]"
           >
             Home
           </Link>
           <DesktopMegaMenu />
-          <Link
-            href="/about"
-            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-secondary"
-          >
-            About Us
-          </Link>
+
           <Link
             href="/career"
-            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-100 hover:text-secondary"
+            className="flex h-10 items-center rounded-full px-4 text-sm font-medium text-primary transition-colors hover:bg-[#eaf7fb] hover:text-[#417f8c]"
           >
             Career
           </Link>
@@ -244,7 +253,7 @@ export default function Header() {
                             key={sub.href}
                             href={sub.href}
                             onClick={closeMobileMenu}
-                            className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-secondary"
+                            className="flex items-center justify-between rounded-xl px-3 py-3 text-sm transition hover:bg-[#e4fbff] hover:text-[#417f8c] hover:text-[#417f8c]"
                           >
                             <span>{sub.label}</span>
                             <ArrowRight className="size-4 text-slate-400" />

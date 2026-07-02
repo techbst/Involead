@@ -75,16 +75,15 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <p
+        <div
           className={cn(
-            "text-xs font-medium uppercase",
-             textColor === "black" ? "!text-black" : textColor === "white" ? "!text-white" :colors.title,
-            colors.eyebrow,
+            "text-[14px] font-medium uppercase py-2 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3",
+             textColor === "black" ? "text-black" : textColor === "white" ? "text-white" :colors.title,
             eyebrowClassName,
           )}
         >
           {eyebrow}
-        </p>
+        </div>
       ) : null}
       <h2
         className={cn(
