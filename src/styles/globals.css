@@ -3,6 +3,8 @@
 @import 'shadcn/tailwind.css';
 @import 'swiper/css';
 @import 'swiper/css/navigation';
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 @config "../../tailwind.config.cjs";
 @custom-variant dark (&:is(.dark *));
@@ -472,6 +474,25 @@ p {
 .custom-swiper-style-2 .swiper-slide {
   height: auto;
 }
+.custom-slick-style-2 .slick-list {
+  margin-inline: -9px;
+  /* overflow: visible; */
+}
+
+.custom-slick-style-2 .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.custom-slick-style-2 .slick-slide {
+  height: auto;
+}
+
+.custom-slick-style-2 .slick-slide > div {
+  height: 100%;
+  padding-inline: 9px;
+}
+
 .swiper-pagination {
     margin-top: 15px;
 }

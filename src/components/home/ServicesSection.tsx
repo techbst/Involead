@@ -1,12 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperType } from "swiper";
-import { Autoplay, Pagination } from "swiper/modules";
 import { useRef } from "react";
-import "swiper/css";
-import "swiper/css/pagination";
+import Slider from "react-slick";
+import type { Settings } from "react-slick";
 
 import { servicesSection } from "@/data/home";
 import SectionReveal from "./SectionReveal";
@@ -16,10 +13,37 @@ import { SectionHeader } from "@/components/ui/section-header";
 import CornerShape from "../ui/shape";
 
 export default function ServicesSection() {
-    const swiperRef = useRef<SwiperType | null>(null);
+  const sliderRef = useRef<Slider | null>(null);
+  const sliderSettings: Settings = {
+    // centerMode: true,
+    centerPadding: '60px',
+    slidesToShow: 3.5,
+    infinite: false,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
+      }
+    ],
+  };
+
   return (
     <section className="bg-white pt-20 pb-30 relative">
-      
       <SectionReveal className="container mx-auto ">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
@@ -30,14 +54,14 @@ export default function ServicesSection() {
           />
           <div className="flex gap-3 sm:gap-4">
             <button
-              onClick={() => swiperRef.current?.slidePrev()}
+              onClick={() => sliderRef.current?.slickPrev()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Previous product"
             >
               <ArrowLeft className="size-5" />
             </button>
             <button
-              onClick={() => swiperRef.current?.slideNext()}
+              onClick={() => sliderRef.current?.slickNext()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Next product"
             >
@@ -45,32 +69,13 @@ export default function ServicesSection() {
             </button>
           </div>
         </div>
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={18}
-          slidesPerView={1}
-          loop={false}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1200: {
-              slidesPerView: 3,
-            },
-            1340: {
-              slidesPerView: 3,
-            },
-            1700: {
-              slidesPerView: 3,
-            },
-          }}
-          className="mt-12 custom-swiper-style-2"
+        <Slider
+          ref={sliderRef}
+          {...sliderSettings}
+          className="mt-12 custom-slick-style-2"
         >
           {servicesSection.cards.map((card, index) => (
-            <SwiperSlide key={card.title}>
+            <div key={card.title}>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -87,16 +92,15 @@ export default function ServicesSection() {
                   description={card.description}
                   href={card.href}
                   showDescriptionOnHover={true}
-
                 />
               </motion.div>
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </Slider>
       </SectionReveal>
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
-      <CornerShape color="#fff" />
-    </div>
+        <CornerShape color="#fff" />
+      </div>
     </section>
   );
 }
