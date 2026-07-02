@@ -113,7 +113,7 @@ metrics: [
 { value: "-12-22%", label: "Manual Review" },
 { value: "+21-34%", label: "Faster Action" },
 ],
-tint: "bg-[#0e1a16]",
+tint: "bg-[#E7F4FB]",
 },
 {
 title: "Predictive Supply For Regulated Pharma",
