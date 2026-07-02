@@ -43,10 +43,16 @@ export const servicesSection: ServicesSection = {
             image: "/service-img/datasci.png",
         },
          {
-            title: "UX/UI Design",
-            description: "Create intuitive and engaging user experiences with our expert design services.",
-            href: "/solutions/ux-ui-design",
-            image: "/service-img/uiux.png",
+            title: "Cloud Solution",
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            href: "/solutions/cloud-solution",
+            image: "/service-img/cloud-solution.webp",
+        },
+        {
+            title: "Consulting",
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            href: "/solutions/consulting",
+            image: "/service-img/consulting.webp",
         },
     ],
 }
