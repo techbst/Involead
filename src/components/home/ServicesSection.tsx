@@ -15,36 +15,30 @@ import CornerShape from "../ui/shape";
 export default function ServicesSection() {
   const sliderRef = useRef<Slider | null>(null);
   const sliderSettings: Settings = {
-    // centerMode: true,
-    centerPadding: '60px',
-    slidesToShow: 3.5,
+    dots: false,
     infinite: false,
     arrows: false,
+    slidesToShow: 3.5,
+    slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1024, // Tablet aur isse chhote
         settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 4
-        }
+          slidesToShow: 2.5,
+        },
       },
       {
-        breakpoint: 480,
+        breakpoint: 640, // Mobile
         settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 1
-        }
-      }
+          slidesToShow: 1.5,
+        },
+      },
     ],
   };
 
   return (
     <section className="bg-white pt-20 pb-30 relative">
-      <SectionReveal className="container mx-auto ">
+        <SectionReveal className="container mx-auto ">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
             eyebrow={servicesSection.eyebrow}
@@ -77,12 +71,12 @@ export default function ServicesSection() {
           {servicesSection.cards.map((card, index) => (
             <div key={card.title}>
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                // initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: index * 0.08,
-                  duration: 0.6,
-                }}
+                // transition={{
+                //   delay: index * 0.08,
+                //   duration: 0.6,
+                // }}
                 viewport={{ once: true }}
                 className="relative h-[360px] w-full sm:h-[420px] lg:h-[450px]"
               >
@@ -101,6 +95,8 @@ export default function ServicesSection() {
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
         <CornerShape color="#fff" />
       </div>
+      <CornerShape color="#fff" />
+ 
     </section>
   );
 }
