@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
+import type { LucideIcon } from "lucide-react";
 export type CaseStudyMetric = {
   value: string;
   label: string;
@@ -13,6 +13,7 @@ export type CaseStudyMetric = {
 
 export type CaseStudiesCardProps = {
   image: string;
+  icon: LucideIcon;
   title: string;
   description: string;
   metrics: CaseStudyMetric[];
@@ -24,6 +25,7 @@ export type CaseStudiesCardProps = {
 
 export default function CaseStudiesCard({
   image,
+  icon: Icon,
   title,
   description,
   metrics,
@@ -83,8 +85,7 @@ export default function CaseStudiesCard({
 
           <div className="mt-7 flex justify-between center">
             <Button asChild variant={"outline"} className="bg-secondary/10 !text-secondary">
-              <Link href={href}>{category}
-              </Link>
+              <Link href={href}><Icon className="size-4" /> {category}</Link>
             </Button>
             <Button asChild>
               <Link href={href}>
