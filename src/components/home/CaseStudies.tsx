@@ -87,9 +87,11 @@ import CornerShape from "../ui/shape";
 import Slider from "react-slick";
 import { sliderSettings1 } from "../ui/slick-slider";
 import { useRef } from "react";
-
+import type { LucideIcon } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 type CaseStudyItem = {
   image: string;
+  icon: LucideIcon;
   title: string;
   description: string;
   metrics: CaseStudyMetric[];
@@ -100,6 +102,7 @@ type CaseStudyItem = {
 const caseStudies: CaseStudyItem[] = [
   {
     image: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1100&q=85",
+    icon : ShoppingCart,
     title: "Commercial Effectiveness",
     description:
       "Leverage AI, advanced analytics, & econometric modeling to optimize pricing, promotions, marketing spend, & channel strategies. Drive data-backed decisions across the commercial ecosystem to maximize revenue, profitability, and market impact.",
@@ -108,11 +111,13 @@ const caseStudies: CaseStudyItem[] = [
       { value: "−15–20%", label: "Churn Reduction" },
       { value: "+25–35%", label: "Faster Cycles" },
     ],
-    category: "Category Name",
+    
+    category: "Retail",
     href: "/case-studies/commercial-effectiveness",
   },
   {
     image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=900&q=80",
+    icon : ShoppingCart,
     title: "Predictive Customer Intelligence",
     description:
       "Unify customer, campaign, and transaction data to predict churn, identify growth opportunities, and personalize customer engagement at enterprise scale.",
@@ -121,11 +126,12 @@ const caseStudies: CaseStudyItem[] = [
       { value: "−15–20%", label: "Churn Reduction" },
       { value: "+25–35%", label: "Faster Cycles" },
     ],
-    category: "Category Name",
+    category: "Retail",
     href: "/case-studies/predictive-customer-intelligence",
   },
   {
     image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80",
+    icon : ShoppingCart,
     title: "Sales & Retention Growth — Agentic AI Across 500–2000+ SKUs",
     description:
       "Retail growth is won by those who act faster and more precisely than the market. We deploy autonomous demand forecasting and churn intelligence, continuously optimizing inventory positioning and personalizing engagement at scale.",
@@ -134,7 +140,7 @@ const caseStudies: CaseStudyItem[] = [
       { value: "−15–20%", label: "Churn Reduction" },
       { value: "+25–35%", label: "Faster Cycles" },
     ],
-    category: "Category Name",
+    category: "Retail",
     href: "/case-studies/supply-chain-optimization",
   },
 ];
@@ -159,6 +165,7 @@ export default function CaseStudies() {
             <div key={item.title}>
               <CaseStudiesCard
                 image={item.image}
+                icon={item.icon}
                 title={item.title}
                 description={item.description}
                 metrics={item.metrics}
