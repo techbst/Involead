@@ -512,3 +512,17 @@ p {
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: var(--secondary) !important;
 }
+.slick-slide>div {
+    padding-inline: 9px;
+}
+.slick-dots button:before {
+    background: #addde7 !important;
+    border-radius: 50px;
+    color: transparent !important;
+    width: 14px !important;
+    height: 14px!important;
+    opacity: 1 !important;
+}
+.slick-dots .slick-active button:before {
+  background: var(--secondary) !important;
+}

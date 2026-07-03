@@ -16,6 +16,7 @@ export type CaseStudiesCardProps = {
   title: string;
   description: string;
   metrics: CaseStudyMetric[];
+  category: string;
   href?: string;
   buttonText?: string;
   className?: string;
@@ -26,6 +27,7 @@ export default function CaseStudiesCard({
   title,
   description,
   metrics,
+  category,
   href = "#",
   buttonText = "Explore More",
   className,
@@ -65,11 +67,11 @@ export default function CaseStudiesCard({
               <div
                 key={`${metric.value}-${metric.label}`}
                 className={cn(
-                  "p-5 md:p-6",
+                  "p-3 md:p-3",
                   index !== 0 && "border-t border-secondary/24 sm:border-l sm:border-t-0"
                 )}
               >
-                <div className="font-bold text-black lg:text-[32px] sm:text-[24px] md:text-[20px]">
+                <div className="font-bold text-black lg:text-[26px] sm:text-[24px] md:text-[20px]">
                   {metric.value}
                 </div>
                 <p className="mt-0 line-clamp-1">
@@ -79,7 +81,11 @@ export default function CaseStudiesCard({
             ))}
           </div>
 
-          <div className="mt-7 flex justify-end">
+          <div className="mt-7 flex justify-between center">
+            <Button asChild variant={"outline"} className="bg-secondary/10 !text-secondary">
+              <Link href={href}>{category}
+              </Link>
+            </Button>
             <Button asChild>
               <Link href={href}>
                 {buttonText}

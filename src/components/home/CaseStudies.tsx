@@ -84,11 +84,16 @@ import ClipShape from "../ui/clip-shape";
 import { SectionHeader } from "../ui/section-header";
 import CornerShape from "../ui/shape";
 
+import Slider from "react-slick";
+import { sliderSettings1 } from "../ui/slick-slider";
+import { useRef } from "react";
+
 type CaseStudyItem = {
   image: string;
   title: string;
   description: string;
   metrics: CaseStudyMetric[];
+  category: string;
   href: string;
 };
 
@@ -103,6 +108,7 @@ const caseStudies: CaseStudyItem[] = [
       { value: "−15–20%", label: "Churn Reduction" },
       { value: "+25–35%", label: "Faster Cycles" },
     ],
+    category: "Category Name",
     href: "/case-studies/commercial-effectiveness",
   },
   {
@@ -115,6 +121,7 @@ const caseStudies: CaseStudyItem[] = [
       { value: "−15–20%", label: "Churn Reduction" },
       { value: "+25–35%", label: "Faster Cycles" },
     ],
+    category: "Category Name",
     href: "/case-studies/predictive-customer-intelligence",
   },
   {
@@ -127,11 +134,13 @@ const caseStudies: CaseStudyItem[] = [
       { value: "−15–20%", label: "Churn Reduction" },
       { value: "+25–35%", label: "Faster Cycles" },
     ],
+    category: "Category Name",
     href: "/case-studies/supply-chain-optimization",
   },
 ];
 
 export default function CaseStudies() {
+  const sliderRef = useRef<Slider | null>(null);
   return (
     <section className="case_studies relative py-20 bg-black">
       <div className="container relative">
@@ -141,35 +150,24 @@ export default function CaseStudies() {
           description="From automation to predictive intelligence, our solutions deliver measurable results at enterprise scale."
           textColor="white"
         />
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          slidesPerView={1}
-          spaceBetween={24}
-          loop={true}
-          speed={800}
-          // autoplay={{
-          //   delay: 3500,
-          //   disableOnInteraction: false,
-          //   pauseOnMouseEnter: true,
-          // }}
-          autoplay={false}
-          pagination={{
-            clickable: true,
-          }}
+        <Slider
+            ref={sliderRef}
+            {...sliderSettings1}
           className="case-studies-swiper custom-swiper-style-2 mt-12"
         >
           {caseStudies.map((item) => (
-            <SwiperSlide key={item.title}>
+            <div key={item.title}>
               <CaseStudiesCard
                 image={item.image}
                 title={item.title}
                 description={item.description}
                 metrics={item.metrics}
+                category={item.category}
                 href={item.href}
               />
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </Slider>
       </div>
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white">
       <CornerShape color="#000" />

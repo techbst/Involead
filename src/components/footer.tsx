@@ -144,10 +144,10 @@ export default function Footer() {
           </div>
 
           <div className="relative mt-0 mb-5 w-full ">
-            <Image src="/img/white-footer-cropped.svg" width={1000} height={100} className="h-full w-full mx-auto" alt="image svg" />
+            <Image src="/img/footer-logo.svg" width={1000} height={100} className="h-full w-full mx-auto" alt="image svg" />
           </div>
 
-          <div className=" flex flex-col gap-4  pb-5 lg:flex-row lg:items-center lg:justify-between">
+          <div className="border-t-1 mt-4 pt-4 pb-3 border-white/20 flex flex-col gap-4  pb-5 lg:flex-row lg:items-center lg:justify-between">
             <p className="text-center !text-[14px] leading-[1.55] !text-white lg:text-left">
               © 2026 Involead Services Private Limited.
               

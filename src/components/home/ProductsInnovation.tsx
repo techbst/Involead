@@ -14,6 +14,8 @@ import { Autoplay, Pagination } from "swiper/modules";
 import CornerShape from "../ui/shape";
 // import ClipCard from "../ui/clip-card";
 
+import Slider from "react-slick";
+import { sliderSettings } from "../ui/slick-slider";
 
 interface ProductCard {
   title: string;
@@ -60,7 +62,7 @@ const products: ProductCard[] = [
 ];
 export const CLIP_PATH = "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
 export default function ProductsInnovation() {
-  const swiperRef = useRef<SwiperType | null>(null);
+const sliderRef = useRef<Slider | null>(null);
 
   return (
     <section
@@ -88,14 +90,14 @@ export default function ProductsInnovation() {
           
           <div className="flex gap-3 sm:gap-4">
             <button
-              onClick={() => swiperRef.current?.slidePrev()}
+              onClick={() => sliderRef.current?.slickPrev()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Previous product"
             >
               <ArrowLeft className="size-5" />
             </button>
             <button
-              onClick={() => swiperRef.current?.slideNext()}
+              onClick={() => sliderRef.current?.slickNext()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Next product"
             >
@@ -105,36 +107,17 @@ export default function ProductsInnovation() {
         </div>
 
         <div className="mt-12">
-          <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={18}
-          slidesPerView={1}
-          loop={false}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1200: {
-              slidesPerView: 3,
-            },
-            1340: {
-              slidesPerView: 3,
-            },
-            1700: {
-              slidesPerView: 3,
-            },
-          }}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            className="custom-swiper-style-2"
+          <Slider
+            ref={sliderRef}
+            {...sliderSettings}
+            className="mt-12 custom-slick-style-2"
           >
             {products.map((product, index) => (
-              <SwiperSlide 
+              <div 
               key={product.title} 
               className="">
                 <motion.div
-                  initial={{ opacity: 0, y: 40 }}
+                  // initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{
                     delay: index * 0.08,
@@ -166,9 +149,9 @@ export default function ProductsInnovation() {
                   />
                 </div>
                 </motion.div>
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
+          </Slider>
         </div>
        
       </SectionReveal>

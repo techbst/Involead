@@ -11,30 +11,10 @@ import ClipCard from "@/components/ui/clip-card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import CornerShape from "../ui/shape";
-
+import { sliderSettings } from "../ui/slick-slider"; 
 export default function ServicesSection() {
   const sliderRef = useRef<Slider | null>(null);
-  const sliderSettings: Settings = {
-    dots: false,
-    infinite: false,
-    arrows: false,
-    slidesToShow: 3.5,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024, // Tablet aur isse chhote
-        settings: {
-          slidesToShow: 2.5,
-        },
-      },
-      {
-        breakpoint: 640, // Mobile
-        settings: {
-          slidesToShow: 1.5,
-        },
-      },
-    ],
-  };
+
 
   return (
     <section className="bg-white pt-20 pb-30 relative">

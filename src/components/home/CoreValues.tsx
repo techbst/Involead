@@ -178,33 +178,14 @@ const descVariants: Variants = {
 export default function CoreValues() {
   const gridRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(gridRef, { once: true, margin: "-80px" });
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState<number | null>(0);
 
   const rows = [valuess.slice(0, 3), valuess.slice(3, 6)];
   return (
     <section className="bg-white pt-20 pb-25 relative overflow-hidden">
       <SectionReveal className="mx-auto container">
 
-        {/* ── Section header ── */}
-        {/* <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className=" font-semibold text-slate-950"
-        >
-          Our Core Values
-        </motion.p>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-          className="mt-2 max-w-3xl leading-tight tracking-normal text-black"
-        >
-          End-to-end AI solutions designed for measurable outcomes.
-        </motion.h2> */}
+       
         <SectionHeader
           eyebrow="Our Core Values"
           title="End-to-end AI solutions designed for measurable outcomes."
@@ -244,10 +225,10 @@ export default function CoreValues() {
                   <motion.div
                     key={item.title}
                     onMouseEnter={() => setActive(index)}
-                    onMouseLeave={() => setActive(null)}
+                    onMouseLeave={() => setActive(0)}
                     style={{ flex: 1 }}
                     animate={{
-                      flex: active === index ? 1.45 : 1,
+                      flex: active === index ? 1.7 : 1,
                     }}
                     transition={{
                       duration: 0.45,
