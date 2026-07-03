@@ -56,7 +56,7 @@ export default function CaseStudiesCard({
 
         <div className="flex flex-col bg-white rounded-[24px] px-8 py-8">
           <span className="rounded-full bg-secondary/10 px-4 py-2 text-xs font-semibold text-secondary max-w-[100] text-center mb-5">Case Study</span>
-          <h3 className="font-semibold tracking-tight">
+          <h3 className="font-semibold tracking-tight line-clamp-1">
             {title}
           </h3>
 
