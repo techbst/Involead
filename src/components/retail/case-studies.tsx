@@ -140,11 +140,18 @@ import CaseStudiesCard, {
 import ClipShape from "../ui/clip-shape";
 import { SectionHeader } from "../ui/section-header";
 
+import Slider from "react-slick";
+import { sliderSettings1 } from "../ui/slick-slider";
+import { useRef } from "react";
+import CornerShape from "../ui/shape";
+
+
 type CaseStudyItem = {
   image: string;
   title: string;
   description: string;
   metrics: CaseStudyMetric[];
+  category: string;
   href: string;
 };
 
@@ -155,10 +162,11 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Leverage AI, advanced analytics, & econometric modeling to optimize pricing, promotions, marketing spend, & channel strategies. Drive data-backed decisions across the commercial ecosystem to maximize revenue, profitability, and market impact.",
     metrics: [
-      { value: "+18%", label: "Marketing ROI" },
-      { value: "+20%", label: "Faster decision across media planning" },
-      { value: "+15%", label: "Gross Margin Uplift" },
+      { value: "+15–25%", label: "Revenue Growth" },
+      { value: "−15–20%", label: "Churn Reduction" },
+      { value: "+25–35%", label: "Faster Cycles" },
     ],
+    category: "Category Name",
     href: "/case-studies/commercial-effectiveness",
   },
   {
@@ -167,65 +175,62 @@ const caseStudies: CaseStudyItem[] = [
     description:
       "Unify customer, campaign, and transaction data to predict churn, identify growth opportunities, and personalize customer engagement at enterprise scale.",
     metrics: [
-      { value: "-22%", label: "Churn Reduction" },
-      { value: "+31%", label: "Customer Retention" },
-      { value: "+26%", label: "Campaign Conversion" },
+      { value: "+15–25%", label: "Revenue Growth" },
+      { value: "−15–20%", label: "Churn Reduction" },
+      { value: "+25–35%", label: "Faster Cycles" },
     ],
+    category: "Category Name",
     href: "/case-studies/predictive-customer-intelligence",
   },
   {
     image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80",
-    title: "Supply Chain Optimization",
+    title: "Sales & Retention Growth — Agentic AI Across 500–2000+ SKUs",
     description:
-      "Use AI forecasting, inventory intelligence, and demand sensing to reduce stockouts, improve fulfillment speed, and optimize working capital across locations.",
+      "Retail growth is won by those who act faster and more precisely than the market. We deploy autonomous demand forecasting and churn intelligence, continuously optimizing inventory positioning and personalizing engagement at scale.",
     metrics: [
-      { value: "-28%", label: "Inventory Cost" },
-      { value: "+34%", label: "Forecast Accuracy" },
-      { value: "-19%", label: "Stockout Events" },
+      { value: "+15–25%", label: "Revenue Growth" },
+      { value: "−15–20%", label: "Churn Reduction" },
+      { value: "+25–35%", label: "Faster Cycles" },
     ],
+    category: "Category Name",
     href: "/case-studies/supply-chain-optimization",
   },
 ];
 
 export default function CaseStudies() {
+  const sliderRef = useRef<Slider | null>(null);
   return (
-    <section className="case_studies relative pt-20 pb-16">
-      <ClipShape />
-      <div className="container relative z-10 mt-22">
+    <section className="case_studies relative pt-20 pb-20 bg-black">
+      {/* <ClipShape /> */}
+      <div className="container relative ">
         <SectionHeader 
           eyebrow="Case Studies"
           title="Use Cases & Success Stories"
           description="Real impact across industries, driven by data. Every engagement engineered around your most critical KPIs."
+          textColor="white"
         />
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          slidesPerView={1}
-          spaceBetween={24}
-          loop={true}
-          speed={800}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          pagination={{
-            clickable: true,
-          }}
+        <Slider
+            ref={sliderRef}
+            {...sliderSettings1}
           className="case-studies-swiper custom-swiper-style-2 mt-12"
         >
           {caseStudies.map((item) => (
-            <SwiperSlide key={item.title}>
+            <div key={item.title}>
               <CaseStudiesCard
                 image={item.image}
                 title={item.title}
                 description={item.description}
                 metrics={item.metrics}
+                category={item.category}
                 href={item.href}
               />
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </Slider>
       </div>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white">
+            <CornerShape color="#000" />
+            </div>
     </section>
   );
 }

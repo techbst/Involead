@@ -6,6 +6,7 @@ import { Database, Network, ShieldCheck, Sparkles } from 'lucide-react';
 import { SectionHeader } from '@/components/ui/section-header';
 
 import ArchitectureGraphicVariantFive from './ArchitectureGraphicVariantFive';
+import CornerShape from '../ui/shape';
 
 const systemicArchitectureCards = [
   { title: 'Value', label: 'Application Layer', text: 'Real-world use cases that translate intelligence into measurable business impact.', icon: Sparkles },
@@ -67,6 +68,9 @@ export default function SystemicArchitectureSection() {
             ))}
           </div>
         </div>
+      </div>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black">
+        <CornerShape color="#fff" />
       </div>
     </section>
   );
