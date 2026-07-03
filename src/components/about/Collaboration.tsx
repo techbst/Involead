@@ -25,6 +25,7 @@ export default function Collaboration() {
       <div className="container mx-auto">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
+          eyebrow="Our Culture"
             title="Where Collaboration Meets Commitment"
             description="A culture where teams connect, support each other, and stay committed to shared goals."
             descriptionWidth="5xl"

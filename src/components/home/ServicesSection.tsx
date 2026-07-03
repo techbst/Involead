@@ -95,7 +95,7 @@ export default function ServicesSection() {
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
         <CornerShape color="#fff" />
       </div>
-      <CornerShape color="#fff" />
+      {/* <CornerShape color="#fff" /> */}
  
     </section>
   );

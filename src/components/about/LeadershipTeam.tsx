@@ -77,12 +77,13 @@ export default function LeadershipTeam() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [selectedMember, setSelectedMember] = useState<(typeof members)[number] | null>(null);
   return (
-    <section className="bg-white py-20 relative overflow-hidden">
+    <section className="bg-white py-20 relative overflow-hidden" id="leadership_team">
       <div className="container mx-auto">
         
 
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
+          eyebrow="Meet Our Leaders"
             title="Leadership Team"
             description="A team of deep expertise in problem solving and business acumen empowered by continuous innovation and experience in building large teams!"
             descriptionWidth="4xl"
@@ -117,22 +118,22 @@ export default function LeadershipTeam() {
           }}
           breakpoints={{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 1.5,
             },
             1200: {
-              slidesPerView: 3,
+              slidesPerView: 2.5,
             },
             1340: {
-              slidesPerView: 3,
+              slidesPerView: 3.5,
             },
             1700: {
-              slidesPerView: 3,
+              slidesPerView: 3.5,
             },
           }}
           className="mt-12 custom-swiper-style-2"
         >
             {members.map((member) => (
-              <SwiperSlide key={member.name}>
+              <SwiperSlide key={member.name} >
                 <article
                   onClick={() => setSelectedMember(member)}
                   className="group relative h-[420px] cursor-pointer overflow-hidden rounded-[1.35rem] border border-slate-200 shadow-[0_18px_46px_rgba(15,23,42,0.08)]"

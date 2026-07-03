@@ -64,6 +64,7 @@ export default function CoreValues() {
     <section className="relative overflow-hidden pt-20 pb-30 bg-secondary/15">
       <div className="container relative">
         <SectionHeader
+        eyebrow="What We Stand For"
           title="Our Core Values"
           description="End-to-end AI solutions designed for measurable outcomes - engineered by domain experts, powered by Agentic AI."
           descriptionWidth="5xl"
