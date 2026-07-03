@@ -17,7 +17,7 @@ export default function ServicesSection() {
 
 
   return (
-    <section className="bg-white pt-20 pb-30 relative">
+    <section className="bg-white pt-20 pb-20 relative">
         <SectionReveal className="container mx-auto ">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
