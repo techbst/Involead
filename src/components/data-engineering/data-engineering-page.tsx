@@ -26,6 +26,7 @@ import ClipCard from "../ui/clip-card";
 import CallToAction1 from "../ui/call-to-action-1";
 import Productions from "./production-ready";
 import WhyChooseUs from "../data-science/WhyChooseUs";
+import Compliance from "./complaince";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
@@ -48,7 +49,7 @@ function Testimonial() {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.8 }}
         className="relative grid items-center gap-12 lg:grid-cols-[1.4fr_.8fr]"
       >
@@ -113,50 +114,6 @@ function Testimonial() {
   </section>
 }
 
-const compliance = [
-  ["/de/gdpr-ready.svg", "GDPR Ready", "Compliant with EU rules for responsible data collection, storage, and deletion."],
-  ["/de/HIPAA-Compliant.svg", "HIPAA Compliant", "Keeps healthcare data safe and private so you can work with US providers and sign BAAs with confidence."],
-  ["/de/HIPAA-Compliant.svg", "FDA 21 CFR Part 11", "Ensures electronic records and e-signatures are reliable, traceable, and acceptable to regulators."],
-  ["/de/HIPAA-Compliant.svg", "GxP Compliant", "Supports Good Practice standards so your processes stay auditable and inspection-ready."],
-  ["/de/ISO-9001-Certified.svg", "ISO 9001 Certified", "Delivers consistent quality through clear processes and ongoing improvement."],
-  ["/de/ISO-9001-Certified.svg", "SOC 2 Type II Certified", "Audited controls keep your data secure, available, and protected from unauthorized access."]
-];
-const lineVariants: Variants = {
-  rest: { scaleX: 0, originX: 0 },
-  hover: {
-    scaleX: 1,
-    originX: 0,
-    transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-};
-function Compliance() {
-  return <section className="py-20 overflow-hidden relative">
-    <ClipShape />
-    <div className="container z-10 mt-26 relative">
-      <SectionHeader
-        eyebrow="Trust by design" title="Standards-Verified Compliance"
-        description="Our data platforms adhere to the highest security standards. We protect your data, simplify audits, and guarantee compliance."
-      />
-      <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{compliance.map(([a, t, d], i) => <ValueCard
-        key={t}
-        image={a}
-        title={t}
-        description={d}
-        index={i}
-      />
-
-      )}
-      </div>
-      <div className="mt-10 text-center">
-        <Button asChild>
-          <Link href="/contact-us">Speak to Our Experts
-            <ArrowRight className="size-4" />
-          </Link>
-        </Button>
-      </div>
-    </div>
-  </section>
-}
 
 const genCards = [
   { title: "Automated Code Generation", desc: "Generate data pipeline code automatically using natural language descriptions, reducing development time by up to 60%.", icon: Code2, image: "/service-img/data-eng.png" },
@@ -186,11 +143,35 @@ function GenAICards() {
   </section>
 }
 function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item: typeof genCards[number]; active: boolean; muted: boolean; onHover: () => void; onLeave: () => void; wide?: boolean }) {
-  const baseFlex = wide ? 2 : 1; return <motion.article layout="position" animate={{ flexGrow: active ? baseFlex + .7 : muted ? Math.max(.65, baseFlex - .5) : baseFlex }} transition={{ type: "spring", stiffness: 220, damping: 30, mass: .8 }} className={cn("group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[24px] p-7 sm:p-9", item.color || "bg-slate-950 text-white")}>
+  const baseFlex = wide ? 2 : 1; return <motion.article
+  layout="position"
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.2 }}
+  transition={{
+    opacity: { duration: 0.4 },
+    y: { duration: 0.8 },
+    type: "spring",
+    stiffness: 220,
+    damping: 30,
+    mass: 0.8,
+  }}
+  animate={{
+    flexGrow: active
+      ? baseFlex + 0.7
+      : muted
+      ? Math.max(0.65, baseFlex - 0.5)
+      : baseFlex,
+  }}
+  className={cn(
+    "group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[24px] p-7 sm:p-9",
+    item.color || "bg-slate-950 text-white"
+  )}
+>
     {item.image && <>
-    
-    <Image src={item.image} alt="" fill className="object-cover opacity-45 transition duration-700 group-hover:scale-105" />
-    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-transparent" /></>
+
+      <Image src={item.image} alt="" fill className="object-cover opacity-45 transition duration-700 group-hover:scale-105" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/55 to-transparent" /></>
     }
     <div className="relative flex h-full flex-col">
       <div className="absolute -right-10 -top-10 max-w-[200px] opacity-10 invert-100"><img src={'/img/shape-3.webp'} alt='shape' /></div>
@@ -295,7 +276,16 @@ function Excellence() {
       >
         {excellence.map(([title, subtitle, items], i) => (
           <SwiperSlide key={title as string} className="h-auto mt-10">
-            <article className="relative h-full min-h-[420px] overflow-hidden rounded-[24px] border border-slate-200 p-6">
+            <motion.article
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{
+                duration: 0.9,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              className="relative h-full min-h-[420px] overflow-hidden rounded-[24px] border border-slate-200 p-6"
+            >
               <div className="absolute -right-1 -top-1 max-w-[200px] opacity-20">
                 <img alt="shape" src="/img/shape-2.webp" className="!flex" />
               </div>
@@ -328,7 +318,7 @@ function Excellence() {
                   ))}
                 </ul>
               </div>
-            </article>
+            </motion.article>
           </SwiperSlide>
         ))}
       </Swiper></div></section>
@@ -336,13 +326,18 @@ function Excellence() {
 
 const reasons = [["Human-Centric Design", "Solutions designed with your team in mind, ensuring adoption and long-term success."], ["Speed to Value", "Rapid deployment and iterative improvement to deliver value from day one."], ["Proven Excellence", "Track record of successful implementations for Fortune 500 companies and startups alike."], ["Strategic Focus", "Align data engineering initiatives with your business objectives and growth strategy."], ["Innovation Leadership", "Stay ahead with cutting-edge technologies and best practices in data engineering."], ["Global Expertise", "Deep domain knowledge across industries and geographies, backed by a global team."]];
 function WhyPartner() {
-  const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; let cancelled = false; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 80%", end: "80%", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" } }); }); 
-  requestAnimationFrame(() => {
-    ScrollTrigger.refresh();
-  });
-  }, 
-  ref); clean = () => ctx.revert(); })(); return () => { cancelled = true; clean(); } }, []); 
-  
+  const ref = useRef<HTMLElement>(null); useEffect(() => {
+    let clean = () => { }; let cancelled = false; (async () => {
+      const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 80%", end: "80%", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" } }); });
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      },
+        ref); clean = () => ctx.revert();
+    })(); return () => { cancelled = true; clean(); }
+  }, []);
+
   return <section ref={ref} className="relative bg-black py-20 text-white">
     <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
       <div className="lg:sticky lg:top-12 self-start">
@@ -478,6 +473,7 @@ function Blog() {
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeader
           align="left"
+          eyebrow="Insights & Blog"
           title="Get Insights & Tips from Our Blog"
           description="Check out our blog for the latest AI trends and insights!"
         />
@@ -530,8 +526,8 @@ export default function DataEngineeringPage() {
     <GenAICards />
     <Excellence />
     <WhyPartner />
-    
-<Testimonial />
+
+    <Testimonial />
     <Blog />
     <FAQSection />
     <CallToAction1 data={ctaData} />

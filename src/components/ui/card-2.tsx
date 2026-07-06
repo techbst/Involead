@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { LucideIcon } from "lucide-react";
-
+import { motion } from "framer-motion";
 interface FeatureCardProps {
     title: string;
     description: string;
@@ -9,6 +9,7 @@ interface FeatureCardProps {
     bgColor?: string;
     imageAlt?: string;
     reverse?: boolean;
+    index: number;
 }
 
 export default function FeatureCard({
@@ -19,9 +20,31 @@ export default function FeatureCard({
     bgColor = "#4AA3BE",
     imageAlt = "feature-image",
     reverse = false,
+    index,
 }: FeatureCardProps) {
     return (
-        <div
+        <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{
+            duration: 0.9,
+            delay: index * 0.2,
+        }}
+        variants={{
+            hidden: {
+            opacity: 0,
+            y: 50,
+            },
+            visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut",
+            },
+            },
+        }}
             className="group w-full rounded-[28px] p-6 md:p-4 bg-[#46a4b9]  hover:bg-white"
         >
             <div
@@ -53,6 +76,6 @@ export default function FeatureCard({
                     />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

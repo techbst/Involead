@@ -40,7 +40,7 @@ export default function ColorfulNumberCard({
         <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.5 }}
             variants={{
                 show: {
                     transition: {

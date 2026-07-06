@@ -1,5 +1,6 @@
+"use client";
 import { cn } from "@/lib/utils";
-
+import { motion, Variants } from "framer-motion";
 type SectionHeaderWidth = "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 type SectionHeaderTone = "dark" | "light" | "muted";
 
@@ -46,7 +47,28 @@ const toneClasses: Record<SectionHeaderTone, { title: string; eyebrow: string; d
     description: "text-slate-500",
   },
 };
+const item: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
 
+const container: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 export function SectionHeader({
   title,
   eyebrow,
@@ -66,7 +88,11 @@ export function SectionHeader({
   const resolvedDescriptionWidth = descriptionWidth ?? descriptionmaxWidth ?? "2xl";
 
   return (
-    <div
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
       className={cn(
         "mb-0",
         widthClasses[maxWidth],
@@ -75,7 +101,7 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <div
+        <motion.div variants={item}
           className={cn(
             "text-[14px] font-medium uppercase py-2 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3",
              textColor === "black" ? "text-black" : textColor === "white" ? "text-white" :colors.title,
@@ -83,9 +109,9 @@ export function SectionHeader({
           )}
         >
           {eyebrow}
-        </div>
+        </motion.div>
       ) : null}
-      <h2
+      <motion.h2 variants={item}
         className={cn(
           "capitalize",
           textColor === "black" ? "text-black" : textColor === "white" ? "text-white" : colors.title,
@@ -93,10 +119,10 @@ export function SectionHeader({
         )}
       >
         {title}
-      </h2>
+      </motion.h2>
 
       {description ? (
-        <p
+        <motion.p variants={item}
           className={cn(
             "mt-3 text-[15px] leading-7 sm:text-lg",
             widthClasses[resolvedDescriptionWidth],
@@ -106,8 +132,8 @@ export function SectionHeader({
           )}
         >
           {description}
-        </p>
+        </motion.p>
       ) : null}
-    </div>
+    </motion.div>
   );
 }

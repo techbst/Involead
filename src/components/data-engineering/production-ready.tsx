@@ -54,6 +54,7 @@ export default function Productions() {
                             image={card.image}
                             icon={iconMap[card.icon as keyof typeof iconMap]}
                             bgColor={card.bgColor}
+                            index={index}
                             // reverse={index % 2 !== 0}
                         />
                     ))}
