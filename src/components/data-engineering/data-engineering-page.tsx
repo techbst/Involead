@@ -25,6 +25,7 @@ import ClipShape from "../ui/clip-shape";
 import ClipCard from "../ui/clip-card";
 import CallToAction1 from "../ui/call-to-action-1";
 import Productions from "./production-ready";
+import WhyChooseUs from "../data-science/WhyChooseUs";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
