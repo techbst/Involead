@@ -24,6 +24,7 @@ import Stats from "./number";
 import ClipShape from "../ui/clip-shape";
 import ClipCard from "../ui/clip-card";
 import CallToAction1 from "../ui/call-to-action-1";
+import Productions from "./production-ready";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
@@ -37,39 +38,7 @@ function SectionHeading({ eyebrow, title, body, inverse = false }: { eyebrow?: s
     </motion.div>
   );
 }
-const foundations = [{ title: "Data Infrastructure", text: "Resilient lakehouse foundations engineered for trusted, governed access.", icon: Database }, { title: "Cloud Solutions", text: "Elastic multi-cloud systems that scale workload, cost, and control together.", icon: Cloud }, { title: "AI-Powered", text: "Intelligent pipelines that generate, validate, monitor, and heal themselves.", icon: BrainCircuit }];
-function Foundations() {
-  const ref = useRef<HTMLElement>(null); useEffect(() => { let clean = () => { }; (async () => { const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => { gsap.from(".foundation-step", { scrollTrigger: { trigger: ref.current, start: "top 72%" }, opacity: 0, y: 60, stagger: .18, duration: .8, ease: "power3.out" }); gsap.fromTo(".foundation-line", { scaleX: 0 }, { scaleX: 1, scrollTrigger: { trigger: ref.current, start: "top 70%" }, duration: 1.5, ease: "power2.inOut" }) }, ref); clean = () => ctx.revert() })(); return () => clean() }, []);
-  return <section ref={ref} className="relative overflow-hidden bg-black py-20 text-white">
-    <div className="container">
-      <SectionHeader eyebrow="Built for production"
-        title="Production-ready data platforms for regulated industries"
-        description="Data engineering is the foundation of modern data-driven organizations. We design the systems that collect, store, process, and transform raw data into meaningful insight."
-        textColor="white" />
-      <div className="relative mt-12 grid gap-8 lg:grid-cols-3">
 
-        {foundations.map((x, i) => <motion.article key={x.title} whileHover={{ y: -10 }}
-          className="foundation-step group relative rounded-[24px] overflow-hidden border border-white/10 bg-white/[.04] p-8 backdrop-blur">
-            <div className="absolute -right-1 -top-1 max-w-[200px] opacity-[0.10]"><img src={'/img/shape-2.webp'} alt="shape" /></div>
-          <div
-            className="absolute inset-0 rounded-[24px] bg-[radial-gradient(circle_at_var(--x,50%)_0%,rgba(95,176,194,.18),transparent_45%)] opacity-0 transition-opacity group-hover:opacity-100" />
-          <div
-            className="relative grid size-14 place-items-center rounded-2xl border border-cyan-300/20 bg-secondary text-white">
-            <x.icon />
-          </div><span className="mt-12 block text-xs text-slate-500">0{i + 1}</span>
-          <h3 className="mt-2 text-2xl font-bold">{x.title}</h3>
-          <p className="mt-4 leading-7 text-slate-400">{x.text}</p>
-          <div className="mt-8 flex gap-1">{[1, 2, 3, 4, 5].map(n =>
-            <motion.span key={n} animate={{ opacity: [.2, 1, .2] }} transition={{
-              repeat: Infinity, duration: 2,
-              delay: (i + n) * .15
-            }} className="h-1 flex-1 rounded-full bg-cyan-300" />)}
-          </div>
-        </motion.article>)}
-      </div>
-    </div>
-  </section>
-}
 
 function Testimonial() {
   return <section className="bg-white pt-20 pb-8 overflow-hidden relative">
@@ -554,7 +523,7 @@ const ctaData: CTAData = {
 export default function DataEngineeringPage() {
   return <div className="overflow-hidden bg-white text-slate-950">
     <DataEngineeringHero />
-    <Foundations />
+    <Productions />
     <Stats />
     <Compliance />
     <GenAICards />
