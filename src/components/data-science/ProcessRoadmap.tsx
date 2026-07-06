@@ -18,6 +18,7 @@ import { useRef } from "react";
 
 import ClipShape from "../ui/clip-shape";
 import { SectionHeader } from "../ui/section-header";
+import CornerShape from "../ui/shape";
 
 type ProcessStep = {
   title: string;
@@ -237,12 +238,12 @@ export default function ProcessRoadmap() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden  py-15 text-slate-900 lg:py-15"
+      className="relative overflow-hidden  py-20 text-slate-900 bg-secondary/15"
     >
-      <ClipShape />
+      {/* <ClipShape /> */}
 
 
-      <div className="container relative mt-26  mb-10 z-10 mx-auto">
+      <div className="container relative z-10 mx-auto">
         <SectionHeader
                     eyebrow={"Autonomous Pipeline"}
                     title={`Next-gen agentic AI data science`}
@@ -345,6 +346,9 @@ export default function ProcessRoadmap() {
           })}
         </div>
       </div>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
+                <CornerShape color="#5fb0c226" />
+              </div>
     </section>
   );
 }

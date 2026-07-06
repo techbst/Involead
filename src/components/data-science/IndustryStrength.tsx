@@ -14,6 +14,7 @@ import SectionReveal from "@/components/home/SectionReveal";
 import AnimatedNumber from "@/components/ui/animated-number";
 import { cn } from "@/lib/utils";
 import { SectionHeader } from "../ui/section-header";
+import CornerShape from "../ui/shape";
 
 export interface IndustryMetric {
   title: string;
@@ -245,6 +246,9 @@ export default function IndustryStrengthSection({
   })}
 </div>
       </SectionReveal>
+       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
+          <CornerShape color="#000" />
+        </div>
     </section>
   );
 }

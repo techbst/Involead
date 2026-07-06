@@ -116,49 +116,49 @@ export default function WhyPartner() {
 
     return (
         <section ref={ref} className="relative bg-black py-20 text-white">
-      <div className="container grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr]">
-        {/* Left */}
-        <div className="self-start lg:sticky lg:top-12">
-          <SectionHeader
-            eyebrow="The InvoLead advantage"
-            title="Why Partner with InvoLead?"
-            description="A delivery model built to turn ambitious data strategy into durable enterprise capability."
-            maxWidth="5xl"
-            textColor="white"
-            align="left"
-          />
-        </div>
-
-        {/* Right */}
-        <div className="reason-list relative pl-8">
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10">
-            <div className="reason-progress h-full origin-top bg-cyan-300" />
-          </div>
-
-          <div className="space-y-4">
-            {reasons.map(([title, description], index) => (
-              <article
-                key={title}
-                className="reason-card rounded-[1.5rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm sm:p-8"
-              >
-                <div className="flex gap-5">
-                  <span className="font-mono text-xs text-cyan-300">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <div>
-                    <h3 className="text-xl font-bold">{title}</h3>
-
-                    <p className="mt-2 leading-7 text-slate-400">
-                      {description}
-                    </p>
-                  </div>
+            <div className="container grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+                {/* Left */}
+                <div className="self-start lg:sticky lg:top-12">
+                    <SectionHeader
+                        eyebrow="The InvoLead advantage"
+                        title="Why Partner with InvoLead?"
+                        description="A delivery model built to turn ambitious data strategy into durable enterprise capability."
+                        maxWidth="5xl"
+                        textColor="white"
+                        align="left"
+                    />
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+
+                {/* Right */}
+                <div className="reason-list relative pl-8">
+                    <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10">
+                        <div className="reason-progress h-full origin-top bg-cyan-300" />
+                    </div>
+
+                    <div className="space-y-4">
+                        {reasons.map(([title, description], index) => (
+                            <article
+                                key={title}
+                                className="reason-card rounded-[1.5rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm sm:p-8"
+                            >
+                                <div className="flex gap-5">
+                                    <span className="font-mono text-xs text-cyan-300">
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
+
+                                    <div>
+                                        <h3 className="text-xl font-bold">{title}</h3>
+
+                                        <p className="mt-2 leading-7 text-slate-400">
+                                            {description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }

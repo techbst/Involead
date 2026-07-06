@@ -63,7 +63,7 @@ export function BlogCard({
         aria-label={`Read article: ${post.title}`}
         className="absolute inset-0 z-[120]"
       />
-      <div className="relative z-99 h-48 overflow-hidden bg-[linear-gradient(135deg,_#111827_0%,_#60b0c2_58%,_#59a3b4_100%)]">
+      <div className="relative z-99 h-58 overflow-hidden bg-[linear-gradient(135deg,_#111827_0%,_#60b0c2_58%,_#59a3b4_100%)] px-1 rounded-[24px]">
         <Image
           alt={post.title}
           src={post.featuredimg}

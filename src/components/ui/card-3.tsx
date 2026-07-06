@@ -62,7 +62,7 @@ export default function CoreValueCard({
     },
   }}
   className={cn(
-    "group relative min-h-[230px] w-full min-w-0 overflow-hidden rounded-[16px] p-5",
+    "group relative min-h-[230px] w-full min-w-0 overflow-hidden rounded-[24px] p-5",
     "border bg-[#f4fbfd] transition-colors duration-500",
     isActive
       ? "border-secondary/50 shadow-[0_10px_15px_rgba(95,176,194,0.22)]"
