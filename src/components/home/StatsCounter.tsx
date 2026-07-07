@@ -40,7 +40,7 @@ export default function StatsCounter() {
             key={stat.label}
             className="flex flex-col items-center justify-center max-md:border max-md:border-white/10 px-4 py-4 text-center md:py-10 sm:px-8 lg:px-10"
           >
-            <h2 className="text-2xl !font-light !md:text-[48px] leading-none">
+            <h2 className="text-2xl !font-bold !md:text-[48px] leading-none">
               <Counter value={stat.value} suffix={stat.suffix} />
             </h2>
             <p className="mt-3  !text-sm !md:text-[28px] font-normal leading-tight text-white/95">

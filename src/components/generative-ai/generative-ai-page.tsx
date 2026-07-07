@@ -32,8 +32,9 @@ import ClipShape from "../ui/clip-shape";
 import CallToAction1, { CTAData } from "@/components/ui/call-to-action-1";
 import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
 import ImpactOnIndustry from "./impact-on-industry";
-import type { Swiper as SwiperType } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import Slider from "react-slick";
+import type { Settings } from "react-slick";
+import CornerShape from "../ui/shape";
 type SectionHeaderProps = {
   eyebrow?: string;
   title: string;
@@ -82,6 +83,28 @@ type TechTab = {
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
+};
+
+const expertiseSliderSettings: Settings = {
+  dots: false,
+  infinite: false,
+  arrows: false,
+  slidesToShow: 3.5,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2.5,
+      },
+    },
+    {
+      breakpoint: 640,
+      settings: {
+        slidesToShow: 1.5,
+      },
+    },
+  ],
 };
 
 const impactCards: Impact[] = [
@@ -353,7 +376,7 @@ const timelineSteps: TimelineStep[] = [
 ];
 
 const techTabs: TechTab[] = [
-  
+
   {
     label: "LLM Models (Text, Image, Video, etc.)",
     items: [
@@ -408,13 +431,13 @@ const blogPosts: BlogPost[] = [
     excerpt: "A practical view of autonomous workflows, orchestration, and measurable AI operating leverage.",
   },
   {
-       featuredimg: "/img/cap-2.webp",
+    featuredimg: "/img/cap-2.webp",
     category: "RAG Systems",
     title: "Building Cost-Efficient RAG Systems for Scale",
     excerpt: "How retrieval strategy, model routing, and evaluations help enterprises control quality and cost.",
   },
   {
-       featuredimg: "/img/cap-3.webp",
+    featuredimg: "/img/cap-3.webp",
     category: "Private AI",
     title: "Why Small Language Models Are the Future of Private AI",
     excerpt: "Domain-specific SLMs can outperform generic models when speed, privacy, and unit economics matter.",
@@ -473,9 +496,9 @@ function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden bg-[#100b08] pt-20 text-white sm:pt-24 lg:pt-28">
       <div
-  className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]"
-/>
-      
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]"
+      />
+
       <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_center,#000_1px,transparent_1px)] [background-size:12px_12px]" />
       <div className="container relative grid min-h-[560px] items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr]  lg:pb-20">
         <motion.div
@@ -566,10 +589,10 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
   return (
     <motion.div
       // variants={fadeUp}
-      // initial="hidden"
+      initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.16 }}
-      // transition={{ duration: 0.45, delay: index * 0.03 }}
+      viewport={{ once: false, amount: 0.16 }}
+      transition={{ duration: 0.45, delay: index * 0.03 }}
       // whileHover={{ y: isFlipped ? 0 : -8 }}
       className="group h-full min-h-[480px] [perspective:1400px]"
     >
@@ -591,14 +614,14 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
             clipPath: CLIP_PATH,
           }}
         >
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" style={{ clipPath: CLIP_PATH }}/>
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" style={{ clipPath: CLIP_PATH }} />
 
           <div
-                      className="absolute inset-0 z-10 transition duration-500 bg-black/50 group-hover:bg-black/70"
-                      style={{
-                        clipPath: CLIP_PATH,
-                      }}
-                    />
+            className="absolute inset-0 z-10 transition duration-500 bg-black/50 group-hover:bg-black/70"
+            style={{
+              clipPath: CLIP_PATH,
+            }}
+          />
 
           <div className="absolute left-0 top-0 w-full h-full bg-black/50 group-hover:bg-secondary">
             <img
@@ -618,14 +641,19 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
               <h3 className="!text-[20px] !font-semibold leading-tight text-white">{item.title}</h3>
             </div>
 
-            <div className="mt-7 grid gap-3">
-              {item.pointerHeadings.map((pointer, pointerIndex) => (
+            <div className="mt-7 grid translate-y-10 gap-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+              {item.pointerHeadings.map((pointer) => (
                 <div
                   key={pointer}
-                  className="flex items-center gap-3 text-sm font-medium text-[16px]"
+                  className="flex items-start gap-3 text-[16px] font-medium"
                 >
-                  <CircleCheckBig className="text-secondary" />
-                  <span className="text-white">{pointer}</span>
+                  <CircleCheckBig
+                    className="mt-1 h-[18px] w-[18px] shrink-0 text-secondary"
+                  />
+
+                  <span className="text-white leading-6">
+                    {pointer}
+                  </span>
                 </div>
               ))}
             </div>
@@ -716,7 +744,7 @@ function TimelineSection() {
   useEffect(() => {
     if (shouldReduceMotion) return;
 
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     async function initGsap() {
       const gsapModule = await import("gsap");
@@ -771,7 +799,7 @@ function TimelineSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-black py-20 sm:py-20">
-      
+
       <div className="absolute inset-0 bg-black" />
       <div className="container relative">
         <SectionHeader
@@ -807,6 +835,7 @@ function TimelineSection() {
           </div>
         </div>
       </div>
+
     </section>
   );
 }
@@ -816,7 +845,7 @@ function TechStackTabs() {
   const current = techTabs[active];
 
   return (
-    <section className="bg-secondary/20 py-20 sm:py-20 lg:py-20">
+    <section className="bg-secondary/15 pt-20 pb-30 relative overflow-hidden">
       <div className="container">
         <SectionHeader
           eyebrow="Tech-Stack"
@@ -864,6 +893,9 @@ function TechStackTabs() {
           })}
         </motion.div>
       </div>
+      <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#fff]">
+        <CornerShape color="#5fb0c226" />
+      </div>
     </section>
   );
 }
@@ -873,18 +905,19 @@ function BlogSection() {
     <section className="py-20">
       <div className="mx-auto container">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              align="left"
-              title="Get Insights & Tips from Our Blog"
-              description="Check out our blog for the latest AI trends and insights!"
-            />
-            <Button asChild>
-              <Link href="/case-studies">
-                View All Stories
-                <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-          </div>
+          <SectionHeader
+            align="left"
+            eyebrow="Insights & Blog"
+            title="Get Insights & Tips from Our Blog"
+            description="Check out our blog for the latest AI trends and insights!"
+          />
+          <Button asChild>
+            <Link href="/case-studies">
+              View All Stories
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+        </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
@@ -899,8 +932,8 @@ function BlogSection() {
 function CTASection() {
   return (
     <section className="relative isolate overflow-hidden bg-secondary py-20 text-white sm:py-24">
-     
-      <ShapeHeroBackground/>
+
+      <ShapeHeroBackground />
       <motion.div
         initial={{ opacity: 0, y: 26 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -927,21 +960,21 @@ function CTASection() {
   );
 }
 const ctaData: CTAData = {
-    title: "Start building enterprise-grade Generative AI systems",
-    description:
-      "Partner with us to transform your enterprise with intelligent, scalable AI solutions",
-    buttonText: "Explore Solutions",
-    buttonLink: "/our-solutions",
-    video: "/video/bg-1.mp4",
-    members: 100,
-    avatars: [
-      "/img/avatar-1.webp",
-      "/img/avatar-2.webp",
-      "/img/avatar-3.webp",
-    ],
+  title: "Start building enterprise-grade Generative AI systems",
+  description:
+    "Partner with us to transform your enterprise with intelligent, scalable AI solutions",
+  buttonText: "Explore Solutions",
+  buttonLink: "/our-solutions",
+  video: "/video/bg-1.mp4",
+  members: 100,
+  avatars: [
+    "/img/avatar-1.webp",
+    "/img/avatar-2.webp",
+    "/img/avatar-3.webp",
+  ],
 };
 export default function GenerativeAIPage() {
-  const swiperRef = useRef<SwiperType | null>(null);
+  const sliderRef = useRef<Slider | null>(null);
   return (
     <div className="overflow-hidden bg-white text-slate-950">
       {/* <HeroSection /> */}
@@ -954,80 +987,77 @@ export default function GenerativeAIPage() {
             description="From accelerated innovation cycles to autonomous orchestration, InvoLead empowers enterprises to scale with Deterministic AI solutions built for tangible ROI."
             textColor="white"
           />
-          
-            <ImpactOnIndustry />
-            
-          
+
+          <ImpactOnIndustry />
+
+
+        </div>
+        <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#fff] ">
+          <CornerShape color="#000" />
         </div>
       </section>
 
       <section className="py-20 overflow-hidden relative">
         <div className="container relative">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          
-           <SectionHeader
-            eyebrow="Our Generative AI Expertise"
-            title="Future-Proof AI Architectures"
-            description="We specialize in Cognitive Architectures that redefine scalability. From autonomous agents to Large Language Model (LLM) fine-tuning, we deploy enterprise-grade systems designed for Zero-Shot efficiency."
-            align="left"
-            descriptionmaxWidth="5xl"
-          />
 
-          <div className="flex gap-3 sm:gap-4">
-            <button
-              type="button"
-              onClick={() => swiperRef.current?.slidePrev()}
-              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
-              aria-label="Previous capability"
-            >
-              <ArrowLeft className="size-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => swiperRef.current?.slideNext()}
-              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
-              aria-label="Next capability"
-            >
-              <ArrowRight className="size-5" />
-            </button>
+            <SectionHeader
+              eyebrow="Our Generative AI Expertise"
+              title="Future-Proof AI Architectures"
+              description="We specialize in Cognitive Architectures that redefine scalability. From autonomous agents to Large Language Model (LLM) fine-tuning, we deploy enterprise-grade systems designed for Zero-Shot efficiency."
+              align="left"
+              descriptionmaxWidth="5xl"
+            />
+
+            <div className="flex gap-3 sm:gap-4">
+              <button
+                type="button"
+                onClick={() => sliderRef.current?.slickPrev()}
+                className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+                aria-label="Previous capability"
+              >
+                <ArrowLeft className="size-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => sliderRef.current?.slickNext()}
+                className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
+                aria-label="Next capability"
+              >
+                <ArrowRight className="size-5" />
+              </button>
+            </div>
           </div>
-        </div>
-          
-          <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            spaceBetween={20}
-            slidesPerView={3}
-            loop={false}
-            breakpoints={{
-              640: { slidesPerView: 1.15 },
-              768: { slidesPerView: 2 },
-              1200: { slidesPerView: 3 },
-            }}
-            className="mt-9 min-w-0 custom-swiper-style-2"
+
+          <Slider
+            ref={sliderRef}
+            {...expertiseSliderSettings}
+            className="mt-9 -mx-2 min-w-0 custom-slick-style-2"
           >
             {expertiseCards.map((item, index) => (
-              <SwiperSlide key={item.title} className="h-auto py-2 bg-transparent rounded-xl">
+              <div key={item.title} className="h-full px-2 py-2">
                 <ExpertiseCard key={item.title} item={item} index={index} />
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
+          </Slider>
+        </div>
+        <div className="absolute -bottom-[8px] left-0 w-[290px] bg-black ">
+          <CornerShape color="#fff" />
         </div>
       </section>
 
       <TimelineSection />
       <TechStackTabs />
 
-          
-  
-      
+
+
+
 
       <BlogSection />
-      
-<CallToAction1 data={ctaData} />
-      
 
-        </div>
+      <CallToAction1 data={ctaData} />
+
+
+    </div>
   );
 }

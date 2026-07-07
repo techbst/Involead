@@ -13,6 +13,7 @@ import {
 import { SectionHeader } from "../ui/section-header";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import CornerShape from "../ui/shape";
 
 
 export default function Stats() {
@@ -55,13 +56,14 @@ export default function Stats() {
     ] as const;
 
     return (
-        <section className="bg-white pt-20 pb-2">
+        <section className="bg-black py-20 relative overflow-hidden">
             <div className="container">
                 <SectionHeader
                     maxWidth="5xl"
                     eyebrow="Our Impact"
                     title="AI Outcomes That Move Business Forward"
                     description="We combine enterprise-grade AI strategy, automation, and data engineering to deliver measurable business results."
+                    textColor="white"
                 />
 
                 <div className="mt-14">
@@ -71,12 +73,13 @@ export default function Stats() {
                 </div>
 
                 <div className="mx-auto mt-12 max-w-4xl text-center">
-                    <h3 className="font-semibold">
+                    <h3 className="font-semibold text-white">
                         Ready to transform your data engineering with AI?
                     </h3>
 
                     <Button
                         asChild
+                        variant={"outline"}
                         className="mt-8"
                     >
                         <Link href="/contact-us">
@@ -86,6 +89,7 @@ export default function Stats() {
                     </Button>
                 </div>
             </div>
+            
         </section>
     );
 }

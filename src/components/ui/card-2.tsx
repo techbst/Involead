@@ -59,7 +59,7 @@ export default function FeatureCard({
                     <div>
                         <h4 className="text-3xl font-bold text-white group-hover:text-secondary">{title}</h4>
 
-                        <p className="mt-2 max-w-md text-lg leading-8 text-white/90  group-hover:!text-primary">
+                        <p className="mt-2 !text-white/90  group-hover:!text-primary">
                             {description}
                         </p>
                     </div>

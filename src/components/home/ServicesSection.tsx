@@ -72,7 +72,7 @@ export default function ServicesSection() {
           ))}
         </Slider>
       </SectionReveal>
-      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
+      <div className="absolute -bottom-[8px] left-0 w-[290px] bg-black ">
         <CornerShape color="#fff" />
       </div>
       {/* <CornerShape color="#fff" /> */}

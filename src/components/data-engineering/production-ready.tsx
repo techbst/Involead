@@ -1,6 +1,7 @@
 import { Database, ShieldCheck, Cloud } from "lucide-react";
 import FeatureCard from "../ui/card-2";
 import { SectionHeader } from "../ui/section-header";
+import CornerShape from "../ui/shape";
 
 const iconMap = {
     database: Database,
@@ -37,13 +38,12 @@ const cards = [
 
 export default function Productions() {
     return (
-        <section className="relative overflow-hidden bg-black py-20 text-white">
+        <section className="relative overflow-hidden bg-white py-20">
             <div className="container">
                 <SectionHeader
                     eyebrow="Built for production"
                     title="Production-ready data platforms for regulated industries"
                     description="Data engineering is the foundation of modern data-driven organizations. We design the systems that collect, store, process, and transform raw data into meaningful insight."
-                    textColor="white"
                 />
                 <div className="relative mt-12 grid gap-4 lg:grid-cols-3">
                     {cards.map((card, index) => (
@@ -55,10 +55,13 @@ export default function Productions() {
                             icon={iconMap[card.icon as keyof typeof iconMap]}
                             bgColor={card.bgColor}
                             index={index}
-                            // reverse={index % 2 !== 0}
+                        // reverse={index % 2 !== 0}
                         />
                     ))}
                 </div>
+            </div>
+            <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#000] ">
+                <CornerShape color="#fff" />
             </div>
         </section>
     );

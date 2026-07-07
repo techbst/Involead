@@ -17,6 +17,7 @@ import {
   BadgeCheck,
   LockKeyhole,
 } from "lucide-react";
+import CornerShape from "../ui/shape";
 
 const valuess = [
   {
@@ -63,32 +64,31 @@ export default function Compliance() {
   const [active, setActive] = useState<number | null>(0);
   const rows = [valuess.slice(0, 3), valuess.slice(3, 6)];
 
-  return <section className="py-20 overflow-hidden relative">
-    <ClipShape />
-    <div className="container z-10 mt-26 relative">
+  return <section className="py-20 overflow-hidden relative bg-secondary/15">
+    <div className="container relative">
       <SectionHeader
         eyebrow="Trust by design" title="Standards-Verified Compliance"
         description="Our data platforms adhere to the highest security standards. We protect your data, simplify audits, and guarantee compliance."
       />
       <div className="mt-12 space-y-4">
-                {rows.map((row, rowIndex) => (
-                  <div key={rowIndex} className="flex flex-col gap-4 lg:flex-row">
-                    {row.map((item, itemIndex) => {
-                      const index = rowIndex * 3 + itemIndex;
-      
-                      return (
-                        <CoreValueCard
-                          key={item.title}
-                          item={item}
-                          index={index}
-                          active={active}
-                          setActive={setActive}
-                        />
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex flex-col gap-4 lg:flex-row">
+            {row.map((item, itemIndex) => {
+              const index = rowIndex * 3 + itemIndex;
+
+              return (
+                <CoreValueCard
+                  key={item.title}
+                  item={item}
+                  index={index}
+                  active={active}
+                  setActive={setActive}
+                />
+              );
+            })}
+          </div>
+        ))}
+      </div>
       <div className="mt-10 text-center">
         <Button asChild>
           <Link href="/contact-us">Speak to Our Experts
@@ -96,6 +96,9 @@ export default function Compliance() {
           </Link>
         </Button>
       </div>
+    </div>
+    <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#fff] ">
+      <CornerShape color="#5fb0c226" />
     </div>
   </section>
 }

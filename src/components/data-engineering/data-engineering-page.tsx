@@ -27,6 +27,7 @@ import CallToAction1 from "../ui/call-to-action-1";
 import Productions from "./production-ready";
 import WhyChooseUs from "../data-science/WhyChooseUs";
 import Compliance from "./complaince";
+import CornerShape from "../ui/shape";
 
 const cn = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(" ");
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
@@ -43,7 +44,7 @@ function SectionHeading({ eyebrow, title, body, inverse = false }: { eyebrow?: s
 
 
 function Testimonial() {
-  return <section className="bg-white pt-20 pb-8 overflow-hidden relative">
+  return <section className="bg-white py-20 overflow-hidden relative">
 
     <div className="container">
       <motion.div
@@ -111,6 +112,9 @@ function Testimonial() {
         </div>
       </motion.div>
     </div>
+    <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#5fb0c226] ">
+          <CornerShape color="#fff" />
+        </div>
   </section>
 }
 
@@ -123,7 +127,7 @@ const genCards = [
   { title: "Natural Language Interfaces", desc: "Query and manipulate data using plain English, making data engineering accessible to non-technical stakeholders.", icon: Sparkles, image: "/img/data-scie.webp" },
 ];
 function GenAICards() {
-  const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-20">
+  const [activeRow1, setActiveRow1] = useState<number | null>(null); const [activeRow2, setActiveRow2] = useState<number | null>(null); return <section className="bg-white py-20 relative overflow-hidden">
     <div className="container">
       <SectionHeader
         eyebrow="Generative intelligence"
@@ -140,6 +144,9 @@ function GenAICards() {
           onHover={() => setActiveRow2(j)} onLeave={() => setActiveRow2(null)} />)}</motion.div>
       </div>
     </div>
+    <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#5fb0c226] ">
+          <CornerShape color="#fff" />
+        </div>
   </section>
 }
 function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item: typeof genCards[number]; active: boolean; muted: boolean; onHover: () => void; onLeave: () => void; wide?: boolean }) {
@@ -198,7 +205,7 @@ const excellence = [
   ["Real-time Data Streaming", "Build real-time data streaming solutions for instant insights and decision-making.", ["Kafka Integration", "Stream Processing", "Event-driven Architecture", "Real-time Analytics"]]
 ];
 function Excellence() {
-  return <section className="overflow-hidden py-20 bg-secondary/20" >
+  return <section className="overflow-hidden py-20 bg-secondary/15" >
     <div className="container">
       <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
         <div className="mb-0 max-w-5xl text-left">
@@ -338,7 +345,7 @@ function WhyPartner() {
     })(); return () => { cancelled = true; clean(); }
   }, []);
 
-  return <section ref={ref} className="relative bg-black py-20 text-white">
+  return <section ref={ref} className="relative bg-black py-20 text-white relative overflow-hidden">
     <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
       <div className="lg:sticky lg:top-12 self-start">
         <SectionHeader
@@ -364,6 +371,9 @@ function WhyPartner() {
           </div>
         </article>)}</div>
       </div>
+    </div>
+    <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
+      <CornerShape color="#000" />
     </div>
   </section>
 }
@@ -467,9 +477,8 @@ const blogs: BlogPost[] = [
   { featuredimg: "/img/cap-3.webp", category: "Private AI", title: "Predictive Analytics for Modern Retail: Building Smarter Customer Journeys", excerpt: "A deep dive into how GenAI and advanced analytics enable organizations to unify data sources..." }
 ];
 function Blog() {
-  return <section className="py-20 relative overflow-hidden">
-    <ClipShape />
-    <div className="container relative mt-26">
+  return <section className="py-20 relative overflow-hidden bg-secondary/15">
+    <div className="container relative ">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeader
           align="left"
@@ -522,6 +531,7 @@ export default function DataEngineeringPage() {
     <DataEngineeringHero />
     <Productions />
     <Stats />
+    
     <Compliance />
     <GenAICards />
     <Excellence />

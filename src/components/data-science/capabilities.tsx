@@ -451,7 +451,7 @@ export default function Section() {
         />
         <ExpandableCardGrid items={cards} className="mt-12" />
       </div>
-      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
+      <div className="absolute -bottom-[8px] left-0 w-[290px] bg-black ">
         <CornerShape color="#fff" />
       </div>
     </section>
