@@ -89,11 +89,24 @@ const expertiseSliderSettings: Settings = {
   dots: false,
   infinite: false,
   arrows: false,
+  variableWidth: false,
   slidesToShow: 3.5,
   slidesToScroll: 1,
   responsive: [
     {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
       breakpoint: 1024,
+      settings: {
+        slidesToShow: 2.5,
+      },
+    },
+    {
+      breakpoint: 768,
       settings: {
         slidesToShow: 2,
       },
@@ -101,7 +114,13 @@ const expertiseSliderSettings: Settings = {
     {
       breakpoint: 640,
       settings: {
-        slidesToShow: 1.05,
+        slidesToShow: 1.5,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
       },
     },
   ],
