@@ -46,7 +46,7 @@ export default function ServicesSection() {
         <Slider
           ref={sliderRef}
           {...sliderSettings}
-          className="mt-12 custom-slick-style-2"
+          className="mt-12"
         >
           {servicesSection.cards.map((card, index) => (
             <div key={card.title}>
