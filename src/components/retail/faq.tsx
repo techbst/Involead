@@ -56,6 +56,7 @@ export default function FAQSection() {
     <section className="relative overflow-hidden py-20 bg-secondary/10">
       <div className="container relative">
         <SectionHeader
+        eyebrow="FAQs"
           title="Frequently Asked Questions"
           description="Get answers to common questions about data engineering and our services."
         />

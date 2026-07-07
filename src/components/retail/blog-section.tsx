@@ -38,7 +38,8 @@ export default function RetailBlogSection() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeader
             align="left"
-            title="Success Stories"
+            eyebrow="Insights & Blog"
+            title="Get Insights & Tips from Our Blog"
             description="Check out our blog for the latest AI trends and insights!"
           />
           <Button asChild>

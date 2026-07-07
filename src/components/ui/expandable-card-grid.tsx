@@ -35,14 +35,25 @@ export default function ExpandableCardGrid({ items, className }: Props) {
   const [visibleCount, setVisibleCount] = useState(6);
   const visibleItems = items.slice(0, visibleCount);
   const hasMore = visibleCount < items.length;
-
+  
   return (
     <>
-    <div className={cn("grid gap-5 lg:grid-cols-3", className)}>
+    <div className={cn("grid items-start gap-5 lg:grid-cols-3", className)}>
       <AnimatePresence initial={false}>
         {visibleItems.map((item, index) => {
           const isActive = activeIndex === index;
+          const getOrderClass = (index: number) => {
+          if (activeIndex === 2) {
+            if (index === 0) return "lg:order-1";
+            if (index === 2) return "lg:order-2 lg:col-span-2";
+            if (index === 1) return "lg:order-3";
+            if (index === 3) return "lg:order-4";
+            if (index === 4) return "lg:order-5";
+            return "lg:order-6";
+          }
 
+            return isActive ? "lg:col-span-2" : "";
+          };
           return (
             <motion.div
               key={item.title}
@@ -57,9 +68,9 @@ export default function ExpandableCardGrid({ items, className }: Props) {
                 ease: [0.22, 1, 0.36, 1],
               }}
               className={cn(
-                "rounded-[18px] bg-white p-4 border border-secondary/30",
-                isActive &&
-                "relative  shadow-[0_10px_30px_rgba(95,176,194,0.25)] lg:col-span-2"
+                "rounded-[18px] h-full bg-white p-4 border border-secondary/30 self-start",
+                isActive && "relative shadow-[0_10px_30px_rgba(95,176,194,0.55)]",
+                getOrderClass(index)
               )}
             >
               {isActive ? (

@@ -61,6 +61,14 @@ export default function ResultsSection() {
                   <motion.article
                     key={item.title}
                     variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.25 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.08,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                     className={cn(
                       "rounded-[1.75rem] border border-white/10 p-6 shadow-2xl",
                       [
