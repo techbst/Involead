@@ -75,14 +75,14 @@ export default function Footer() {
       <div className="container">
         <div className=" ">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="flex flex-col gap-6 text-center lg:max-w-[28rem] lg:text-left">
+            <div className="mx-auto flex max-w-md flex-col gap-6 text-center lg:mx-0 lg:max-w-[28rem] lg:text-left">
               <div className="flex flex-col gap-2">
                <Image
                            src="/img/logo.png"
                            alt="InvoLead"
                            width={164}
                            height={46}
-                           className="h-auto w-full max-w-[164px] object-contain"
+                           className="mx-auto h-auto w-full max-w-[164px] object-contain lg:mx-0"
                            priority
                          /> 
                 <p className="mt-2 !text-[20px] leading-[1.75] !text-white sm:!text-[24px]">
@@ -109,7 +109,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-10 sm:gap-12 lg:gap-[4.375rem]">
+            <div className="grid w-full gap-10 text-center sm:grid-cols-3 sm:text-left lg:w-auto lg:gap-[4.375rem]">
               <FooterColumn title="Services" items={services} />
               <FooterColumn title="Company" items={company} />
 
@@ -134,7 +134,7 @@ export default function Footer() {
                       Support@Involead.Com
                     </Link>
                   </li>
-                  <li className="max-w-[18rem] text-[15px] leading-[1.7] text-white sm:text-[15px]">
+                  <li className="mx-auto max-w-[18rem] text-[15px] leading-[1.7] text-white sm:mx-0 sm:text-[15px]">
                     410A, 4th Floor, D21 Corporate Park, Dwarka Sector 21, New
                     Delhi - 110077
                   </li>
@@ -143,8 +143,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="relative mt-0 mb-5 w-full ">
-            <Image src="/img/footer-logo.svg" width={1000} height={100} className="h-full w-full mx-auto" alt="image svg" />
+          <div className="relative mt-8 mb-5 w-full lg:mt-0">
+            <Image src="/img/footer-logo.svg" width={1000} height={100} className="mx-auto h-auto w-full" alt="image svg" />
           </div>
 
           <div className="border-t-1 mt-4 pt-4 pb-3 border-white/20 flex flex-col gap-4  pb-5 lg:flex-row lg:items-center lg:justify-between">
@@ -154,7 +154,7 @@ export default function Footer() {
               All rights reserved.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:gap-x-10">
               {legalLinks.map((item) => (
                 <Link
                   key={item.label}

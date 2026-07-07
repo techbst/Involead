@@ -327,8 +327,9 @@ export default function IndustryTabs() {
     if (!gsap) return;
 
     const stageW = stageRef.current?.offsetWidth ?? 1000;
-    const cx = stageW / 2 - CARD_W / 2;
-    const spread = CARD_W;
+    const cardW = Math.min(CARD_W, Math.max(280, stageW - 32));
+    const cx = stageW / 2 - cardW / 2;
+    const spread = cardW;
 
     const curr = activeCardRef.current;
     const N = cardRefs.current.length;
@@ -489,7 +490,7 @@ export default function IndustryTabs() {
               key={card.title}
               ref={(el) => { cardRefs.current[i] = el; }}
               className={`absolute top-0`}
-              style={{ width: CARD_W, willChange: "transform" }}
+              style={{ width: "min(400px, calc(100vw - 2rem))", willChange: "transform" }}
             >
               {/* ── Exact original card markup, zero changes ── */}
               <article

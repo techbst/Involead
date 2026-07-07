@@ -95,13 +95,13 @@ const expertiseSliderSettings: Settings = {
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 2.5,
+        slidesToShow: 2,
       },
     },
     {
       breakpoint: 640,
       settings: {
-        slidesToShow: 1.5,
+        slidesToShow: 1.05,
       },
     },
   ],
@@ -594,17 +594,17 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
       viewport={{ once: false, amount: 0.16 }}
       transition={{ duration: 0.45, delay: index * 0.03 }}
       // whileHover={{ y: isFlipped ? 0 : -8 }}
-      className="group h-full min-h-[480px] [perspective:1400px]"
+      className="group h-full min-h-[420px] sm:min-h-[460px] lg:min-h-[480px] [perspective:1400px]"
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative h-full min-h-[480px] rounded-[18px]"
+        className="group relative h-full min-h-[420px] rounded-[18px] sm:min-h-[460px] lg:min-h-[480px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <article
           className={cn(
-            "absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/90 p-7 shadow-[0_22px_70px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset]",
+            "absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/90 p-5 shadow-[0_22px_70px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset] sm:p-7",
             isFlipped ? "pointer-events-none" : "pointer-events-auto",
             item.backgroundImage,
           )}
@@ -672,7 +672,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
 
         <article
           className={cn(
-            "absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200 bg-white p-7 shadow-[0_24px_80px_rgba(15,23,42,0.16),0_1px_0_rgba(255,255,255,0.9)_inset]",
+            "absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200 bg-white p-5 shadow-[0_24px_80px_rgba(15,23,42,0.16),0_1px_0_rgba(255,255,255,0.9)_inset] sm:p-7",
             isFlipped ? "pointer-events-auto" : "pointer-events-none",
           )}
           style={{

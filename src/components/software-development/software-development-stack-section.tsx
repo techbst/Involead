@@ -20,7 +20,7 @@ export default function SoftwareDevelopmentStackSection() {
             descriptionWidth="3xl"
           />
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {softwareStackItems.map((item) => (
               <article
                 key={item.title}

@@ -88,7 +88,7 @@ function Testimonial() {
               duration: 8,
               repeat: Infinity,
             }}
-            className="absolute h-[380px] w-[380px] rounded-full bg-secondary/10"
+            className="absolute h-[260px] w-[260px] rounded-full bg-secondary/10 sm:h-[340px] sm:w-[340px] lg:h-[380px] lg:w-[380px]"
           />
 
           {/* Decorative Shapes */}
@@ -101,7 +101,7 @@ function Testimonial() {
             whileHover={{ scale: 1.03 }}
             className="relative z-10"
           >
-            <div className="h-[340px] w-[340px] overflow-hidden rounded-full border-8 border-secondary/10">
+            <div className="h-[240px] w-[240px] overflow-hidden rounded-full border-8 border-secondary/10 sm:h-[300px] sm:w-[300px] lg:h-[340px] lg:w-[340px]">
               <img
                 src="/testimonials/marcus.jpg"
                 alt="Marcus Saito"
@@ -171,7 +171,7 @@ function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item
       : baseFlex,
   }}
   className={cn(
-    "group relative min-h-[340px] min-w-0 basis-0 overflow-hidden rounded-[24px] p-7 sm:p-9",
+    "group relative min-h-[280px] min-w-0 basis-auto overflow-hidden rounded-[24px] p-6 sm:min-h-[320px] sm:p-8 lg:min-h-[340px] lg:basis-0 lg:p-9",
     item.color || "bg-slate-950 text-white"
   )}
 >
@@ -185,7 +185,7 @@ function GenCard({ item, active, muted, onHover, onLeave, wide = false }: { item
       <div className="relative grid size-14 place-items-center rounded-2xl border border-slate-200 bg-white">
         <item.icon className={cn("size-7", item.image ? "text-secondary" : "text-secondary")} />
       </div>
-      <h3 className={cn("mt-auto pt-20 text-2xl font-bold", item.image ? "text-white" : "text-slate-950")}>{item.title}</h3>
+      <h3 className={cn("mt-auto pt-14 text-2xl font-bold sm:pt-20", item.image ? "text-white" : "text-slate-950")}>{item.title}</h3>
       <p className={cn("mt-3 max-w-xl text-sm leading-7", item.image ? "text-slate-300" : "text-slate-700")}>{item.desc}</p>
       <Button asChild variant={item.image ? "outline" : "outline"} className="mt-6 w-fit rounded-full">
         <Link href="/contact-us">Schedule A Demo <ArrowRight className="size-4" /></Link>
@@ -492,7 +492,7 @@ function Blog() {
           </Link>
         </Button>
       </div>
-      <div className="mt-10 grid gap-6 md:grid-cols-3">{blogs.map((p, i) =>
+      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{blogs.map((p, i) =>
         <BlogCard key={p.title} post={p} index={i} />)}
       </div>
     </div>

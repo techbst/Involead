@@ -37,12 +37,12 @@ export default function CaseStudiesCard({
   return (
     <article
       className={cn(
-        "cursor-grab rounded-[28px] bg-[linear-gradient(180deg,_#68C1D5_-15.15%,_#FFFFFF_112.08%)] p-4 shadow-[0_14px_30px_rgba(0,0,0,0.10)]",
+        "cursor-grab rounded-[28px] bg-[linear-gradient(180deg,_#68C1D5_-15.15%,_#FFFFFF_112.08%)] p-3 shadow-[0_14px_30px_rgba(0,0,0,0.10)] sm:p-4",
         "md:rounded-[32px] md:p-5",
         className
       )}
     >
-      <div className="grid gap-6 lg:grid-cols-[300px_1fr] xl:grid-cols-[330px_1fr]">
+      <div className="grid min-w-0 gap-4 md:gap-6 lg:grid-cols-[300px_1fr] xl:grid-cols-[330px_1fr]">
         <div className="relative min-h-[260px] overflow-hidden rounded-[22px] md:min-h-[320px]">
           <Image
             src={image}
@@ -54,9 +54,9 @@ export default function CaseStudiesCard({
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/45 to-transparent" />
         </div>
 
-        <div className="flex flex-col bg-white rounded-[24px] px-8 py-8">
-          <span className="rounded-full bg-secondary/10 px-4 py-2 text-xs font-semibold text-secondary max-w-[100] text-center mb-5">Case Study</span>
-          <h3 className="font-semibold tracking-tight line-clamp-1">
+        <div className="flex min-w-0 flex-col rounded-[24px] bg-white px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+          <span className="mb-5 max-w-max rounded-full bg-secondary/10 px-4 py-2 text-center text-xs font-semibold text-secondary">Case Study</span>
+          <h3 className="font-semibold tracking-tight line-clamp-2 lg:line-clamp-1">
             {title}
           </h3>
 
@@ -73,17 +73,17 @@ export default function CaseStudiesCard({
                   index !== 0 && "border-t border-secondary/24 sm:border-l sm:border-t-0"
                 )}
               >
-                <div className="font-bold text-black lg:text-[26px] sm:text-[24px] md:text-[20px]">
+                <div className="break-words font-bold leading-tight text-black text-[22px] sm:text-[24px] md:text-[20px] lg:text-[26px]">
                   {metric.value}
                 </div>
-                <p className="mt-0 line-clamp-1">
+                <p className="mt-1 text-sm leading-snug sm:line-clamp-2">
                   {metric.label}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-7 flex justify-between center">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Button asChild variant={"outline"} className="bg-secondary/10 !text-secondary">
               <Link href={href}><Icon className="size-4" /> {category}</Link>
             </Button>

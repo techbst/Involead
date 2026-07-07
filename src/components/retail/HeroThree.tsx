@@ -125,9 +125,9 @@ function GaugePanel({ color }: { color: string }) {
 
 function DashboardPanels() {
   return (
-    <div className="relative mx-auto h-[610px] w-full max-w-[620px] [perspective:1300px]">
+    <div className="relative mx-auto h-[430px] w-full max-w-[620px] [perspective:1300px] sm:h-[520px] lg:h-[610px]">
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[360px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-[34px] border border-white/10 bg-white/[0.05] shadow-[0_40px_140px_rgba(37,99,235,0.2)] backdrop-blur-2xl [transform:rotateX(62deg)_rotateZ(-28deg)]"
+        className="absolute left-1/2 top-1/2 h-[250px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-[34px] border border-white/10 bg-white/[0.05] shadow-[0_40px_140px_rgba(37,99,235,0.2)] backdrop-blur-2xl [transform:rotateX(62deg)_rotateZ(-28deg)] sm:h-[310px] sm:w-[400px] lg:h-[360px] lg:w-[470px]"
         animate={{ y: [0, -16, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       >

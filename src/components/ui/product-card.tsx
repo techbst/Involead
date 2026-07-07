@@ -69,7 +69,7 @@ export default function ClipCard({
         style={clipPathStyle}
       >
         {/* Image / Header Media Section */}
-        <div className="relative rounded-[24px] h-80 overflow-hidden bg-slate-900">
+        <div className="relative h-56 overflow-hidden rounded-[24px] bg-slate-900 sm:h-72 lg:h-80">
           {/* Accent light overlay */}
           <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
           
@@ -92,9 +92,9 @@ export default function ClipCard({
         </div>
 
         {/* Info Card Body */}
-        <div className="flex flex-1 flex-col justify-between p-6">
+        <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
           <div>
-            <h3 className="font-display !text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#2c7787] transition-colors duration-300 sm:!text-xl">
+            <h3 className="font-display !text-lg font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-[#2c7787] sm:!text-xl">
               {title}
             </h3>
 

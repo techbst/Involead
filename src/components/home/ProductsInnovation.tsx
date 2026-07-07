@@ -110,12 +110,12 @@ const sliderRef = useRef<Slider | null>(null);
           <Slider
             ref={sliderRef}
             {...sliderSettings}
-            className="mt-12 custom-slick-style-2"
+            className="mt-12 -mx-2 custom-slick-style-2"
           >
             {products.map((product, index) => (
               <div 
               key={product.title} 
-              className="">
+              className="px-2">
                 <motion.div
                   // initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const sliderRef = useRef<Slider | null>(null);
                     duration: 0.6,
                   }}
                   viewport={{ once: true }}
-                  className="relative h-[380px] w-full sm:h-[430px] lg:h-[450px] p-[1px]"
+                  className="relative h-[420px] w-full sm:h-[430px] lg:h-[450px] p-[1px]"
                   style={{
                     clipPath: CLIP_PATH,
                     WebkitClipPath: CLIP_PATH,

@@ -22,28 +22,28 @@ const microNodes = [
 
 export default function ArchitectureGraphicVariantFive() {
   return (
-    <div className="relative mx-auto grid min-h-[540px] w-full max-w-[650px] place-items-center overflow-hidden">    
+    <div className="relative mx-auto grid min-h-[360px] w-full max-w-[650px] place-items-center overflow-hidden sm:min-h-[460px] lg:min-h-[540px]">    
 
       <motion.div
-        className="absolute size-[430px] rounded-full border border-dashed border-[#5fb0c2]/35"
+        className="absolute size-[280px] rounded-full border border-dashed border-[#5fb0c2]/35 sm:size-[360px] lg:size-[430px]"
         animate={{ rotate: 360 }}
         transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
       />
 
       <motion.div
-        className="absolute size-[315px] rounded-full border border-dashed border-slate-300"
+        className="absolute size-[210px] rounded-full border border-dashed border-slate-300 sm:size-[270px] lg:size-[315px]"
         animate={{ rotate: -360 }}
         transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
       />
 
       <motion.div
-        className="absolute size-[205px] rounded-full border border-[#5fb0c2]/25"
+        className="absolute size-[150px] rounded-full border border-[#5fb0c2]/25 sm:size-[180px] lg:size-[205px]"
         animate={{ scale: [1, 1.04, 1] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="absolute h-px w-[430px] bg-gradient-to-r from-transparent via-[#5fb0c2]/35 to-transparent" />
-      <div className="absolute h-[430px] w-px bg-gradient-to-b from-transparent via-[#5fb0c2]/35 to-transparent" />
+      <div className="absolute h-px w-[280px] bg-gradient-to-r from-transparent via-[#5fb0c2]/35 to-transparent sm:w-[360px] lg:w-[430px]" />
+      <div className="absolute h-[280px] w-px bg-gradient-to-b from-transparent via-[#5fb0c2]/35 to-transparent sm:h-[360px] lg:h-[430px]" />
 
       {microNodes.map((node, index) => {
         const Icon = node.icon;
@@ -51,7 +51,7 @@ export default function ArchitectureGraphicVariantFive() {
         return (
           <motion.div
             key={node.label}
-            className={`absolute z-20 flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3 py-2 text-xs font-semibold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur ${node.className}`}
+            className={`absolute z-20 flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/90 px-2.5 py-2 text-[11px] font-semibold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur sm:gap-2 sm:px-3 sm:text-xs ${node.className}`}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -65,14 +65,14 @@ export default function ArchitectureGraphicVariantFive() {
               },
             }}
           >
-            <Icon className="size-4 text-[#5fb0c2]" />
+            <Icon className="size-3.5 text-[#5fb0c2] sm:size-4" />
             {node.label}
           </motion.div>
         );
       })}
 
       <motion.div
-        className="absolute z-30 size-[430px] rounded-full"
+        className="absolute z-30 size-[280px] rounded-full sm:size-[360px] lg:size-[430px]"
         animate={{ rotate: 360 }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         >
@@ -84,14 +84,14 @@ export default function ArchitectureGraphicVariantFive() {
                 left: "50%",
                 top: "0%",
                 transform: `translate(-50%, -50%) rotate(${item * 120}deg)`,
-                transformOrigin: "0 215px",
+                transformOrigin: "0 clamp(140px, 32vw, 215px)",
             }}
             />
         ))}
         </motion.div>
 
         <motion.div
-        className="absolute z-30 size-[315px] rounded-full"
+        className="absolute z-30 size-[210px] rounded-full sm:size-[270px] lg:size-[315px]"
         animate={{ rotate: -360 }}
         transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
         >
@@ -103,14 +103,14 @@ export default function ArchitectureGraphicVariantFive() {
                 left: "50%",
                 top: "0%",
                 transform: `translate(-50%, -50%) rotate(${item * 120}deg)`,
-                transformOrigin: "0 157.5px",
+                transformOrigin: "0 clamp(105px, 24vw, 157.5px)",
             }}
             />
         ))}
         </motion.div>
 
       <motion.div
-        className="relative z-30 grid size-40 place-items-center rounded-full border border-[#5fb0c2]/30 bg-white shadow-[0_25px_90px_rgba(95,176,194,0.35)]"
+        className="relative z-30 grid size-32 place-items-center rounded-full border border-[#5fb0c2]/30 bg-white shadow-[0_25px_90px_rgba(95,176,194,0.35)] sm:size-36 lg:size-40"
         animate={{ y: [0, -8, 0], scale: [1, 1.03, 1] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >

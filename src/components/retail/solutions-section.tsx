@@ -56,19 +56,19 @@ function SolutionFeatureCard({
         />
       </svg>
 
-      <div className="relative z-10 flex gap-4">
+      <div className="relative z-10 flex flex-col gap-4 sm:flex-row">
         <motion.div
           // whileHover={{ rotate: -4, scale: 1.05 }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="grid size-20 shrink-0 place-items-center rounded-[1.25rem] bg-secondary text-white shadow-[0_14px_35px_rgba(95,176,194,0.28)]"
+          className="grid size-14 shrink-0 place-items-center rounded-[1.25rem] bg-secondary text-white shadow-[0_14px_35px_rgba(95,176,194,0.28)] sm:size-20"
         >
-          <Icon className="size-8 stroke-[1.8]" />
+          <Icon className="size-6 stroke-[1.8] sm:size-8" />
         </motion.div>
 
         <div className="min-w-0 pt-1">
           <div className="flex items-start justify-between gap-3">
             <div className="relative min-w-0 pr-4">
-              <h3 className="!text-[20px] font-semibold leading-tight text-slate-950 transition-transform duration-300 group-hover:translate-x-1">
+              <h3 className="!text-[18px] font-semibold leading-tight text-slate-950 transition-transform duration-300 group-hover:translate-x-1 sm:!text-[20px]">
                 {item.title}
               </h3>
               {/* <div className="pointer-events-none absolute left-0 top-full mt-2 h-[3px] w-14 origin-left rounded-full bg-[linear-gradient(90deg,#5fb0c2,#7a9cff)] scale-x-0 opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" /> */}

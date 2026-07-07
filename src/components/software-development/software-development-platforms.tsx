@@ -349,7 +349,7 @@ export default function SoftwareDevelopmentPlatforms() {
             className="mx-auto"
           />
 
-          <div className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-8">
+          <div className="mt-14 grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {surfaces.map((surface, index) => (
               <SurfacePanel key={surface.title} surface={surface} index={index} />
             ))}

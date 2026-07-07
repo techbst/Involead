@@ -38,7 +38,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
   
   return (
     <>
-    <div className={cn("grid items-start gap-5 lg:grid-cols-3", className)}>
+    <div className={cn("grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3", className)}>
       <AnimatePresence initial={false}>
         {visibleItems.map((item, index) => {
           const isActive = activeIndex === index;

@@ -146,22 +146,9 @@ export default function IndustryStrengthSection({
           repeatType: "reverse",
           ease: "linear",
         }}
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 18% 20%, rgba(95,176,194,0.32), transparent 0 22%), radial-gradient(circle at 82% 16%, rgba(200,140,255,0.22), transparent 0 18%), radial-gradient(circle at 70% 84%, rgba(241,242,111,0.12), transparent 0 20%), linear-gradient(180deg, rgba(10,10,10,0.96), rgba(5,5,5,1))",
-          backgroundSize: "140% 140%",
-        }}
+
       />
-      <motion.div
-        aria-hidden
-        className="absolute inset-0 opacity-40"
-        animate={{ x: [0, 24, 0], y: [0, -16, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="absolute -left-24 top-12 h-80 w-80 rounded-full bg-[#5fb0c2]/20 blur-3xl" />
-        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-[#c88cff]/20 blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#f1f26f]/10 blur-3xl" />
-      </motion.div>
+
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
       <SectionReveal className="container relative z-10 mx-auto">

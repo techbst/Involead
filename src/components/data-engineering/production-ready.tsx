@@ -45,7 +45,7 @@ export default function Productions() {
                     title="Production-ready data platforms for regulated industries"
                     description="Data engineering is the foundation of modern data-driven organizations. We design the systems that collect, store, process, and transform raw data into meaningful insight."
                 />
-                <div className="relative mt-12 grid gap-4 lg:grid-cols-3">
+                <div className="relative mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {cards.map((card, index) => (
                         <FeatureCard
                             key={index}

@@ -70,7 +70,7 @@ export default function TechnologyScale() {
         />
 
 
-        <div className="grid grid-cols-1 gap-5 mt-12 sm:gapx-4 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
+        <div className="grid grid-cols-1 gap-5 mt-12 sm:gapx-4 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
           {stats.slice(0, 2).map(({ value, label, icon }, index) => (
             <motion.article
               key={label}
@@ -115,7 +115,7 @@ export default function TechnologyScale() {
               ease: [0.22, 1, 0.36, 1],
             }}
             whileHover={{ y: -10, scale: 1.02 }}
-            className=" overflow-hidden rounded-[24px]  bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[360px] lg:row-span-2"
+            className=" overflow-hidden rounded-[24px]  bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between h-[320px] sm:h-[360px] lg:h-[400px] lg:row-span-2"
           >
             <div className="px-4">
 

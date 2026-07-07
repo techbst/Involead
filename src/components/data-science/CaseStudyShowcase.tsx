@@ -153,11 +153,11 @@ export default function CaseStudies() {
         <Slider
             ref={sliderRef}
             {...sliderSettings1}
-          className="case-studies-swiper custom-swiper-style-2 mt-12"
+          className="case-studies-swiper custom-swiper-style-2 -mx-2 mt-12"
         >
           {caseStudies.map((item) => (
             
-            <div key={item.title}>
+            <div key={item.title} className="px-2">
               <CaseStudiesCard
                 image={item.image}
                 icon={item.icon}
