@@ -122,6 +122,11 @@ const metricIcons: Record<string, LucideIcon> = {
   "Hours Saved": TimerReset,
 };
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function IndustryStrengthSection({
   title = "Our Strength Across Industries",
   subtitle = "From FMCG to Pharma, Retail to Finance, InvoLead delivers proven AI and data science outcomes across the industries that matter most.",
@@ -160,95 +165,96 @@ export default function IndustryStrengthSection({
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
       <SectionReveal className="container relative z-10 mx-auto">
-        
-          <SectionHeader 
-                           eyebrow="Industry Impact"
-                           title={title}
-                           description={subtitle}
-                            align="center"
-                            maxWidth="2xl"
-                            textColor="white"
-                          />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-  {metrics.map((item, index) => {
-    const style = cardStyles[index % cardStyles.length];
-    const Icon = item.icon ?? metricIcons[item.title] ?? TrendingUp;
-
-    return (
-      <motion.article
-        key={item.title}
-        initial={{ opacity: 0, y: 28, scale: 0.96 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.22 }}
-        transition={{
-          duration: 0.55,
-          delay: index * 0.06,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        whileHover={{ y: -8, scale: 1.015 }}
-        className={cn(
-          "group relative  overflow-hidden rounded-2xl border border-white/15 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.35)]",
-          "transition-all duration-300",
-          style.card
-        )}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.35),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.22),transparent_45%)] opacity-70" />
-
-        <motion.div
-          aria-hidden
-          className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/25 blur-3xl"
-          animate={{
-            x: [0, -12, 0],
-            y: [0, 12, 0],
-            opacity: [0.35, 0.75, 0.35],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        <SectionHeader
+          eyebrow="Industry Impact"
+          title={title}
+          description={subtitle}
+          align="center"
+          maxWidth="2xl"
+          textColor="white"
         />
 
-        <div className="relative z-10 flex  flex-col justify-between">
-          <div className="flex items-start justify-between gap-5">
-            <div>
-              <h3 className="mt-0 max-w-[13rem] !text-2xl font-[500] leading-tight tracking-[-0.04em] text-inherit">
-                {item.title}
-              </h3>
-            </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {metrics.map((item, index) => {
+            const style = cardStyles[index % cardStyles.length];
+            const Icon = item.icon ?? metricIcons[item.title] ?? TrendingUp;
 
-            <motion.div
-              whileHover={{ rotate: -35, scale: 1.08 }}
-              className={cn(
-                "flex h-8 w-8 shrink-0 items-center justify-center rounded-full shadow-lg",
-                style.icon
-              )}
-            >
-              <Icon size={15} />
-            </motion.div>
-          </div>
+            return (
+              <motion.article
+                key={item.title}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.22 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                className={cn(
+                  "group relative  overflow-hidden rounded-2xl border border-white/15 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.35)]",
+                  "transition-all duration-300",
+                  style.card
+                )}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.35),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.22),transparent_45%)] opacity-70" />
 
-          <div className="mt-3">
-            <div className={cn("mb-2 h-px w-full", style.line)} />
+                <motion.div
+                  aria-hidden
+                  className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/25 blur-3xl"
+                  animate={{
+                    x: [0, -12, 0],
+                    y: [0, 12, 0],
+                    opacity: [0.35, 0.75, 0.35],
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                />
 
-            <div className="flex items-end justify-between gap-6">
-              <p className={cn("max-w-[10rem] text-sm leading-6", style.description)}>
-                {item.description}
-              </p>
+                <div className="relative z-10 flex  flex-col justify-between">
+                  <div className="flex items-start justify-between gap-5">
+                    <div>
+                      <h3 className="mt-0 max-w-[13rem] !text-2xl font-[500] leading-tight tracking-[-0.04em] text-inherit">
+                        {item.title}
+                      </h3>
+                    </div>
 
-              <div className="text-right text-[24px]  tracking-[2px] font-semibold leading-none tracking-[-0.08em] text-inherit">
-                <AnimatedNumber value={item.value} />
-              </div>
-            </div>
-          </div>
+                    <motion.div
+                      whileHover={{ rotate: -35, scale: 1.08 }}
+                      className={cn(
+                        "flex h-8 w-8 shrink-0 items-center justify-center rounded-full shadow-lg",
+                        style.icon
+                      )}
+                    >
+                      <Icon size={15} />
+                    </motion.div>
+                  </div>
+
+                  <div className="mt-3">
+                    <div className={cn("mb-2 h-px w-full", style.line)} />
+
+                    <div className="flex items-end justify-between gap-6">
+                      <p className={cn("max-w-[10rem] text-sm leading-6", style.description)}>
+                        {item.description}
+                      </p>
+
+                      <div className="text-right text-[24px]  tracking-[2px] font-semibold leading-none tracking-[-0.08em] text-inherit">
+                        <AnimatedNumber value={item.value} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute inset-x-6 bottom-0 h-px bg-white/35" />
+              </motion.article>
+            );
+          })}
         </div>
-
-        <div className="absolute inset-x-6 bottom-0 h-px bg-white/35" />
-      </motion.article>
-    );
-  })}
-</div>
       </SectionReveal>
-       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
-          <CornerShape color="#000" />
-        </div>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
+        <CornerShape color="#000" />
+      </div>
     </section>
   );
 }

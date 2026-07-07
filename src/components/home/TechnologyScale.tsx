@@ -50,25 +50,39 @@ const partnerLogos = [
   { name: "TensorFlow", src: "/enterprise-logo/tensflow.png" },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function TechnologyScale() {
   return (
     <section className="bg-white py-15 relative overflow-hidden py-20">
-      <SectionReveal className="mx-auto container">
-        <SectionHeader 
-         eyebrow={"Technology at Scale"}
-                    title="Enterprise Infrastructure Powered by AI, Data & Automation"
-                    description="Build scalable, intelligent infrastructure that powers seamless operations, automation, and business growth."
-                    align="center"
-                    textColor="black"
-                    maxWidth="4xl"
-        
+      <div className="mx-auto container">
+        <SectionHeader
+          eyebrow={"Technology at Scale"}
+          title="Enterprise Infrastructure Powered by AI, Data & Automation"
+          description="Build scalable, intelligent infrastructure that powers seamless operations, automation, and business growth."
+          align="center"
+          textColor="black"
+          maxWidth="4xl"
+
         />
-        
+
 
         <div className="grid grid-cols-1 gap-5 mt-12 sm:gapx-4 lg:grid-cols-[1fr_1fr_1fr_1.05fr] lg:grid-rows-2">
           {stats.slice(0, 2).map(({ value, label, icon }, index) => (
             <motion.article
               key={label}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, margin: "-80px" }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               whileHover={{ y: -10, scale: 1.02 }}
               className={`group relative  rounded-[24px] bg-[#eef8fb] px-4 py-6 bg-[linear-gradient(90.13deg,_#bfddef_0.12%,_#eaeaea_98.69%)] transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between  ${index === 1 ? "lg:col-span-2" : ""
                 }`}
@@ -91,6 +105,15 @@ export default function TechnologyScale() {
             </motion.article>
           ))}
           <motion.article
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, margin: "-80px" }}
+            transition={{
+              duration: 0.5,
+              delay: 2 * 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             whileHover={{ y: -10, scale: 1.02 }}
             className=" overflow-hidden rounded-[24px]  bg-[#eef8fb] bg-[url('/img/company.png')] bg-cover bg-center py-6  sm:rounded-[24px] flex flex-col justify-between lg:h-[400px] h-[360px] lg:row-span-2"
           >
@@ -123,9 +146,18 @@ export default function TechnologyScale() {
             </div>
             <div className="absolute inset-x-0 bottom-0  bg-[#eef8fb]" />
           </motion.article>
-          {stats.slice(3).map(({ value, label, icon }) => (
+          {stats.slice(3).map(({ value, label, icon }, index) => (
             <motion.article
               key={label}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, margin: "-80px" }}
+              transition={{
+                duration: 0.5,
+                delay: (index + 3) * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               whileHover={{ y: -10, scale: 1.02 }}
               className="group relative  rounded-[24px] bg-[linear-gradient(90.13deg,_#bfddef_0.12%,_#eaeaea_98.69%)] px-4 py-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-200/40  sm:rounded-[24px] flex flex-col justify-between"
             >
@@ -161,9 +193,9 @@ export default function TechnologyScale() {
             }
           }
         `}</style>
-      </SectionReveal>
+      </div>
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black">
-      <CornerShape color="#fff" />
+        <CornerShape color="#fff" />
       </div>
     </section>
   );

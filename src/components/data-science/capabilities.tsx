@@ -302,6 +302,7 @@
 // }
 import ExpandableCardGrid from "@/components/ui/expandable-card-grid";
 import { SectionHeader } from "../ui/section-header";
+import CornerShape from "../ui/shape";
 
 const cards = [
   {
@@ -314,10 +315,10 @@ const cards = [
     metricBg: "linear-gradient(135deg,#6EB7CC 0%,#4F8D9A 100%)",
     metricTextColor: "#ffffff",
     metrics: [
-      { value: "7", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
@@ -328,10 +329,10 @@ const cards = [
     longDesc:
       "Agentic models simulate lift, cannibalization, and retailer behavior in parallel, then orchestrate scenarios across brands and channels - surfacing where to invest, where to cut, and how to negotiate with evidence-backed targets.",
     metrics: [
-      { value: "12", valuecomp: "22%", label: "Trade ROI Uplift" },
-      { value: "8", valuecomp: "15%", label: "Wasted Spend Reduction" },
-      { value: "6", valuecomp: "14%", label: "Incremental Volume" },
-      { value: "35", valuecomp: "50%", label: "Planning Cycle Time" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
@@ -342,10 +343,10 @@ const cards = [
     longDesc:
       "We rebuild MMM on fresh priors, hierarchical media curves, and business constraints - with agents stress-testing assumptions, refreshing coefficients as new data lands, and explaining drivers in language stakeholders actually use.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
@@ -356,10 +357,10 @@ const cards = [
     longDesc:
       "We connect elasticity, assortment productivity, and trade effectiveness in a single agentic layer that explores coordinated moves - always anchored to P&L guardrails and channel realities - so growth is deliberate, not accidental.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
@@ -370,10 +371,10 @@ const cards = [
     longDesc:
       "Our Agentic AI-driven segmentation creates and continuously refines 10-50+ dynamic cohorts using real-time behavioral and transactional data. Agents adapt segment definitions and orchestrate hyper-personalized engagement strategies ensuring every customer interaction is precisely calibrated.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
@@ -384,62 +385,62 @@ const cards = [
     longDesc:
       "Hierarchical models fuse sell-in, sell-through, and external signals while agents monitor drift, inject shocks, and reconcile plans across nodes - giving supply, finance, and commercial teams one aligned number they can defend.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1415&auto=format&fit=crop",
+      "/img/photo-1460925895917-afdab827c52f.avif",
     title: "Marketing Mix Optimization",
     shortDesc:
       "Static budgets freeze strategy the moment markets shift; optimization has to breathe with performance.",
     longDesc:
       "Agentic optimizers pair MMM outputs with operational limits - flighting rules, minimum spends, and channel capacity - to propose reallocations weekly, not quarterly, with transparent trade-offs between growth, efficiency, and risk.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=85",
+      "/img/photo-1552664730-d307ca884978.jpg",
     title: "Next Best Action (NBA)",
     shortDesc:
       "Pipeline health depends less on volume than on knowing which accounts will actually move and why.",
     longDesc:
       "Agentic scoring blends firmographic fit, intent, product usage, and seller notes to refresh role definitions continuously, route plays automatically, and explain the next best action so revenue teams spend time closing, not debating lists.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
   {
     image:
-      "https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?auto=format&fit=crop&w=1200&q=85",
+      "/img/photo-1686061594225-3e92c0cd51b0.jpg",
     title: "BI & Dashboarding",
     shortDesc:
       "Journeys fragment when channels, policies, and models each optimize different definitions of success.",
     longDesc:
       "Customer-Wing pairs orchestration agents with policy-aware copilots - unifying data, decisions, and creative variants so every touchpoint stays on-brand, compliant, and tuned to the live state of each relationship.",
     metrics: [
-      { value: "3", valuecomp: "7%", label: "Margin Improvement" },
-      { value: "5", valuecomp: "12%", label: "Revenue Lift" },
-      { value: "4", valuecomp: "9%", label: "Price Realization" },
-      { value: "10", valuecomp: "18%", label: "Promo Leakage Reduction" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Margin Improvement" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Revenue Lift" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Price Realization" },
+      { value: "12-18%", valuecomp: "20-30%", label: "Promo Leakage Reduction" },
     ],
   },
 ];
 
 export default function Section() {
   return (
-    <section className="bg-[#eefbfe] py-20">
+    <section className="bg-[#fff] py-20 relative overflow-hidden">
       <div className="container">
         <SectionHeader 
           eyebrow="Our Capabilities"
@@ -449,6 +450,9 @@ export default function Section() {
           maxWidth="5xl"
         />
         <ExpandableCardGrid items={cards} className="mt-12" />
+      </div>
+      <div className="absolute -bottom-[7px] left-0 w-[290px] bg-black ">
+        <CornerShape color="#fff" />
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, Cpu, Sparkles, Zap, Database, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -9,6 +10,7 @@ interface ClipCardProps {
   description: string;
   href?: string;
   className?: string;
+  index?: number;
   showDescriptionOnHover?: boolean;
 }
 
@@ -21,12 +23,18 @@ const getCategoryInfo = (title: string) => {
   return { label: "Infrastructure", icon: Database, color: "text-purple-600 bg-purple-50 border-purple-200" };
 };
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function ClipCard({
   image,
   title,
   description,
   href = "#",
   className = "",
+  index = 0,
   showDescriptionOnHover = false,
 }: ClipCardProps) {
   const info = getCategoryInfo(title);
@@ -38,7 +46,16 @@ export default function ClipCard({
   };
 
   return (
-    <div
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className={`group relative overflow-hidden rounded-[24px] bg-white p-[1px] transition-all duration-300  ${className}`}
       style={clipPathStyle}
       id={`clip-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
@@ -105,6 +122,6 @@ export default function ClipCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

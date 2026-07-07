@@ -22,6 +22,11 @@ type CoreValueCardProps = {
   className?: string;
 };
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function CoreValueCard({
   item,
   index,
@@ -36,8 +41,9 @@ export default function CoreValueCard({
 
   return (
     <motion.div
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
+  variants={fadeUp}
+  initial="hidden"
+  whileInView="show"
   viewport={{ once: true, margin: "-80px" }}
   onMouseEnter={() => setActive(index)}
   onMouseLeave={() => setActive(0)}

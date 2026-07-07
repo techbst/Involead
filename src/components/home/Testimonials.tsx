@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { BrainCircuit, ChartNoAxesCombined, Globe, Globe2, Microscope } from "lucide-react";
 import Image from "next/image";
 import { Autoplay } from "swiper/modules";
@@ -41,6 +42,11 @@ const proofItems = [
   { icon: ChartNoAxesCombined, label: "Research Excellence" },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function Testimonials() {
   return (
     <section className="overflow-hidden bg-white py-15 ">
@@ -66,13 +72,25 @@ export default function Testimonials() {
             />
 
             <div className="mt-12 grid grid-cols-3 gap-5">
-              {proofItems.map(({ icon: Icon, label }) => (
-                <div key={label} className="group text-center">
+              {proofItems.map(({ icon: Icon, label }, index) => (
+                <motion.div
+                  key={label}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="group text-center"
+                >
                   <Icon className="mx-auto size-9 stroke-[1.7] transition duration-300 group-hover:-translate-y-1 group-hover:text-[#5fb0c2]" />
                   <p className="mt-2 text-sm leading-snug text-black">
                     {label}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
