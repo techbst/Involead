@@ -72,8 +72,8 @@ export default function Collaboration() {
             }}
             className="mt-12 custom-swiper-style-2"
           >
-            {images.map((src) => (
-              <SwiperSlide key={src}>
+            {images.map((src, index) => (
+              <SwiperSlide key={`${src}-${index}`}>
                 <div className="relative h-[320px] overflow-hidden rounded-[24px]">
                   <Image src={src} alt="Collaboration" fill className="object-cover" />
                 </div>

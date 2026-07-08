@@ -6,11 +6,13 @@ import CoreValues from "@/components/about/CoreValues";
 import Hero from "@/components/about/Hero";
 import LeadershipTeam from "@/components/about/LeadershipTeam";
 import Numbers from "@/components/about/Numbers";
+import WhoWeAre from "@/components/about/WhoWeAre";
 import WhatDrives from "@/components/about/WhatDrives";
 import HeroVariationOne from "@/components/about/HeroVariationOne";
 import HeroVariationTwo from "@/components/about/HeroVariationTwo";
 import HeroVariationThree from "@/components/about/HeroVariationThree";
 import HeroVariationFour from "@/components/about/HeroVariationFour";
+import AboutOverviewHero from "@/components/about/AboutOverviewHero";
 
 
 export const metadata: Metadata = {
@@ -21,8 +23,9 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="overflow-hidden bg-white text-slate-950">
-      <HeroVariationFour />
-      
+      {/* <HeroVariationFour /> */}
+      <AboutOverviewHero />
+      <WhoWeAre />
       <WhatDrives />
       <CoreValues />
       <LeadershipTeam />
