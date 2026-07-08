@@ -15,7 +15,7 @@ export default function AboutOverviewHero() {
       <Image src="/img/List-overview.svg" width={100} height={100} alt="List Overview" className="w-full h-full absolute inset-0 left-[22%] top-[5%]" />
       <div className="container relative z-10 mx-auto grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
         <div className="pb-24 pt-28 md:pb-28 md:pt-32">
-          <div className="text-[16px] font-medium uppercase py-2 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3">
+          <div className="text-[14px] font-medium uppercase py-2 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3">
             <span>About Us</span>
           </div>
 

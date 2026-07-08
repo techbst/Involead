@@ -98,12 +98,11 @@ export default function AboutPhilosphy() {
           title="Every Insight Should Lead to Action"
           description="Our philosophy is simple: data should create clarity, AI should support better decisions, and technology should enable measurable business outcomes not add complexity."
           align="center"
-          maxWidth="3xl"
+          titleClassName="max-w-md mx-auto"
+        //   maxWidth="md"
           descriptionWidth="5xl"
           textColor="black"
-          titleClassName="!text-[40px] !font-semibold !leading-[1.15] md:!text-[72px]"
-          eyebrowClassName="normal-case"
-          descriptionClassName="!text-[20px] !leading-[1.7] md:!text-[24px]"
+
         />
 
         <div className="mt-16" ref={cardsRef}>

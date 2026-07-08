@@ -60,7 +60,7 @@ export default function WhoWeAre() {
               maxWidth="5xl"
               tone="light"
               textColor="black"
-              eyebrowClassName="!bg-[#ecfbff] !text-[#4f8c99] normal-case"
+              
             />
 
             <div className="mt-2 max-w-5xl py-5 px-6">

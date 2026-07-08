@@ -30,7 +30,6 @@ export default function AboutStory() {
               tone="light"
               textColor="white"
               // titleClassName="]"
-              eyebrowClassName="normal-case !bg-[#eefbff] !text-[#4d8e9d]"
             />
 
 
