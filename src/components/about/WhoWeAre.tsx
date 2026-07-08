@@ -60,7 +60,6 @@ export default function WhoWeAre() {
               maxWidth="5xl"
               tone="light"
               textColor="black"
-              titleClassName="max-w-5xl !text-[32px] !font-semibold !leading-[1.45] md:!text-[42px]"
               eyebrowClassName="!bg-[#ecfbff] !text-[#4f8c99] normal-case"
             />
 

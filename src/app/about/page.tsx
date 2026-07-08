@@ -13,7 +13,8 @@ import HeroVariationTwo from "@/components/about/HeroVariationTwo";
 import HeroVariationThree from "@/components/about/HeroVariationThree";
 import HeroVariationFour from "@/components/about/HeroVariationFour";
 import AboutOverviewHero from "@/components/about/AboutOverviewHero";
-
+import AboutStory from "@/components/about/AboutStory";
+import AboutPhilosphy from "@/components/about/AboutPhilospy";
 
 export const metadata: Metadata = {
   title: "About - InvoLead",
@@ -26,6 +27,8 @@ export default function AboutPage() {
       {/* <HeroVariationFour /> */}
       <AboutOverviewHero />
       <WhoWeAre />
+      <AboutStory />
+      <AboutPhilosphy />
       <WhatDrives />
       <CoreValues />
       <LeadershipTeam />
