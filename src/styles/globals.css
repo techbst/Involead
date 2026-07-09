@@ -526,3 +526,7 @@ p {
 .slick-dots .slick-active button:before {
   background: var(--secondary) !important;
 }
+.slick-dots {
+  position: relative;
+  margin-top: 30px;
+}

@@ -45,13 +45,13 @@ export const sliderSettings1: Settings = {
   infinite: false,
   arrows: false,
   variableWidth: false,
-  slidesToShow: 1,
+  slidesToShow: 1.2,
   slidesToScroll: 1,
   responsive: [
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 1.2,
       },
     },
     {

@@ -311,7 +311,8 @@ export default function AboutThink() {
   }, [prefersReducedMotion, timelineState.connectorProgress]);
 
   return (
-    <section className="overflow-hidden relative bg-secondary/15 py-20 md:py-24 xl:py-28">
+    <section className="overflow-hidden relative bg-secondary/15 py-20 md:py-24 ">
+      
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="How we think"
