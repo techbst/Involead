@@ -101,7 +101,7 @@ export default function WhoWeAre() {
                 alt="Team reviewing business insights together"
                 width={900}
                 height={1100}
-                className="h-[520px] w-full object-cover object-center md:h-[660px]"
+                className="h-[450px] w-full object-cover object-center"
               />
             </div>
           </motion.div>

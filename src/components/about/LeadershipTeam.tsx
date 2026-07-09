@@ -130,7 +130,7 @@ export default function LeadershipTeam() {
               slidesPerView: 3.5,
             },
           }}
-          className="mt-12 custom-swiper-style-2"
+          className="mt-12 "
         >
             {members.map((member) => (
               <SwiperSlide key={member.name} >

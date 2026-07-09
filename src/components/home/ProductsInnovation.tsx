@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
@@ -10,12 +9,10 @@ import type { Swiper as SwiperType } from "swiper";
 import SectionReveal from "./SectionReveal";
 import ClipCard from "@/components/ui/product-card";
 import { SectionHeader } from "../ui/section-header";
-import { Autoplay, Pagination } from "swiper/modules";
 import CornerShape from "../ui/shape";
 // import ClipCard from "../ui/clip-card";
 
-import Slider from "react-slick";
-import { sliderSettings } from "../ui/slick-slider";
+import { sliderSettings } from "../ui/swiper-slider";
 
 interface ProductCard {
   title: string;
@@ -28,29 +25,25 @@ const products: ProductCard[] = [
     title: "AI Assistant Studio",
     description:
       "Build and deploy intelligent AI assistants tailored to specific business domains, workflows, and operational needs.",
-    image:
-      "/product-card/ai.png",
+    image: "/product-card/ai.png",
   },
   {
     title: "Insight Control Tower",
     description:
       "Build and deploy intelligent AI assistants tailored to specific business domains, workflows, and operational needs.",
-    image:
-      "/product-card/insight.png",
+    image: "/product-card/insight.png",
   },
   {
     title: "Workflow Orchestrator",
     description:
       "Build and deploy intelligent AI assistants tailored to specific business domains, workflows, and operational needs.",
-    image:
-      "/product-card/workflow1.png",
+    image: "/product-card/workflow1.png",
   },
   {
     title: "Knowledge Graph Engine",
     description:
       "Build and deploy intelligent AI assistants tailored to specific business domains, workflows, and operational needs.",
-    image:
-      "/product-card/knowledge.png",
+    image: "/product-card/knowledge.png",
   },
   {
     title: "Automation Fabric",
@@ -60,14 +53,13 @@ const products: ProductCard[] = [
       "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=900&q=80",
   },
 ];
-export const CLIP_PATH = "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
+export const CLIP_PATH =
+  "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
 export default function ProductsInnovation() {
-const sliderRef = useRef<Slider | null>(null);
+  const sliderRef = useRef<SwiperType | null>(null);
 
   return (
-    <section
-      className="products-innovation-shell relative isolate overflow-hidden py-20 bg-secondary/15"
-    >
+    <section className="products-innovation-shell relative isolate overflow-hidden py-20 bg-secondary/15">
       {/* <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[#edf8fb] h-full"
@@ -78,26 +70,26 @@ const sliderRef = useRef<Slider | null>(null);
 
       <SectionReveal className="relative container">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-         <SectionHeader
-                    eyebrow={" Products & Innovations"}
-                    title="Powering with Custom Solutions and Intelligent AI Products."
-                    description="From ideas to real-world solutions, built to scale with business
+          <SectionHeader
+            eyebrow={" Products & Innovations"}
+            title="Powering with Custom Solutions and Intelligent AI Products."
+            description="From ideas to real-world solutions, built to scale with business
               needs."
-                    align="left"
-                    textColor="black"
-                    maxWidth="4xl"
-                  />
-          
+            align="left"
+            textColor="black"
+            maxWidth="4xl"
+          />
+
           <div className="flex gap-3 sm:gap-4">
             <button
-              onClick={() => sliderRef.current?.slickPrev()}
+              onClick={() => sliderRef.current?.slidePrev()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Previous product"
             >
               <ArrowLeft className="size-5" />
             </button>
             <button
-              onClick={() => sliderRef.current?.slickNext()}
+              onClick={() => sliderRef.current?.slideNext()}
               className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black "
               aria-label="Next product"
             >
@@ -107,15 +99,15 @@ const sliderRef = useRef<Slider | null>(null);
         </div>
 
         <div className="mt-12">
-          <Slider
-            ref={sliderRef}
+          <Swiper
+            onSwiper={(swiper) => {
+              sliderRef.current = swiper;
+            }}
             {...sliderSettings}
-            className="mt-12 -mx-2 custom-slick-style-2"
+            className="mt-12 -mx-2"
           >
             {products.map((product, index) => (
-              <div 
-              key={product.title} 
-              className="px-2">
+              <SwiperSlide key={product.title} className="h-auto px-2">
                 <motion.div
                   // initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -130,8 +122,8 @@ const sliderRef = useRef<Slider | null>(null);
                     WebkitClipPath: CLIP_PATH,
                     background: "#e2e8f0",
                   }}
-                > 
-                <div
+                >
+                  <div
                     className="h-full w-full"
                     style={{
                       clipPath: CLIP_PATH,
@@ -139,21 +131,20 @@ const sliderRef = useRef<Slider | null>(null);
                       background: "#fff",
                     }}
                   >
-                  <ClipCard 
-                    image={product.image}
-                    title={product.title}
-                    description={product.description}
-                    href="#"
-                    className="h-full w-full"
-                    showDescriptionOnHover={false}
-                  />
-                </div>
+                    <ClipCard
+                      image={product.image}
+                      title={product.title}
+                      description={product.description}
+                      href="#"
+                      className="h-full w-full"
+                      showDescriptionOnHover={false}
+                    />
+                  </div>
                 </motion.div>
-              </div>
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </div>
-       
       </SectionReveal>
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-[#fff] ">
         <CornerShape color="#5fb0c226" />

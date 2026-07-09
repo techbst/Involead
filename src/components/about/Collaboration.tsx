@@ -70,7 +70,7 @@ export default function Collaboration() {
               640: { slidesPerView: 2 },
               1200: { slidesPerView: 3 },
             }}
-            className="mt-12 custom-swiper-style-2"
+            className="mt-12 "
           >
             {images.map((src, index) => (
               <SwiperSlide key={`${src}-${index}`}>

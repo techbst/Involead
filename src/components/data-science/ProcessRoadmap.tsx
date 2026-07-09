@@ -176,7 +176,7 @@ function StepNode({
           <div className="absolute inset-0 rounded-full bg-gradient-to-b from-primary/[0.06] to-transparent" />
           <Icon className="relative size-6 text-secondary" strokeWidth={1.75} />
         </motion.div>
-        <span className="absolute -bottom-3 left-1/2 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-[0.62rem] font-medium tracking-tight text-primary shadow-sm">
+        <span className="absolute -bottom-5 left-1/2 flex size-7 -translate-x-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-[0.9rem] font-medium tracking-tight text-primary shadow-sm">
           {stepNumber}
         </span>
       </div>

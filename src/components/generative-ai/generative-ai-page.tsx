@@ -22,7 +22,10 @@ import {
   Zap,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image"
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
+import type { SwiperOptions } from "swiper/types";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AutonomousAgentEcosystemHero } from "./hero-sections";
@@ -32,8 +35,6 @@ import ClipShape from "../ui/clip-shape";
 import CallToAction1, { CTAData } from "@/components/ui/call-to-action-1";
 import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
 import ImpactOnIndustry from "./impact-on-industry";
-import Slider from "react-slick";
-import type { Settings } from "react-slick";
 import CornerShape from "../ui/shape";
 type SectionHeaderProps = {
   eyebrow?: string;
@@ -79,51 +80,33 @@ type TechTab = {
   items: TechItem[];
 };
 
-
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
 };
 
-const expertiseSliderSettings: Settings = {
-  dots: false,
-  infinite: false,
-  arrows: false,
-  variableWidth: false,
-  slidesToShow: 3.5,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1200,
-      settings: {
-        slidesToShow: 3,
-      },
+const expertiseSliderSettings: SwiperOptions = {
+  slidesPerView: 1,
+  spaceBetween: 18,
+  grabCursor: true,
+  watchOverflow: true,
+  breakpoints: {
+    480: {
+      slidesPerView: 1,
     },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2.5,
-      },
+    640: {
+      slidesPerView: 1.5,
     },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-      },
+    768: {
+      slidesPerView: 2,
     },
-    {
-      breakpoint: 640,
-      settings: {
-        slidesToShow: 1.5,
-      },
+    1024: {
+      slidesPerView: 2.5,
     },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-      },
+    1200: {
+      slidesPerView: 3.5,
     },
-  ],
+  },
 };
 
 const impactCards: Impact[] = [
@@ -228,19 +211,23 @@ const expertiseCards: Expertise[] = [
     points: [
       {
         title: "Total Traceability & Auditability",
-        description: "End-to-end logging of every inference, decision path, and data source for full regulatory compliance.",
+        description:
+          "End-to-end logging of every inference, decision path, and data source for full regulatory compliance.",
       },
       {
         title: "Safety & Control",
-        description: "Guardrails, content filters, and policy enforcement layers that prevent harmful or off-brand outputs.",
+        description:
+          "Guardrails, content filters, and policy enforcement layers that prevent harmful or off-brand outputs.",
       },
       {
         title: "Hallucination Detection",
-        description: "Real-time detection systems that flag confabulated facts before they reach end users.",
+        description:
+          "Real-time detection systems that flag confabulated facts before they reach end users.",
       },
       {
         title: "Transparency Gate Controls",
-        description: "Configurable checkpoints that require human approval for high-stakes AI decisions.",
+        description:
+          "Configurable checkpoints that require human approval for high-stakes AI decisions.",
       },
     ],
     outcome: "Auditable and compliant AI systems.",
@@ -261,19 +248,23 @@ const expertiseCards: Expertise[] = [
     points: [
       {
         title: "Real-Time Decisioning",
-        description: "Sub-second inference pipelines that personalize content, recommendations, and actions as users interact.",
+        description:
+          "Sub-second inference pipelines that personalize content, recommendations, and actions as users interact.",
       },
       {
         title: "Predictive Customer Journeys",
-        description: "AI models that anticipate user needs and proactively shape the next-best-action across channels.",
+        description:
+          "AI models that anticipate user needs and proactively shape the next-best-action across channels.",
       },
       {
         title: "Cross-Enterprise Scalability",
-        description: "Personalization engines that work across business units, geographies, and product lines from a unified model.",
+        description:
+          "Personalization engines that work across business units, geographies, and product lines from a unified model.",
       },
       {
         title: "Adaptive Learning Loops",
-        description: "Continuous feedback integration that refines personalization accuracy with every interaction.",
+        description:
+          "Continuous feedback integration that refines personalization accuracy with every interaction.",
       },
     ],
     outcome: "Context-aware experiences at enterprise scale.",
@@ -295,23 +286,28 @@ const expertiseCards: Expertise[] = [
     points: [
       {
         title: "Speech-to-Speech & Real-Time",
-        description: "Ultra-low-latency voice pipelines enabling natural, human-like conversations without perceptible delay.",
+        description:
+          "Ultra-low-latency voice pipelines enabling natural, human-like conversations without perceptible delay.",
       },
       {
         title: "Multimodal AI Integration",
-        description: "Agents that process text, voice, images, and video simultaneously for richer contextual understanding.",
+        description:
+          "Agents that process text, voice, images, and video simultaneously for richer contextual understanding.",
       },
       {
         title: "Custom Brand Avatars",
-        description: "Photorealistic or stylized digital humans that embody your brand identity and tone of voice.",
+        description:
+          "Photorealistic or stylized digital humans that embody your brand identity and tone of voice.",
       },
       {
         title: "24/7 Scalable CoPilot",
-        description: "Always-on AI assistants that handle thousands of concurrent interactions without quality degradation.",
+        description:
+          "Always-on AI assistants that handle thousands of concurrent interactions without quality degradation.",
       },
       {
         title: "Immersive Training & Knowledge Transfer",
-        description: "AI-driven simulations and interactive training modules that accelerate employee onboarding and upskilling.",
+        description:
+          "AI-driven simulations and interactive training modules that accelerate employee onboarding and upskilling.",
       },
     ],
     outcome: "Higher engagement and consistent interactions.",
@@ -333,23 +329,28 @@ const expertiseCards: Expertise[] = [
     points: [
       {
         title: "Model Serving & Inference",
-        description: "Optimized serving infrastructure with auto-scaling, batching, and GPU orchestration for cost-efficient inference.",
+        description:
+          "Optimized serving infrastructure with auto-scaling, batching, and GPU orchestration for cost-efficient inference.",
       },
       {
         title: "Continuous Monitoring & Drift Detection",
-        description: "Real-time dashboards and alerts that catch data drift, model degradation, and anomalous outputs before they impact users.",
+        description:
+          "Real-time dashboards and alerts that catch data drift, model degradation, and anomalous outputs before they impact users.",
       },
       {
         title: "Automated CI/CD Pipelines",
-        description: "End-to-end automation from model training to deployment with versioning, testing, and rollback capabilities.",
+        description:
+          "End-to-end automation from model training to deployment with versioning, testing, and rollback capabilities.",
       },
       {
         title: "Security & Governance Gates",
-        description: "Built-in security scanning, access controls, and compliance checks at every stage of the ML lifecycle.",
+        description:
+          "Built-in security scanning, access controls, and compliance checks at every stage of the ML lifecycle.",
       },
       {
         title: "Scalability-as-a-Service",
-        description: "Elastic infrastructure that scales from prototype to millions of daily inferences without re-architecture.",
+        description:
+          "Elastic infrastructure that scales from prototype to millions of daily inferences without re-architecture.",
       },
     ],
     outcome: "Reliable, fast delivery at enterprise scale.",
@@ -395,49 +396,144 @@ const timelineSteps: TimelineStep[] = [
 ];
 
 const techTabs: TechTab[] = [
-
   {
     label: "LLM Models (Text, Image, Video, etc.)",
     items: [
-      { name: "OpenAI GPT Models", body: "Advanced reasoning, generation, and enterprise AI workflows.", image: "/gen-ai/technologies/chatgpt-icon.svg" },
-      { name: "Claude", body: "Long-context reasoning and business-grade AI assistance.", image: "/gen-ai/technologies/claude-ai-icon.svg" },
-      { name: "Gemini", body: "Multimodal AI capabilities for text, vision, and complex reasoning.", image: "/gen-ai/technologies/google-gemini-icon.svg" },
-      { name: "Llama", body: "Open-weight LLMs for private and customizable deployments.", image: "/gen-ai/technologies/apple.svg" },
-      { name: "Mistral", body: "Efficient frontier models for fast and cost-effective AI systems.", image: "/gen-ai/technologies/android.svg" },
-      { name: "Stable Diffusion", body: "Image generation workflows for creative automation.", image: "/gen-ai/technologies/kotlin.svg" },
+      {
+        name: "OpenAI GPT Models",
+        body: "Advanced reasoning, generation, and enterprise AI workflows.",
+        image: "/gen-ai/technologies/chatgpt-icon.svg",
+      },
+      {
+        name: "Claude",
+        body: "Long-context reasoning and business-grade AI assistance.",
+        image: "/gen-ai/technologies/claude-ai-icon.svg",
+      },
+      {
+        name: "Gemini",
+        body: "Multimodal AI capabilities for text, vision, and complex reasoning.",
+        image: "/gen-ai/technologies/google-gemini-icon.svg",
+      },
+      {
+        name: "Llama",
+        body: "Open-weight LLMs for private and customizable deployments.",
+        image: "/gen-ai/technologies/apple.svg",
+      },
+      {
+        name: "Mistral",
+        body: "Efficient frontier models for fast and cost-effective AI systems.",
+        image: "/gen-ai/technologies/android.svg",
+      },
+      {
+        name: "Stable Diffusion",
+        body: "Image generation workflows for creative automation.",
+        image: "/gen-ai/technologies/kotlin.svg",
+      },
     ],
   },
   {
     label: "Database & Vector Database",
     items: [
-      { name: "PostgreSQL", body: "Reliable relational database for structured enterprise data.", image: "/gen-ai/technologies/laravel.svg" },
-      { name: "MongoDB", body: "Flexible NoSQL database for modern applications.", image: "/gen-ai/technologies/mongodb-icon.svg" },
-      { name: "Pinecone", body: "Managed vector database for semantic search and RAG.", image: "/gen-ai/technologies/Pinecone-Icon--Streamline-Svg-Logos.svg" },
-      { name: "Weaviate", body: "Vector search engine for AI-native data retrieval.", image: "/gen-ai/technologies/woocommerce.svg" },
-      { name: "Qdrant", body: "High-performance vector database for scalable similarity search.", image: "/gen-ai/technologies/ionic-1.svg" },
-      { name: "Redis", body: "Fast caching and real-time memory layer for AI systems.", image: "/gen-ai/technologies/phonegap.svg" },
+      {
+        name: "PostgreSQL",
+        body: "Reliable relational database for structured enterprise data.",
+        image: "/gen-ai/technologies/laravel.svg",
+      },
+      {
+        name: "MongoDB",
+        body: "Flexible NoSQL database for modern applications.",
+        image: "/gen-ai/technologies/mongodb-icon.svg",
+      },
+      {
+        name: "Pinecone",
+        body: "Managed vector database for semantic search and RAG.",
+        image: "/gen-ai/technologies/Pinecone-Icon--Streamline-Svg-Logos.svg",
+      },
+      {
+        name: "Weaviate",
+        body: "Vector search engine for AI-native data retrieval.",
+        image: "/gen-ai/technologies/woocommerce.svg",
+      },
+      {
+        name: "Qdrant",
+        body: "High-performance vector database for scalable similarity search.",
+        image: "/gen-ai/technologies/ionic-1.svg",
+      },
+      {
+        name: "Redis",
+        body: "Fast caching and real-time memory layer for AI systems.",
+        image: "/gen-ai/technologies/phonegap.svg",
+      },
     ],
   },
   {
     label: "AI Orchestration & Agent Frameworks",
     items: [
-      { name: "LangChain", body: "Build LLM applications with chains, tools, and agents.", image: "/gen-ai/technologies/Langchain--Streamline-Simple-Icons.svg" },
-      { name: "LlamaIndex", body: "Data framework for RAG and enterprise knowledge systems.", image: "/gen-ai/technologies/next-js.svg" },
-      { name: "CrewAI", body: "Multi-agent collaboration framework for autonomous workflows.", image: "/gen-ai/technologies/react.svg" },
-      { name: "AutoGen", body: "Agentic AI framework for multi-agent conversation systems.", image: "/gen-ai/technologies/nodejs.svg" },
-      { name: "DSPy", body: "Programmatic prompt and pipeline optimization.", image: "/gen-ai/technologies/angular.svg" },
-      { name: "n8n", body: "Workflow automation for AI-powered business processes.", image: "/gen-ai/technologies/vue.svg" },
+      {
+        name: "LangChain",
+        body: "Build LLM applications with chains, tools, and agents.",
+        image: "/gen-ai/technologies/Langchain--Streamline-Simple-Icons.svg",
+      },
+      {
+        name: "LlamaIndex",
+        body: "Data framework for RAG and enterprise knowledge systems.",
+        image: "/gen-ai/technologies/next-js.svg",
+      },
+      {
+        name: "CrewAI",
+        body: "Multi-agent collaboration framework for autonomous workflows.",
+        image: "/gen-ai/technologies/react.svg",
+      },
+      {
+        name: "AutoGen",
+        body: "Agentic AI framework for multi-agent conversation systems.",
+        image: "/gen-ai/technologies/nodejs.svg",
+      },
+      {
+        name: "DSPy",
+        body: "Programmatic prompt and pipeline optimization.",
+        image: "/gen-ai/technologies/angular.svg",
+      },
+      {
+        name: "n8n",
+        body: "Workflow automation for AI-powered business processes.",
+        image: "/gen-ai/technologies/vue.svg",
+      },
     ],
   },
   {
     label: "Programming Languages & Frameworks",
     items: [
-      { name: "Python", body: "Core language for AI engineering, ML pipelines, and backend intelligence.", image: "/gen-ai/technologies/python.svg" },
-      { name: "JavaScript", body: "Reliable frontend/backend logic for scalable AI interfaces.", image: "/gen-ai/technologies/javascript-logo-svgrepo-com.svg" },
-      { name: "Next.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/next-js.svg" },
-      { name: "React.js", body: "Modern full-stack framework for enterprise AI applications.", image: "/gen-ai/technologies/react.svg" },
-      { name: "Node.js", body: "High-performance Python APIs for model serving and automation.", image: "/gen-ai/technologies/nodejs.svg" },
-      { name: "Three.js", body: "Deep learning framework for training and experimentation.", image: "/gen-ai/technologies/Three.js.svg" },
+      {
+        name: "Python",
+        body: "Core language for AI engineering, ML pipelines, and backend intelligence.",
+        image: "/gen-ai/technologies/python.svg",
+      },
+      {
+        name: "JavaScript",
+        body: "Reliable frontend/backend logic for scalable AI interfaces.",
+        image: "/gen-ai/technologies/javascript-logo-svgrepo-com.svg",
+      },
+      {
+        name: "Next.js",
+        body: "Modern full-stack framework for enterprise AI applications.",
+        image: "/gen-ai/technologies/next-js.svg",
+      },
+      {
+        name: "React.js",
+        body: "Modern full-stack framework for enterprise AI applications.",
+        image: "/gen-ai/technologies/react.svg",
+      },
+      {
+        name: "Node.js",
+        body: "High-performance Python APIs for model serving and automation.",
+        image: "/gen-ai/technologies/nodejs.svg",
+      },
+      {
+        name: "Three.js",
+        body: "Deep learning framework for training and experimentation.",
+        image: "/gen-ai/technologies/Three.js.svg",
+      },
     ],
   },
 ];
@@ -447,22 +543,24 @@ const blogPosts: BlogPost[] = [
     featuredimg: "/img/cap-1.webp",
     category: "Agentic AI",
     title: "How Agentic AI is Reshaping Enterprise Operations",
-    excerpt: "A practical view of autonomous workflows, orchestration, and measurable AI operating leverage.",
+    excerpt:
+      "A practical view of autonomous workflows, orchestration, and measurable AI operating leverage.",
   },
   {
     featuredimg: "/img/cap-2.webp",
     category: "RAG Systems",
     title: "Building Cost-Efficient RAG Systems for Scale",
-    excerpt: "How retrieval strategy, model routing, and evaluations help enterprises control quality and cost.",
+    excerpt:
+      "How retrieval strategy, model routing, and evaluations help enterprises control quality and cost.",
   },
   {
     featuredimg: "/img/cap-3.webp",
     category: "Private AI",
     title: "Why Small Language Models Are the Future of Private AI",
-    excerpt: "Domain-specific SLMs can outperform generic models when speed, privacy, and unit economics matter.",
+    excerpt:
+      "Domain-specific SLMs can outperform generic models when speed, privacy, and unit economics matter.",
   },
 ];
-
 
 function HeroVisual() {
   return (
@@ -496,7 +594,11 @@ function HeroVisual() {
         <motion.div
           key={label}
           animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 4 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
+          transition={{
+            duration: 4 + index * 0.4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           className={cn(
             "absolute rounded-full border border-[#402f5b]/18 bg-[#000] px-4 py-3 text-sm font-semibold !text-white shadow-2xl backdrop-blur-xl",
             pos,
@@ -514,9 +616,7 @@ function HeroVisual() {
 function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden bg-[#100b08] pt-20 text-white sm:pt-24 lg:pt-28">
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]"
-      />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_8%,rgba(168,245,210,0.5),transparent_35%),radial-gradient(ellipse_at_55%_0%,rgba(185,198,255,0.45),transparent_40%),radial-gradient(ellipse_at_45%_75%,rgba(190,205,255,0.35),transparent_35%),radial-gradient(ellipse_at_65%_100%,rgba(190,235,220,0.3),transparent_35%),linear-gradient(to_bottom_right,#f8f8f8,#eef1f4,#f7f7f7)]" />
 
       <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_center,#000_1px,transparent_1px)] [background-size:12px_12px]" />
       <div className="container relative grid min-h-[560px] items-center gap-10 pb-16 lg:grid-cols-[1.05fr_0.95fr]  lg:pb-20">
@@ -526,19 +626,30 @@ function HeroSection() {
           variants={{ show: { transition: { staggerChildren: 0.12 } } }}
           className="max-w-3xl"
         >
-          <motion.p variants={fadeUp} className="text-sm font-semibold uppercase tracking-[0.26em] text-main">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm font-semibold uppercase tracking-[0.26em] text-main"
+          >
             Generative AI Services
           </motion.p>
           <motion.h1
             variants={fadeUp}
             className="mt-5 max-w-4xl text-[clamp(2.5rem,6vw,5.4rem)] font-bold leading-[1.03] tracking-normal text-main"
           >
-            From Autonomous <span className="text-secondary">Agents to Enterprise AI</span>
+            From Autonomous{" "}
+            <span className="text-secondary">Agents to Enterprise AI</span>
           </motion.h1>
-          <motion.p variants={fadeUp} className="mt-6 max-w-2xl text-base leading-8 text-main sm:text-lg lg:text-xl">
-            Architecting Sovereign Cognitive Ecosystems for the Modern Enterprise
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 max-w-2xl text-base leading-8 text-main sm:text-lg lg:text-xl"
+          >
+            Architecting Sovereign Cognitive Ecosystems for the Modern
+            Enterprise
           </motion.p>
-          <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <motion.div
+            variants={fadeUp}
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+          >
             <Button asChild variant="default">
               <Link href="/contact-us">
                 Schedule a Free Consultation
@@ -546,7 +657,9 @@ function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="/case-studies">View Case Studies <ArrowRight className="size-4" /></Link>
+              <Link href="/case-studies">
+                View Case Studies <ArrowRight className="size-4" />
+              </Link>
             </Button>
           </motion.div>
         </motion.div>
@@ -566,7 +679,7 @@ function ImpactCard({ item, index }: { item: Impact; index: number }) {
       transition={{ duration: 0.42, delay: index * 0.04 }}
       whileHover={{ y: -8 }}
       className={cn(
-        "group relative overflow-hidden rounded-[10px] p-6 px-8 py-8 backdrop-blur-xl bg-white text-main border border-secondary/30"
+        "group relative overflow-hidden rounded-[10px] p-6 px-8 py-8 backdrop-blur-xl bg-white text-main border border-secondary/30",
       )}
     >
       <div
@@ -574,33 +687,40 @@ function ImpactCard({ item, index }: { item: Impact; index: number }) {
           "absolute -right-16 -top-16 size-36 rounded-full blur-3xl transition",
           index === 0
             ? "bg-white/20 group-hover:bg-white/30"
-            : "bg-secondary/20 group-hover:bg-secondary/54"
+            : "bg-secondary/20 group-hover:bg-secondary/54",
         )}
       />
-      <p className={cn(
-        "!text-[36px] !font-bold",
-        index === 0 ? "text-main" : "text-main"
-      )}>
+      <p
+        className={cn(
+          "!text-[36px] !font-bold",
+          index === 0 ? "text-main" : "text-main",
+        )}
+      >
         {item.value}
       </p>
 
-      <h3 className={cn(
-        "mt-4 !text-[18px] font-semibold",
-        index === 0 ? "text-main" : "text-main"
-      )}>
+      <h3
+        className={cn(
+          "mt-4 !text-[18px] font-semibold",
+          index === 0 ? "text-main" : "text-main",
+        )}
+      >
         {item.label}
       </h3>
 
-      <p className={cn(
-        "mt-4 text-sm leading-7",
-        index === 0 ? "text-white/80" : "text-slate-600"
-      )}>
+      <p
+        className={cn(
+          "mt-4 text-sm leading-7",
+          index === 0 ? "text-white/80" : "text-slate-600",
+        )}
+      >
         {item.body}
       </p>
     </motion.article>
   );
 }
-export const CLIP_PATH = "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
+export const CLIP_PATH =
+  "polygon(93.94% 0%, 94.95% 0.06%, 95.86% 0.23%, 96.72% 0.50%, 97.52% 0.86%, 98.22% 1.30%, 98.83% 1.82%, 99.29% 2.40%, 99.69% 3.04%, 99.92% 3.72%, 100% 4.44%, 100% 95.56%, 99.92% 96.28%, 99.69% 96.96%, 99.29% 97.60%, 98.83% 98.18%, 98.22% 98.70%, 97.52% 99.14%, 96.72% 99.50%, 95.86% 99.77%, 94.95% 99.94%, 93.94% 100%, 92.44% 100%, 88.32% 100%, 82.04% 100%, 74.13% 100%, 65.07% 100%, 55.38% 100%, 45.56% 100%, 36.09% 100%, 27.51% 100%, 20.29% 100%, 45.13% 100%, 42.95% 99.81%, 41.14% 99.27%, 39.62% 98.48%, 38.28% 97.52%, 37.02% 96.48%, 35.74% 95.43%, 34.36% 94.47%, 32.77% 93.68%, 30.86% 93.15%, 28.55% 92.95%, 6.74% 92.95%, 4.91% 92.83%, 3.45% 92.53%, 2.31% 92.07%, 1.45% 91.51%, 0.84% 90.92%, 0.43% 90.32%, 0.18% 89.77%, 0.05% 89.31%, 0.01% 89.00%, 0% 88.89%, 0% 4.44%, 0.08% 3.72%, 0.31% 3.04%, 0.68% 2.40%, 1.17% 1.82%, 1.78% 1.30%, 2.48% 0.86%, 3.28% 0.50%, 4.14% 0.23%, 5.08% 0.06%, 6.06% 0%)";
 function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const Icon = item.icon;
@@ -633,7 +753,10 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
             clipPath: CLIP_PATH,
           }}
         >
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]" style={{ clipPath: CLIP_PATH }} />
+          <div
+            className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.76),rgba(255,255,255,0.38)_46%,rgba(255,255,255,0.72))]"
+            style={{ clipPath: CLIP_PATH }}
+          />
 
           <div
             className="absolute inset-0 z-10 transition duration-500 bg-black/50 group-hover:bg-black/70"
@@ -657,7 +780,9 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
 
             <div className="z-20 flex items-center gap-3">
               <span className="mt-0 h-7 w-1 bg-[#5fb0c2]"></span>
-              <h3 className="!text-[20px] !font-semibold leading-tight text-white">{item.title}</h3>
+              <h3 className="!text-[20px] !font-semibold leading-tight text-white">
+                {item.title}
+              </h3>
             </div>
 
             <div className="mt-7 grid translate-y-10 gap-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
@@ -666,13 +791,9 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
                   key={pointer}
                   className="flex items-start gap-3 text-[16px] font-medium"
                 >
-                  <CircleCheckBig
-                    className="mt-1 h-[18px] w-[18px] shrink-0 text-secondary"
-                  />
+                  <CircleCheckBig className="mt-1 h-[18px] w-[18px] shrink-0 text-secondary" />
 
-                  <span className="text-white leading-6">
-                    {pointer}
-                  </span>
+                  <span className="text-white leading-6">{pointer}</span>
                 </div>
               ))}
             </div>
@@ -700,7 +821,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
           }}
         >
           <div className="absolute -right-1 -top-1 max-w-[200px] -z-1 opacity-20">
-            <img src={'/img/shape-3.webp'} alt="shape" />
+            <img src={"/img/shape-3.webp"} alt="shape" />
           </div>
           <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#5fb0c2,#a7dde9)]" />
           <div className="flex items-start justify-between gap-4">
@@ -717,12 +838,8 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
           </div>
 
           <div className="mt-6 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-2">
-            <div className="text-[20px] font-bold">
-              {item.title}
-            </div>
-            <p className="mt-4">
-              {item.paragraph}
-            </p>
+            <div className="text-[20px] font-bold">{item.title}</div>
+            <p className="mt-4">{item.paragraph}</p>
 
             <div className="mt-6 grid gap-4">
               {item.points.map((point) => (
@@ -730,12 +847,8 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
                   key={point.title}
                   className="rounded-[14px] border border-slate-200 bg-slate-50/80 p-4"
                 >
-                  <div className="text-[17px] font-semibold">
-                    {point.title}
-                  </div>
-                  <p className="mt-2 !text-[14px]">
-                    {point.description}
-                  </p>
+                  <div className="text-[17px] font-semibold">{point.title}</div>
+                  <p className="mt-2 !text-[14px]">{point.description}</p>
                 </div>
               ))}
             </div>
@@ -763,7 +876,7 @@ function TimelineSection() {
   useEffect(() => {
     if (shouldReduceMotion) return;
 
-    let cleanup = () => { };
+    let cleanup = () => {};
 
     async function initGsap() {
       const gsapModule = await import("gsap");
@@ -789,23 +902,25 @@ function TimelineSection() {
           },
         );
 
-        gsap.utils.toArray<HTMLElement>(".genai-timeline-card").forEach((card, index) => {
-          gsap.fromTo(
-            card,
-            { opacity: 0, x: index % 2 === 0 ? -48 : 48 },
-            {
-              opacity: 1,
-              x: 0,
-              duration: 0.65,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 82%",
-                toggleActions: "play none none reverse",
+        gsap.utils
+          .toArray<HTMLElement>(".genai-timeline-card")
+          .forEach((card, index) => {
+            gsap.fromTo(
+              card,
+              { opacity: 0, x: index % 2 === 0 ? -48 : 48 },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 0.65,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 82%",
+                  toggleActions: "play none none reverse",
+                },
               },
-            },
-          );
-        });
+            );
+          });
       }, sectionRef);
 
       cleanup = () => context.revert();
@@ -817,8 +932,10 @@ function TimelineSection() {
   }, [shouldReduceMotion]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-black py-20 sm:py-20">
-
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-black py-20 sm:py-20"
+    >
       <div className="absolute inset-0 bg-black" />
       <div className="container relative">
         <SectionHeader
@@ -830,7 +947,10 @@ function TimelineSection() {
         />
         <div className="relative mx-auto mt-16 max-w-6xl">
           <div className="absolute bottom-0 left-4 top-0 w-px bg-white/12 md:left-1/2 md:-translate-x-1/2">
-            <div ref={lineRef} className="h-full w-full bg-[linear-gradient(#5fb0c2,#b0f1ff)]" />
+            <div
+              ref={lineRef}
+              className="h-full w-full bg-[linear-gradient(#5fb0c2,#b0f1ff)]"
+            />
           </div>
           <div className="grid -gap-5">
             {timelineSteps.map((item, index) => (
@@ -838,7 +958,9 @@ function TimelineSection() {
                 key={item.step}
                 className={cn(
                   "genai-timeline-card relative pl-12 md:grid md:grid-cols-2 md:gap-14 md:pl-0",
-                  index % 2 === 0 ? "md:text-right" : "md:[&>article]:col-start-2",
+                  index % 2 === 0
+                    ? "md:text-right"
+                    : "md:[&>article]:col-start-2",
                 )}
               >
                 <span className="absolute left-0 top-6 z-10 flex size-8 items-center justify-center rounded-full border border-secondary bg-slate-950 shadow-[0_0_28px_rgba(95,176,94,0.75)] md:left-1/2 md:-translate-x-1/2">
@@ -846,15 +968,18 @@ function TimelineSection() {
                 </span>
                 <article className="rounded-lg border border-white/10 bg-white/[0.10] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl">
                   <p className="font-medium !text-secondary">{item.step}</p>
-                  <div className="mt-0 text-white lg:text-[22px] font-semibold">{item.title}</div>
-                  <p className="mt-0 text-sm leading-7 !text-white/68">{item.body}</p>
+                  <div className="mt-0 text-white lg:text-[22px] font-semibold">
+                    {item.title}
+                  </div>
+                  <p className="mt-0 text-sm leading-7 !text-white/68">
+                    {item.body}
+                  </p>
                 </article>
               </div>
             ))}
           </div>
         </div>
       </div>
-
     </section>
   );
 }
@@ -899,13 +1024,25 @@ function TechStackTabs() {
         >
           {current.items.map((item) => {
             return (
-              <article key={item.name} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_45px_rgba(15,23,42,0.06)] sm:p-5">
+              <article
+                key={item.name}
+                className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_14px_45px_rgba(15,23,42,0.06)] sm:p-5"
+              >
                 <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-secondary/10 bg-secondary/10 p-2 sm:size-22">
-                  <Image src={item.image} alt={item.name} width={50} height={50} />
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={50}
+                    height={50}
+                  />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-base font-bold text-slate-950 sm:text-lg">{item.name}</div>
-                  <div className="mt-2 text-sm leading-6 text-slate-600">{item.body}</div>
+                  <div className="text-base font-bold text-slate-950 sm:text-lg">
+                    {item.name}
+                  </div>
+                  <div className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.body}
+                  </div>
                 </div>
               </article>
             );
@@ -951,7 +1088,6 @@ function BlogSection() {
 function CTASection() {
   return (
     <section className="relative isolate overflow-hidden bg-secondary py-20 text-white sm:py-24">
-
       <ShapeHeroBackground />
       <motion.div
         initial={{ opacity: 0, y: 26 }}
@@ -964,7 +1100,8 @@ function CTASection() {
           Start building enterprise-grade Generative AI systems
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/72">
-          Partner with us to transform your enterprise with intelligent, scalable AI solutions
+          Partner with us to transform your enterprise with intelligent,
+          scalable AI solutions
         </p>
         <div className="mt-9">
           <Button asChild variant={"outline"}>
@@ -986,14 +1123,10 @@ const ctaData: CTAData = {
   buttonLink: "/our-solutions",
   video: "/video/bg-1.mp4",
   members: 100,
-  avatars: [
-    "/img/avatar-1.webp",
-    "/img/avatar-2.webp",
-    "/img/avatar-3.webp",
-  ],
+  avatars: ["/img/avatar-1.webp", "/img/avatar-2.webp", "/img/avatar-3.webp"],
 };
 export default function GenerativeAIPage() {
-  const sliderRef = useRef<Slider | null>(null);
+  const sliderRef = useRef<SwiperType | null>(null);
   return (
     <div className="overflow-hidden bg-white text-slate-950">
       {/* <HeroSection /> */}
@@ -1008,8 +1141,6 @@ export default function GenerativeAIPage() {
           />
 
           <ImpactOnIndustry />
-
-
         </div>
         <div className="absolute -bottom-[8px] left-0 w-[290px] bg-[#fff] ">
           <CornerShape color="#000" />
@@ -1019,7 +1150,6 @@ export default function GenerativeAIPage() {
       <section className="py-20 overflow-hidden relative">
         <div className="container relative">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-
             <SectionHeader
               eyebrow="Our Generative AI Expertise"
               title="Future-Proof AI Architectures"
@@ -1031,7 +1161,7 @@ export default function GenerativeAIPage() {
             <div className="flex gap-3 sm:gap-4">
               <button
                 type="button"
-                onClick={() => sliderRef.current?.slickPrev()}
+                onClick={() => sliderRef.current?.slidePrev()}
                 className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
                 aria-label="Previous capability"
               >
@@ -1039,7 +1169,7 @@ export default function GenerativeAIPage() {
               </button>
               <button
                 type="button"
-                onClick={() => sliderRef.current?.slickNext()}
+                onClick={() => sliderRef.current?.slideNext()}
                 className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white transition hover:-translate-y-1 hover:bg-black"
                 aria-label="Next capability"
               >
@@ -1048,17 +1178,19 @@ export default function GenerativeAIPage() {
             </div>
           </div>
 
-          <Slider
-            ref={sliderRef}
+          <Swiper
+            onSwiper={(swiper) => {
+              sliderRef.current = swiper;
+            }}
             {...expertiseSliderSettings}
-            className="mt-9 -mx-2 min-w-0 custom-slick-style-2"
+            className="mt-9 -mx-2 min-w-0"
           >
             {expertiseCards.map((item, index) => (
-              <div key={item.title} className="h-full px-2 py-2">
+              <SwiperSlide key={item.title} className="h-auto px-2 py-2">
                 <ExpertiseCard key={item.title} item={item} index={index} />
-              </div>
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </div>
         <div className="absolute -bottom-[8px] left-0 w-[290px] bg-black ">
           <CornerShape color="#fff" />
@@ -1068,15 +1200,9 @@ export default function GenerativeAIPage() {
       <TimelineSection />
       <TechStackTabs />
 
-
-
-
-
       <BlogSection />
 
       <CallToAction1 data={ctaData} />
-
-
     </div>
   );
 }

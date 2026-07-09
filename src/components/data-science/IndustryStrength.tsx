@@ -72,42 +72,42 @@ const cardStyles = [
   {
     card: "bg-[#EAF7EB] text-[#0e1a16]",
     label: "text-[#0e1a16]/55",
-    description: "text-[#0e1a16]/78",
+    description: "text-primary",
     icon: "bg-[#0e1a16] text-white",
     line: "bg-[#0e1a16]/12",
   },
   {
     card: "bg-[#E7F4FB] text-[#07161b]",
     label: "text-[#07161b]/55",
-    description: "text-[#07161b]/78",
+    description: "text-primary",
     icon: "bg-[#07161b] text-white",
     line: "bg-[#07161b]/12",
   },
   {
     card: "bg-[#F2EEF8] text-[#150c22]",
     label: "text-[#150c22]/55",
-    description: "text-[#150c22]/74",
+    description: "text-primary",
     icon: "bg-[#150c22] text-white",
     line: "bg-[#150c22]/12",
   },
   {
     card: "bg-[#FAF7D9] text-[#17140b]",
     label: "text-[#17140b]/55",
-    description: "text-[#17140b]/74",
+    description: "text-primary",
     icon: "bg-[#17140b] text-white",
     line: "bg-[#17140b]/12",
   },
   {
     card: "bg-[#ECEEFA] text-[#2b1120]",
     label: "text-[#2b1120]/55",
-    description: "text-[#2b1120]/74",
+    description: "text-primary",
     icon: "bg-[#2b1120] text-white",
     line: "bg-[#2b1120]/12",
   },
   {
     card: "bg-[#FDECEC] text-[#082433]",
     label: "text-[#082433]/55",
-    description: "text-[#082433]/74",
+    description: "text-primary",
     icon: "bg-[#082433] text-white",
     line: "bg-[#082433]/12",
   },
@@ -162,7 +162,7 @@ export default function IndustryStrengthSection({
           textColor="white"
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3 xl:grid-cols-3">
           {metrics.map((item, index) => {
             const style = cardStyles[index % cardStyles.length];
             const Icon = item.icon ?? metricIcons[item.title] ?? TrendingUp;
@@ -202,7 +202,7 @@ export default function IndustryStrengthSection({
                 <div className="relative z-10 flex  flex-col justify-between">
                   <div className="flex items-start justify-between gap-5">
                     <div>
-                      <h3 className="mt-0 max-w-[13rem] !text-2xl font-[500] leading-tight tracking-[-0.04em] text-inherit">
+                      <h3 className="mt-0 max-w-[13rem] lg:!text-2xl md:!text-[17px] sm:!text-[18px] font-[500] leading-tight tracking-[-0.04em] text-inherit">
                         {item.title}
                       </h3>
                     </div>
@@ -222,11 +222,11 @@ export default function IndustryStrengthSection({
                     <div className={cn("mb-2 h-px w-full", style.line)} />
 
                     <div className="flex items-end justify-between gap-6">
-                      <p className={cn("max-w-[10rem] text-sm leading-6", style.description)}>
+                      <div className={cn("text-primary max-w-[10rem] sm:text-[15px] md:text-[14px] lg:text-[16px] leading-6", style.description)}>
                         {item.description}
-                      </p>
+                      </div>
 
-                      <div className="text-right text-[24px]  tracking-[2px] font-semibold leading-none tracking-[-0.08em] text-inherit">
+                      <div className="text-right xl:text-[24px] lg:text-[24px] md:text-[18px]  tracking-[2px] font-semibold leading-none tracking-[-0.08em] text-inherit">
                         <AnimatedNumber value={item.value} />
                       </div>
                     </div>

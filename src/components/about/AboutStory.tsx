@@ -69,7 +69,7 @@ export default function AboutStory() {
                 alt="AI intelligence visual"
                 width={900}
                 height={980}
-                className="relative z-10 h-[420px] w-full object-cover md:h-[620px]"
+                className="relative z-10 h-[471px] w-full object-cover"
               />
             </div>
           </motion.div>
@@ -88,7 +88,7 @@ export default function AboutStory() {
               alt="Data blocks representing structured decision-making"
               width={1200}
               height={700}
-              className="h-[250px] w-full object-cover md:h-[370px]"
+              className="h-[248px] w-full object-cover"
             />
           </motion.div>
 
