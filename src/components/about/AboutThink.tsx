@@ -329,7 +329,7 @@ export default function AboutThink() {
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-8">
         <div>
           <div className="hidden xl:block">
-            <div ref={desktopStageRef} className="relative min-h-[680px] 2xl:min-h-[740px]">
+            <div ref={desktopStageRef} className="relative ">
               <div className="pointer-events-none absolute left-1/2 top-0 w-full min-w-[1200px] max-w-[2048px] -translate-x-1/2">
                 <svg viewBox="0 0 2048 560" className="h-[500px] w-full overflow-visible 2xl:h-[560px]">
                   <path
