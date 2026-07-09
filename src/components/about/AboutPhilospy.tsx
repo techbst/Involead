@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
 import { SectionHeader } from "@/components/ui/section-header";
+
 
 const philosophyCards = [
   {
@@ -47,51 +48,162 @@ function PhilosophyCard({
   card: (typeof philosophyCards)[number];
   expanded: boolean;
 }) {
+  const stacked = !expanded;
+
   return (
     <motion.article
       layout
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`h-[520px] rounded-[30px] p-10 ${
-        card.accent ? "bg-[#63afc4] text-white" : "bg-[#dff1f6] text-slate-950"
-      }`}
+      initial={false}
+      whileHover={{
+        y: -10,
+        scale: 1.02,
+        boxShadow: "0 28px 80px rgba(15,23,42,0.14)",
+      }}
+      whileTap={{ scale: 0.995 }}
+      animate={{
+        opacity: expanded ? 1 : 1,
+        scale: expanded ? 1 : 0.995,
+      }}
+      transition={{
+        duration: 0.65,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className={`group h-[420px] rounded-[30px] ${
+        card.accent ? "bg-[#63afc4] text-white" : "bg-[#cae1e6] text-slate-950"
+      } ${stacked ? "flex items-center px-12 pb-20 pt-16" : "p-5"}`}
     >
-      <div
-        className={`grid size-16 place-items-center rounded-full text-[28px] font-medium ${
-          card.accent ? "bg-white text-[#63afc4]" : "bg-[#1d1d1d] text-white"
-        }`}
-      >
-        {card.step}
+      <div className={stacked ? "w-full" : ""}>
+        <motion.div
+          initial={false}
+          animate={{
+            opacity: stacked ? 0 : 1,
+            scale: stacked ? 0.85 : 1,
+            height: stacked ? 0 : 64,
+            marginBottom: stacked ? 0 : 0,
+          }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden"
+        >
+          <div
+            className={`grid size-16 place-items-center rounded-full text-[28px] font-medium ${
+              card.accent ? "bg-white text-[#63afc4]" : "bg-[#1d1d1d] text-white"
+            }`}
+          >
+            {card.step}
+          </div>
+        </motion.div>
+
+        <motion.h3
+          layout
+          transition={{
+            duration: 0.45,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className={`font-medium leading-none transition-transform duration-500 ${
+            stacked ? "mt-0 text-[52px]" : "mt-14 text-[34px]"
+          }`}
+        >
+          {card.title}
+        </motion.h3>
+
+        <motion.p
+          layout
+          transition={{
+            duration: 0.45,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className={`leading-8 transition-transform duration-500 ${
+            card.accent ? "text-white/95" : "text-slate-800"
+          } ${stacked ? "mt-6 text-[26px]" : "mt-4 text-[24px]"}`}
+        >
+          {card.subtitle}
+        </motion.p>
+
+        <motion.p
+          initial={false}
+          animate={{
+            opacity: expanded ? 1 : 0,
+            height: expanded ? "auto" : 0,
+            marginTop: expanded ? 20 : 0,
+          }}
+          transition={{
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className={`overflow-hidden text-[18px] leading-8 ${
+            card.accent ? "text-white/92" : "text-slate-700"
+          }`}
+        >
+          {card.body}
+        </motion.p>
       </div>
-
-      <h3 className="mt-14 text-[34px] font-medium leading-none">{card.title}</h3>
-      <p className={`mt-4 text-[24px] leading-8 ${card.accent ? "text-white/95" : "text-slate-800"}`}>
-        {card.subtitle}
-      </p>
-
-      <motion.p
-        initial={false}
-        animate={{
-          opacity: expanded ? 1 : 0,
-          height: expanded ? "auto" : 0,
-          marginTop: expanded ? 20 : 0,
-        }}
-        transition={{ duration: 0.28, ease: "easeOut" }}
-        className={`overflow-hidden text-[18px] leading-8 ${
-          card.accent ? "text-white/92" : "text-slate-700"
-        }`}
-      >
-        {card.body}
-      </motion.p>
     </motion.article>
+  );
+}
+
+function StackedCards({
+  cards,
+}: {
+  cards: typeof philosophyCards;
+}) {
+  const stackStyles = [
+    "left-1/2 top-0 z-40 w-[320px] -translate-x-1/2 rotate-0 opacity-100",
+    "left-1/2 top-1 z-30 w-[320px] -translate-x-1/2 rotate-[-4deg] opacity-85",
+    "left-1/2 top-2 z-20 w-[320px] -translate-x-1/2 rotate-[8deg] opacity-70",
+    "left-1/2 top-3 z-10 w-[320px] -translate-x-1/2 rotate-[-9deg] opacity-55",
+  ];
+
+  const visibleCards = cards.slice(-4);
+
+  return (
+    <motion.div
+      layout
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="relative mx-auto h-[420px] w-full max-w-[520px]"
+    >
+      {visibleCards.map((card, index) => {
+        const styleIndex = index;
+
+        return (
+          <motion.div
+            key={card.step}
+            layout
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{
+              y: index === visibleCards.length - 1 ? -10 : 0,
+              rotate: index === visibleCards.length - 1 ? -1.5 : undefined,
+            }}
+            className={`absolute ${stackStyles[styleIndex]}`}
+          >
+            <PhilosophyCard card={card} expanded={false} />
+          </motion.div>
+        );
+      })}
+    </motion.div>
   );
 }
 
 export default function AboutPhilosphy() {
   const cardsRef = useRef<HTMLDivElement | null>(null);
-  const expanded = useInView(cardsRef, { once: true, amount: 0.35 });
+  const [expandedCount, setExpandedCount] = useState(0);
+  const { scrollYProgress } = useScroll({
+    target: cardsRef,
+    offset: ["start 75%", "end 35%"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    let nextCount = 0;
+
+    if (latest > 0.18) nextCount = 1;
+    if (latest > 0.34) nextCount = 2;
+    if (latest > 0.5) nextCount = 3;
+    if (latest > 0.66) nextCount = 4;
+
+    setExpandedCount((current) => (current === nextCount ? current : nextCount));
+  });
 
   return (
-    <section className="bg-[#eef8fb] py-20 md:py-24">
+    <section className="bg-secondary/15 relative py-20 md:py-24">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="Our Philosophy"
@@ -108,42 +220,32 @@ export default function AboutPhilosphy() {
         <div className="mt-16" ref={cardsRef}>
           <motion.div
             layout
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className={
-              expanded
+              expandedCount > 0
                 ? "grid gap-5 lg:grid-cols-4"
-                : "relative mx-auto h-[620px] max-w-[520px]"
+                : ""
             }
           >
-            {philosophyCards.map((card, index) => {
-              if (expanded) {
-                return (
+            {expandedCount === 0 ? (
+              <StackedCards cards={philosophyCards} />
+            ) : (
+              <>
+                {philosophyCards.slice(0, expandedCount).map((card) => (
                   <PhilosophyCard
                     key={card.step}
                     card={card}
-                    expanded={expanded}
+                    expanded={true}
                   />
-                );
-              }
+                ))}
 
-              const stackStyles = [
-                "left-1/2 top-4 z-10 w-[430px] -translate-x-1/2 rotate-[-10deg] opacity-55",
-                "left-1/2 top-8 z-20 w-[430px] -translate-x-1/2 rotate-[10deg] opacity-45",
-                "left-1/2 top-12 z-30 w-[430px] -translate-x-1/2 rotate-[-5deg] opacity-35",
-                "left-1/2 top-16 z-40 w-[430px] -translate-x-1/2 rotate-0 opacity-100",
-              ];
-
-              return (
-                <motion.div
-                  key={card.step}
-                  layout
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className={`absolute ${stackStyles[index]}`}
-                >
-                  <PhilosophyCard card={card} expanded={false} />
-                </motion.div>
-              );
-            })}
+                {expandedCount < philosophyCards.length ? (
+                  <div className={expandedCount >= 1 ? "lg:col-span-1" : ""}>
+                    <StackedCards cards={philosophyCards.slice(expandedCount)} />
+                  </div>
+                ) : null}
+              </>
+            )}
           </motion.div>
         </div>
 
@@ -159,6 +261,7 @@ export default function AboutPhilosphy() {
           can move with greater confidence, speed, and clarity.
         </motion.p>
       </div>
+      
     </section>
   );
 }
