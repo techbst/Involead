@@ -11,7 +11,7 @@ const EXPERTISE_CARD_CLIP_PATH =
 
 export default function AboutOverviewHero() {
   return (
-    <section className="relative overflow-hidden bg-[#f5fafb]">
+    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)]">
       <Image src="/img/List-overview.svg" width={100} height={100} alt="List Overview" className="w-full h-full absolute inset-0 left-[22%] top-[5%]" />
       <div className="container relative z-10 mx-auto grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
         <div className="pb-24 pt-28 md:pb-28 md:pt-32">
@@ -27,7 +27,7 @@ export default function AboutOverviewHero() {
             className="max-w-2xl text-[36px] font-bold leading-[115%] md:text-[54px]"
           />
 
-          <p className="mt-4 max-w-2xl text-slate-950">
+          <p className="mt-4 max-w-2xl text-black">
             Businesses today have more data than ever before, yet many still struggle
             to turn it into confident decisions. At InvoLead, we help enterprises
             connect fragmented data, operationalize AI, and build intelligent systems

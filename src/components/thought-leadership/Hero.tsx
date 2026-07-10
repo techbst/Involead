@@ -1,565 +1,207 @@
 "use client";
 
-import type { ReactNode } from "react";
 import Link from "next/link";
-import { motion, type Variants } from "framer-motion";
-import {
-  Activity,
-  ArrowRight,
-  BarChart3,
-  BrainCircuit,
-  CircleDollarSign,
-  Cpu,
-  Gauge,
-  LineChart,
-  Orbit,
-  Sparkles,
-  Target,
-  TrendingUp,
-  UsersRound,
-  Zap,
-} from "lucide-react";
+import Image from "next/image";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
+import AnimatedHeadline from "@/components/ui/animated-title";
 import { Button } from "@/components/ui/button";
-import AnimatedHeadline from "../ui/animated-title";
-
+import CornerShape from "../ui/shape";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const stagger: Variants = {
-  hidden: {},
   show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
-const floatTransition = {
-  duration: 5,
-  repeat: Infinity,
-  repeatType: "mirror" as const,
-  ease: "easeInOut" as const,
-};
-
-const heroCopy = {
-  label: "Thought Leadership",
-  heading: "Thought Leadership",
-};
-
-function HeroContent({
-  description,
-}: {
-  description: string;
-}) {
-  return (
-    <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-2xl">
-      
-      <AnimatedHeadline
-        title={heroCopy.heading}
-        highlightFromWord={5}
-        highlightColor="#5fb0c2"  
-        titleColor="#0f172a"
-      />
-
-    
-
-      <motion.p variants={fadeUp} className="mt-6 max-w-xl text-base leading-8 text-slate-600 md:text-lg">
-        {description}
-      </motion.p>
-
-      <motion.div variants={fadeUp} className="mt-8">
-        <Button asChild className="rounded-full px-6">
-          <Link href="/our-solutions">
-            Explore Solutions
-            <ArrowRight className="size-4" />
-          </Link>
-        </Button>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-function MiniBarChart({ active = true }: { active?: boolean }) {
-  const bars = [46, 68, 54, 82, 72, 90];
+function MiniBars() {
+  const bars = [28, 34, 38, 44, 54, 63];
 
   return (
-    <div className="flex h-24 items-end gap-2">
-      {bars.map((bar, index) => (
-        <motion.span
-          key={`${bar}-${index}`}
-          initial={{ height: active ? 8 : `${bar}%` }}
-          animate={{ height: `${bar}%` }}
-          transition={{ duration: 0.8, delay: index * 0.08, repeat: active ? Infinity : 0, repeatType: "mirror" }}
-          className="w-full rounded-t-full bg-[linear-gradient(180deg,#5fb0c2,#1e7d92)]"
+    <div className="flex h-14 items-end gap-1.5">
+      {bars.map((height, index) => (
+        <span
+          key={`${height}-${index}`}
+          className={`w-3 rounded-t-[4px] ${
+            index < 3 ? "bg-[#b8d4ff]" : "bg-[#49c4e1]"
+          }`}
+          style={{ height: `${height}%` }}
         />
       ))}
     </div>
   );
 }
 
-function MetricPill({ children }: { children: ReactNode }) {
+function ConnectorLines() {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full border border-white/70 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur">
-      {children}
-    </span>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 860 700"
+      className="absolute inset-0 h-full w-full"
+    >
+      <g fill="none" stroke="#62b8ce" strokeWidth="2.5" strokeLinecap="round">
+        <path d="M210 76 V148 H340" />
+        <path d="M340 148 V0" opacity="0.5" />
+        <path d="M60 372 V500 H160" />
+        <path d="M160 500 V620" />
+        <path d="M310 372 H410" />
+        <path d="M410 372 V440" />
+        <path d="M410 620 H660" />
+        <path d="M660 620 V520 H828" />
+        <path d="M828 520 V0" opacity="0.4" />
+      </g>
+
+      <g fill="#62b8ce">
+        <circle cx="210" cy="76" r="10" />
+        <circle cx="340" cy="148" r="10" />
+        <circle cx="60" cy="372" r="10" />
+        <circle cx="160" cy="500" r="10" />
+        <circle cx="160" cy="620" r="10" />
+        <circle cx="310" cy="372" r="10" />
+        <circle cx="410" cy="372" r="10" />
+        <circle cx="410" cy="620" r="10" />
+        <circle cx="660" cy="620" r="10" />
+        <circle cx="828" cy="520" r="10" />
+      </g>
+    </svg>
   );
 }
 
-export default function Hero_TL() {
+function ChartGlyph() {
+  return (
+    <div className="pt-1">
+      <svg
+        viewBox="0 0 132 78"
+        className="mb-1 h-11 w-24 sm:h-12 sm:w-28"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 30 L24 18 L45 22 L68 6 L90 12 L124 -10"
+          fill="none"
+          stroke="#9bdff0"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <MiniBars />
+    </div>
+  );
+}
+
+export default function ThoughtLeadershipHero() {
+  const reduceMotion = !!useReducedMotion();
+
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-32 pb-10 md:pt-36 md:pb-24">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/80 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(125,197,215,0.12),transparent_34%)]" />
 
       <div className="container relative mx-auto">
         <div className="grid items-center gap-12 lg:grid-cols-[1.03fr_0.97fr]">
-          
-        </div>
-      
-      </div>
-    </section>
-  );
-}
-
-export function Hero_TL_1() {
-  return (
-    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-32 pb-14 md:pt-36 md:pb-24">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/80 to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-24 h-72 w-72 rounded-full bg-[#ff9255]/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-10 left-10 h-80 w-80 rounded-full bg-[#5fb0c2]/20 blur-3xl" />
-
-      <div className="container relative mx-auto">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
-          <HeroContent description="Insights on AI-powered marketing mix optimization, pricing intelligence, and workforce productivity designed to solve real business challenges." />
-          <AIDashboardGraphic />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AIDashboardGraphic() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.94, y: 24 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.15 }}
-      className="relative mx-auto min-h-[500px] w-full max-w-[610px] [perspective:1200px]"
-      aria-hidden="true"
-    >
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-        className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5fb0c2]/20"
-      />
-      <div className="absolute inset-14 rounded-full bg-[radial-gradient(circle,rgba(95,176,194,0.30),transparent_62%)] blur-xl" />
-
-      <motion.article
-        animate={{ y: [0, -16, 0], rotateX: [7, 10, 7], rotateY: [-13, -8, -13] }}
-        transition={floatTransition}
-        className="absolute left-2 top-8 w-[72%] rounded-2xl border border-white/70 bg-white/55 p-5 shadow-[0_28px_90px_rgba(15,23,42,0.18)] backdrop-blur-xl"
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-[#5fb0c2]/15 text-[#237487]">
-              <BarChart3 className="size-5" />
-            </span>
-            <div>
-              <h3 className="text-sm font-bold text-slate-950">Marketing Mix</h3>
-              <p className="text-xs text-slate-500">Campaign ROI model</p>
+          <motion.div
+            initial={reduceMotion ? "show" : "hidden"}
+            animate="show"
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.12 } },
+            }}
+            className="relative z-10"
+          >
+            <div className="text-[14px] font-medium uppercase py-2 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3 text-slate-950">
+              Thought Leadership
             </div>
-          </div>
-          <MetricPill>
-            <TrendingUp className="size-3 text-[#ff9255]" />
-            +32%
-          </MetricPill>
-        </div>
-        <div className="mt-5 grid grid-cols-[1fr_0.9fr] items-end gap-5">
-          <MiniBarChart />
-          <svg viewBox="0 0 140 88" className="h-24 w-full overflow-visible">
-            <motion.path
-              d="M6 72 C32 46, 46 62, 66 38 S104 22, 132 14"
-              fill="none"
-              stroke="#ff9255"
-              strokeWidth="5"
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.6, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-            />
-          </svg>
-        </div>
-      </motion.article>
 
-      <motion.article
-        animate={{ y: [0, 14, 0], rotateX: [9, 5, 9], rotateY: [10, 16, 10] }}
-        transition={{ ...floatTransition, duration: 6 }}
-        className="absolute bottom-20 right-2 w-[58%] rounded-2xl border border-white/70 bg-white/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl"
-      >
-        <div className="flex items-center justify-between">
-          <span className="grid size-10 place-items-center rounded-xl bg-[#ff9255]/15 text-[#d86624]">
-            <CircleDollarSign className="size-5" />
-          </span>
-          <MetricPill>Margin +14%</MetricPill>
-        </div>
-        <h3 className="mt-4 text-sm font-bold text-slate-950">Pricing Optimization</h3>
-        <svg viewBox="0 0 180 86" className="mt-3 h-24 w-full">
-          <path d="M8 70 C45 18, 82 38, 110 50 S152 48, 172 16" fill="none" stroke="#cbd5e1" strokeWidth="2" />
-          <motion.path
-            d="M8 70 C45 18, 82 38, 110 50 S152 48, 172 16"
-            fill="none"
-            stroke="#1f93aa"
-            strokeWidth="4"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
-          />
-        </svg>
-      </motion.article>
-
-      <motion.article
-        animate={{ y: [0, -12, 0], rotateX: [5, 9, 5], rotateY: [-4, -9, -4] }}
-        transition={{ ...floatTransition, duration: 5.5 }}
-        className="absolute bottom-4 left-8 w-[48%] rounded-2xl border border-white/70 bg-white/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.14)] backdrop-blur-xl"
-      >
-        <div className="flex items-center gap-3">
-          <span className="grid size-10 place-items-center rounded-xl bg-blue-500/15 text-blue-600">
-            <UsersRound className="size-5" />
-          </span>
-          <div>
-            <h3 className="text-sm font-bold text-slate-950">Workforce Productivity</h3>
-            <p className="text-xs text-slate-500">Team capacity</p>
-          </div>
-        </div>
-        <div className="mt-5 flex items-center justify-between">
-          <div className="text-3xl font-bold text-slate-950">87</div>
-          <div className="flex -space-x-2">
-            {[0, 1, 2, 3].map((item) => (
-              <motion.span
-                key={item}
-                animate={{ scale: [1, 1.12, 1] }}
-                transition={{ duration: 1.7, delay: item * 0.15, repeat: Infinity }}
-                className="size-8 rounded-full border-2 border-white bg-[linear-gradient(135deg,#5fb0c2,#ff9255)]"
+            <div className="mt-7 max-w-4xl">
+              <AnimatedHeadline
+                title="Perspectives That Shape Smarter Business Decisions"
+                highlightFromWord={3}
+                highlightColor="#1f9fc1"
+                titleColor="#0f172a"
               />
-            ))}
-          </div>
-        </div>
-      </motion.article>
-    </motion.div>
-  );
-}
-
-export function Hero_TL_2() {
-  return (
-    <section className="relative overflow-hidden bg-white pt-32 pb-14 md:pt-36 md:pb-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(255,146,85,0.16),transparent_28%),radial-gradient(circle_at_78%_24%,rgba(95,176,194,0.24),transparent_30%)]" />
-      <div className="container relative mx-auto">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
-          <HeroContent description="Explore expert perspectives on AI-driven marketing, pricing optimization, and workforce productivity." />
-          <AgenticOrbitGraphic />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AgenticOrbitGraphic() {
-  const nodes = [
-    { title: "Marketing Mix Optimization", metric: "ROI +32%", icon: Target, className: "left-[4%] top-[18%]" },
-    { title: "Pricing Optimization", metric: "Margin +14%", icon: CircleDollarSign, className: "right-[0%] top-[35%]" },
-    { title: "Workforce Productivity", metric: "CSAT +21%", icon: UsersRound, className: "left-[18%] bottom-[6%]" },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.94 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.15 }}
-      className="relative mx-auto aspect-square w-full max-w-[610px]"
-      aria-hidden="true"
-    >
-      <div className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle,rgba(95,176,194,0.28),transparent_62%)] blur-2xl" />
-      {[10, 22, 34].map((inset, index) => (
-        <motion.div
-          key={inset}
-          animate={{ rotate: index % 2 ? -360 : 360 }}
-          transition={{ duration: 24 + index * 8, repeat: Infinity, ease: "linear" }}
-          className="absolute rounded-full border border-dashed border-[#5fb0c2]/30"
-          style={{ inset: `${inset}%` }}
-        />
-      ))}
-
-      <svg viewBox="0 0 600 600" className="absolute inset-0 h-full w-full">
-        {[["300", "300", "120", "150"], ["300", "300", "470", "235"], ["300", "300", "225", "480"]].map(([x1, y1, x2, y2], index) => (
-          <motion.line
-            key={`${x2}-${y2}`}
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke={index === 1 ? "#ff9255" : "#5fb0c2"}
-            strokeWidth="2"
-            strokeDasharray="8 10"
-            initial={{ pathLength: 0, opacity: 0.2 }}
-            animate={{ pathLength: [0.15, 1, 0.15], opacity: [0.2, 0.7, 0.2] }}
-            transition={{ duration: 3 + index * 0.4, repeat: Infinity }}
-          />
-        ))}
-      </svg>
-
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={floatTransition}
-        className="absolute left-1/2 top-1/2 grid size-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-white/70 shadow-[0_0_90px_rgba(95,176,194,0.45)] backdrop-blur-xl"
-      >
-        <motion.div
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{ duration: 2.2, repeat: Infinity }}
-          className="grid size-28 place-items-center rounded-full bg-[linear-gradient(135deg,#102a43,#1f93aa_54%,#ff9255)] text-white shadow-[0_22px_60px_rgba(15,23,42,0.28)]"
-        >
-          <BrainCircuit className="size-11" />
-        </motion.div>
-      </motion.div>
-
-      {nodes.map((node, index) => {
-        const Icon = node.icon;
-
-        return (
-          <motion.article
-            key={node.title}
-            animate={{ y: [0, index === 1 ? 12 : -12, 0] }}
-            transition={{ ...floatTransition, duration: 4.8 + index * 0.5 }}
-            className={`absolute ${node.className} w-52 rounded-2xl border border-white/75 bg-white/70 p-4 shadow-[0_22px_70px_rgba(15,23,42,0.14)] backdrop-blur-xl`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-[#5fb0c2]/15 text-[#237487]">
-                <Icon className="size-5" />
-              </span>
-              <Orbit className="ml-auto size-4 text-[#ff9255]" />
             </div>
-            <h3 className="mt-4 text-sm font-bold leading-tight text-slate-950">{node.title}</h3>
-            <p className="mt-2 text-xs font-semibold text-[#237487]">{node.metric}</p>
-          </motion.article>
-        );
-      })}
-    </motion.div>
-  );
-}
 
-export function Hero_TL_3() {
-  return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#eef8fb_100%)] pt-32 pb-14 md:pt-36 md:pb-24">
-      <div className="pointer-events-none absolute right-[-8rem] top-24 h-96 w-96 rounded-full bg-[#5fb0c2]/20 blur-3xl" />
-      <div className="container relative mx-auto">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
-          <HeroContent description="Strategic AI insights for optimizing campaigns, pricing, and workforce performance." />
-          <StackedCardsGraphic />
-        </div>
-      </div>
-    </section>
-  );
-}
+            <motion.p
+              variants={fadeUp}
+              className="mt-5 max-w-2xl text-base leading-7 text-slate-600 md:text-lg"
+            >
+              Explore research, industry perspectives, and expert insights from
+              leaders in AI, data science, analytics, and enterprise
+              transformation.
+            </motion.p>
 
-function StackedCardsGraphic() {
-  const cards = [
-    { title: "AI Marketing Mix", icon: BarChart3, metric: "Channel lift", offset: "z-30 translate-y-0 lg:translate-x-4", color: "#5fb0c2" },
-    { title: "Pricing Intelligence", icon: LineChart, metric: "Revenue curve", offset: "z-20 translate-y-28 lg:-translate-x-10", color: "#ff9255" },
-    { title: "Workforce AI", icon: Gauge, metric: "Productivity rings", offset: "z-10 translate-y-56 lg:translate-x-14", color: "#2563eb" },
-  ];
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <Button asChild variant="default">
+                <Link href="/contact-us">
+                  Talk to Our Experts
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
 
-  return (
-    <div className="relative mx-auto min-h-[620px] w-full max-w-[590px] [perspective:1200px]" aria-hidden="true">
-      <div className="absolute inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,146,85,0.18),rgba(95,176,194,0.18),transparent_66%)] blur-2xl" />
-      {cards.map((card, index) => {
-        const Icon = card.icon;
+              <Button asChild variant="outline">
+                <Link href="/our-solutions">
+                  Explore Our Solutions
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
 
-        return (
-          <motion.article
-            key={card.title}
-            initial={{ opacity: 0, y: 40, rotateX: 18, rotateZ: -4 }}
-            animate={{ opacity: 1, y: 0, rotateX: 10, rotateZ: index === 1 ? 4 : -3 }}
-            whileHover={{ y: -12, scale: 1.02 }}
-            transition={{ duration: 0.6, delay: index * 0.13 }}
-            className={`absolute left-0 right-0 mx-auto h-64 w-[86%] rounded-2xl border border-white/80 bg-white/68 p-6 shadow-[0_32px_90px_rgba(15,23,42,0.18)] backdrop-blur-xl ${card.offset}`}
-            style={{ transformStyle: "preserve-3d" }}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, x: 24, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto min-h-[560px] w-full max-w-[780px] lg:min-h-[700px]"
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-xl text-white shadow-lg" style={{ backgroundColor: card.color }}>
-                  <Icon className="size-5" />
-                </span>
+            <ConnectorLines />
+
+           
+            {/* Large featured image, top-right, plain rounded corners */}
+            <div className="absolute right-0 top-[3%] z-10 h-[62%] w-[52%] overflow-hidden rounded-[36px] shadow-[0_34px_90px_rgba(69,143,181,0.18)]">
+              <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(84,145,255,0.16),rgba(84,145,255,0.02))]" />
+              <Image
+                src="/img/over-hero-top.jpg"
+                alt="Featured thought leadership visual"
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+
+            {/* 98.5% stat card */}
+            <div className="absolute left-[1%] top-[20%] z-20 w-[40%] rounded-[28px] border border-[#dce5ee] bg-white px-7 py-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-base font-bold text-slate-950">{card.title}</h3>
-                  <p className="text-xs text-slate-500">{card.metric}</p>
+                  <div className="text-[54px] font-semibold leading-none tracking-[-0.06em] text-[#171a23]">
+                    98.5%
+                  </div>
+                  <p className="mt-10 max-w-[340px] text-[22px] leading-[1.35] tracking-[-0.03em] text-[#5e677f]">
+                    Prediction accuracy in live production systems
+                  </p>
                 </div>
+
+                <ChartGlyph />
               </div>
-              <Sparkles className="size-5 text-[#ff9255]" />
             </div>
 
-            {index === 0 && (
-              <div className="mt-8">
-                <MiniBarChart />
+            {/* 50+ stat card, plain rounded corners, overlapping bottom of image */}
+            <div className="absolute bottom-[8%] left-[26%] z-20 w-[38%] rounded-[30px] bg-[#4fa7be] px-9 py-10 text-white shadow-[0_22px_60px_rgba(77,168,191,0.22)]">
+              <div className="text-[56px] font-semibold leading-none tracking-[-0.06em]">
+                50+
               </div>
-            )}
-
-            {index === 1 && (
-              <svg viewBox="0 0 260 100" className="mt-8 h-28 w-full">
-                <motion.path
-                  d="M10 82 C56 14, 92 38, 130 58 S196 74, 250 18"
-                  fill="none"
-                  stroke="#ff9255"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.8, repeat: Infinity, repeatType: "mirror" }}
-                />
-              </svg>
-            )}
-
-            {index === 2 && (
-              <div className="mt-8 flex items-center gap-7">
-                {[78, 64, 91].map((value, ringIndex) => (
-                  <div key={value} className="relative grid size-20 place-items-center rounded-full bg-slate-100">
-                    <svg viewBox="0 0 90 90" className="absolute inset-0">
-                      <circle cx="45" cy="45" r="34" fill="none" stroke="#e2e8f0" strokeWidth="8" />
-                      <motion.circle
-                        cx="45"
-                        cy="45"
-                        r="34"
-                        fill="none"
-                        stroke={ringIndex === 2 ? "#2563eb" : "#5fb0c2"}
-                        strokeWidth="8"
-                        strokeLinecap="round"
-                        strokeDasharray="214"
-                        initial={{ strokeDashoffset: 214 }}
-                        animate={{ strokeDashoffset: 214 - (214 * value) / 100 }}
-                        transition={{ duration: 1.2, delay: ringIndex * 0.15, repeat: Infinity, repeatType: "mirror" }}
-                      />
-                    </svg>
-                    <span className="text-sm font-bold text-slate-950">{value}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </motion.article>
-        );
-      })}
-    </div>
-  );
-}
-
-export function Hero_TL_4() {
-  return (
-    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,rgba(129,191,206,.35)_100%)] pt-18 pb-14 md:pt-20 md:pb-15">
-      
-      <div className="container relative mx-auto">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]">
-          <HeroContent 
-          description="Learn how AI empowers marketing mix optimization, smarter pricing, and workforce productivity through data-driven decision making." />
-          <CommandCenterGraphic />
+              <p className="mt-8 max-w-[320px] text-[22px] leading-[1.38] tracking-[-0.03em] text-white/95">
+                Research publications published annually
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
-function CommandCenterGraphic() {
-  const panels = [
-    { title: "Marketing Performance", icon: Activity, value: "Live ROI", className: "left-0 top-10" },
-    { title: "Pricing Optimization", icon: CircleDollarSign, value: "Elasticity", className: "right-0 top-28" },
-    { title: "Workforce Productivity", icon: UsersRound, value: "Team AI", className: "left-[18%] bottom-2" },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95, y: 24 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.15 }}
-      className="relative mx-auto min-h-[560px] w-full max-w-[650px]"
-      aria-hidden="true"
-    >
-      <div className="absolute inset-10 rounded-[2rem] border border-[#5fb0c2]/15 bg-white/50 shadow-[0_35px_100px_rgba(15,23,42,0.12)] backdrop-blur-sm" />
-      <svg viewBox="0 0 640 540" className="absolute inset-0 h-full w-full">
-        {[120, 190, 260, 330, 400].map((y, index) => (
-          <motion.path
-            key={y}
-            d={`M80 ${y} C210 ${y - 70}, 300 ${y + 82}, 560 ${y - 18}`}
-            fill="none"
-            stroke={index % 2 ? "##5fb0c2" : "#5fb0c2"}
-            strokeWidth="2"
-            strokeDasharray="10 12"
-            initial={{ pathLength: 0, opacity: 0.15 }}
-            animate={{ pathLength: [0, 1, 0], opacity: [0.15, 0.58, 0.15] }}
-            transition={{ duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" }}
-          />
-        ))}
-      </svg>
-
-      <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={floatTransition}
-        className="absolute left-1/2 top-1/2 grid size-48 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[2rem] border border-white/80 bg-slate-950 text-white shadow-[0_30px_90px_rgba(15,23,42,0.28)]"
-      >
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-5 rounded-full border border-dashed border-[#5fb0c2]/50"
-        />
-        <div className="relative grid size-24 place-items-center rounded-full bg-[linear-gradient(135deg,#5fb0c2,#207285_48%,#5fb0c2)]">
-          <Cpu className="size-10" />
-        </div>
-        <div className="absolute bottom-8 text-xs font-semibold uppercase tracking-[0.18em] text-white/72">Decision Engine</div>
-      </motion.div>
-
-      {panels.map((panel, index) => {
-        const Icon = panel.icon;
-
-        return (
-          <motion.article
-            key={panel.title}
-            animate={{ y: [0, index === 1 ? 14 : -14, 0] }}
-            transition={{ ...floatTransition, duration: 5 + index * 0.45 }}
-            className={`absolute ${panel.className} w-60 rounded-2xl border border-white/80 bg-white/72 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.14)] backdrop-blur-xl`}
-          >
-            <div className="flex items-center justify-between">
-              <span className="grid size-10 place-items-center rounded-xl bg-[#5fb0c2]/15 text-[#237487]">
-                <Icon className="size-5" />
-              </span>
-              <span className="flex items-center gap-1 rounded-full bg-secondary/12 px-3 py-1 text-xs font-bold text-secondary">
-                <Zap className="size-3" />
-                {panel.value}
-              </span>
-            </div>
-            <h3 className="mt-4 text-sm font-bold text-slate-950">{panel.title}</h3>
-            <div className="mt-5 grid grid-cols-5 gap-2">
-              {[34, 62, 48, 78, 58].map((height, barIndex) => (
-                <motion.span
-                  key={`${panel.title}-${height}-${barIndex}`}
-                  animate={{ height: [`${height}%`, `${Math.min(height + 20, 92)}%`, `${height}%`] }}
-                  transition={{ duration: 1.8, delay: barIndex * 0.1, repeat: Infinity }}
-                  className="h-16 rounded-t-full bg-[linear-gradient(180deg,#5fb0c2,#2563eb)]"
-                />
-              ))}
-            </div>
-          </motion.article>
-        );
-      })}
-
-      {[["16%", "46%"], ["84%", "48%"], ["50%", "18%"], ["52%", "86%"]].map(([left, top], index) => (
-        <motion.span
-          key={`${left}-${top}`}
-          animate={{ scale: [1, 1.45, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, delay: index * 0.25, repeat: Infinity }}
-          className="absolute size-3 rounded-full bg-secondary shadow-[0_0_24px_rgba(255,146,85,0.9)]"
-          style={{ left, top }}
-        />
-      ))}
-    </motion.div>
-  );
-}
-
