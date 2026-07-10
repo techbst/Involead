@@ -345,9 +345,9 @@ function WhyPartner() {
     })(); return () => { cancelled = true; clean(); }
   }, []);
 
-  return <section ref={ref} className="relative bg-black py-20 text-white relative overflow-hidden">
+  return <section ref={ref} className="relative bg-black py-20 text-white relative ">
     <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
-      <div className="lg:sticky lg:top-12 self-start">
+      <div className="sticky top-22 self-start">
         <SectionHeader
           eyebrow="The InvoLead advantage"
           title="Why Partner with InvoLead?"
@@ -363,7 +363,7 @@ function WhyPartner() {
         </div>
         <div className="space-y-4">{reasons.map(([t, d], i) => <article key={t}
           className="reason-card rounded-[1.5rem] border border-white/10 bg-white/[.08] p-6 backdrop-blur sm:p-8">
-          <div className="flex gap-5"><span className="font-mono text-xs text-cyan-300">0{i + 1}</span>
+          <div className="flex gap-5"><span className="font-mono text-2xl text-secondary">0{i + 1}</span>
             <div>
               <h3 className="text-xl font-bold">{t}</h3>
               <p className="mt-2 leading-7 text-slate-400">{d}</p>
@@ -372,9 +372,9 @@ function WhyPartner() {
         </article>)}</div>
       </div>
     </div>
-    <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
+    {/* <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
       <CornerShape color="#000" />
-    </div>
+    </div> */}
   </section>
 }
 
@@ -527,7 +527,7 @@ const ctaData: CTAData = {
   ],
 };
 export default function DataEngineeringPage() {
-  return <div className="overflow-hidden bg-white text-slate-950">
+  return <div className="bg-white text-slate-950">
     <DataEngineeringHero />
     <Productions />
     <Stats />
@@ -537,7 +537,7 @@ export default function DataEngineeringPage() {
     <Excellence />
     <WhyPartner />
 
-    <Testimonial />
+    {/* <Testimonial /> */}
     <Blog />
     <FAQSection />
     <CallToAction1 data={ctaData} />

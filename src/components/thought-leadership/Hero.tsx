@@ -22,11 +22,11 @@ function MiniBars() {
   const bars = [28, 34, 38, 44, 54, 63];
 
   return (
-    <div className="flex h-14 items-end gap-1.5">
+    <div className="flex h-8 items-end gap-[2px]">
       {bars.map((height, index) => (
         <span
           key={`${height}-${index}`}
-          className={`w-3 rounded-t-[4px] ${
+          className={`w-2 rounded-t-[2px] ${
             index < 3 ? "bg-[#b8d4ff]" : "bg-[#49c4e1]"
           }`}
           style={{ height: `${height}%` }}
@@ -73,10 +73,10 @@ function ConnectorLines() {
 
 function ChartGlyph() {
   return (
-    <div className="pt-1">
+    <div className=" relative">
       <svg
         viewBox="0 0 132 78"
-        className="mb-1 h-11 w-24 sm:h-12 sm:w-28"
+        className="mb-1 h-10 w-14 absolute top-0 left-0 "
         aria-hidden="true"
       >
         <path
@@ -164,7 +164,7 @@ export default function ThoughtLeadershipHero() {
 
            
             {/* Large featured image, top-right, plain rounded corners */}
-            <div className="absolute right-0 top-[3%] z-10 h-[62%] w-[52%] overflow-hidden rounded-[36px] shadow-[0_34px_90px_rgba(69,143,181,0.18)]">
+            <div className="absolute right-0 top-[328px] z-10 h-[62%] w-[270px] overflow-hidden rounded-[36px] shadow-[0_34px_90px_rgba(69,143,181,0.18)]">
               <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(84,145,255,0.16),rgba(84,145,255,0.02))]" />
               <Image
                 src="/img/over-hero-top.jpg"
@@ -175,23 +175,25 @@ export default function ThoughtLeadershipHero() {
             </div>
 
             {/* 98.5% stat card */}
-            <div className="absolute left-[1%] top-[20%] z-20 w-[40%] rounded-[28px] border border-[#dce5ee] bg-white px-7 py-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="text-[54px] font-semibold leading-none tracking-[-0.06em] text-[#171a23]">
+            <div className="absolute left-[1%] top-[20%] z-20 w-[240px] rounded-[24px] border border-[#dce5ee] bg-white px-4 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+              <div className="flex flex-col  gap-4">
+                <div className="flex  gap-1 items-end justify-between">
+
+                  <div className="text-[28px] font-semibold leading-none tracking-[-0.06em] text-[#171a23]">
                     98.5%
                   </div>
-                  <p className="mt-10 max-w-[340px] text-[22px] leading-[1.35] tracking-[-0.03em] text-[#5e677f]">
+                  <ChartGlyph />
+                </div>
+                  <p className="mt-2  tracking-[-0.03em] text-slate-600">
                     Prediction accuracy in live production systems
                   </p>
-                </div>
 
-                <ChartGlyph />
+                
               </div>
             </div>
 
             {/* 50+ stat card, plain rounded corners, overlapping bottom of image */}
-            <div className="absolute bottom-[8%] left-[26%] z-20 w-[38%] rounded-[30px] bg-[#4fa7be] px-9 py-10 text-white shadow-[0_22px_60px_rgba(77,168,191,0.22)]">
+            <div className="absolute bottom-[8%] left-[26%] z-20 w-[240px] rounded-[30px] bg-[#4fa7be] px-9 py-10 text-white shadow-[0_22px_60px_rgba(77,168,191,0.22)]">
               <div className="text-[56px] font-semibold leading-none tracking-[-0.06em]">
                 50+
               </div>

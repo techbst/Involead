@@ -62,7 +62,7 @@ export default function ColorfulNumberCard({
                         key={item.label}
                         variants={fadeUp}
                         className={cn(
-                            "group relative overflow-hidden rounded-[1.75rem] border border-white/10 p-6 shadow-1xl",
+                            "group relative overflow-hidden rounded-[24px] border border-white/10 p-6 shadow-1xl",
                             cardColors[index % cardColors.length]
                         )}
                         >
