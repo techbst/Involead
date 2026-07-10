@@ -33,7 +33,7 @@ export default function AnimatedHeadline({
       initial="hidden"
       animate="show"
       className={cn(
-        "max-w-4xl text-[36px] font-bold leading-[120%] md:text-[54px]",
+        "max-w-4xl text-[36px] font-bold !leading-normal md:text-[54px]",
         className,
       )}
       style={{ color: titleColor }}
