@@ -1,51 +1,111 @@
-import Link from "next/link";
+"use client";
+
+import { useRef } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import type { Swiper as SwiperType } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import { BlogCard, type BlogPost } from "@/components/ui/blog-card";
-import { SectionHeader } from "../ui/section-header";
-import { Button } from "../ui/button";
-import { ArrowRight } from "lucide-react";
+import { SectionHeader } from "@/components/ui/section-header";
 
-
-
-
-const CardPosts: BlogPost[] = [
+const cardPosts: BlogPost[] = [
   {
     featuredimg: "/img/cap-1.webp",
-    title: "AI Empowered Marketing Mix approach for Tracking In-flight Campaign Performance",
-    excerpt: "Marketing Mix Optimization helps estimate the impact of past marketing campaigns on sales/footfalls and recommend the right mix of budget among marketing tactics for future period.",
+    category: "Products & Innovations",
+    title: "AI Advantage",
+    excerpt:
+      "Practical AI and analytics insights for business leaders looking to stay ahead.",
+    href: "/articles",
+    ctaLabel: "Subscribe on LinkedIn",
   },
   {
     featuredimg: "/img/cap-2.webp",
-    title: "Price Setting Transforming through Pricing Optimization",
-    excerpt: "Pricing is important for any business as it has the power to steer or destroy a company’s operating margins & revenue.",
+    category: "Products & Innovations",
+    title: "Leadership Brief",
+    excerpt:
+      "Executive perspectives on AI strategy, governance, decision-making, and enterprise transformation.",
+    href: "/articles",
+    ctaLabel: "Subscribe on LinkedIn",
   },
   {
     featuredimg: "/img/cap-3.webp",
-    title: "Improve Workforce Productivity by Using AI solutions",
-    excerpt: "Maintaining the workforce productivity is very challenging for the operation leads and this is very important as far as Customer Satisfaction score is concerned.",
+    category: "Products & Innovations",
+    title: "Inside the Model",
+    excerpt:
+      "Technical deep dives into GenAI, machine learning, data engineering, LLMs, and enterprise AI implementation.",
+    href: "/articles",
+    ctaLabel: "Subscribe on LinkedIn",
+  },
+  {
+    featuredimg: "/img/cap-4.webp",
+    category: "Products & Innovations",
+    title: "Data to Decisions",
+    excerpt:
+      "Applied analytics ideas that help teams move from fragmented information to confident action.",
+    href: "/articles",
+    ctaLabel: "Subscribe on LinkedIn",
   },
 ];
 
 export default function TL_CARDS() {
-    return (
-    <section className="py-20">
-      <div className="mx-auto container">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              align="center"
-              eyebrow="Marketing Analytics"
-              title="AI-Powered Marketing Mix Optimization"
-              description="Leverage AI to measure campaign performance, identify the impact of every marketing channel, and optimize budget allocation for higher ROI and sustainable business growth."
-              maxWidth="5xl"
-              descriptionWidth="4xl"
-            />
-          </div>
+  const swiperRef = useRef<SwiperType | null>(null);
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {CardPosts.map((post, index) => (
-            <BlogCard key={post.title} post={post} index={index} />
-          ))}
+  return (
+    <section className="bg-[#effafd] py-16 md:py-24">
+      <div className="container mx-auto">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <SectionHeader
+            align="left"
+            eyebrow="Monthly Intelligence"
+            title="Stay connected with our latest thinking"
+            description="From ideas to real-world solutions, built to scale with business needs."
+            maxWidth="5xl"
+            descriptionWidth="4xl"
+            titleClassName="normal-case"
+          />
+
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="grid size-12 place-items-center rounded-full bg-[#48a8be] text-white transition hover:-translate-y-1 hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#48a8be]"
+              aria-label="Previous publication"
+            >
+              <ArrowLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => swiperRef.current?.slideNext()}
+              className="grid size-12 place-items-center rounded-full bg-[#48a8be] text-white transition hover:-translate-y-1 hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#48a8be]"
+              aria-label="Next publication"
+            >
+              <ArrowRight className="size-5" />
+            </button>
+          </div>
         </div>
+
+        <Swiper
+          className="mt-12"
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          loop
+          grabCursor
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1.5 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {cardPosts.map((post, index) => (
+            <SwiperSlide key={post.title} className="h-auto py-2" data-aos="fade-up" data-aos-delay={index * 100} data-aos-duration="750">
+              <BlogCard post={post} index={index} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
-    )
+  );
 }

@@ -12,6 +12,7 @@ export type BlogPost = {
   title: string;
   excerpt: string;
   href?: string;
+  ctaLabel?: string;
 };
 
 const fadeUp: Variants = {
@@ -46,7 +47,7 @@ export function BlogCard({
       whileInView="show"
       viewport={{ once: false, amount: 0.2 }}
       whileHover={{ y: -7 }}
-      className="group relative overflow-hidden bg-white shadow-[0_18px_55px_rgba(15,23,42,0.08)]
+      className="group relative h-full overflow-hidden bg-white shadow-[0_18px_55px_rgba(15,23,42,0.08)]
         before:pointer-events-none before:absolute before:inset-0 before:z-20 before:bg-slate-200 hover:before:bg-secondary/40
         before:[clip-path:inherit]
         after:pointer-events-none after:absolute after:inset-[1px] after:z-20 after:bg-white
@@ -93,15 +94,25 @@ export function BlogCard({
 
 
         <div className="flex justify-end">
-          <Button
-            type="button"
-            asChild
-            className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:text-white hover:bg-black"
-          >
-            <Link href={href} className="relative z-[130]" aria-label={`Read article: ${post.title}`}>
-              <ArrowRight className="size-4" />
+          {post.ctaLabel ? (
+            <Link
+              href={href}
+              className="relative z-[130] inline-flex items-center gap-1 text-sm font-medium text-[#0798bc] transition hover:text-slate-950"
+              aria-label={`${post.ctaLabel}: ${post.title}`}
+            >
+              {post.ctaLabel} <ArrowRight className="size-4" />
             </Link>
-          </Button>
+          ) : (
+            <Button
+              type="button"
+              asChild
+              className="grid size-12 place-items-center rounded-full bg-[#5fb0c2] text-white shadow-lg transition-all duration-500 group-hover:-translate-y-2 hover:bg-black hover:text-white"
+            >
+              <Link href={href} className="relative z-[130]" aria-label={`Read article: ${post.title}`}>
+                <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </motion.article>

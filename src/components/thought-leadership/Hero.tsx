@@ -204,7 +204,7 @@ export default function ThoughtLeadershipHero() {
 
 
             {/* 98.5% stat card */}
-            <div className="absolute left-[1%] top-[16%] z-20 w-[240px] rounded-[24px] border border-[#dce5ee] bg-white px-6 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+            <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="750" className="absolute left-[1%] top-[16%] z-20 w-[240px] rounded-[24px] border border-[#dce5ee] bg-white px-6 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
               <div className="flex flex-col  gap-4">
                 <div className="flex  gap-1 items-end justify-between">
 
@@ -222,7 +222,7 @@ export default function ThoughtLeadershipHero() {
             </div>
 
             {/* 50+ stat card, plain rounded corners, overlapping bottom of image */}
-            <div className="absolute top-[50%] left-[28%] z-20 w-[240px] rounded-[30px] bg-[#4fa7be] px-6 py-8 text-white shadow-[0_22px_60px_rgba(77,168,191,0.22)]">
+            <div data-aos="fade-up" data-aos-delay="100" data-aos-duration="750" className="absolute top-[50%] left-[28%] z-20 w-[240px] rounded-[30px] bg-[#4fa7be] px-6 py-8 text-white shadow-[0_22px_60px_rgba(77,168,191,0.22)]">
               <div className="text-[28px] font-semibold leading-none tracking-[-0.06em]">
                 50+
               </div>
