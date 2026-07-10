@@ -178,7 +178,7 @@ export default function AboutDrive() {
                   y: inView ? 0 : 18,
                 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative h-full min-h-[620px] cursor-pointer overflow-hidden rounded-[20px] shadow-[0_35px_100px_rgba(15,23,42,0.12)]"
+                className="group relative h-full min-h-[520px] cursor-pointer overflow-hidden rounded-[20px] shadow-[0_35px_100px_rgba(15,23,42,0.12)]"
               >
                 <Image
                   src="/img/aboutdrives.webp"

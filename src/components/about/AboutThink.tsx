@@ -409,7 +409,7 @@ export default function AboutThink() {
                 </svg>
               </div>
 
-              <div className="relative grid grid-cols-5 gap-4 pt-[244px] xl:gap-5 2xl:gap-6 2xl:pt-[280px]">
+              <div className="relative grid grid-cols-5 gap-4 pt-[244px] xl:gap-5 2xl:gap-6 2xl:pt-[280px] mt-[-80px]">
                 {steps.map((step, index) => (
                   <div
                     key={step.title}

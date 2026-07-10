@@ -104,7 +104,7 @@ export default function AboutStory() {
               alt="Team working through a planning exercise"
               width={1200}
               height={700}
-              className="h-[250px] w-full object-cover md:h-[370px]"
+              className="h-[250px] w-full object-cover"
             />
           </motion.div>
         </div>
