@@ -144,7 +144,7 @@ function WorldMap({
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ scale: 145 }}
-            className="h-[300px] w-full sm:h-[360px] lg:h-[430px]"
+            className="h-[280px] w-full sm:h-[360px] lg:h-[400px]"
           >
             <ZoomableGroup
               center={mapPosition.coordinates}
@@ -274,14 +274,14 @@ export default function AboutDelivery() {
         />
 
         <div className="mt-14 grid gap-6 xl:grid-cols-[420px_minmax(0,1fr)]">
-          <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_10px_40px_rgba(15,23,42,0.04)] md:p-6">
-            <h3 className="text-[22px] font-medium text-slate-900">Filter by Region</h3>
+          <div className="rounded-[28px] border border-slate-200 bg-white p-2 shadow-[0_10px_40px_rgba(15,23,42,0.04)] md:p-6">
+            <h3 className="!text-[14px] font-medium text-slate-900">Filter by Region</h3>
 
             <div className="relative mt-4">
               <select
                 value={selectedRegion}
                 onChange={(event) => setSelectedRegion(event.target.value)}
-                className="h-12 w-full appearance-none rounded-[14px] border border-slate-200 bg-slate-50 px-4 pr-11 text-[18px] text-slate-700 outline-none transition focus:border-[#6fc2d8] focus:bg-white"
+                className="h-12 w-full appearance-none rounded-[14px] border border-slate-200 bg-slate-50 px-4 pr-11 text-[12px] text-slate-700 outline-none transition focus:border-[#6fc2d8] focus:bg-white"
               >
                 {regions.map((region) => (
                   <option key={region} value={region}>
@@ -307,11 +307,11 @@ export default function AboutDelivery() {
                         : "border-slate-200 bg-white hover:border-slate-300"
                     }`}
                   >
-                    <p className="text-[15px] leading-6 text-slate-500">{office.tag}</p>
-                    <p className="mt-1 text-[22px] font-medium leading-none text-slate-900">
+                    <p className="!text-[14px] leading-6 text-slate-500">{office.tag}</p>
+                    <p className="mt-1 !text-[18px] font-medium leading-none !text-slate-900">
                       {office.city}
                     </p>
-                    <p className="mt-3 line-clamp-2 text-[16px] leading-7 text-slate-700">
+                    <p className="!text-[14px] mt-1 line-clamp-1  leading-7 text-slate-700">
                       {office.address}
                     </p>
                   </button>
@@ -332,21 +332,21 @@ export default function AboutDelivery() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="m-8 rounded-[24px] bg-[#E7F5F8] p-6 md:m-5 md:p-7"
+              className="m-8 rounded-[20px] bg-[#E7F5F8] p-6 md:m-5 md:p-7"
             >
-              <h3 className="text-[30px] font-medium leading-none text-slate-900">
+              <h3 className="!text-[20px] font-medium leading-none text-slate-900">
                 {selectedOffice.city}
               </h3>
-              <p className="mt-2 text-[20px] text-slate-700">{selectedOffice.tag}</p>
+              <p className="mt-0 !text-[14px] text-slate-700">{selectedOffice.tag}</p>
 
-              <div className="mt-6 flex items-start gap-4 text-slate-800">
+              <div className="mt-3 flex items-start gap-4 text-slate-800">
                 <MapPin className="mt-1 size-5 shrink-0 text-[#4ba8c2]" />
-                <p className="text-[18px] leading-8">{selectedOffice.address}</p>
+                <p className="!text-[14px] leading-8">{selectedOffice.address}</p>
               </div>
 
               <div className="mt-6 h-px bg-[#cddfe6]" />
 
-              <div className="mt-5 grid gap-4 text-[18px] leading-7 text-slate-800 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
+              <div className="mt-5 grid gap-4 text-[14px] leading-7 text-slate-800 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
                 <div className="flex items-center gap-3">
                   <Phone className="size-5 text-[#4ba8c2]" />
                   <span>{selectedOffice.phone}</span>

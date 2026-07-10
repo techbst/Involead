@@ -45,7 +45,7 @@ export default function FeatureCard({
             },
             },
         }}
-            className="group w-full rounded-[28px] p-6 md:p-4 bg-[#46a4b9] border border-[#46a4b9] hover:bg-white hover:border-secondary/50 hover:shadow-[0_10px_15px_rgba(95,176,194,0.22)]"
+            className="group w-full rounded-[24px] p-6 md:p-4 bg-[#46a4b9] border border-[#46a4b9] hover:bg-white hover:border-secondary/50 hover:shadow-[0_10px_15px_rgba(95,176,194,0.22)]"
         >
             <div
                 className={`grid gap-3 justify-between md:grid-cols-2 ${reverse ? "md:[&>*:first-child]:order-2" : ""

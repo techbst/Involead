@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Loader, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import AnimatedNumber from "@/components/ui/animated-number";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 35 },
@@ -30,10 +30,38 @@ type Props = {
 
 export default function ExpandableCardGrid({ items, className }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   const [visibleCount, setVisibleCount] = useState(6);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const visibleItems = items.slice(0, visibleCount);
   const hasMore = visibleCount < items.length;
+
+  useEffect(() => {
+    const node = loadMoreRef.current;
+
+    if (!node || !hasMore) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+
+        if (!entry?.isIntersecting) {
+          return;
+        }
+
+        setVisibleCount((current) => Math.min(current + 6, items.length));
+      },
+      {
+        rootMargin: "280px 0px",
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [hasMore, items.length]);
 
   const getDesktopOverlaySide = (index: number) =>
     index % 3 === 2 ? "lg:right-0 lg:left-auto" : "lg:left-0 lg:right-auto";
@@ -54,8 +82,8 @@ export default function ExpandableCardGrid({ items, className }: Props) {
 
     return cn(
       isTabletCovered &&
-        "md:opacity-0 md:pointer-events-none lg:opacity-100 lg:pointer-events-auto",
-      isDesktopCovered && "lg:opacity-0 lg:pointer-events-none",
+        "md:invisible md:pointer-events-none lg:visible lg:pointer-events-auto",
+      isDesktopCovered && "lg:invisible lg:pointer-events-none",
     );
   };
 
@@ -93,7 +121,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
                     "rounded-[18px] h-full bg-white p-4 border border-secondary/30",
                     isActive &&
                       cn(
-                        "z-30 shadow-[0_10px_30px_rgba(95,176,194,0.55)]",
+                        "z-30 isolate shadow-[0_10px_30px_rgba(95,176,194,0.55)]",
                         "md:absolute md:top-0 md:w-[calc(200%+1.25rem)]",
                         "lg:w-[calc(200%+1.25rem)]",
                         getTabletOverlaySide(index),
@@ -145,7 +173,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
                                     {metric.label}
                                   </div>
                                   <div className="mt-1 flex items-center gap-1 text-lg font-semibold text-secondary">
-                                    {metric.value}
+                                    <AnimatedNumber value={metric.value} />
                                     <ArrowUpRight className="size-5" />
                                   </div>
                                 </div>
@@ -213,11 +241,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
         </AnimatePresence>
       </div>
       {hasMore && (
-        <div className="mt-10 flex justify-center">
-          <Button onClick={() => setVisibleCount((prev) => prev + 6)}>
-            Load More <Loader size={4} />
-          </Button>
-        </div>
+        <div ref={loadMoreRef} className="mt-10 h-12 w-full" aria-hidden="true" />
       )}
     </>
   );
