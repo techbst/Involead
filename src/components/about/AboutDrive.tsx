@@ -59,7 +59,7 @@ function PrincipleCard({
       whileHover={{
         y: -10,
         scale: 1.02,
-        boxShadow: "0 30px 80px rgba(15,23,42,0.12)",
+        // boxShadow: "0 30px 80px rgba(15,23,42,0.12)",
       }}
       whileTap={{ scale: 0.99 }}
       animate={{

@@ -84,10 +84,15 @@ function WorldMap({
   visibleOffices: readonly Office[];
   onSelect: (id: Office["id"]) => void;
 }) {
+  const [isMounted, setIsMounted] = useState(false);
   const [mapPosition, setMapPosition] = useState({
     coordinates: [20, 18] as [number, number],
     zoom: 1,
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const changeZoom = (direction: "in" | "out") => {
     setMapPosition((current) => ({
@@ -135,95 +140,99 @@ function WorldMap({
       </div>
 
       <div className="relative">
-        <ComposableMap
-          projection="geoMercator"
-          projectionConfig={{ scale: 145 }}
-          className="h-[300px] w-full sm:h-[360px] lg:h-[430px]"
-        >
-          <ZoomableGroup
-            center={mapPosition.coordinates}
-            zoom={mapPosition.zoom}
-            onMoveEnd={({ coordinates, zoom }: { coordinates: number[]; zoom: number }) =>
-              setMapPosition({
-                coordinates: coordinates as [number, number],
-                zoom,
-              })
-            }
-            maxZoom={4}
-            minZoom={1}
-            translateExtent={[
-              [-320, -120],
-              [1520, 760],
-            ]}
+        {isMounted ? (
+          <ComposableMap
+            projection="geoMercator"
+            projectionConfig={{ scale: 145 }}
+            className="h-[300px] w-full sm:h-[360px] lg:h-[430px]"
           >
-            <Geographies geography={worldData}>
-              {({ geographies }: { geographies: any[] }) =>
-                geographies.map((geo: any) => (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    style={{
-                      default: {
-                        fill: "#ffffff",
-                        stroke: "#d7dce1",
-                        strokeWidth: 0.8,
-                        outline: "none",
-                      },
-                      hover: {
-                        fill: "#ffffff",
-                        stroke: "#d7dce1",
-                        strokeWidth: 0.8,
-                        outline: "none",
-                      },
-                      pressed: {
-                        fill: "#ffffff",
-                        stroke: "#d7dce1",
-                        strokeWidth: 0.8,
-                        outline: "none",
-                      },
-                    }}
-                  />
-                ))
+            <ZoomableGroup
+              center={mapPosition.coordinates}
+              zoom={mapPosition.zoom}
+              onMoveEnd={({ coordinates, zoom }: { coordinates: number[]; zoom: number }) =>
+                setMapPosition({
+                  coordinates: coordinates as [number, number],
+                  zoom,
+                })
               }
-            </Geographies>
-
-            {visibleOffices.map((office) => {
-              const selected = office.id === selectedOfficeId;
-
-              return (
-                <Marker
-                  key={office.id}
-                  coordinates={office.coordinates}
-                  onClick={() => onSelect(office.id)}
-                >
-                  <g className="cursor-pointer">
-                    <circle
-                      r={selected ? 19 : 14}
-                      fill="rgba(63,127,146,0.16)"
+              maxZoom={4}
+              minZoom={1}
+              translateExtent={[
+                [-320, -120],
+                [1520, 760],
+              ]}
+            >
+              <Geographies geography={worldData}>
+                {({ geographies }: { geographies: any[] }) =>
+                  geographies.map((geo: any) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      style={{
+                        default: {
+                          fill: "#ffffff",
+                          stroke: "#d7dce1",
+                          strokeWidth: 0.8,
+                          outline: "none",
+                        },
+                        hover: {
+                          fill: "#ffffff",
+                          stroke: "#d7dce1",
+                          strokeWidth: 0.8,
+                          outline: "none",
+                        },
+                        pressed: {
+                          fill: "#ffffff",
+                          stroke: "#d7dce1",
+                          strokeWidth: 0.8,
+                          outline: "none",
+                        },
+                      }}
                     />
-                    <circle
-                      r={selected ? 13 : 9}
-                      fill={selected ? "#1d1d1d" : "#3f7f92"}
-                    />
-                  </g>
+                  ))
+                }
+              </Geographies>
 
-                  {selected ? (
-                    <foreignObject x={18} y={6} width={250} height={110}>
-                      <div className="rounded-[18px] border border-[#91d6e8] bg-white/95 px-5 py-4 shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
-                        <p className="text-[18px] font-medium leading-none text-slate-900">
-                          {office.city}
-                        </p>
-                        <p className="mt-2 text-[14px] leading-5 text-slate-500">
-                          {office.tag}
-                        </p>
-                      </div>
-                    </foreignObject>
-                  ) : null}
-                </Marker>
-              );
-            })}
-          </ZoomableGroup>
-        </ComposableMap>
+              {visibleOffices.map((office) => {
+                const selected = office.id === selectedOfficeId;
+
+                return (
+                  <Marker
+                    key={office.id}
+                    coordinates={office.coordinates}
+                    onClick={() => onSelect(office.id)}
+                  >
+                    <g className="cursor-pointer">
+                      <circle
+                        r={selected ? 19 : 14}
+                        fill="rgba(63,127,146,0.16)"
+                      />
+                      <circle
+                        r={selected ? 13 : 9}
+                        fill={selected ? "#1d1d1d" : "#3f7f92"}
+                      />
+                    </g>
+
+                    {selected ? (
+                      <foreignObject x={18} y={6} width={250} height={110}>
+                        <div className="rounded-[18px] border border-[#91d6e8] bg-white/95 px-5 py-4 shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
+                          <p className="text-[18px] font-medium leading-none text-slate-900">
+                            {office.city}
+                          </p>
+                          <p className="mt-2 text-[14px] leading-5 text-slate-500">
+                            {office.tag}
+                          </p>
+                        </div>
+                      </foreignObject>
+                    ) : null}
+                  </Marker>
+                );
+              })}
+            </ZoomableGroup>
+          </ComposableMap>
+        ) : (
+          <div className="h-[300px] w-full bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.88),rgba(207,238,247,0.96))] sm:h-[360px] lg:h-[430px]" />
+        )}
       </div>
     </div>
   );

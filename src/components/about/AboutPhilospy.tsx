@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 const philosophyCards = [
   {
     step: "1",
-    title: "DATA",
+    title: "Data",
     subtitle: "Collect & Connect",
     body:
       "Technology has made it easier than ever to collect data. Turning that data into consistent, business-wide decisions remains the real challenge.",
@@ -17,7 +17,7 @@ const philosophyCards = [
   },
   {
     step: "2",
-    title: "INTELLIGENCE",
+    title: "Intelligence",
     subtitle: "Analyze & Understand",
     body:
       "Connected information only matters when it creates context, reveals patterns, and helps teams understand what is actually happening.",
@@ -25,7 +25,7 @@ const philosophyCards = [
   },
   {
     step: "3",
-    title: "DECISIONS",
+    title: "Decisions",
     subtitle: "Enable Better Choices",
     body:
       "Insights should reduce hesitation, improve confidence, and help business leaders move faster with clearer next steps.",
@@ -33,7 +33,7 @@ const philosophyCards = [
   },
   {
     step: "4",
-    title: "BUSINESS VALUE",
+    title: "Business Value",
     subtitle: "Drive Measurable Outcomes",
     body:
       "The end goal is not more dashboards or more tooling. It is measurable commercial, operational, and organizational impact.",
@@ -57,7 +57,7 @@ function PhilosophyCard({
       whileHover={{
         y: -10,
         scale: 1.02,
-        boxShadow: "0 28px 80px rgba(15,23,42,0.14)",
+        // boxShadow: "0 28px 80px rgba(15,23,42,0.14)",
       }}
       whileTap={{ scale: 0.995 }}
       animate={{
@@ -197,7 +197,7 @@ export default function AboutPhilosphy() {
     if (latest > 0.18) nextCount = 1;
     if (latest > 0.34) nextCount = 2;
     if (latest > 0.5) nextCount = 3;
-    if (latest > 0.66) nextCount = 4;
+    if (latest > 0.58) nextCount = 4;
 
     setExpandedCount((current) => (current === nextCount ? current : nextCount));
   });

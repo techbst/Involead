@@ -65,7 +65,7 @@ export default function WhoWeAre() {
 
             <div className="mt-2 max-w-5xl py-5 px-6">
               <Image src="/img/quote_svg.svg" alt="quote" height={100} width={100} className="size-8 " />
-              <p className="mt-2 max-w-4xl text-[24px] font-medium italic leading-[1.6] !text-[#388394] md:text-[20px]">
+              <p className="mt-2 max-w-4xl text-[24px] font-medium italic leading-[1.6] !text-secondary md:text-[20px]">
                 Technology alone doesn&apos;t solve business problems. The real value
                 comes from connecting data, people, and processes in ways that
                 improve how organizations operate and make decisions.
@@ -107,7 +107,7 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-5 grid-cols-2 lg:grid-cols-4">
           {statCards.map((card, index) => {
             // const Icon = card.icon;
 

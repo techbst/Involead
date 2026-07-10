@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { SectionHeader } from "@/components/ui/section-header";
 import CornerShape from "../ui/shape";
 
-const animationDuration = 9000;
+const animationDuration = 3000;
 const drawWeight = 1;
 const pauseWeight = 0.38;
 const finalHoldWeight = 0.9;
@@ -183,12 +183,12 @@ function ThinkCard({
             : "translateY(0) scale(1)"
           : "translateY(20px) scale(0.96)",
         boxShadow: active
-          ? "0 28px 80px rgba(74,169,196,0.16)"
+          ? "0"
           : complete
-            ? "0 16px 38px rgba(74,169,196,0.08)"
+            ? "0"
             : revealed
-              ? "0 12px 28px rgba(15,23,42,0.05)"
-              : "0 0 0 rgba(15,23,42,0)",
+              ? ""
+              : "0",
       }}
     >
       <h3 className="text-[24px] font-medium leading-[1.15] text-slate-900">
