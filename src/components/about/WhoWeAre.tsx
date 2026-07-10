@@ -48,7 +48,7 @@ const statCards = [
 
 export default function WhoWeAre() {
   return (
-    <section className=" py-20 md:py-24">
+    <section className=" py-20 ">
       <div className="container mx-auto">
         <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div>

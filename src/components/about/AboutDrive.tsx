@@ -109,7 +109,7 @@ export default function AboutDrive() {
   }, [inView]);
 
   return (
-    <section className="bg-white overflow-hidden relative py-20 md:py-24">
+    <section className="bg-white overflow-hidden relative py-20 ">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="What Drives Us"

@@ -49,7 +49,7 @@ const fadeUp = {
 
 export default function Testimonials() {
   return (
-    <section className="overflow-hidden bg-white py-15 ">
+    <section className="overflow-hidden bg-white  py-20  ">
       <SectionReveal className="mx-auto container">
         <SectionHeader 
          eyebrow="Client Feedback"

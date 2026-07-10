@@ -203,7 +203,7 @@ export default function AboutPhilosphy() {
   });
 
   return (
-    <section className="bg-secondary/15 relative py-20 md:py-24">
+    <section className="bg-secondary/15 relative py-20 ">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="Our Philosophy"

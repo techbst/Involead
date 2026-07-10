@@ -251,7 +251,7 @@ export default function AboutDelivery() {
     filteredOffices.find((office) => office.id === selectedOfficeId) ?? filteredOffices[0] ?? offices[0];
 
   return (
-    <section className="bg-white relative py-20 md:py-24 xl:py-28">
+    <section className="bg-white relative py-20  xl:py-28">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="Global Presence"

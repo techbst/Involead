@@ -57,7 +57,7 @@ const fadeUp = {
 
 export default function TechnologyScale() {
   return (
-    <section className="bg-white py-15 relative overflow-hidden py-20">
+    <section className="bg-white  py-20  relative overflow-hidden py-20">
       <div className="mx-auto container">
         <SectionHeader
           eyebrow={"Technology at Scale"}

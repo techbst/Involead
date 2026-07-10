@@ -434,7 +434,7 @@ export default function IndustryTabs() {
   const cards = industries[activeIndustry].cards;
 
   return (
-    <section className="relative overflow-hidden bg-black py-15 text-white">
+    <section className="relative overflow-hidden bg-black  py-20  text-white">
       <SectionReveal className="mx-auto container">
         
          <SectionHeader

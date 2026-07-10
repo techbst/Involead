@@ -23,7 +23,7 @@ const involeadItems = [
 
 export default function AboutDifference() {
   return (
-    <section className="bg-white py-20 md:py-24 ">
+    <section className="bg-white py-20  ">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="The Involead Difference"

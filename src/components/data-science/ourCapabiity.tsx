@@ -3,7 +3,7 @@ import { SectionHeader } from '../ui/section-header'
 import FeatureGridSection from '../ui/featured-card'
 function ourCapabiity() {
     return (
-        <div className='py-15'>
+        <div className=' py-20 '>
             <SectionHeader
                 textColor='black'
                 title="Our Capabilities"

@@ -69,7 +69,7 @@ export default function StoryShowcase({
   return (
     <section
       className={cn(
-        "relative overflow-hidden py-15 text-slate-950 lg:py-15",
+        "relative overflow-hidden  py-20  text-slate-950 lg: py-20 ",
         sectionClassName,
       )}
     >
