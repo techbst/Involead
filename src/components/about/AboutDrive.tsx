@@ -123,7 +123,7 @@ export default function AboutDrive() {
         />
 
         <div ref={sectionRef} className="mt-16">
-          <div className="xl:hidden">
+          <div className="md:hidden">
             <motion.div
               initial={false}
               whileHover={{ y: -10, scale: 1.02 }}
@@ -157,7 +157,7 @@ export default function AboutDrive() {
             </div>
           </div>
 
-          <div className="mx-auto hidden grid-cols-3 grid-rows-2 gap-x-3 gap-y-5 overflow-visible xl:grid xl:auto-rows-[397px]">
+          <div className="mx-auto hidden grid-cols-3 grid-rows-2 gap-x-3 gap-y-5 overflow-visible md:grid md:auto-rows-[397px]">
             <div className="relative z-10">
               <PrincipleCard
                 title={principleCards[0].title}

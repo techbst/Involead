@@ -81,7 +81,7 @@ function DifferenceCard({
 
   return (
     <article
-      className={`rounded-[28px] p-8 md:p-10 md:!pl-20 ${
+      className={`rounded-[28px] p-8 md:p-8 md:!pl-10 xl:p-10 xl:!pl-20 ${
         inverted
           ? "border border-[#2A626F] bg-[#46A4B9] text-white"
           : "bg-[#F7FCFD]"
@@ -235,9 +235,12 @@ export default function AboutDifference() {
           whileInView="show"
           viewport={{ once: false, amount: 0.35 }}
           variants={desktopStageVariants}
-          className="mt-14 hidden overflow-hidden xl:block xl:mt-16"
+          className="mt-14 hidden overflow-hidden md:block xl:mt-16"
         >
-          <div ref={desktopStageRef} className="relative min-h-[430px]">
+          <div
+            ref={desktopStageRef}
+            className="relative min-h-[360px] lg:min-h-[370px] xl:min-h-[380px]"
+          >
             <motion.div
               style={{ x: firstCardX }}
               className="absolute left-0 top-0 w-[calc(50%-12px)]"
@@ -280,7 +283,7 @@ export default function AboutDifference() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.35 }}
-          className="mt-14 space-y-6 xl:hidden"
+          className="mt-14 space-y-6 md:hidden"
         >
           <motion.div variants={mobileCardVariants(0)}>
             <DifferenceCard

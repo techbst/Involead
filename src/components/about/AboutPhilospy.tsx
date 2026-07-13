@@ -68,7 +68,7 @@ function PhilosophyCard({
         duration: 0.65,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`group h-[420px] rounded-[30px] ${
+      className={`group h-[400px] rounded-[30px] ${
         card.accent ? "bg-[#63afc4] text-white" : "bg-[#cae1e6] text-slate-950"
       } ${stacked ? "flex items-center px-12 pb-20 pt-16" : "p-5"}`}
     >
@@ -85,7 +85,7 @@ function PhilosophyCard({
           className="overflow-hidden"
         >
           <div
-            className={`grid size-16 place-items-center rounded-full text-[28px] font-medium ${
+            className={`grid size-12 place-items-center rounded-full text-[22px] font-medium ${
               card.accent ? "bg-white text-[#63afc4]" : "bg-[#1d1d1d] text-white"
             }`}
           >
