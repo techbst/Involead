@@ -166,15 +166,21 @@ function ThinkCard({
   revealed,
   active,
   complete,
+  onPointerEnter,
+  onPointerLeave,
 }: {
   step: Step;
   revealed: boolean;
   active: boolean;
   complete: boolean;
+  onPointerEnter?: () => void;
+  onPointerLeave?: () => void;
 }) {
   return (
     <article
       className={`min-h-[180px] w-full rounded-[20px] border p-4 transition-all duration-500 ease-out sm:p-5 xl:min-h-[220px] xl:p-6 ${step.cardClassName}`}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
       style={{
         opacity: revealed ? 1 : 0,
         transform: revealed
@@ -207,9 +213,15 @@ export default function AboutThink() {
   const desktopCardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const prefersReducedMotion = usePrefersReducedMotion();
   const [elapsedMs, setElapsedMs] = useState(0);
+  const elapsedRef = useRef(0);
   const [pathLength, setPathLength] = useState(0);
   const [pointCoordinates, setPointCoordinates] = useState<{ x: number; y: number }[]>([]);
   const [connectorEndYPositions, setConnectorEndYPositions] = useState<number[]>([]);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    elapsedRef.current = elapsedMs;
+  }, [elapsedMs]);
 
   useEffect(() => {
     if (!pathRef.current) {
@@ -276,12 +288,17 @@ export default function AboutThink() {
       return;
     }
 
+    if (isPaused) {
+      return;
+    }
+
     let frameId = 0;
     let startTime = 0;
+    const resumeFromElapsed = elapsedRef.current;
 
     const tick = (timestamp: number) => {
       if (!startTime) {
-        startTime = timestamp;
+        startTime = timestamp - resumeFromElapsed;
       }
 
       setElapsedMs((timestamp - startTime) % animationDuration);
@@ -291,7 +308,7 @@ export default function AboutThink() {
     frameId = window.requestAnimationFrame(tick);
 
     return () => window.cancelAnimationFrame(frameId);
-  }, [prefersReducedMotion]);
+  }, [isPaused, prefersReducedMotion]);
 
   const timelineState = useMemo(
     () => buildTimelineState(elapsedMs, prefersReducedMotion),
@@ -423,6 +440,8 @@ export default function AboutThink() {
                       revealed={timelineState.pointActive[index] || timelineState.connectorProgress[index] > 0}
                       active={timelineState.cardActive[index]}
                       complete={timelineState.connectorProgress[index] >= 1}
+                      onPointerEnter={() => setIsPaused(true)}
+                      onPointerLeave={() => setIsPaused(false)}
                     />
                   </div>
                 ))}
@@ -466,6 +485,8 @@ export default function AboutThink() {
                         revealed={pointActive || complete}
                         active={active}
                         complete={complete}
+                        onPointerEnter={() => setIsPaused(true)}
+                        onPointerLeave={() => setIsPaused(false)}
                       />
                     </div>
                   );
