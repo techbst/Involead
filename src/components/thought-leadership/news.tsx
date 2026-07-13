@@ -11,7 +11,7 @@ const mediaFeatures = [
     description:
       "How enterprise leaders are closing the gap between promising AI experiments and measurable production value.",
     date: "July 2026",
-    image: "/img/featured-research-genai.png",
+    image: "/thought-leadership/news1.png",
     href: "/articles",
   },
   {
@@ -20,7 +20,7 @@ const mediaFeatures = [
     description:
       "A conversation on client trust, model governance, and scoping AI projects responsibly.",
     date: "July 2026",
-    image: "/img/cap-2.webp",
+    image: "/thought-leadership/news2.jpg",
     href: "/articles",
   },
   {
@@ -29,7 +29,7 @@ const mediaFeatures = [
     description:
       "InvoLead's experts discuss the operating foundations that help enterprise AI programs succeed.",
     date: "June 2026",
-    image: "/img/cap-3.webp",
+    image: "/thought-leadership/news3.jpg",
     href: "/articles",
   },
 ];
@@ -70,10 +70,10 @@ export default function News() {
               </div>
 
               <div className="flex flex-1 flex-col pt-5">
-                <h3 className="relative pl-3 text-xl font-medium leading-snug tracking-[-0.02em] text-slate-950 before:absolute before:inset-y-1 before:left-0 before:w-0.5 before:rounded-full before:bg-[#39a9c3]">
+                <h3 className="relative pl-3 lg:!text-[20px] md:!text-[18px] sm:!text-[16px] font-medium leading-snug tracking-[-0.02em] text-slate-950 before:h-[16px] before:top-[8px] before:absolute before:inset-y-1 before:left-1 before:w-0.5 before:bg-[#39a9c3]">
                   {feature.title}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-slate-500">
+                <p className="mt-3 mb-3 line-clamp-2">
                   {feature.description}
                 </p>
 

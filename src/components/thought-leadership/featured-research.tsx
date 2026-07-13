@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, LayoutPanelTop } from "lucide-react";
+import { ArrowLeft, ArrowRight, Grid2x2Check, LayoutPanelTop } from "lucide-react";
 import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -51,10 +51,10 @@ export default function FeaturedResearch() {
           descriptionWidth="3xl"
         />
 
-        <article data-aos="fade-up" data-aos-delay="0" data-aos-duration="750" className="mt-10 overflow-hidden rounded-3xl border border-secondary bg-white md:mt-14 lg:grid lg:min-h-[430px] lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-full">
+        <article data-aos="fade-up" data-aos-delay="0" data-aos-duration="750" className="mt-10 overflow-hidden rounded-3xl border border-secondary bg-white md:mt-14 lg:grid lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="relative w-full min-h-[200px] overflow-hidden">
             <Image
-              src="/img/featured-research-genai.png"
+              src="/thought-leadership/Operationalizing-GenAI-A-Practical-Framework-for-Enterprise-Adoption.webp"
               alt="A translucent robotic hand reaching toward a human hand"
               fill
               sizes="(min-width: 1024px) 58vw, 100vw"
@@ -73,10 +73,10 @@ export default function FeaturedResearch() {
               pilot to production, with governance, data readiness, and ROI
               benchmarks.
             </div>
-            <div className="mt-9 text-[13px] text-[#94A3B8]">
+            <div className="mt-3 lg:mt-9 text-[13px] text-[#94A3B8]">
               Data Engineering · 18 pages · July 26
             </div>
-            <Button variant="default" className="mt-6 w-fit">
+            <Button variant="default" className="mt-6 lg:w-fit sm:w-full">
               Download PDF
               <ArrowRight className="size-4" />
             </Button>
@@ -123,10 +123,10 @@ export default function FeaturedResearch() {
           }}
         >
           {whitePapers.map((paper, index) => (
-            <SwiperSlide key={paper.title} className="h-auto" data-aos="fade-up" data-aos-delay={index * 100} data-aos-duration="750">
+            <SwiperSlide key={paper.title} className="h-auto">
               <article className="flex h-full min-h-[255px] flex-col rounded-2xl border border-[#bfe3eb] bg-[#effafd] p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-900/5">
                 <span className="grid size-12 place-items-center rounded-md bg-[#5aafc2] text-white">
-                  <LayoutPanelTop className="size-5" strokeWidth={1.5} />
+                  <Grid2x2Check className="size-5" strokeWidth={1.5} />
                 </span>
                 <h4 className="mt-6 text-xl font-medium leading-snug tracking-[-0.02em] min-h-[60px]">
                   {paper.title}

@@ -84,11 +84,11 @@ export function BlogCard({
 
       <div className="p-6 relative z-99" >
 
-        <h3 className="font-display !text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#2c7787] transition-colors duration-300 sm:!text-xl line-clamp-2 ">
+        <h3 className="font-display !text-lg font-semibold tracking-tight text-slate-900 group-hover:text-[#2c7787] transition-colors duration-300 sm:!text-xl line-clamp-2 ">
           {post.title}
         </h3>
 
-        <div className="mt-3 mb-3  text-primary line-clamp-3">
+        <div className="mt-3 mb-3  text-primary line-clamp-2">
           {post.excerpt}
         </div>
 
@@ -97,7 +97,7 @@ export function BlogCard({
           {post.ctaLabel ? (
             <Link
               href={href}
-              className="relative z-[130] inline-flex items-center gap-1 text-sm font-medium text-[#0798bc] transition hover:text-slate-950"
+              className="mt-5 relative z-[130] inline-flex items-center gap-1 text-sm font-medium text-[#0798bc] transition hover:text-slate-950"
               aria-label={`${post.ctaLabel}: ${post.title}`}
             >
               {post.ctaLabel} <ArrowRight className="size-4" />

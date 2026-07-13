@@ -8,31 +8,31 @@ import { SectionHeader } from "@/components/ui/section-header";
 const perspective = {
   title: "Why Most AI Initiatives Fail Before They Reach Production",
   description:
-    "Most enterprise AI pilots never scale — not because the models are wrong, but because the organization never catches up. Aditya breaks down the four failure points he sees most often, and how to fix them before they sink a rollout.",
+    "Most enterprise AI pilots never scale - not because the models are wrong, but because the organization never catches up. Aditya breaks down the four failure points he sees most often, and how to fix them before they sink a rollout.",
   category: "AI strategy",
   author: "Avinna Saho",
   role: "Co-Founder & Director",
-  image: "/img/cap-1.webp",
+  image: "/thought-leadership/Why-Most-AI-Initiatives-Fail-Before-They-Reach-Production.webp",
   avatar: "/team/avinna-saho.webp",
   href: "/articles",
 };
 
 const relatedPerspectives = [
   {
-    title: "Building the Data Foundation Your AI Strategy Needs",
-    category: "Data strategy",
+    title: "Why Most AI Initiatives Fail Before They Reach Production",
+    category: "Ai strategy",
     author: "Nilesh Gupta",
     role: "Co-Founder & Director",
   },
   {
-    title: "Moving From AI Experimentation to Enterprise Value",
+    title: "Why Most AI Initiatives Fail Before They Reach Production",
     category: "AI strategy",
     author: "Pinaki Ghosh",
     role: "Co-Founder & Director",
   },
   {
-    title: "The Operating Model Behind Responsible AI Adoption",
-    category: "Responsible AI",
+    title: "Why Most AI Initiatives Fail Before They Reach Production",
+    category: "AI strategy",
     author: "Srikanth Patil",
     role: "Vice President",
   },
@@ -40,7 +40,7 @@ const relatedPerspectives = [
 
 function CategoryBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex rounded-full border border-[#c5e6ed] bg-[#edf9fb] px-3 py-1.5 text-xs font-medium text-[#43889a]">
+    <span className="inline-flex rounded-full border border-[#c5e6ed] bg-[#edf9fb] px-3 py-1.5 text-xs font-medium text-[#43889a] text-nowrap">
       {children}
     </span>
   );
@@ -62,8 +62,8 @@ export default function Leaders() {
         />
 
         <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-[1.35fr_0.95fr]">
-          <article data-aos="fade-up" data-aos-delay="0" data-aos-duration="750" className="flex flex-col rounded-3xl bg-[#eaf8fb] p-4 text-slate-950 sm:p-5">
-            <div className="relative min-h-[240px] overflow-hidden rounded-2xl sm:min-h-[300px]">
+          <article data-aos="fade-up" data-aos-delay="0" data-aos-duration="750" className="flex flex-col rounded-[24px] bg-[#eaf8fb] p-4 text-slate-950 sm:p-5">
+            <div className="relative min-h-[211px] overflow-hidden rounded-[24px] sm:min-h-[211px]">
               <Image
                 src={perspective.image}
                 alt="Digital technology representing enterprise AI strategy"
@@ -79,7 +79,7 @@ export default function Leaders() {
               </div>
             </div>
 
-            <h3 className="mt-5 text-2xl font-semibold leading-tight tracking-[-0.03em] sm:text-[28px]">
+            <h3 className="mt-5 lg:!text-[29px] sm:!text-[24px] md:!text-[20px] font-semibold leading-tight tracking-[-0.03em] sm:text-[28px]">
               {perspective.title}
             </h3>
             <p className="mt-4 leading-7 text-slate-600">
@@ -97,7 +97,7 @@ export default function Leaders() {
 
             <div className="mt-5 flex flex-col gap-4 border-t border-[#b9e2ea] pt-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-4">
-                <div className="relative size-14 overflow-hidden rounded-lg bg-white">
+                <div className="relative size-14 overflow-hidden rounded-[8px] bg-white">
                   <Image
                     src={perspective.avatar}
                     alt={perspective.author}
@@ -107,14 +107,14 @@ export default function Leaders() {
                   />
                 </div>
                 <div>
-                  <p className="font-medium text-slate-950">
+                  <div className="font-medium text-primary">
                     {perspective.author}
-                  </p>
-                  <p className="text-xs text-slate-400">{perspective.role}</p>
+                  </div>
+                  <div className="text-[13px] text-[#6A809F]">{perspective.role}</div>
                 </div>
               </div>
 
-              <Button asChild className="w-fit">
+              <Button asChild className="lg:!w-fit md:!w-fit sm:!w-full ">
                 <Link href={perspective.href}>
                   Read Article <ArrowRight className="size-4" />
                 </Link>
@@ -129,12 +129,12 @@ export default function Leaders() {
                 data-aos="fade-up"
                 data-aos-delay={(index + 1) * 100}
                 data-aos-duration="750"
-                className="flex flex-col justify-between rounded-2xl bg-white p-5 text-slate-950 shadow-[0_16px_40px_rgba(0,0,0,0.1)] sm:p-6"
+                className="flex flex-col justify-between rounded-[24px] bg-white p-5 text-slate-950 shadow-[0_16px_40px_rgba(0,0,0,0.1)] sm:p-6"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="max-w-md text-lg font-semibold leading-snug tracking-[-0.02em]">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="max-w-md text-[20px] max-[680px]:text-[18px] font-semibold leading-snug tracking-[-0.02em]">
                     {item.title}
-                  </h3>
+                  </div>
                   <CategoryBadge>{item.category}</CategoryBadge>
                 </div>
                 <p className="mt-2 text-sm text-slate-600">

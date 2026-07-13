@@ -10,7 +10,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 const cardPosts: BlogPost[] = [
   {
-    featuredimg: "/img/cap-1.webp",
+    featuredimg: "/thought-leadership/7c9436472ebf0a1a08027bfe92b55aaf081c4967.jpg",
     category: "Products & Innovations",
     title: "AI Advantage",
     excerpt:
@@ -19,7 +19,7 @@ const cardPosts: BlogPost[] = [
     ctaLabel: "Subscribe on LinkedIn",
   },
   {
-    featuredimg: "/img/cap-2.webp",
+    featuredimg: "/thought-leadership/f62b57d26c1535cf52120528a135ba72247123f7.jpg",
     category: "Products & Innovations",
     title: "Leadership Brief",
     excerpt:
@@ -28,7 +28,7 @@ const cardPosts: BlogPost[] = [
     ctaLabel: "Subscribe on LinkedIn",
   },
   {
-    featuredimg: "/img/cap-3.webp",
+    featuredimg: "/thought-leadership/e5be8f1e0a115d7ff675e32c3bdb29d73622c896.jpg",
     category: "Products & Innovations",
     title: "Inside the Model",
     excerpt:
@@ -51,7 +51,7 @@ export default function TL_CARDS() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="bg-[#effafd] py-16 md:py-24">
+    <section className="bg-[#effafd] py-20 md:py-20 max-[680px]:!pb-28 relative">
       <div className="container mx-auto">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
@@ -64,7 +64,7 @@ export default function TL_CARDS() {
             titleClassName="normal-case"
           />
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 max-[680px]:absolute max-[680px]:bottom-12 max-[680px]:right-0  max-[680px]:left-0 max-[680px]:mx-auto max-[680px]:justify-center">
             <button
               type="button"
               onClick={() => swiperRef.current?.slidePrev()}
@@ -100,7 +100,7 @@ export default function TL_CARDS() {
           }}
         >
           {cardPosts.map((post, index) => (
-            <SwiperSlide key={post.title} className="h-auto py-2" data-aos="fade-up" data-aos-delay={index * 100} data-aos-duration="750">
+            <SwiperSlide key={post.title} className="h-auto py-2">
               <BlogCard post={post} index={index} />
             </SwiperSlide>
           ))}
