@@ -1,8 +1,8 @@
 import CallToAction1, { CTAData } from "@/components/ui/call-to-action-1";
 const ctaData: CTAData = {
-    title: "Start building enterprise-grade Generative AI systems",
+    title: "Ready To Turn Your Data Into A Decision Engine?",
     description:
-      "Partner with us to transform your enterprise with intelligent, scalable AI solutions",
+      "Let's map the right use case, define the success metric, and ship a first version that proves value quickly.",
     buttonText: "Explore Solutions",
     buttonLink: "/our-solutions",
     video: "/video/bg-1.mp4",

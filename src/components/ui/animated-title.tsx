@@ -41,7 +41,7 @@ export default function AnimatedHeadline({
       {words.map((word, index) => (
         <span
           key={`${word}-${index}`}
-          className="inline-block overflow-hidden align-bottom"
+          className="inline-block align-bottom"
         >
           <motion.span
             initial={{

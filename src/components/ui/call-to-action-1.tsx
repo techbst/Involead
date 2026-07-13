@@ -54,7 +54,7 @@ export default function CallToAction1({ data }: Props) {
                 textColor="white"
             />
             <div>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="max-[680px]:mb-6">
                 <Link href={data.buttonLink}>
                 {data.buttonText}
                 <ArrowRight className="size-4" />

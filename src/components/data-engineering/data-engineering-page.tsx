@@ -333,21 +333,88 @@ function Excellence() {
 
 const reasons = [["Human-Centric Design", "Solutions designed with your team in mind, ensuring adoption and long-term success."], ["Speed to Value", "Rapid deployment and iterative improvement to deliver value from day one."], ["Proven Excellence", "Track record of successful implementations for Fortune 500 companies and startups alike."], ["Strategic Focus", "Align data engineering initiatives with your business objectives and growth strategy."], ["Innovation Leadership", "Stay ahead with cutting-edge technologies and best practices in data engineering."], ["Global Expertise", "Deep domain knowledge across industries and geographies, backed by a global team."]];
 function WhyPartner() {
-  const ref = useRef<HTMLElement>(null); useEffect(() => {
-    let clean = () => { }; let cancelled = false; (async () => {
-      const { gsap } = await import("gsap"); const { ScrollTrigger } = await import("gsap/ScrollTrigger"); if (cancelled || !ref.current) return; gsap.registerPlugin(ScrollTrigger); const ctx = gsap.context(() => {
-        const cards = gsap.utils.toArray<HTMLElement>(".reason-card"); gsap.fromTo(".reason-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".reason-list", start: "top 80%", end: "80%", scrub: .5 } }); cards.forEach(card => { gsap.fromTo(card, { opacity: .28, y: 42 }, { opacity: 1, y: 0, duration: .65, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none reverse" } }); });
-        requestAnimationFrame(() => {
-          ScrollTrigger.refresh();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    let clean = () => {};
+
+    void (async () => {
+      const { gsap } = await import("gsap");
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+
+      if (cancelled || !ref.current) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const refresh = () => ScrollTrigger.refresh();
+      const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray<HTMLElement>(".reason-card");
+
+        gsap.fromTo(
+          ".reason-progress",
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".reason-list",
+              start: "top 80%",
+              end: "bottom 80%",
+              scrub: 0.5,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+
+        cards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0.28, y: 42 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.65,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+                invalidateOnRefresh: true,
+              },
+            },
+          );
         });
-      },
-        ref); clean = () => ctx.revert();
-    })(); return () => { cancelled = true; clean(); }
+      }, ref);
+
+      const resizeObserver = new ResizeObserver(refresh);
+      resizeObserver.observe(ref.current);
+      window.addEventListener("load", refresh);
+      document.fonts?.ready.then(() => {
+        if (!cancelled) refresh();
+      });
+
+      const frame = requestAnimationFrame(refresh);
+      const delayedRefresh = window.setTimeout(refresh, 350);
+
+      clean = () => {
+        cancelAnimationFrame(frame);
+        window.clearTimeout(delayedRefresh);
+        window.removeEventListener("load", refresh);
+        resizeObserver.disconnect();
+        ctx.revert();
+      };
+    })();
+
+    return () => {
+      cancelled = true;
+      clean();
+    };
   }, []);
 
   return <section ref={ref} className="relative bg-black py-20 text-white relative ">
     <div className="container grid items-start gap-14 lg:grid-cols-[.8fr_1.2fr]">
-      <div className="sticky top-22 self-start">
+      <div className="self-start lg:sticky min-[680px]:top-12 min-[980px]:top-52 min-[1240px]:top-62">
         <SectionHeader
           eyebrow="The InvoLead advantage"
           title="Why Partner with InvoLead?"

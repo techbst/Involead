@@ -30,10 +30,50 @@ type Props = {
 
 export default function ExpandableCardGrid({ items, className }: Props) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeCardHeight, setActiveCardHeight] = useState(0);
   const [visibleCount, setVisibleCount] = useState(6);
+  const activeCardRef = useRef<HTMLDivElement | null>(null);
+  const activeContentRef = useRef<HTMLDivElement | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const visibleItems = items.slice(0, visibleCount);
   const hasMore = visibleCount < items.length;
+
+  useEffect(() => {
+    const card = activeCardRef.current;
+    const content = activeContentRef.current;
+
+    if (activeIndex === null || !card) {
+      setActiveCardHeight(0);
+      return;
+    }
+
+    const measure = () => {
+      const contentHeight = content?.scrollHeight ?? 0;
+      const height = Math.max(
+        card.scrollHeight,
+        card.offsetHeight,
+        card.getBoundingClientRect().height,
+        contentHeight + 80,
+      );
+
+      setActiveCardHeight(Math.ceil(height));
+    };
+
+    const animationFrame = window.requestAnimationFrame(measure);
+    const observer = new ResizeObserver(measure);
+    observer.observe(card);
+    if (content) observer.observe(content);
+
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
+    };
+  }, [activeIndex]);
 
   useEffect(() => {
     const node = loadMoreRef.current;
@@ -91,7 +131,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
     <>
       <div
         className={cn(
-          "grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3",
+          "grid items-start gap-5 overflow-visible md:grid-cols-2 lg:grid-cols-3",
           className,
         )}
       >
@@ -110,18 +150,26 @@ export default function ExpandableCardGrid({ items, className }: Props) {
                   delay: index * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
+                style={
+                  isActive && activeCardHeight > 0
+                    ? { minHeight: activeCardHeight }
+                    : undefined
+                }
                 className={cn(
-                  "relative min-h-[468px] self-start transition-opacity duration-300",
+                  "relative min-h-[468px] self-start overflow-visible transition-opacity duration-300",
                   isActive && "z-20",
                   getCoveredCardClasses(index),
                 )}
               >
                 <div
+                  ref={isActive ? activeCardRef : undefined}
+                  style={isActive ? { height: "max-content" } : undefined}
                   className={cn(
-                    "rounded-[18px] h-full bg-white p-4 border border-secondary/30",
+                    "rounded-[18px] bg-white p-4 border border-secondary/30",
+                    isActive ? "h-full overflow-visible" : "h-full",
                     isActive &&
                       cn(
-                        "z-30 isolate shadow-[0_10px_30px_rgba(95,176,194,0.55)]",
+                        "@container z-30 isolate shadow-[0_10px_30px_rgba(95,176,194,0.55)]",
                         "md:absolute md:top-0 md:w-[calc(200%+1.25rem)]",
                         "lg:w-[calc(200%+1.25rem)]",
                         getTabletOverlaySide(index),
@@ -131,17 +179,30 @@ export default function ExpandableCardGrid({ items, className }: Props) {
                 >
                   {isActive ? (
                     <>
-                      <div className="grid gap-5 md:grid-cols-[300px_1fr]">
-                        <div className="relative min-h-[360px] overflow-hidden rounded-[14px]">
+                      <div
+                        ref={activeContentRef}
+                        className="grid min-w-0 grid-cols-1 gap-5 @min-[700px]:grid-cols-[300px_minmax(0,1fr)]"
+                      >
+                        <div className="relative h-[260px] min-w-0 overflow-hidden rounded-[14px] @min-[700px]:h-auto @min-[700px]:min-h-[360px]">
                           <Image
                             src={item.image}
                             alt={item.title}
                             fill
                             className="object-cover"
+                            onLoad={() => {
+                              const card = activeCardRef.current;
+                              if (card) {
+                                setActiveCardHeight(
+                                  Math.ceil(
+                                    Math.max(card.scrollHeight, card.offsetHeight),
+                                  ),
+                                );
+                              }
+                            }}
                           />
                         </div>
 
-                        <div>
+                        <div className="min-w-0">
                           <h3 className="border-l-2 border-black pl-3 text-xl font-semibold leading-tight text-black">
                             {item.title}
                           </h3>
@@ -184,7 +245,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
 
                       <button
                         onClick={() => setActiveIndex(null)}
-                        className="absolute bottom-4 right-4 grid size-10 place-items-center rounded-full bg-secondary text-white"
+                        className="absolute -top-4 -right-4 grid size-10 place-items-center rounded-full bg-secondary text-white"
                       >
                         <X className="size-5" />
                       </button>

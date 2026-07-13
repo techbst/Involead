@@ -73,12 +73,22 @@ export default function CaseStudiesCard({
                   index !== 0 && "border-t border-secondary/24 sm:border-l sm:border-t-0"
                 )}
               >
-                <div className="break-words font-bold leading-tight text-black text-[22px] sm:text-[24px] md:text-[20px] lg:text-[26px]">
+               <div
+                  className="
+                    break-words
+                    font-bold
+                    leading-tight
+                    text-[15px]
+                    min-[680px]:text-[20px]
+                    min-[980px]:text-[18px]
+                    min-[1171px]:text-[22px]
+                  "
+                >
                   {metric.value}
                 </div>
-                <p className="mt-1 text-sm leading-snug sm:line-clamp-2">
+                <div className="mt-1 text-sm leading-snug sm:line-clamp-2 min-[680px]:text-[14px] min-[980px]:text-[14px] min-[1171px]:text-[16px]">
                   {metric.label}
-                </p>
+                </div>
               </div>
             ))}
           </div>

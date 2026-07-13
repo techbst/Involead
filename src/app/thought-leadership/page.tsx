@@ -11,7 +11,7 @@ import TLCTA from "@/components/thought-leadership/cta";
 
 
 export const metadata: Metadata = {
-  title: "About - InvoLead",
+  title: "Thought Leadership - InvoLead",
   description: "About InvoLead, mission, values, leadership, and how we work with data-driven teams.",
 };
 
