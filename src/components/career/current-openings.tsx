@@ -1,0 +1,11 @@
+"use client";
+import { useMemo, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
+import { roles } from "./career-data";
+const filters = ["All Departments", "AI & Data", "Engineering"];
+export default function CurrentOpenings(){const [filter,setFilter]=useState(filters[0]);const visible=useMemo(()=>filter===filters[0]?roles:roles.filter(r=>r.department===filter),[filter]);return <section id="openings" className="bg-[#eff9fb] py-20"><div className="container mx-auto"><div className="relative h-64 overflow-hidden rounded-[24px]"><Image src="/img/photo-1552664730-d307ca884978.jpg" alt="Team planning a project" fill className="object-cover"/><div className="absolute inset-0 bg-slate-950/20"/></div><div className="relative z-10 mx-auto -mt-16 max-w-6xl rounded-[24px] bg-white p-5 shadow-[0_25px_70px_rgba(15,23,42,.1)] md:p-10"><SectionHeader eyebrow="Current openings" title="Find Your Next Role at InvoLead" description="Explore opportunities across data science, data engineering, AI, analytics, and consulting." maxWidth="3xl"/><div className="mt-8 flex flex-wrap gap-3 rounded-xl bg-slate-50 p-3">{filters.map(item=><button key={item} onClick={()=>setFilter(item)} className={`rounded-full px-4 py-2 text-sm transition ${filter===item?"bg-secondary text-white":"bg-white text-slate-600"}`}>{item}</button>)}</div><div className="mt-5 divide-y divide-slate-200">{visible.map((role,i)=><motion.article key={role.title} initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.04}} className="grid gap-4 py-6 md:grid-cols-[1.4fr_.8fr_.8fr_auto] md:items-center"><div><h3 className="font-semibold text-slate-950">{role.title}</h3><p className="mt-1 text-xs text-slate-500">{role.department} · {role.experience}</p></div><p className="text-sm text-slate-600">{role.location}</p><p className="text-sm text-slate-600">{role.type}</p><Button asChild variant="link" className="justify-start px-0 text-secondary"><Link href="/contact-us">Apply Now <ArrowRight/></Link></Button></motion.article>)}</div></div></div></section>}
