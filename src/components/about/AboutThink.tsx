@@ -345,7 +345,7 @@ export default function AboutThink() {
 
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-8">
         <div>
-          <div className="hidden xl:block">
+          <div className="hidden xl:block lg:block md:block">
             <div ref={desktopStageRef} className="relative ">
               <div className="pointer-events-none absolute left-1/2 top-0 w-full min-w-[1200px] max-w-[2048px] -translate-x-1/2">
                 <svg viewBox="0 0 2048 560" className="h-[500px] w-full overflow-visible 2xl:h-[560px]">
@@ -426,7 +426,7 @@ export default function AboutThink() {
                 </svg>
               </div>
 
-              <div className="relative grid grid-cols-5 gap-4 pt-[244px] xl:gap-5 2xl:gap-6 2xl:pt-[280px] mt-[-80px]">
+              <div className="relative grid grid-cols-5 md:grid-cols-5  lg:grid-cols-5 gap-4 pt-[244px] xl:gap-5 2xl:gap-6 2xl:pt-[280px] mt-[-80px]">
                 {steps.map((step, index) => (
                   <div
                     key={step.title}
@@ -449,15 +449,15 @@ export default function AboutThink() {
             </div>
           </div>
 
-          <div className="xl:hidden">
-            <div className="relative mx-auto max-w-3xl">
+          <div className="xl:hidden lg:hidden md:hidden">
+            <div className="relative mx-auto max-w-[98%] ">
               <div className="absolute bottom-8 left-4 top-8 w-[3px] rounded-full bg-[#d5e6eb]" />
               <div
                 className="absolute left-4 top-8 w-[3px] rounded-full bg-[#48a9c4] transition-all duration-300"
                 style={{ height: mobileProgressHeight }}
               />
 
-              <div className="space-y-5">
+              <div className="space-y-5 ">
                 {steps.map((step, index) => {
                   const active = timelineState.cardActive[index];
                   const complete = timelineState.connectorProgress[index] >= 1;

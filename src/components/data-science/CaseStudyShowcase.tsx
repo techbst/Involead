@@ -153,7 +153,7 @@ export default function CaseStudies() {
           className="case-studies-swiper -mx-2 mt-12"
         >
           {caseStudies.map((item) => (
-            <SwiperSlide key={item.title} className="h-auto px-2">
+            <SwiperSlide key={item.title} className="h-auto">
               <CaseStudiesCard
                 image={item.image}
                 icon={item.icon}

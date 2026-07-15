@@ -53,7 +53,7 @@ export default function ResultsSection() {
     <section className="relative overflow-hidden bg-black py-20 text-white sm:py-20">
           <div className="container relative mx-auto">
             <SectionHeader eyebrow="Measured impact" title="Proven Results Across the Industry" description="Our solutions have consistently delivered measurable impact." textColor="white" />
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }} variants={{ show: { transition: { staggerChildren: .08 } } }} className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: .2 }} variants={{ show: { transition: { staggerChildren: .08 } } }} className="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
               {metrics.map((item, index) => {
                 const Icon = item.icon;
     

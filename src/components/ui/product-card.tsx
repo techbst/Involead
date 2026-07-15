@@ -56,7 +56,7 @@ export default function ClipCard({
         delay: index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`group relative overflow-hidden rounded-[24px] bg-white p-[1px] transition-all duration-300  ${className}`}
+      className={`group relative overflow-hidden rounded-[30px] bg-white p-[1px] transition-all duration-300  ${className}`}
       style={clipPathStyle}
       id={`clip-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
     >

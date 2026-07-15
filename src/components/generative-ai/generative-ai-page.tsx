@@ -738,7 +738,7 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative h-full min-h-[420px] rounded-[18px] sm:min-h-[460px] lg:min-h-[480px]"
+        className="group relative h-full rounded-[18px] sm:min-h-[420px] md:min-h-[320px] lg:min-h-[420px] xl:min-h-[480px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <article
@@ -1020,7 +1020,7 @@ function TechStackTabs() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+          className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3"
         >
           {current.items.map((item) => {
             return (
@@ -1075,7 +1075,7 @@ function BlogSection() {
           </Button>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
             <BlogCard key={post.title} post={post} index={index} />
           ))}
@@ -1186,7 +1186,7 @@ export default function GenerativeAIPage() {
             className="mt-9 -mx-2 min-w-0"
           >
             {expertiseCards.map((item, index) => (
-              <SwiperSlide key={item.title} className="h-auto px-2 py-2">
+              <SwiperSlide key={item.title} className="h-auto py-2">
                 <ExpertiseCard key={item.title} item={item} index={index} />
               </SwiperSlide>
             ))}

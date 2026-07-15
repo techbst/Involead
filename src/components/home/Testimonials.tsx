@@ -118,10 +118,10 @@ export default function Testimonials() {
               }}
               speed={5200}
               slidesPerView={1.02}
-              spaceBetween={24}
+              spaceBetween={18}
               breakpoints={{
-                760: { slidesPerView: 1.6, spaceBetween: 28 },
-                1180: { slidesPerView: 2.15, spaceBetween: 32 },
+                760: { slidesPerView: 1.6, spaceBetween: 18 },
+                1180: { slidesPerView: 2.15, spaceBetween: 18 },
               }}
             >
               {[...testimonials, ...testimonials].map((testimonial, index) => (
@@ -130,7 +130,7 @@ export default function Testimonials() {
                   className="py-3"
                 >
                   <article className="group min-h-[340px] rounded-[24px] bg-[url('/img/company.png')] bg-cover bg-center p-3 transition duration-300 hover:-translate-y-2">
-                    <div className="flex min-h-[245px] flex-col rounded-[16px] bg-white p-4 sm:p-6">
+                    <div className="flex min-h-[245px] flex-col rounded-[24px] bg-white p-4 sm:p-6">
                       <Image
                         src="/img/quote.svg"
                         alt=""

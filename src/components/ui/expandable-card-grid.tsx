@@ -245,7 +245,7 @@ export default function ExpandableCardGrid({ items, className }: Props) {
 
                       <button
                         onClick={() => setActiveIndex(null)}
-                        className="absolute -top-4 -right-4 grid size-10 place-items-center rounded-full bg-secondary text-white"
+                        className="absolute -bottom-4 -right-4 grid size-10 place-items-center rounded-full bg-secondary text-white"
                       >
                         <X className="size-5" />
                       </button>

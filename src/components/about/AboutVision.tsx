@@ -23,7 +23,7 @@ export default function AboutVision() {
           titleClassName="mx-auto max-w-4xl"
         />
 
-        <div className="mt-14 grid items-center gap-10 xl:mt-16 xl:grid-cols-[0.95fr_1.25fr] xl:gap-14">
+        <div className="mt-14 grid items-center gap-10 xl:mt-16 md:grid-cols-[0.95fr_1.25fr] xl:gap-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

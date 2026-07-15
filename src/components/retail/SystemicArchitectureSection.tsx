@@ -62,7 +62,7 @@ export default function SystemicArchitectureSection() {
 
         <div className="mt-10 grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] xl:gap-14">
           <ArchitectureGraphicVariantFive />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
             {systemicArchitectureCards.map((card, index) => (
               <ArchitectureCard key={card.title} {...card} index={index} />
             ))}

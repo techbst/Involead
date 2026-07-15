@@ -273,7 +273,7 @@ export default function AboutDelivery() {
           titleClassName="mx-auto max-w-2xl"
         />
 
-        <div className="mt-14 grid gap-6 xl:grid-cols-[420px_minmax(0,1fr)]">
+        <div className="mt-14 grid gap-6 xl:grid-cols-[420px_minmax(0,1fr)] md:grid-cols-[420px_minmax(0,1fr)]">
           <div className="rounded-[28px] border border-slate-200 bg-white p-2 shadow-[0_10px_40px_rgba(15,23,42,0.04)] md:p-6">
             <h3 className="!text-[14px] font-medium text-slate-900">Filter by Region</h3>
 

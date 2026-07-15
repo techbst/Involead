@@ -107,7 +107,7 @@ export default function ProductsInnovation() {
             className="mt-12 -mx-2"
           >
             {products.map((product, index) => (
-              <SwiperSlide key={product.title} className="h-auto px-2">
+              <SwiperSlide key={product.title} className="h-auto ">
                 <motion.div
                   // initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}

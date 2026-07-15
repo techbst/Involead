@@ -49,7 +49,7 @@ export default function ColorfulNumberCard({
                 },
             }}
             className={cn(
-                "grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mt-12",
+                "grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 mt-12",
                 className
             )}
         >
