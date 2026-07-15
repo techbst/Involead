@@ -5,4 +5,14 @@ import CurrentOpenings from "./current-openings";
 import LifeInvolead from "./life-involead";
 import EmployeesStories from "./employees-stories";
 import ShareProfile from "./share-profile";
-export default function CareerPageClient(){return <main className="overflow-hidden"><Hero/><WhyInvolead/><HowWeWork/><CurrentOpenings/><LifeInvolead/><EmployeesStories/><ShareProfile/></main>}
+import StatsCounter from "../home/StatsCounter";
+export default function CareerPageClient(){return <main className="overflow-hidden">
+    <Hero/>
+    <WhyInvolead/>
+    <HowWeWork/>
+    <CurrentOpenings/>
+    <LifeInvolead/>
+    <EmployeesStories/>
+    <ShareProfile/>
+    <StatsCounter />
+</main>}

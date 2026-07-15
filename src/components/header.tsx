@@ -118,7 +118,7 @@ export default function Header() {
         }`}
     > */}
     <header
-      className={`fixed left-0 right-0 z-[150] flex justify-center py-5 px-0 lg:px-12 transition-transform duration-300 !bg-white !top-0 shadow-xl shadow-black/5 top-0 bg-white lg:top-5 lg:bg-transparent"
+      className={`fixed left-0 right-0 z-[150] flex justify-center py-5 px-0 lg:px-0 transition-transform duration-300 !bg-white !top-0 shadow-xl shadow-black/5 top-0 bg-white lg:top-5 lg:bg-transparent"
         `}
     >
       {/* <div
@@ -128,7 +128,7 @@ export default function Header() {
           }`}
       > */}
       <div
-        className={`relative container flex items-center justify-between overflow-visible `}
+        className={`relative max-w-[1360px] px-[48px] w-full flex items-center justify-between overflow-visible `}
       >
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center justify-center">

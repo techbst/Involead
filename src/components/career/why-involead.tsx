@@ -1,9 +1,75 @@
 "use client";
-import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/ui/section-header";
-import { values } from "./career-data";
 
-export default function WhyInvolead() { return <section id="culture" className="bg-white py-20"><div className="container mx-auto">
-  <SectionHeader eyebrow="Why InvoLead" title="A Place Where Talent Grows with Purpose" description="We create an environment where people can learn fast, take ownership, and work on meaningful AI and analytics problems with business impact." align="left" maxWidth="3xl" />
-  <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{values.map((item, i) => { const Icon=item.icon; return <motion.article key={item.title} initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.06}} className={`rounded-[20px] border p-7 ${i%3===0||i===4 ? "border-[#4aa4b8] bg-[#4aa4b8] text-white" : "border-[#d6edf2] bg-[#eaf7f9] text-slate-900"}`}><span className={`grid size-11 place-items-center rounded-xl ${i%3===0||i===4?"bg-white/15":"bg-white text-secondary"}`}><Icon className="size-5"/></span><h3 className="mt-5 text-xl font-semibold">{item.title}</h3><p className={`mt-3 text-sm leading-6 ${i%3===0||i===4?"text-white/80":"text-slate-600"}`}>{item.description}</p></motion.article>})}</div>
-</div></section> }
+import { motion, useReducedMotion } from "framer-motion";
+
+import { values } from "./career-data";
+import { SectionHeader } from "../ui/section-header";
+
+const highlightedCards = new Set([0, 3, 5]);
+
+export default function WhyInvolead() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section id="culture" className="bg-white py-16 sm:py-20 text-slate-950">
+      <div className="container mx-auto">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <motion.header
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="flex min-h-[204px] flex-col justify-center pb-5 pr-4 sm:col-span-2 lg:pr-10"
+          >
+            <SectionHeader
+                className="text-slate-950 max-w-[460px]"
+                eyebrow="Why Involead"
+                title="A Place Where Talent Grows with Purpose"
+                description="We create an environment where people can learn fast, take ownership,
+              and work on meaningful AI and analytics problems with business impact."
+                align="left"
+              />
+          </motion.header>
+
+          {values.map((item, index) => {
+            const Icon = item.icon;
+            const highlighted = highlightedCards.has(index);
+
+            return (
+              <motion.article
+                key={item.title}
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  duration: 0.5,
+                  delay: reduceMotion ? 0 : index * 0.055,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className={`flex min-h-[204px] flex-col rounded-[11px] p-5 sm:p-5 md:p-5 lg:p-5 xl:p-8 ${
+                  highlighted
+                    ? "bg-secondary text-white"
+                    : "bg-[#DCEFF3] text-[#000]"
+                }`}
+              >
+                <span className="grid size-[50px] shrink-0 place-items-center rounded-[8px] bg-white text-[#36a5bd]">
+                  <Icon aria-hidden="true" className="size-[22px] stroke-[1.4]" />
+                </span>
+                <h3 className="mt-4 text-[16px] font-medium leading-tight sm:text-[17px]">
+                  {item.title}
+                </h3>
+                <p
+                  className={`mt-2 text-[12px] leading-[1.55] sm:text-[13px] ${
+                    highlighted ? "text-white/90" : "text-[#303030]"
+                  }`}
+                >
+                  {item.description}
+                </p>
+              </motion.article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -21,6 +21,7 @@ export default function Hero() {
 
   return (
     <section className="relative h-auto overflow-hidden bg-[#f1f8fa] pt-24 text-slate-950">
+      <Image src="/img/List-overview.svg" width={649} height={651} alt="List Overview" className="absolute right-[0px] top-[8%]" />
       <div className="container mx-auto grid min-h-[631px] items-center gap-10 py-14 lg:grid-cols-[1.08fr_.92fr] lg:py-0">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
