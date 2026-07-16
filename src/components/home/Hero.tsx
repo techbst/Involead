@@ -51,7 +51,7 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <section
-      className="relative flex items-center overflow-hidden pt-30 pb-26 md:pt-36 md:pb-24"
+      className="relative flex items-center overflow-hidden pt-30 lg:pb-26 sm:pb-5 md:pt-36 md:pb-24"
       style={{ background: bgColor, clipPath }}
     >
       

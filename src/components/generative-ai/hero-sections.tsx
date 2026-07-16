@@ -430,7 +430,7 @@ export function AIOperatingSystemHero() {
 
 export function AutonomousAgentEcosystemHero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-50 md:pt-20 pb-12 text-white">
+    <section className="relative isolate min-h-screen overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-35 xl:pt-20 md:pt-20 sm:pt-30 pb-12 text-white">
       <div className="container relative grid  items-center gap-12 pb-20 lg:grid-cols-[1fr_1.1fr]">
         <HeroCopy
           eyebrow=""

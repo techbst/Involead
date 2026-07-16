@@ -99,7 +99,7 @@ export default function TechnologyScale() {
                   aria-hidden
                   className=""
                 /> </div>
-              <p className=" bottom-7 left-7 max-w-[300px] text-[22px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">
+              <p className=" bottom-7 left-7 max-w-[300px] lg:text-[22px] md:text-[20px] sm:text-[16px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">
                 {label}
               </p>
             </motion.article>
@@ -173,7 +173,7 @@ export default function TechnologyScale() {
                   height={50}
                   aria-hidden
                 />  </div>
-              <p className=" bottom-7 left-7 max-w-[320px] text-[22px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">
+              <p className=" bottom-7 left-7 max-w-[320px] lg:text-[22px] md:text-[20px] sm:text-[16px] font-medium leading-snug !text-black/70 sm:bottom-10 sm:left-9 sm:text-[26px]">
                 {label}
               </p>
             </motion.article>

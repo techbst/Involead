@@ -11,12 +11,12 @@ const EXPERTISE_CARD_CLIP_PATH =
 
 export default function AboutOverviewHero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)]">
+    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] lg:pt-0 text-slate-950 pt-35 lg:pt-28 md:pt-28 md:pb-24">
      
         <Image src="/img/List-overview.svg" width={649} height={651} alt="List Overview" className="absolute right-[0px] top-[8%]" />
    
       <div className="container relative z-10 mx-auto grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
-        <div className="pb-24 pt-28 md:pb-28 md:pt-52">
+        <div>
           <div className="text-[14px] font-medium uppercase py-0 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3">
             <span>About Us</span>
           </div>

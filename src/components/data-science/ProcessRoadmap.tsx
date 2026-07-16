@@ -203,7 +203,7 @@ export default function ProcessRoadmap() {
   const isInView = useInView(sectionRef, { amount: 0.25 });
   const [activeStep, setActiveStep] = useState(-1);
 
-  const signalDelays = useMemo(() => [0, 0.9, 1.8 ,2], []);
+  const signalDelays = useMemo(() => [0, 0.9, 1.8, 2], []);
   const revealedStep = Math.max(activeStep, 0);
   const desktopLineProgress = `${(revealedStep / (steps.length - 1)) * 100}%`;
   const mobileLineProgress = `${(revealedStep / (steps.length - 1)) * 100}%`;
@@ -245,14 +245,14 @@ export default function ProcessRoadmap() {
 
       <div className="container relative z-10 mx-auto">
         <SectionHeader
-                    eyebrow={"Autonomous Pipeline"}
-                    title={`Next-gen agentic AI data science`}
-                    description={`Five agents, one continuous signal — from raw goal to monitored
+          eyebrow={"Autonomous Pipeline"}
+          title={`Next-gen agentic AI data science`}
+          description={`Five agents, one continuous signal — from raw goal to monitored
             production model, with no hand-off left to chance.`}
-                    align="center"
-                    maxWidth="2xl"
-                  />
-        
+          align="center"
+          maxWidth="2xl"
+        />
+
 
         <div className="relative mx-auto mt-20 hidden lg:block">
           <div className="relative grid grid-cols-5 gap-6">
@@ -324,7 +324,7 @@ export default function ProcessRoadmap() {
                   >
                     <Icon className="size-6 text-secondary" strokeWidth={1.75} />
                   </motion.div>
-                  <span className="absolute -bottom-3 left-1/2 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-[0.62rem] font-medium tracking-tight text-primary shadow-sm">
+                  <span className="absolute sm:-bottom-[20px] lg:-bottom-3 left-1/2 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-[0.62rem] font-medium tracking-tight text-primary shadow-sm">
                     {stepNumber}
                   </span>
                 </div>
@@ -347,8 +347,8 @@ export default function ProcessRoadmap() {
         </div>
       </div>
       <div className="absolute -bottom-[7px] left-0 w-[290px] bg-white ">
-                <CornerShape color="#5fb0c226" />
-              </div>
+        <CornerShape color="#5fb0c226" />
+      </div>
     </section>
   );
 }

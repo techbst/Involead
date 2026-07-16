@@ -107,7 +107,7 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
 
-        <div className="mt-14 grid gap-5 grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-5 grid-cols-1 lg:grid-cols-4 md:grid-cols-4">
           {statCards.map((card, index) => {
             // const Icon = card.icon;
 
@@ -128,12 +128,12 @@ export default function WhoWeAre() {
                     : "border-[#D9D9D9] bg-white"
                 }`}
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center justify-between gap-4">
                   <div className="text-[36px] font-semibold leading-none tracking-[-0.05em] text-black">
                     <Counter value={card.value} />
                     {card.suffix && <span>{card.suffix}</span>}
                   </div>
-                  <Image src={card.icon} alt="icons" width={56} height={56} className="" />
+                  <Image src={card.icon} alt="icons" width={50} height={50} className="" />
                 </div>
                 <p className="mt-14 text-[18px] leading-7 text-slate-700">
                   {card.label}

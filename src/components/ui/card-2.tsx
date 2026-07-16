@@ -66,13 +66,13 @@ export default function FeatureCard({
                 </div>
 
                 {/* Image */}
-                <div className="overflow-hidden">
+                <div className="overflow-hidden max-h-[260px]">
                     <Image
                         src={image}
                         alt={imageAlt}
                         width={500}
                         height={500}
-                        className="w-full object-cover rounded-[24px]"
+                        className="w-full object-cover rounded-[24px] max-h-[260px] lg:max-h-[260px]"
                     />
                 </div>
             </div>

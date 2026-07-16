@@ -332,7 +332,7 @@ export default function AboutDelivery() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="m-8 rounded-[20px] bg-[#E7F5F8] p-6 md:m-5 md:p-7"
+              className="m-1 lg:m-8 rounded-[20px] bg-[#E7F5F8] p-6 md:m-5 md:p-7"
             >
               <h3 className="!text-[20px] font-medium leading-none text-slate-900">
                 {selectedOffice.city}

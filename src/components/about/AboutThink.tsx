@@ -340,6 +340,7 @@ export default function AboutThink() {
           descriptionWidth="4xl"
           textColor="black"
           titleClassName="mx-auto max-w-3xl"
+          className="mb-[60px] lg:mb-0 md:mb-0"
         />
       </div>
 

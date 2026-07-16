@@ -19,18 +19,21 @@ const perspective = {
 
 const relatedPerspectives = [
   {
+    id:1,
     title: "Why Most AI Initiatives Fail Before They Reach Production",
     category: "Ai strategy",
     author: "Nilesh Gupta",
     role: "Co-Founder & Director",
   },
   {
+    id:2,
     title: "Why Most AI Initiatives Fail Before They Reach Production",
     category: "AI strategy",
     author: "Pinaki Ghosh",
     role: "Co-Founder & Director",
   },
   {
+    id:3,
     title: "Why Most AI Initiatives Fail Before They Reach Production",
     category: "AI strategy",
     author: "Srikanth Patil",
@@ -125,7 +128,7 @@ export default function Leaders() {
           <div className="grid gap-5">
             {relatedPerspectives.map((item, index) => (
               <article
-                key={item.title}
+                key={item.id}
                 data-aos="fade-up"
                 data-aos-delay={(index + 1) * 100}
                 data-aos-duration="750"

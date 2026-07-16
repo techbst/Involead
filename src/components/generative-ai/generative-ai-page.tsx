@@ -738,12 +738,12 @@ function ExpertiseCard({ item, index }: { item: Expertise; index: number }) {
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative h-full rounded-[18px] sm:min-h-[420px] md:min-h-[320px] lg:min-h-[420px] xl:min-h-[480px]"
+        className="group relative h-[460px] w-full sm:h-[420px] lg:h-[450px]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <article
           className={cn(
-            "absolute inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/90 p-5 shadow-[0_22px_70px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset] sm:p-7",
+            "relative inset-0 flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/90 p-5 shadow-[0_22px_70px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset] sm:p-7",
             isFlipped ? "pointer-events-none" : "pointer-events-auto",
             item.backgroundImage,
           )}
@@ -952,7 +952,7 @@ function TimelineSection() {
               className="h-full w-full bg-[linear-gradient(#5fb0c2,#b0f1ff)]"
             />
           </div>
-          <div className="grid -gap-5">
+          <div className="grid gap-5 lg:-gap-5">
             {timelineSteps.map((item, index) => (
               <div
                 key={item.step}
@@ -997,14 +997,14 @@ function TechStackTabs() {
           description="Enterprise Generative AI solutions designed by our experts with the latest resources."
         />
         <div className="mt-10 pb-2">
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex overflow-auto lg:justify-center gap-3 px-3 lg:px-0">
             {techTabs.map((tab, index) => (
               <button
                 key={tab.label}
                 type="button"
                 onClick={() => setActive(index)}
                 className={cn(
-                  "rounded-full border px-4 py-2.5 text-xs font-semibold transition sm:px-5 sm:py-3 sm:text-sm",
+                  "rounded-full border px-4 py-2.5 text-xs font-semibold transition sm:px-5 sm:py-3 sm:text-sm text-nowrap mb-2",
                   active === index
                     ? "border-transparent bg-[linear-gradient(135deg,#5fb0c2,#5fb0c2)] text-white shadow-sm shadow-secondary-500/20"
                     : "border-slate-200 bg-white hover:border-secondary/50",
@@ -1067,7 +1067,7 @@ function BlogSection() {
             title="Get Insights & Tips from Our Blog"
             description="Check out our blog for the latest AI trends and insights!"
           />
-          <Button asChild>
+          <Button asChild className="w-fit">
             <Link href="/case-studies">
               View All Stories
               <ArrowRight className="size-4" />

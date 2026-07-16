@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 
 import { solutionCards } from "./retail-data";
+import CornerShape from "../ui/shape";
 
 const cardsPerPage = 4;
 
@@ -103,7 +104,7 @@ export default function SolutionsSection() {
   };
 
   return (
-    <section className="relative bg-white py-20">
+    <section className="relative bg-white py-20 overflow-hidden">
       <div className="container mx-auto">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
@@ -156,6 +157,9 @@ export default function SolutionsSection() {
             </motion.div>
           </AnimatePresence>
         </div>
+      </div>
+      <div className="absolute -bottom-[6px] left-0 w-[290px] bg-secondary/15 ">
+        <CornerShape color="#fff" />
       </div>
     </section>
   );

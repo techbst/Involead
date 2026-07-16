@@ -100,7 +100,7 @@ function PhilosophyCard({
             ease: [0.22, 1, 0.36, 1],
           }}
           className={`font-medium leading-none transition-transform duration-500 ${
-            stacked ? "mt-0 text-[52px]" : "mt-14 text-[34px]"
+            stacked ? "mt-0 text-[52px]" : "mt-1 lg:mt-14 md:mt-10 text-[34px]"
           }`}
         >
           {card.title}

@@ -20,7 +20,7 @@ export default function LifeInvolead() {
         />
 
         <div className="relative mt-14 pl-11 md:grid md:grid-cols-4 md:gap-4 md:pt-10 md:pl-0">
-          <span aria-hidden="true" className="absolute bottom-7 left-[18px] top-0 w-px bg-white md:bottom-auto md:left-[12.5%] md:right-[12.5%] md:top-[10px] md:h-px md:w-auto" />
+          <span aria-hidden="true" className="absolute bottom-7 left-[22px] lg:left-[18px] md:left-[18px] top-0 w-px bg-white md:bottom-auto md:left-[12.5%] md:right-[12.5%] md:top-[10px] md:h-px md:w-auto" />
 
           {lifeSteps.map((step, index) => (
             <motion.div

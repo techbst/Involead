@@ -59,7 +59,7 @@ export default function ServicesSection() {
                 //   duration: 0.6,
                 // }}
                 viewport={{ once: true }}
-                className="relative h-[360px] w-full sm:h-[420px] lg:h-[450px]"
+                className="relative h-[460px] w-full sm:h-[420px] lg:h-[450px]"
               >
                 <ClipCard
                   image={card.image}

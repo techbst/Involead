@@ -128,7 +128,7 @@ export default function Header() {
           }`}
       > */}
       <div
-        className={`relative max-w-[1360px] px-[48px] w-full flex items-center justify-between overflow-visible `}
+        className={`relative container w-full flex items-center justify-between overflow-visible `}
       >
         <Link href="/" className="flex items-center gap-3">
           <div className="flex items-center justify-center">

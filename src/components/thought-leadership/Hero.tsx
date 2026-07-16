@@ -121,7 +121,7 @@ export default function ThoughtLeadershipHero() {
   const reduceMotion = !!useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-32 pb-8 md:pt-36 ">
+    <section className="relative overflow-hidden bg-[linear-gradient(45deg,#f8fbff_0%,#81bfce59_100%)] pt-35 lg:pt-32 pb-8 md:pt-32 ">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/80 to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(125,197,215,0.12),transparent_34%)]" />
 
@@ -140,7 +140,7 @@ export default function ThoughtLeadershipHero() {
               Thought Leadership
             </div>
 
-            <div className="mt-7 max-w-4xl">
+            <div className=" max-w-4xl">
               <AnimatedHeadline
                 title="Perspectives That Shape Smarter Business Decisions"
                 highlightFromWord={3}
@@ -182,7 +182,7 @@ export default function ThoughtLeadershipHero() {
             initial={reduceMotion ? false : { opacity: 0, x: 24, scale: 0.96 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto min-h-[630px] w-full bg-[url('/img/Left-Rectangle.png')] bg-contain bg-[90%] bg-no-repeat"
+            className="relative mx-auto min-h-[480] lg:min-h-[630px] md:min-h-[600px] w-full bg-[url('/img/Left-Rectangle.png')] bg-contain bg-[90%] bg-no-repeat"
           >
             <ConnectorLines />
 

@@ -18,9 +18,9 @@ const positions = ["top-[8%]", "right-[2%]", "bottom-[8%]", "left-[2%]"] as cons
 
 export default function SystemicAISection() {
   return (
-    <section className="relative py-20 text-white ">
-      <ClipShape />
-      <div className="container relative z-10 mt-20 grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
+    <section className="relative py-20 text-white bg-secondary/15">
+      {/* <ClipShape /> */}
+      <div className="container relative grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
         <div>
           <SectionHeader
             eyebrow="Systemic AI Advantage"
