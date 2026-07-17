@@ -436,9 +436,9 @@ export default function AboutThink() {
         />
       </div>
 
-      <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-8">
+      <div className=" px-4 sm:px-6 lg:px-8">
         {/* Desktop / wide layout: wave with connector lines measured live from each card */}
-        <div className="hidden xl:block">
+        <div className="hidden lg:block">
           <div ref={desktopStageRef} className="relative">
             {wavesReady && (
               <svg
@@ -555,7 +555,7 @@ export default function AboutThink() {
         </div>
 
         {/* Compact / mobile layout: vertical timeline, always aligned since it's a single column */}
-        <div className="xl:hidden">
+        <div className="lg:hidden">
           <div className="relative mx-auto mt-10 max-w-2xl sm:mt-12">
             <div className="absolute bottom-10 left-5 top-10 w-[2px] rounded-full bg-slate-200" />
             <div

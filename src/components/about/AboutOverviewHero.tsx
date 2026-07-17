@@ -15,7 +15,7 @@ export default function AboutOverviewHero() {
      
         <Image src="/img/List-overview.svg" width={649} height={651} alt="List Overview" className="absolute right-[0px] top-[8%]" />
    
-      <div className="container relative z-10 mx-auto grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+      <div className="container relative z-10 mx-auto grid items-center gap-10 lg:grid-cols-[1.5fr_1fr] xl:grid-cols-[1fr_1fr]">
         <div>
           <div className="text-[14px] font-medium uppercase py-0 !px-4 bg-[#e4fbff] inline-block rounded-[50px] !text-[#417f8c] mb-3">
             <span>About Us</span>
@@ -46,7 +46,7 @@ export default function AboutOverviewHero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full bg-[url('/img/Left-Rectangle.png')] bg-contain bg-top bg-no-repeat md:px-10 pb-24 pt-28 md:pb-28 md:pt-32">
+        <div className="relative mx-auto w-full bg-[url('/img/Left-Rectangle.png')] bg-contain bg-top bg-no-repeat xl:px-10 pb-24 pt-28 xl:pb-28 xl:pt-32">
 
 
           <div className="relative flex items-center gap-5 lg:gap-5 ">
