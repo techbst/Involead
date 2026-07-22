@@ -19,8 +19,6 @@
     "@hookform/resolvers": "^5.4.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "latest",
-    "@types/aos": "^3.0.8",
-    "aos": "^2.3.4",
     "autoprefixer": "latest",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
