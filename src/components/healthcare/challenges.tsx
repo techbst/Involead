@@ -75,20 +75,20 @@ function ChallengeCardTile({ title, description, icon: Icon, tone }: ChallengeCa
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className={[
-        "group flex h-full min-h-[280px] flex-col rounded-[28px] p-5 sm:p-6 md:p-7 lg:p-8",
+        "group flex h-full min-h-[280px] flex-col rounded-[24px] p-[20px]",
         "border transition-all duration-300",
         isDark
           ? "border-[#49a4ba] bg-[#49a4ba] text-white shadow-[0_18px_45px_rgba(73,164,186,0.16)] hover:shadow-[0_26px_60px_rgba(73,164,186,0.28)]"
           : "border-[#d8ecf2] bg-[#e8f4f7] text-slate-950 shadow-[0_18px_45px_rgba(15,23,42,0.06)] hover:shadow-[0_26px_60px_rgba(15,23,42,0.12)]",
       ].join(" ")}
     >
-      <div className="inline-flex size-[104px] items-center justify-center rounded-[20px] bg-white text-[#49a4ba] shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 group-hover:scale-[1.03]">
+      <div className="inline-flex w-[84px] h-[84px] items-center justify-center rounded-[24px] bg-white text-secondary shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 group-hover:scale-[1.03]">
         <Icon className="size-10 stroke-[1.6]" aria-hidden="true" />
       </div>
 
       <h3
         className={[
-          "mt-10 max-w-[16ch] text-[clamp(1.45rem,1.8vw,1.95rem)] font-medium leading-[1.15] tracking-[-0.04em]",
+          "mt-[20px] max-w-[18ch] text-[clamp(1.45rem,1.8vw,1.95rem)] font-medium ",
           isDark ? "text-white" : "text-slate-900",
         ].join(" ")}
       >
@@ -97,7 +97,7 @@ function ChallengeCardTile({ title, description, icon: Icon, tone }: ChallengeCa
 
       <p
         className={[
-          "mt-4 max-w-[28ch] text-[15px] leading-7 sm:text-[16px]",
+          "mt-4",
           isDark ? "text-white/90" : "text-slate-700",
         ].join(" ")}
       >
@@ -111,7 +111,7 @@ export default function HealthcareChallengesSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-[#1b1a1a] py-16 text-white sm:py-20 lg:py-24">
+    <section className="bg-[#1d1d1d] bg-[url('/healthcare/bg-1.jpg')] bg-contain bg-no-repeat bg-top-left py-20 text-white sm:py-20 lg:py-24">
       <div className="container mx-auto">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
@@ -131,7 +131,7 @@ export default function HealthcareChallengesSection() {
           />
         </motion.div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-3 xl:grid-cols-3">
           {challengeCards.map((card, index) => (
             <motion.div
               key={card.title}

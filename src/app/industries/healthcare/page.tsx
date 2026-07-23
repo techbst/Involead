@@ -1,4 +1,4 @@
-import HealthCareIndustryPage from '@/components/retail/healthcare-industry-page';
+import HealthCareIndustryPage from '@/components/healthcare/healthcare-industry-page';
 import type { Metadata } from 'next';
 
 
