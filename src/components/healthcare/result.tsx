@@ -1,5 +1,5 @@
 import { Activity } from "lucide-react";
-
+import { motion } from "framer-motion";
 import { SectionHeader } from "../ui/section-header";
 
 const results = [
@@ -56,26 +56,42 @@ export default function HealthcareResults() {
         />
 
         <div className="mt-10 grid gap-4 md:mt-12 md:grid-cols-[194px_minmax(0,1fr)_194px] md:items-stretch">
-          <img
+          <motion.img
             src={LEFT_PLACEHOLDER_IMAGE}
             alt="Placeholder for healthcare results"
             className="hidden h-full min-h-[450px] w-full rounded-[10px] object-cover lg:block"
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{
+              duration: 0.55,
+              delay: 0.155,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           />
 
           <div className="grid gap-2">
-            {results.map((result) => (
-              <article
+            {results.map((result, index) => (
+              <motion.article
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.155,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 key={result.title}
-                className="flex gap-3 rounded-[10px] bg-[#e7f5f8] p-3 sm:gap-4 sm:p-4"
+                className="sm:flex gap-3 rounded-[10px] bg-[#e7f5f8] p-3 sm:gap-4 sm:p-4"
               >
-                <span className="grid w-[60px] h-[60px] shrink-0 place-items-center rounded-[12px] bg-white text-secondary mt-2">
+                <span className="grid w-[60px] h-[60px] shrink-0 place-items-center rounded-[12px] bg-white text-secondary mt-2 mb-2 sm:mb-0">
                   <Activity className="size-8 stroke-[1.5]" aria-hidden="true" />
                 </span>
                 <div>
                   <h3 className="font-medium leading-[24px] -tracking-[-0.38px] text-[#1D1D1D]">
                     {result.title}
                   </h3>
-                  <p className="mt-1 text-xs leading-5 text-slate-700 sm:text-[13px]]">
+                  <p className="mt-1">
                     {result.description}{" "}
                     <span className="inline-flex rounded-[8px] bg-[#E7F5F8] px-[8px] py-[1px] font-bold text-secondary  border border-[0.67px] border-[#46A4B9] leading-normal">
                       {result.metric}
@@ -83,14 +99,22 @@ export default function HealthcareResults() {
                     {result.suffix}
                   </p>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
 
-          <img
+          <motion.img
             src={RIGHT_PLACEHOLDER_IMAGE}
             alt="Placeholder for healthcare results"
             className="hidden h-full min-h-[450px] w-full rounded-[10px] object-cover lg:block"
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{
+              duration: 0.55,
+              delay: 0.155,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           />
         </div>
       </div>

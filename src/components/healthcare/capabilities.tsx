@@ -83,7 +83,7 @@ export default function HealthcareCapabilities() {
 
         <div className="mt-10 overflow-hidden rounded-[18px] border border-slate-200/80 bg-white shadow-[0_12px_35px_rgba(15,23,42,0.04)] sm:mt-12 md:grid md:grid-cols-[minmax(270px,0.72fr)_minmax(0,1.85fr)]">
           <div
-            className="flex overflow-x-auto border-b border-slate-200/80 bg-white md:block md:overflow-visible md:border-b-0 md:border-r"
+            className="flex overflow-y-hidden overflow-x-auto border-b border-slate-200/80 bg-white md:block md:overflow-x-auto md:border-b-0 md:border-r"
             role="tablist"
             aria-label="Healthcare capabilities"
           >
@@ -110,7 +110,7 @@ export default function HealthcareCapabilities() {
                     delay: index * 0.155,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className={`group flex min-h-[68px] shrink-0 items-center gap-3 border-r border-slate-200/80 px-5 py-4 text-left transition-colors last:border-r-0 md:w-full md:border-r-0 md:border-b md:last:border-b-0 ${
+                  className={`group flex min-h-[68px] shrink-0 items-center gap-3 border-r border-slate-200/80 px-2 sm:px-5 py-4 text-left transition-colors last:border-r-0 w-[200px] md:w-full md:border-r-0 md:border-b md:last:border-b-0 ${
                     isActive
                       ? "bg-secondary text-white"
                       : "bg-white text-slate-900 hover:bg-[#f1fafc]"

@@ -50,7 +50,7 @@ export default function AboutOverviewHero() {
             />
           </div>
 
-          <div className="absolute left-[20%] top-[10%] xl:left-[20%] lg:-left-[5%] md:left-[20%] z-10 w-[78%] max-w-[235px] rounded-[24px] border border-[#86CDDD] bg-white p-4 shadow-[0_16px_34px_rgba(15,23,42,0.09)] sm:p-3">
+          <div className="absolute left-[20%] top-[-5%] sm:top-[10%] xl:left-[20%] lg:-left-[5%] md:left-[20%] z-10 w-[78%] max-w-[235px] rounded-[24px] border border-[#86CDDD] bg-white p-4 shadow-[0_16px_34px_rgba(15,23,42,0.09)] sm:p-3">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3 text-xs">
               <div className="flex items-center gap-3 font-medium text-slate-600 text-[9px]">
                 <span className="flex gap-1.5" aria-hidden="true">
@@ -67,7 +67,7 @@ export default function AboutOverviewHero() {
               Data processing<br />volume, last 6 weeks
             </div>
 
-            <div className="mt-4 flex h-32 items-end justify-between gap-2 sm:mt-5 sm:h-[100px]">
+            <div className="mt-4 flex h-20 items-end justify-between gap-2 sm:mt-5 sm:h-[100px]">
               {[44, 44, 38, 66, 61, 87, 102].map((height, index) => (
                 <span
                   key={index}
@@ -80,7 +80,7 @@ export default function AboutOverviewHero() {
             <div className="mt-4 text-right text-[8.15px] italic text-[#9CA3AF]">Team averages trending +12%</div>
           </div>
 
-          <div className="absolute bottom-0 left-[30%] z-20 flex w-fit items-center gap-2 rounded-[16px] bg-[#4da9bd] px-4 py-2 text-white shadow-[0_16px_30px_rgba(77,169,189,0.22)]">
+          <div className="absolute bottom-10 sm:bottom-0 left-0 sm:left-[30%] z-20 flex w-fit items-center gap-2 rounded-[16px] bg-[#4da9bd] px-4 py-2 text-white shadow-[0_16px_30px_rgba(77,169,189,0.22)]">
             <span className="text-[24px] font-bold leading-none">
               <AnimatedNumber value="40%" />
             </span>

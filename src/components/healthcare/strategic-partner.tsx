@@ -41,7 +41,7 @@ const partnerPoints = [
 
 export default function StrategicPartner() {
   return (
-    <section className="bg-white px-4 py-20 sm:px-6 sm:py-20">
+    <section className="bg-white py-20">
       <div className="container mx-auto ">
         <div className="rounded-[24px] bg-secondary px-4 pt-14 pb-8">
           <SectionHeader
@@ -63,7 +63,7 @@ export default function StrategicPartner() {
                   delay: index * 0.155,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="rounded-[10px] bg-white p-8"
+                className="rounded-[10px] bg-white p-4 sm:p-8"
               >
                 <span className="mb-5 block text-sm font-semibold tracking-[0.52px] text-secondary">
                   {point.number}
