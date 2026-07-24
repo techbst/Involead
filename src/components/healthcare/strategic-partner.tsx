@@ -1,5 +1,5 @@
 import { SectionHeader } from "../ui/section-header";
-
+import { motion } from "framer-motion";
 const partnerPoints = [
   {
     number: "01",
@@ -52,8 +52,19 @@ export default function StrategicPartner() {
           />
 
           <div className="mt-11 grid gap-1.5 md:grid-cols-2 lg:grid-cols-3">
-            {partnerPoints.map((point) => (
-              <article key={point.number} className="rounded-[10px] bg-white p-8">
+            {partnerPoints.map((point, index) => (
+              <motion.article
+                key={point.number}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.155,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="rounded-[10px] bg-white p-8"
+              >
                 <span className="mb-5 block text-sm font-semibold tracking-[0.52px] text-secondary">
                   {point.number}
                 </span>
@@ -63,7 +74,7 @@ export default function StrategicPartner() {
                 <p className="mt-1 text-sm leading-5 text-[#1D1D1D]">
                   {point.description}
                 </p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>

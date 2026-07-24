@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useId, useState } from "react";
-
+import { motion } from "framer-motion";
 import { SectionHeader } from "../ui/section-header";
 
 type Capability = {
@@ -93,7 +93,7 @@ export default function HealthcareCapabilities() {
               const panelId = `${tabGroupId}-panel-${index}`;
 
               return (
-                <button
+                <motion.button
                   key={capability.title}
                   id={itemId}
                   type="button"
@@ -102,6 +102,14 @@ export default function HealthcareCapabilities() {
                   aria-controls={panelId}
                   tabIndex={isActive ? 0 : -1}
                   onClick={() => setActiveIndex(index)}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{
+                    duration: 0.55,
+                    delay: index * 0.155,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className={`group flex min-h-[68px] shrink-0 items-center gap-3 border-r border-slate-200/80 px-5 py-4 text-left transition-colors last:border-r-0 md:w-full md:border-r-0 md:border-b md:last:border-b-0 ${
                     isActive
                       ? "bg-secondary text-white"
@@ -117,7 +125,7 @@ export default function HealthcareCapabilities() {
                   {isActive && (
                     <ArrowRight className="ml-auto size-4 shrink-0" aria-hidden="true" />
                   )}
-                </button>
+                </motion.button>
               );
             })}
           </div>

@@ -48,10 +48,10 @@ export default function WhyInvolead() {
                 key={item.title}
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
+                viewport={{ once: false, amount: 0.25 }}
                 transition={{
                   duration: 0.5,
-                  delay: reduceMotion ? 0 : index * 0.055,
+                  delay: reduceMotion ? 0 : index * 0.155,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className={`flex min-h-[204px] flex-col rounded-[11px] p-5 sm:p-5 md:p-5 lg:p-5 xl:p-8 ${

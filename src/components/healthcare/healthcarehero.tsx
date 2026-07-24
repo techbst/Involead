@@ -38,7 +38,7 @@ export default function AboutOverviewHero() {
           </div>
         </div>
 
-        <div className="relative mx-auto min-h-[540px] w-full max-w-[690px] ">
+        <div className="relative mx-auto min-h-[540px] w-full max-w-[690px] bg-[url('/img/Left-Rectangle.png')] bg-contain bg-top bg-no-repeat">
          
 
           <div className="absolute right-0 top-[100px] overflow-hidden rounded-[30px] sm:top-[104px] ">
